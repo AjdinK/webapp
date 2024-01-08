@@ -1,6 +1,4 @@
 ﻿namespace itservicecenter.Entities.Models
 {
-    public class AutenfitikacijaToken
-    {
-    }
+    public class AutenfitikacijaToken {}
 }
