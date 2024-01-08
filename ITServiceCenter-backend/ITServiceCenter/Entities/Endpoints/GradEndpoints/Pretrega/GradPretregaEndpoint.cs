@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.Pretrega
 {
+    [Route("Grad")]
     public class GradPretregaEndpoint : MyBaseEndpoint<GradPretregaRequest, GradPretregaResponse>
     {
         private readonly ApplicationDbContext _dbContext;
@@ -14,8 +15,8 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Pretrega
             _dbContext = dbContext;
         }
 
-        [HttpGet ("{Pretrega}")]
-        public override async Task<GradPretregaResponse> Obradi (GradPretregaRequest request, CancellationToken cancellationToken)
+        [HttpGet ("Pretrega")]
+        public override async Task<GradPretregaResponse> Obradi ([FromQuery] GradPretregaRequest request, CancellationToken cancellationToken)
         {
             var data = await _dbContext.Grad
                 .Where(g => request.Naziv == null || g.Naziv.Contains(request.Naziv))

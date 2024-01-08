@@ -5,16 +5,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
 {
+    [Route("Grad")]
     public class GradGetAllEndpoint : MyBaseEndpoint<NoRequest, GradGetAllResponse>
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public GradGetAllEndpoint(ApplicationDbContext dbContext)
+        public GradGetAllEndpoint (ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        [HttpGet ("{GetAll}")]
-        public override async Task <GradGetAllResponse> Obradi (NoRequest request, CancellationToken cancellationToken)
+
+        [HttpGet ("GetAll")]
+        public override async Task <GradGetAllResponse> Obradi ([FromQuery] NoRequest request, CancellationToken cancellationToken)
         {
             var data = await _dbContext.Grad
                 .OrderBy(g => g.ID)
