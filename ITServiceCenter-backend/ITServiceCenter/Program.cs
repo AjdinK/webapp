@@ -1,4 +1,4 @@
-using FIT_Api_Example.Data;
+using itservicecenter.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;

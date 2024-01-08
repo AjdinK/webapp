@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Entities\Endpoints\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
