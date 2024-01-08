@@ -1,5 +1,6 @@
 ﻿using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
@@ -8,11 +9,11 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
     {
         private readonly ApplicationDbContext _dbContext;
 
-        public GradGetAllEndpoint (ApplicationDbContext dbContext)
+        public GradGetAllEndpoint(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-
+        [HttpGet ("{GetAll}")]
         public override async Task <GradGetAllResponse> Obradi (NoRequest request, CancellationToken cancellationToken)
         {
             var data = await _dbContext.Grad
