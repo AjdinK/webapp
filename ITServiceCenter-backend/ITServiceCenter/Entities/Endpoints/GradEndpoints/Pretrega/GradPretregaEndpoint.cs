@@ -25,7 +25,8 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Pretrega
                 {
                     ID = g.ID,
                     Naziv = g.Naziv,
-                }).ToListAsync(cancellationToken: cancellationToken);
+                })
+                .ToListAsync(cancellationToken: cancellationToken);
 
             return new GradPretregaResponse
             {
