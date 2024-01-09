@@ -15,7 +15,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Brisi
         }
 
         [HttpDelete ("Delete")]
-        public override async Task <int> Obradi([FromBody] GradBrisiRequest request, CancellationToken cancellationToken)
+        public override async Task <int> Obradi ([FromBody] GradBrisiRequest request, CancellationToken cancellationToken)
         {
             var grad = _applicationDbContext.Grad.FirstOrDefault(g => g.ID == request.ID);
             if (grad != null)
