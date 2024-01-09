@@ -8,17 +8,17 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
     [Route("Grad")]
     public class GradGetAllEndpoint : MyBaseEndpoint<NoRequest, GradGetAllResponse>
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public GradGetAllEndpoint (ApplicationDbContext dbContext)
+        public GradGetAllEndpoint (ApplicationDbContext ApplicationDbContext)
         {
-            _dbContext = dbContext;
+            _applicationDbContext = ApplicationDbContext;
         }
 
         [HttpGet ("GetAll")]
         public override async Task <GradGetAllResponse> Obradi ([FromQuery] NoRequest request, CancellationToken cancellationToken)
         {
-            var data = await _dbContext.Grad
+            var data = await _applicationDbContext.Grad
                 .OrderBy(g => g.ID)
                 .Select(g => new GradGetAllResponseGrad (g.ID , g.Naziv))
                 .ToListAsync(cancellationToken: cancellationToken);

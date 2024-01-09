@@ -7,11 +7,11 @@ namespace itservicecenter.Entities.Models
     public class AutenfitikacijaToken
     {
         [Key]
-        public int id { get; set; }
-        public string vrijednost { get; set; }
-        [ForeignKey(nameof(korisnickiNalog))]
+        public int ID { get; set; }
+        public string Vrijednost { get; set; }
+        [ForeignKey(nameof(KorisnickiNalog))]
         public int KorisnickiNalogId { get; set; }
-        public KorisnickiNalog korisnickiNalog { get; set; }
+        public KorisnickiNalog KorisnickiNalog { get; set; }
         public DateTime VrijemeEvidentiranja { get; set; }
         public string? IpAdresa { get; set; }
         [JsonIgnore]

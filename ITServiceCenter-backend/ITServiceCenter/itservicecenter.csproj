@@ -21,8 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Endpoints\GradEndpoints\Brisi\" />
-    <Folder Include="Entities\Endpoints\GradEndpoints\Dodaj\" />
     <Folder Include="Entities\Endpoints\GradEndpoints\Snimi\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

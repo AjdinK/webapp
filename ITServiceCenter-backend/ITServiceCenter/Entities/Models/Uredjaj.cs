@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace itservicecenter.Entities.Models
 {
@@ -7,6 +8,8 @@ namespace itservicecenter.Entities.Models
         [Key]
         public int ID { get; set; }
         public string Naziv { get; set; }
+
+        [ForeignKey(nameof(Kategorija))]
         public int KategorijaID { get; set; }
         public Kategorija Kategorija { get; set; }
     }

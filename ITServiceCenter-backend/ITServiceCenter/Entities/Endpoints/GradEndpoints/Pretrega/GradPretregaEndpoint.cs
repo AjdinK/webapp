@@ -9,16 +9,17 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Pretrega
     [Route("Grad")]
     public class GradPretregaEndpoint : MyBaseEndpoint<GradPretregaRequest, GradPretregaResponse>
     {
-        private readonly ApplicationDbContext _dbContext;
+        private readonly ApplicationDbContext _applicationDbContext;
 
-        public GradPretregaEndpoint(ApplicationDbContext dbContext) {
-            _dbContext = dbContext;
+        public GradPretregaEndpoint (ApplicationDbContext ApplicationDbContext)
+        {
+            _applicationDbContext = ApplicationDbContext;
         }
 
         [HttpGet ("Pretrega")]
         public override async Task<GradPretregaResponse> Obradi ([FromQuery] GradPretregaRequest request, CancellationToken cancellationToken)
         {
-            var data = await _dbContext.Grad
+            var data = await _applicationDbContext.Grad
                 .Where(g => request.Naziv == null || g.Naziv.Contains(request.Naziv))
                 .OrderBy(g => g.ID)
                 .Select(g => new GradPretregaResponseGrad

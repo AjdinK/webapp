@@ -26,11 +26,8 @@ namespace itservicecenter.Data
         public DbSet<Serviser_Kategorija> Serviser_Kategorija { get; set; }
         public DbSet<Proizvodjac> Proizvodjac { get; set; }
 
-
-
-
-
         public ApplicationDbContext (DbContextOptions options) : base (options) {}
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

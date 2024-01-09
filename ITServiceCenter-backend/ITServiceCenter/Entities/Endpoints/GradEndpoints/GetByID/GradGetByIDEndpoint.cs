@@ -8,16 +8,17 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetByID
     [Route("Grad")]
     public class GradGetByIDEndpoint : MyBaseEndpoint<GradGetByIDRequest, GradGetByIDResponse>
     {
-        private readonly ApplicationDbContext _dbContext;
-        public GradGetByIDEndpoint (ApplicationDbContext dbContext)
+        private readonly ApplicationDbContext _applicationDbContext;
+
+        public GradGetByIDEndpoint (ApplicationDbContext ApplicationDbContext)
         {
-            _dbContext = dbContext;
+            _applicationDbContext = ApplicationDbContext;
         }
 
         [HttpGet ("GetByID")]
         public override async Task<GradGetByIDResponse> Obradi ([FromQuery] GradGetByIDRequest request, CancellationToken cancellationToken)
         {
-            var data = await _dbContext.Grad
+            var data = await _applicationDbContext.Grad
                 .OrderBy(g => g.ID)
                 .Select(g => new GradGetByIDResponse
                 {

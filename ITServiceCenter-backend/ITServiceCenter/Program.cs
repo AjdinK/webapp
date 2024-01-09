@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false)
@@ -13,7 +14,8 @@ var config = new ConfigurationBuilder()
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(config.GetConnectionString("db1")));
+    //options.UseSqlServer(config.GetConnectionString("db1")));
+   options.UseSqlServer(config.GetConnectionString("db2")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -40,12 +42,8 @@ app.UseCors(
         .AllowCredentials()
 ); //This needs to set everything allowed
 
-
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
