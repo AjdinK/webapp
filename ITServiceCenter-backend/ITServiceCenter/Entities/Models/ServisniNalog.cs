@@ -10,5 +10,6 @@ namespace itservicecenter.Entities.Models
         public DateTime DatumZaprimanja { get; set; }
         public DateTime DatumPredaje { get; set; }
         public string Napomena { get; set; }
+        public string Problem { get; set; }
     }
 }

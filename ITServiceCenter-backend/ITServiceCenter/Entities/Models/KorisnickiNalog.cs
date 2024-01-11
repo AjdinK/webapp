@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace itservicecenter.Entities.Models
 {
+    [Table("KorsnickiNalog")]
     public class KorisnickiNalog
     {
         [Key]
@@ -11,6 +13,6 @@ namespace itservicecenter.Entities.Models
         public bool IsAdmin { get; set; }
         public bool IsServiser { get; set; }
         public bool IsProdavac { get; set; }
-
+        public bool is2FActive { get; set; }
     }
 }

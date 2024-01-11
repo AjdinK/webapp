@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace itservicecenter.Entities.Models
 {
-    public class Prodavac
+    public class Prodavac : KorisnickiNalog
     {
         [Key]
-        public int ID { get; set; }
+        //public int ID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
 
