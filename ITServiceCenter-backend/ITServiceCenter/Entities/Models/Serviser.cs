@@ -6,11 +6,6 @@ namespace itservicecenter.Entities.Models
     [Table("Serviser")]
     public class Serviser : KorisnickiNalog
     {
-        [Key]
-        //public int ID { get; set; }
-        public string Ime { get; set; }
-        public string Prezime { get; set; }
-
         [ForeignKey(nameof(Grad))]
         public int GradID { get; set; }
         public Grad Grad { get; set; }

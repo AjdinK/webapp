@@ -8,11 +8,13 @@ namespace itservicecenter.Entities.Models
     {
         [Key]
         public int ID { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
         public string Username { get; set; }
         public string Passweord { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsServiser { get; set; }
         public bool IsProdavac { get; set; }
-        public bool is2FActive { get; set; }
+        public bool Is2FActive { get; set; }
     }
 }

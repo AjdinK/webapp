@@ -15,6 +15,7 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Snimi
         {
             _applicationDbContext = ApplicationDbContext;
         }
+
         [HttpPost ("Snimi")]
         public override async Task <int> Obradi ([FromBody] FAQSnimiRequest request, CancellationToken cancellationToken)
         {
@@ -28,10 +29,11 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Snimi
             else {
                 fAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);
                  }
+
             fAQ.Pitanje = request.Pitanje;
             fAQ.Odgovor = request.Odgovor;
             await _applicationDbContext.SaveChangesAsync();
-           return fAQ.ID;
+            return fAQ.ID;
             }
         }
     }

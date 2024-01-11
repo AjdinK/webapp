@@ -5,6 +5,9 @@ namespace itservicecenter.Entities.Models
 {
     public class Prodavac_Uredjaj
     {
+        [Key]
+        public int ID { get; set; }
+
         [ForeignKey(nameof(Prodavac))]
         public int ProdavacID { get; set; }
         public Prodavac Prodavac { get; set; }

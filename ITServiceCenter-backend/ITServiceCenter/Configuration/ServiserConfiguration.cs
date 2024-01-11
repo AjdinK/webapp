@@ -20,19 +20,17 @@ namespace itservicecenter.Configuration
                     Username = "jasir",
                     Passweord = "jasir"
                 },
-                    new Serviser
-                    {
-                        ID = 3,
-                        Ime = "Adis",
-                        Prezime = "Mešić",
-                        GradID = 1,
-                        SpolID = 1,
-                        IsServiser = true,
-                        Username = "adis",
-                        Passweord = "adis"
+                new Serviser
+                {
+                    ID = 3,
+                    Ime = "Adis",
+                    Prezime = "Mešić",
+                    GradID = 1,
+                    SpolID = 1,
+                    IsServiser = true,
+                    Username = "adis",
+                    Passweord = "adis"
                     }
-
-
                 );
         }
     }

@@ -8,10 +8,23 @@ namespace itservicecenter.Configuration
     {
         public void Configure(EntityTypeBuilder<Serviser_Kategorija> builder)
         {
-            builder.HasData(new Serviser_Kategorija { ServiserID = 2, KategorijaID = 1},
-                            new Serviser_Kategorija { ServiserID = 2, KategorijaID = 2},
-                            new Serviser_Kategorija { ServiserID = 3, KategorijaID = 3},
-                            new Serviser_Kategorija { ServiserID = 3, KategorijaID = 4});
+            builder.HasData(
+                new Serviser_Kategorija { 
+                    ServiserID = 2, 
+                    KategorijaID = 1
+                },
+                new Serviser_Kategorija { 
+                    ServiserID = 2, 
+                    KategorijaID = 2
+                },
+                new Serviser_Kategorija { 
+                    ServiserID = 3, 
+                    KategorijaID = 3
+                },
+                new Serviser_Kategorija { 
+                    ServiserID = 3, 
+                    KategorijaID = 4
+                });
         }
     }
 }

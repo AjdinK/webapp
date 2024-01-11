@@ -1,5 +1,12 @@
 ﻿namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
 {
-    public record GradGetAllResponse (List <GradGetAllResponseGrad> Gradovi);
-    public record GradGetAllResponseGrad (int ID , string Naziv);
+    public class GradGetAllResponse {
+        public List<GradGetAllResponseGrad> Gradovi { get; set; }
+    }
+    public class GradGetAllResponseGrad { 
+        public int ID { get; set; }
+        public string Naziv { get; set; }
+
+    }
 }
+

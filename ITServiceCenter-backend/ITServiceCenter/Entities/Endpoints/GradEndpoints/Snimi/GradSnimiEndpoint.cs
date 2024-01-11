@@ -7,7 +7,7 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
 {
     [Route("Grad")]
-    public class GradSnimiEndpoint : MyBaseEndpoint<GradSnimiRequest, int>
+    public class GradSnimiEndpoint : MyBaseEndpoint <GradSnimiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
         public GradSnimiEndpoint (ApplicationDbContext ApplicationDbContext)
@@ -29,7 +29,6 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
 
             Grad.Naziv = request.Naziv; 
             await _applicationDbContext.SaveChangesAsync();
-
             return Grad.ID;
         }
     }

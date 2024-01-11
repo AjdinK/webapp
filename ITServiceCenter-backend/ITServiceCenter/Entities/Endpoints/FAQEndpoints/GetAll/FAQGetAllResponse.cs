@@ -1,6 +1,12 @@
 ﻿namespace itservicecenter.Entities.Endpoints.FAQEndpoints.GetAll
 {
-    public record FAQGetAllResponse (List<FAQGetAllResponseFAQ> FAQLista);
-    public record FAQGetAllResponseFAQ (int ID , string Pitanje , string Odgovor);
+    public class FAQGetAllResponse {
+        public List<FAQGetAllResponseFAQ> FAQLista { get; set; }
+    }
 
+    public class FAQGetAllResponseFAQ {
+        public int ID { get; set; }
+        public string Pitanje { get; set; }
+        public string Odgovor { get; set; }
+    }
 }

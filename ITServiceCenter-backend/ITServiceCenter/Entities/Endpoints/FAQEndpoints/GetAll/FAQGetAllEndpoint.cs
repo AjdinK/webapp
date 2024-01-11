@@ -21,10 +21,16 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.GetAll
         {
             var data = await _applicationDbContext.FAQ
                 .OrderBy(f => f.ID)
-                .Select(f => new FAQGetAllResponseFAQ(f.ID, f.Pitanje, f.Odgovor))
+                .Select(f => new FAQGetAllResponseFAQ { 
+                    ID = f.ID,
+                    Pitanje = f.Pitanje,
+                    Odgovor = f.Odgovor,    
+                })
                 .ToListAsync(cancellationToken: cancellationToken);
 
-            return new FAQGetAllResponse (data);
+            return new FAQGetAllResponse {
+                FAQLista = data
+            };
         }
     }
 }

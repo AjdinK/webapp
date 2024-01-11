@@ -22,6 +22,11 @@
 
   <ItemGroup>
     <Folder Include="Entities\Endpoints\GradEndpoints\Snimi\" />
+    <Folder Include="Entities\Endpoints\VrstaDioEndpoints\Brisi\" />
+    <Folder Include="Entities\Endpoints\VrstaDioEndpoints\GetAll\" />
+    <Folder Include="Entities\Endpoints\VrstaDioEndpoints\GetByID\" />
+    <Folder Include="Entities\Endpoints\VrstaDioEndpoints\Pretrega\" />
+    <Folder Include="Entities\Endpoints\VrstaDioEndpoints\Snimi\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

@@ -8,9 +8,19 @@ namespace itservicecenter.Configuration
     {
         public void Configure(EntityTypeBuilder<Proizvodjac> builder)
         {
-            builder.HasData(new Proizvodjac { ID = 1, Naziv = "Samsung"},
-                            new Proizvodjac { ID = 2, Naziv = "Apple"},
-                            new Proizvodjac { ID = 3, Naziv = "Xiaomi"});
+            builder.HasData(
+                new Proizvodjac { 
+                    ID = 1, 
+                    Naziv = "Samsung"
+                },
+                new Proizvodjac { 
+                    ID = 2, 
+                    Naziv = "Apple"
+                },
+                new Proizvodjac { 
+                    ID = 3, 
+                    Naziv = "Xiaomi"
+                });
         }
     }
 }

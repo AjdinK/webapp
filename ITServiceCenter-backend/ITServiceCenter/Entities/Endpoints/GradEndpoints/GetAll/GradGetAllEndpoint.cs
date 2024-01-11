@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
 {
     [Route("Grad")]
-    public class GradGetAllEndpoint : MyBaseEndpoint<NoRequest, GradGetAllResponse>
+    public class GradGetAllEndpoint : MyBaseEndpoint <NoRequest, GradGetAllResponse>
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
@@ -20,10 +20,15 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
         {
             var data = await _applicationDbContext.Grad
                 .OrderBy(g => g.ID)
-                .Select(g => new GradGetAllResponseGrad (g.ID , g.Naziv))
+                .Select(g => new GradGetAllResponseGrad { 
+                    ID = g.ID,
+                    Naziv =g.Naziv
+                })
                 .ToListAsync(cancellationToken: cancellationToken);
 
-            return new GradGetAllResponse(data);
+            return new GradGetAllResponse { 
+                Gradovi = data
+            };
         }
     }
 }

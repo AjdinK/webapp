@@ -5,7 +5,6 @@ namespace itservicecenter.Entities.Models
 {
     public class Serviser_ServisniDio
     {
-        
         public DateTime Datum { get; set; }
         public int Kolicina { get; set; }
 

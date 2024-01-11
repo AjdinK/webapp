@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace itservicecenter.Configuration
 {
-    public class AdminConfiguration : IEntityTypeConfiguration<Admin>
+    public class AdminConfiguration : IEntityTypeConfiguration <Admin>
     {
         public void Configure(EntityTypeBuilder<Admin> builder)
         {
@@ -21,9 +21,7 @@ namespace itservicecenter.Configuration
                     IsProdavac = false,
                     IsServiser = false,
                 }
-
             );
-
         }
     }
 }

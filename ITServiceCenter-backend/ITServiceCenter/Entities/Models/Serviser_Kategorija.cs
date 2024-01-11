@@ -5,7 +5,6 @@ namespace itservicecenter.Entities.Models
 {
     public class Serviser_Kategorija
     {
-
         [ForeignKey(nameof(Serviser))]
         public int ServiserID { get; set; }
         public Serviser Serviser { get; set; }
