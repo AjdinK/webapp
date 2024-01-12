@@ -21,25 +21,28 @@ namespace itservicecenter.Configuration
                       ProdavacID = 4,
                       UredjajID = 2,
                       ServisniNalogID = 2,
-                      
+                      RacunID = null
                   },
                     new Prodavac_Uredjaj
                     {
                         ProdavacID = 4,
                         UredjajID = 3,
                         ServisniNalogID = 3,
+                        RacunID = null
                     },
                       new Prodavac_Uredjaj
                       {
                           ProdavacID = 5,
                           UredjajID = 4,
                           ServisniNalogID = 4,
+                          RacunID = null
                       },
                         new Prodavac_Uredjaj
                         {
                             ProdavacID = 5,
                             UredjajID = 5,
                             ServisniNalogID = 5,
+                            RacunID = null
                         }
                 );
         }

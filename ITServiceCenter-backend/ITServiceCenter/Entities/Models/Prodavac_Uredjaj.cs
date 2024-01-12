@@ -5,8 +5,6 @@ namespace itservicecenter.Entities.Models
 {
     public class Prodavac_Uredjaj
     {
-        [Key]
-        public int ID { get; set; }
 
         [ForeignKey(nameof(Prodavac))]
         public int ProdavacID { get; set; }
@@ -21,7 +19,7 @@ namespace itservicecenter.Entities.Models
         public ServisniNalog ServisniNalog { get; set; }
 
         [ForeignKey(nameof(Racun))]
-        public int RacunID { get; set; }
-        public Racun Racun { get; set; }
+        public int? RacunID { get; set; }
+        public Racun? Racun { get; set; }
     }
 }
