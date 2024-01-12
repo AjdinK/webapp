@@ -6,7 +6,6 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Snimi
 {
-    [Route("Kategorija")]
     public class KategorijaSnimiEndpoint : MyBaseEndpoint <KategorijaSnimiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -15,7 +14,7 @@ namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Snimi
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpPost ("Snimi")]
+        [HttpPost ("Kategorija/Snimi")]
         public override async Task <int> Obradi ([FromBody] KategorijaSnimiRequest request, CancellationToken cancellationToken)
         {
             Models.Kategorija? Kategorija;

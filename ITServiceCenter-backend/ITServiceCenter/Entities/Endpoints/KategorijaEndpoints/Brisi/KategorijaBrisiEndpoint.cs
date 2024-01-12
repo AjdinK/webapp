@@ -6,8 +6,7 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Brisi
 {
-    [Route("Kategorija")]
-    public class KategorijaBrisiEndpoint : MyBaseEndpoint<KategorijaBrisiRequest, int>
+    public class KategorijaBrisiEndpoint : MyBaseEndpoint <KategorijaBrisiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
         public KategorijaBrisiEndpoint (ApplicationDbContext ApplicationDbContext)
@@ -15,7 +14,7 @@ namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Brisi
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpDelete ("Brisi")]
+        [HttpDelete("Kategorija/brisi")]
         public override async Task <int> Obradi ([FromBody] KategorijaBrisiRequest request, CancellationToken cancellationToken)
         {
             var data = _applicationDbContext.Kategorija.FirstOrDefault(k => k.ID == request.ID);

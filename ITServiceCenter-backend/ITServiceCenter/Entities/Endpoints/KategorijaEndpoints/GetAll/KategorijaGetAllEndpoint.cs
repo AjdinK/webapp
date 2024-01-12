@@ -7,7 +7,6 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.GetAll
 {
-    [Route("Kategorija")]
     public class KategorijaGetAllEndpoint : MyBaseEndpoint<NoRequest, KategorijaGetAllResponse>
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -16,7 +15,7 @@ namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.GetAll
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("Kategorija/GetAll")]
         public override async Task<KategorijaGetAllResponse> Obradi([FromQuery] NoRequest request, CancellationToken cancellationToken)
         {
             var data = await _applicationDbContext.Kategorija

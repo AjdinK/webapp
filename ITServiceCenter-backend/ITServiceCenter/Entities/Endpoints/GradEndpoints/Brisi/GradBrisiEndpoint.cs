@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.Brisi
 {
-    [Route("Grad")]
     public class GradBrisiEndpoint : MyBaseEndpoint<GradBrisiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -14,7 +13,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Brisi
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpDelete ("Delete")]
+        [HttpDelete("Grad/brisi")]
         public override async Task <int> Obradi ([FromBody] GradBrisiRequest request, CancellationToken cancellationToken)
         {
             var grad = _applicationDbContext.Grad.FirstOrDefault(g => g.ID == request.ID);

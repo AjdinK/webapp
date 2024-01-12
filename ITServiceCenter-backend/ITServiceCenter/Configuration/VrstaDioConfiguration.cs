@@ -10,12 +10,12 @@ namespace itservicecenter.Configuration
         {
             builder.HasData(
                 new VrstaDio { 
-                ID = 1, 
-                Naziv = "LCD" 
+                    ID = 1, 
+                    Naziv = "LCD" 
                 },
                 new VrstaDio { 
-                ID = 2, 
-                Naziv = "Baterija"
+                    ID = 2, 
+                    Naziv = "Baterija"
                 },
                 new VrstaDio { 
                     ID = 3, 

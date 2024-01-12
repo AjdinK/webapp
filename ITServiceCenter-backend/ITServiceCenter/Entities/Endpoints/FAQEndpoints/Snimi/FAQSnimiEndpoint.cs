@@ -6,7 +6,6 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Snimi
 {
-    [Route ("FAQ")]
     public class FAQSnimiEndpoint : MyBaseEndpoint<FAQSnimiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -16,7 +15,7 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Snimi
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpPost ("Snimi")]
+        [HttpPost ("FAQ/Snimi")]
         public override async Task <int> Obradi ([FromBody] FAQSnimiRequest request, CancellationToken cancellationToken)
         {
             Models.FAQ? fAQ;

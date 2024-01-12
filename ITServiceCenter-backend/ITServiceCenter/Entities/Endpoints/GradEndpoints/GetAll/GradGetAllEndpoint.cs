@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
 {
-    [Route("Grad")]
     public class GradGetAllEndpoint : MyBaseEndpoint <NoRequest, GradGetAllResponse>
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -15,7 +14,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpGet ("GetAll")]
+        [HttpGet ("Grad/GetAll")]
         public override async Task <GradGetAllResponse> Obradi ([FromQuery] NoRequest request, CancellationToken cancellationToken)
         {
             var data = await _applicationDbContext.Grad

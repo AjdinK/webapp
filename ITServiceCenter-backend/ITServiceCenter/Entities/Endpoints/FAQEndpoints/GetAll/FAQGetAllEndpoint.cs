@@ -6,7 +6,6 @@ using Microsoft.Identity.Client;
 
 namespace itservicecenter.Entities.Endpoints.FAQEndpoints.GetAll
 {
-    [Route ("FAQ")]
     public class FAQGetAllEndpoint : MyBaseEndpoint<NoRequest, FAQGetAllResponse>
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -16,7 +15,7 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.GetAll
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("FAQ/GetAll")]
         public override async Task <FAQGetAllResponse> Obradi ([FromQuery] NoRequest request, CancellationToken cancellationToken)
         {
             var data = await _applicationDbContext.FAQ

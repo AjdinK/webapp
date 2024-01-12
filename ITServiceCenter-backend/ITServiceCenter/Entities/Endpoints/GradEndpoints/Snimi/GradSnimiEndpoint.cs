@@ -6,7 +6,6 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
 {
-    [Route("Grad")]
     public class GradSnimiEndpoint : MyBaseEndpoint <GradSnimiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -14,7 +13,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
         {
             _applicationDbContext = ApplicationDbContext;
         }
-        [HttpPost("Dodaj")]
+        [HttpPost("Grad/Snimi")]
         public override async Task <int> Obradi ([FromBody] GradSnimiRequest request, CancellationToken cancellationToken)
         {
            Models.Grad? Grad;
@@ -28,7 +27,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
             }
 
             Grad.Naziv = request.Naziv; 
-            await _applicationDbContext.SaveChangesAsync();
+            await _applicationDbContext.SaveChangesAsync (cancellationToken : cancellationToken);
             return Grad.ID;
         }
     }

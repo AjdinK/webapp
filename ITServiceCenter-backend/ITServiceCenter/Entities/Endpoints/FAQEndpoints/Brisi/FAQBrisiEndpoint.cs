@@ -6,7 +6,6 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi
 {
-    [Route("FAQ")]
     public class FAQBrisiEndpoint : MyBaseEndpoint<FAQBrisiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
@@ -16,7 +15,7 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpDelete ("Brisi")]
+        [HttpDelete("FAQ/brisi")]
         public override async Task <int> Obradi ([FromBody] FAQBrisiRequest request, CancellationToken cancellationToken)
         {
 
