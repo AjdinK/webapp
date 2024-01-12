@@ -22,6 +22,9 @@
 
   <ItemGroup>
     <Folder Include="Entities\Endpoints\GradEndpoints\Snimi\" />
+    <Folder Include="Entities\Endpoints\KorisnickiNalogEndpoints\Brisi\" />
+    <Folder Include="Entities\Endpoints\KorisnickiNalogEndpoints\NewFolder\" />
+    <Folder Include="Entities\Endpoints\KorisnickiNalogEndpoints\Snimi\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

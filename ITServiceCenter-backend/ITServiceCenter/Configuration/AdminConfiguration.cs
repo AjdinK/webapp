@@ -9,7 +9,6 @@ namespace itservicecenter.Configuration
         public void Configure(EntityTypeBuilder<Admin> builder)
         {
             builder.HasData(
-
                 new Admin
                 {
                     ID = 1,
