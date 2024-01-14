@@ -12,7 +12,7 @@ namespace itservicecenter.Entities.Endpoints.VrstaDioEndpoints.Brisi
             _applicationDbContext = ApplicationDbContext;
         }
         [HttpDelete ("VrstaDio/Brisi")]
-        public override async Task<int> Obradi ([FromBody] VrstaDioBrisiRequest request, CancellationToken cancellationToken)
+        public override async Task<int> Obradi ([FromQuery] VrstaDioBrisiRequest request, CancellationToken cancellationToken)
         {
             var VrstaDio = _applicationDbContext.VrstaDio.FirstOrDefault(v => v.ID == request.ID);
             if (VrstaDio != null)

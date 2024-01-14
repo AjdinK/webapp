@@ -12,7 +12,7 @@ namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Brisi
             _applicationDbContext = ApplicationDbContext;
         }
         [HttpDelete ("Proizvodjac/Brisi")]
-        public override async Task <int> Obradi([FromBody] ProizvodjacBrisiRequest request, CancellationToken cancellationToken)
+        public override async Task <int> Obradi([FromQuery] ProizvodjacBrisiRequest request, CancellationToken cancellationToken)
         {
             var data = _applicationDbContext.Proizvodjac.FirstOrDefault(p => p.ID == request.ID);
             if (data != null)

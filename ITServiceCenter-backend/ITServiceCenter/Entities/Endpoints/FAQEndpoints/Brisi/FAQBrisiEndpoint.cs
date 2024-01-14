@@ -16,7 +16,7 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi
         }
 
         [HttpDelete("FAQ/brisi")]
-        public override async Task <int> Obradi ([FromBody] FAQBrisiRequest request, CancellationToken cancellationToken)
+        public override async Task <int> Obradi ([FromQuery] FAQBrisiRequest request, CancellationToken cancellationToken)
         {
 
             var FAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);

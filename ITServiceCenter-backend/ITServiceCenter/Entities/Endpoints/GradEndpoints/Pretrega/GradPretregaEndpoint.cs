@@ -19,7 +19,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Pretrega
         public override async Task<GradPretregaResponse> Obradi ([FromQuery] GradPretregaRequest request, CancellationToken cancellationToken)
         {
             var data = await _applicationDbContext.Grad
-                .Where(g => request.Naziv == null || g.Naziv.Contains(request.Naziv))
+                .Where(g => request.Naziv == null || g.Naziv.ToLower().Contains(request.Naziv.ToLower()))
                 .OrderBy(g => g.ID)
                 .Select(g => new GradPretregaResponseGrad
                 {

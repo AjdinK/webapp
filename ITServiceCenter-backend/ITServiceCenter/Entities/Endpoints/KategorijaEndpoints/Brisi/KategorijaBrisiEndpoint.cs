@@ -15,7 +15,7 @@ namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Brisi
         }
 
         [HttpDelete("Kategorija/brisi")]
-        public override async Task <int> Obradi ([FromBody] KategorijaBrisiRequest request, CancellationToken cancellationToken)
+        public override async Task <int> Obradi ([FromQuery] KategorijaBrisiRequest request, CancellationToken cancellationToken)
         {
             var data = _applicationDbContext.Kategorija.FirstOrDefault(k => k.ID == request.ID);
             if (data != null)
