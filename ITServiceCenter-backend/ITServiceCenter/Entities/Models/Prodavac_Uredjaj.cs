@@ -10,13 +10,16 @@ namespace itservicecenter.Entities.Models
         public int ProdavacID { get; set; }
         public Prodavac Prodavac { get; set; }
 
+
         [ForeignKey(nameof(Uredjaj))]
         public int UredjajID { get; set; }
         public Uredjaj Uredjaj { get; set; }
 
+
         [ForeignKey(nameof(ServisniNalog))]
         public int ServisniNalogID { get; set; }
         public ServisniNalog ServisniNalog { get; set; }
+
 
         [ForeignKey(nameof(Racun))]
         public int? RacunID { get; set; }

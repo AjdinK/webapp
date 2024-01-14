@@ -16,7 +16,7 @@ namespace itservicecenter.Configuration
                     ServisniNalogID = 1,
                     RacunID = 1,
                 },
-                  new Prodavac_Uredjaj
+                 new Prodavac_Uredjaj
                   {
                       ProdavacID = 4,
                       UredjajID = 2,

@@ -6,7 +6,7 @@ namespace itservicecenter.Configuration
 {
     public class AdminConfiguration : IEntityTypeConfiguration <Admin>
     {
-        public void Configure(EntityTypeBuilder<Admin> builder)
+        public void Configure(EntityTypeBuilder <Admin> builder)
         {
             builder.HasData(
                 new Admin
