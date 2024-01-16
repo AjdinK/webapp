@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using itservicecenter.Entities.Models;
-
 namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
 {
     public class AdminGetAllResponse
@@ -16,6 +10,7 @@ namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Username { get; set; }
+        public string Email { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsProdavac { get; set; }
         public bool IsServiser { get; set; }

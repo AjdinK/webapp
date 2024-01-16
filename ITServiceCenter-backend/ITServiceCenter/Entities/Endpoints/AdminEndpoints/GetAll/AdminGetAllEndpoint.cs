@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using itservicecenter.Data;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +27,7 @@ namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
                 IsServiser = a.IsServiser,
                 GradID = a.GradID,
                 SpolID = a.SpolID,
+                Email = a.Email,
             })
             .ToListAsync(cancellationToken :cancellationToken);
 

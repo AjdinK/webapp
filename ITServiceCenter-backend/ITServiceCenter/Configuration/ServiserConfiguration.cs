@@ -18,7 +18,8 @@ namespace itservicecenter.Configuration
                     SpolID = 1,
                     IsServiser = true,
                     Username = "jasir",
-                    Passweord = "jasir"
+                    Passweord = "jasir",
+                    Email = "test@test.com"
                 },
                 new Serviser
                 {
@@ -29,7 +30,8 @@ namespace itservicecenter.Configuration
                     SpolID = 1,
                     IsServiser = true,
                     Username = "adis",
-                    Passweord = "adis"
+                    Passweord = "adis",
+                    Email = "test@test.com"
                     }
                 );
         }

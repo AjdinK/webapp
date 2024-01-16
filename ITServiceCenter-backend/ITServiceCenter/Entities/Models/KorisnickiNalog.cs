@@ -14,6 +14,7 @@ namespace itservicecenter.Entities.Models
         public string Username { get; set; }
         [JsonIgnore]
         public string Passweord { get; set; }
+        public string Email { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsServiser { get; set; }
         public bool IsProdavac { get; set; }

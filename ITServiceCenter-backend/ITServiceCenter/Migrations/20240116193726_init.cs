@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace itservicecenter.Migrations
 {
-    public partial class init2 : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,6 +59,7 @@ namespace itservicecenter.Migrations
                     Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Passweord = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false),
                     IsServiser = table.Column<bool>(type: "bit", nullable: false),
                     IsProdavac = table.Column<bool>(type: "bit", nullable: false),
@@ -488,19 +489,19 @@ namespace itservicecenter.Migrations
 
             migrationBuilder.InsertData(
                 table: "KorsnickiNalog",
-                columns: new[] { "ID", "Ime", "Is2FActive", "IsAdmin", "IsProdavac", "IsServiser", "Passweord", "Prezime", "Username" },
-                values: new object[] { 1, "Ajdin", false, true, false, false, "ajdin", "Kuduzović", "ajdin" });
+                columns: new[] { "ID", "Email", "Ime", "Is2FActive", "IsAdmin", "IsProdavac", "IsServiser", "Passweord", "Prezime", "Username" },
+                values: new object[] { 1, "test@test.com", "Ajdin", false, true, false, false, "ajdin", "Kuduzović", "ajdin" });
 
             migrationBuilder.InsertData(
                 table: "KorsnickiNalog",
-                columns: new[] { "ID", "Ime", "Is2FActive", "IsAdmin", "IsProdavac", "IsServiser", "Passweord", "Prezime", "Username" },
+                columns: new[] { "ID", "Email", "Ime", "Is2FActive", "IsAdmin", "IsProdavac", "IsServiser", "Passweord", "Prezime", "Username" },
                 values: new object[,]
                 {
-                    { 6, "test", false, true, true, true, "test", "test", "test" },
-                    { 4, "Alina", false, false, true, false, "alina", "Burić", "alina" },
-                    { 5, "Vedad", false, false, true, false, "vedad", "Keskin", "vedad" },
-                    { 2, "Jasir", false, false, false, true, "jasir", "Burić", "jasir" },
-                    { 3, "Adis", false, false, false, true, "adis", "Mešić", "adis" }
+                    { 6, "test@test.com", "test", false, true, true, true, "test", "test", "test" },
+                    { 4, "test@test.com", "Alina", false, false, true, false, "alina", "Burić", "alina" },
+                    { 5, "test@test.com", "Vedad", false, false, true, false, "vedad", "Keskin", "vedad" },
+                    { 2, "test@test.com", "Jasir", false, false, false, true, "jasir", "Burić", "jasir" },
+                    { 3, "test@test.com", "Adis", false, false, false, true, "adis", "Mešić", "adis" }
                 });
 
             migrationBuilder.InsertData(
@@ -516,18 +517,18 @@ namespace itservicecenter.Migrations
             migrationBuilder.InsertData(
                 table: "Racun",
                 columns: new[] { "ID", "CijenaServisa", "DatumPreuzimanja", "Garancija", "Napomena", "SifraRacuna" },
-                values: new object[] { 1, 210f, new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7630), "30 Dana", "", "sifraracuna1" });
+                values: new object[] { 1, 210f, new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(1892), "30 Dana", "", "sifraracuna1" });
 
             migrationBuilder.InsertData(
                 table: "ServisniNalog",
                 columns: new[] { "ID", "DatumPredaje", "DatumZaprimanja", "Napomena", "Problem", "SifraNaloga" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7950), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7950), "Ocistiti prednju kameru", "Zamjena LCDa", "sifraservisa1" },
-                    { 2, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7954), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7954), "", "zakljucan google acc", "sifraservisa2" },
-                    { 3, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7956), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7955), "bitini podatci", "Spor", "sifraservisa3" },
-                    { 4, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7957), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7956), "", "Nema slike", "sifraservisa4" },
-                    { 5, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7958), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7957), "", "Ne radi brzo punjenje!", "sifraservisa5" }
+                    { 1, new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2176), new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2176), "Ocistiti prednju kameru", "Zamjena LCDa", "sifraservisa1" },
+                    { 2, new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2180), new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2180), "", "zakljucan google acc", "sifraservisa2" },
+                    { 3, new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2181), new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2181), "bitini podatci", "Spor", "sifraservisa3" },
+                    { 4, new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2182), new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2182), "", "Nema slike", "sifraservisa4" },
+                    { 5, new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2186), new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2186), "", "Ne radi brzo punjenje!", "sifraservisa5" }
                 });
 
             migrationBuilder.InsertData(
@@ -627,10 +628,10 @@ namespace itservicecenter.Migrations
                 columns: new[] { "Datum", "ServiserID", "ServisniDioID", "Kolicina" },
                 values: new object[,]
                 {
-                    { new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7775), 2, 1, 3 },
-                    { new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7776), 2, 2, 3 },
-                    { new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7776), 2, 3, 2 },
-                    { new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7777), 2, 4, 1 }
+                    { new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2033), 2, 1, 3 },
+                    { new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2034), 2, 2, 3 },
+                    { new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2035), 2, 3, 2 },
+                    { new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2035), 2, 4, 1 }
                 });
 
             migrationBuilder.InsertData(

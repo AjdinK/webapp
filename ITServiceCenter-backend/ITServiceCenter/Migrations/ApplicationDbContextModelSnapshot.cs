@@ -333,6 +333,10 @@ namespace itservicecenter.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Ime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -529,7 +533,7 @@ namespace itservicecenter.Migrations
                         {
                             ID = 1,
                             CijenaServisa = 210f,
-                            DatumPreuzimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7630),
+                            DatumPreuzimanja = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(1892),
                             Garancija = "30 Dana",
                             Napomena = "",
                             SifraRacuna = "sifraracuna1"
@@ -598,28 +602,28 @@ namespace itservicecenter.Migrations
                         {
                             ServiserID = 2,
                             ServisniDioID = 1,
-                            Datum = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7775),
+                            Datum = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2033),
                             Kolicina = 3
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 2,
-                            Datum = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7776),
+                            Datum = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2034),
                             Kolicina = 3
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 3,
-                            Datum = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7776),
+                            Datum = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2035),
                             Kolicina = 2
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 4,
-                            Datum = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7777),
+                            Datum = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2035),
                             Kolicina = 1
                         });
                 });
@@ -794,8 +798,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 1,
-                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7950),
-                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7950),
+                            DatumPredaje = new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2176),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2176),
                             Napomena = "Ocistiti prednju kameru",
                             Problem = "Zamjena LCDa",
                             SifraNaloga = "sifraservisa1"
@@ -803,8 +807,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 2,
-                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7954),
-                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7954),
+                            DatumPredaje = new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2180),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2180),
                             Napomena = "",
                             Problem = "zakljucan google acc",
                             SifraNaloga = "sifraservisa2"
@@ -812,8 +816,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 3,
-                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7956),
-                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7955),
+                            DatumPredaje = new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2181),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2181),
                             Napomena = "bitini podatci",
                             Problem = "Spor",
                             SifraNaloga = "sifraservisa3"
@@ -821,8 +825,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 4,
-                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7957),
-                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7956),
+                            DatumPredaje = new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2182),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2182),
                             Napomena = "",
                             Problem = "Nema slike",
                             SifraNaloga = "sifraservisa4"
@@ -830,8 +834,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 5,
-                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7958),
-                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7957),
+                            DatumPredaje = new DateTime(2024, 1, 18, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2186),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 20, 37, 26, 283, DateTimeKind.Local).AddTicks(2186),
                             Napomena = "",
                             Problem = "Ne radi brzo punjenje!",
                             SifraNaloga = "sifraservisa5"
@@ -975,6 +979,7 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 1,
+                            Email = "test@test.com",
                             Ime = "Ajdin",
                             Is2FActive = false,
                             IsAdmin = true,
@@ -989,6 +994,7 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 6,
+                            Email = "test@test.com",
                             Ime = "test",
                             Is2FActive = false,
                             IsAdmin = true,
@@ -1022,6 +1028,7 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 4,
+                            Email = "test@test.com",
                             Ime = "Alina",
                             Is2FActive = false,
                             IsAdmin = false,
@@ -1036,6 +1043,7 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 5,
+                            Email = "test@test.com",
                             Ime = "Vedad",
                             Is2FActive = false,
                             IsAdmin = false,
@@ -1069,6 +1077,7 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 2,
+                            Email = "test@test.com",
                             Ime = "Jasir",
                             Is2FActive = false,
                             IsAdmin = false,
@@ -1083,6 +1092,7 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 3,
+                            Email = "test@test.com",
                             Ime = "Adis",
                             Is2FActive = false,
                             IsAdmin = false,

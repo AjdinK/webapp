@@ -2,6 +2,6 @@
 {
     public class GradGetByIDRequest
     {
-        public int IDGrad { get; set; }
+        public int GradID { get; set; }
     }
 }

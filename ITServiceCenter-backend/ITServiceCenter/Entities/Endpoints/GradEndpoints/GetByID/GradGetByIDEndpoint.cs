@@ -24,7 +24,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetByID
                     ID = g .ID,
                     Naziv = g .Naziv,   
                 })
-                .SingleAsync(g => g.ID == request.IDGrad , cancellationToken : cancellationToken);
+                .SingleAsync(g => g.ID == request.GradID , cancellationToken : cancellationToken);
 
             return data;
         }

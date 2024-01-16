@@ -1,8 +1,6 @@
 ﻿using itservicecenter.Data;
 using itservicecenter.Helper;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi
 {
@@ -18,7 +16,6 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi
         [HttpDelete("FAQ/brisi")]
         public override async Task <int> Obradi ([FromQuery] FAQBrisiRequest request, CancellationToken cancellationToken)
         {
-
             var FAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);
             if (FAQ != null)
             {
