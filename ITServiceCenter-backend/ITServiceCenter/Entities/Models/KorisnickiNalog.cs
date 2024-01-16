@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace itservicecenter.Entities.Models
 {
@@ -11,6 +12,7 @@ namespace itservicecenter.Entities.Models
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Username { get; set; }
+        [JsonIgnore]
         public string Passweord { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsServiser { get; set; }

@@ -19,6 +19,21 @@ namespace itservicecenter.Configuration
                     IsAdmin = true,
                     IsProdavac = false,
                     IsServiser = false,
+                    GradID = 22,
+                    SpolID = 1,
+                },
+                  new Admin
+                {
+                    ID = 6,
+                    Ime = "test",
+                    Prezime = "test",
+                    Username = "test",
+                    Passweord ="test",
+                    IsAdmin = true,
+                    IsProdavac = true,
+                    IsServiser = true,
+                    GradID = 1,
+                    SpolID = 1,
                 }
             );
         }

@@ -36,7 +36,7 @@ namespace itservicecenter.Migrations
                     b.Property<bool>("IsOtkljucano")
                         .HasColumnType("bit");
 
-                    b.Property<int>("KorisnickiNalogId")
+                    b.Property<int>("KorisnickiNalogID")
                         .HasColumnType("int");
 
                     b.Property<string>("TwoFKey")
@@ -51,7 +51,7 @@ namespace itservicecenter.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("KorisnickiNalogId");
+                    b.HasIndex("KorisnickiNalogID");
 
                     b.ToTable("AutenfitikacijaToken");
                 });
@@ -529,7 +529,7 @@ namespace itservicecenter.Migrations
                         {
                             ID = 1,
                             CijenaServisa = 210f,
-                            DatumPreuzimanja = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5399),
+                            DatumPreuzimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7630),
                             Garancija = "30 Dana",
                             Napomena = "",
                             SifraRacuna = "sifraracuna1"
@@ -598,28 +598,28 @@ namespace itservicecenter.Migrations
                         {
                             ServiserID = 2,
                             ServisniDioID = 1,
-                            Datum = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5689),
+                            Datum = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7775),
                             Kolicina = 3
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 2,
-                            Datum = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5695),
+                            Datum = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7776),
                             Kolicina = 3
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 3,
-                            Datum = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5698),
+                            Datum = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7776),
                             Kolicina = 2
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 4,
-                            Datum = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5701),
+                            Datum = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7777),
                             Kolicina = 1
                         });
                 });
@@ -794,8 +794,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 1,
-                            DatumPredaje = new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6025),
-                            DatumZaprimanja = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6021),
+                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7950),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7950),
                             Napomena = "Ocistiti prednju kameru",
                             Problem = "Zamjena LCDa",
                             SifraNaloga = "sifraservisa1"
@@ -803,8 +803,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 2,
-                            DatumPredaje = new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6032),
-                            DatumZaprimanja = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6030),
+                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7954),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7954),
                             Napomena = "",
                             Problem = "zakljucan google acc",
                             SifraNaloga = "sifraservisa2"
@@ -812,8 +812,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 3,
-                            DatumPredaje = new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6038),
-                            DatumZaprimanja = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6036),
+                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7956),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7955),
                             Napomena = "bitini podatci",
                             Problem = "Spor",
                             SifraNaloga = "sifraservisa3"
@@ -821,8 +821,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 4,
-                            DatumPredaje = new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6043),
-                            DatumZaprimanja = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6041),
+                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7957),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7956),
                             Napomena = "",
                             Problem = "Nema slike",
                             SifraNaloga = "sifraservisa4"
@@ -830,8 +830,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 5,
-                            DatumPredaje = new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6048),
-                            DatumZaprimanja = new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6046),
+                            DatumPredaje = new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7958),
+                            DatumZaprimanja = new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7957),
                             Napomena = "",
                             Problem = "Ne radi brzo punjenje!",
                             SifraNaloga = "sifraservisa5"
@@ -959,6 +959,16 @@ namespace itservicecenter.Migrations
                 {
                     b.HasBaseType("itservicecenter.Entities.Models.KorisnickiNalog");
 
+                    b.Property<int>("GradID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpolID")
+                        .HasColumnType("int");
+
+                    b.HasIndex("GradID");
+
+                    b.HasIndex("SpolID");
+
                     b.ToTable("Admin");
 
                     b.HasData(
@@ -972,7 +982,23 @@ namespace itservicecenter.Migrations
                             IsServiser = false,
                             Passweord = "ajdin",
                             Prezime = "Kuduzović",
-                            Username = "ajdin"
+                            Username = "ajdin",
+                            GradID = 22,
+                            SpolID = 1
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Ime = "test",
+                            Is2FActive = false,
+                            IsAdmin = true,
+                            IsProdavac = true,
+                            IsServiser = true,
+                            Passweord = "test",
+                            Prezime = "test",
+                            Username = "test",
+                            GradID = 1,
+                            SpolID = 1
                         });
                 });
 
@@ -1074,7 +1100,7 @@ namespace itservicecenter.Migrations
                 {
                     b.HasOne("itservicecenter.Entities.Models.KorisnickiNalog", "KorisnickiNalog")
                         .WithMany()
-                        .HasForeignKey("KorisnickiNalogId")
+                        .HasForeignKey("KorisnickiNalogID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -1215,11 +1241,27 @@ namespace itservicecenter.Migrations
 
             modelBuilder.Entity("itservicecenter.Entities.Models.Admin", b =>
                 {
+                    b.HasOne("itservicecenter.Entities.Models.Grad", "Grad")
+                        .WithMany()
+                        .HasForeignKey("GradID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("itservicecenter.Entities.Models.KorisnickiNalog", null)
                         .WithOne()
                         .HasForeignKey("itservicecenter.Entities.Models.Admin", "ID")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+
+                    b.HasOne("itservicecenter.Entities.Models.Spol", "Spol")
+                        .WithMany()
+                        .HasForeignKey("SpolID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Grad");
+
+                    b.Navigation("Spol");
                 });
 
             modelBuilder.Entity("itservicecenter.Entities.Models.Prodavac", b =>

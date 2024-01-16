@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace itservicecenter.Migrations
 {
-    public partial class generisanjepodataka : Migration
+    public partial class init2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -162,40 +162,24 @@ namespace itservicecenter.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Admin",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Admin", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Admin_KorsnickiNalog_ID",
-                        column: x => x.ID,
-                        principalTable: "KorsnickiNalog",
-                        principalColumn: "ID");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AutenfitikacijaToken",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Vrijednost = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    KorisnickiNalogId = table.Column<int>(type: "int", nullable: false),
                     VrijemeEvidentiranja = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IpAdresa = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsOtkljucano = table.Column<bool>(type: "bit", nullable: false),
                     TwoFKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsOtkljucano = table.Column<bool>(type: "bit", nullable: false)
+                    KorisnickiNalogID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AutenfitikacijaToken", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_AutenfitikacijaToken_KorsnickiNalog_KorisnickiNalogId",
-                        column: x => x.KorisnickiNalogId,
+                        name: "FK_AutenfitikacijaToken_KorsnickiNalog_KorisnickiNalogID",
+                        column: x => x.KorisnickiNalogID,
                         principalTable: "KorsnickiNalog",
                         principalColumn: "ID");
                 });
@@ -206,13 +190,13 @@ namespace itservicecenter.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    KorisnikID = table.Column<int>(type: "int", nullable: false),
                     QueryPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PostData = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Vrijeme = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IpAdresa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExceptionMessage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsException = table.Column<bool>(type: "bit", nullable: false)
+                    IsException = table.Column<bool>(type: "bit", nullable: false),
+                    KorisnikID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -221,6 +205,34 @@ namespace itservicecenter.Migrations
                         name: "FK_LogKretanjePoSistemu_KorsnickiNalog_KorisnikID",
                         column: x => x.KorisnikID,
                         principalTable: "KorsnickiNalog",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Admin",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false),
+                    GradID = table.Column<int>(type: "int", nullable: false),
+                    SpolID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admin", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Admin_Grad_GradID",
+                        column: x => x.GradID,
+                        principalTable: "Grad",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Admin_KorsnickiNalog_ID",
+                        column: x => x.ID,
+                        principalTable: "KorsnickiNalog",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Admin_Spol_SpolID",
+                        column: x => x.SpolID,
+                        principalTable: "Spol",
                         principalColumn: "ID");
                 });
 
@@ -484,6 +496,7 @@ namespace itservicecenter.Migrations
                 columns: new[] { "ID", "Ime", "Is2FActive", "IsAdmin", "IsProdavac", "IsServiser", "Passweord", "Prezime", "Username" },
                 values: new object[,]
                 {
+                    { 6, "test", false, true, true, true, "test", "test", "test" },
                     { 4, "Alina", false, false, true, false, "alina", "Burić", "alina" },
                     { 5, "Vedad", false, false, true, false, "vedad", "Keskin", "vedad" },
                     { 2, "Jasir", false, false, false, true, "jasir", "Burić", "jasir" },
@@ -503,18 +516,18 @@ namespace itservicecenter.Migrations
             migrationBuilder.InsertData(
                 table: "Racun",
                 columns: new[] { "ID", "CijenaServisa", "DatumPreuzimanja", "Garancija", "Napomena", "SifraRacuna" },
-                values: new object[] { 1, 210f, new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5399), "30 Dana", "", "sifraracuna1" });
+                values: new object[] { 1, 210f, new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7630), "30 Dana", "", "sifraracuna1" });
 
             migrationBuilder.InsertData(
                 table: "ServisniNalog",
                 columns: new[] { "ID", "DatumPredaje", "DatumZaprimanja", "Napomena", "Problem", "SifraNaloga" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6025), new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6021), "Ocistiti prednju kameru", "Zamjena LCDa", "sifraservisa1" },
-                    { 2, new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6032), new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6030), "", "zakljucan google acc", "sifraservisa2" },
-                    { 3, new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6038), new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6036), "bitini podatci", "Spor", "sifraservisa3" },
-                    { 4, new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6043), new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6041), "", "Nema slike", "sifraservisa4" },
-                    { 5, new DateTime(2024, 1, 14, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6048), new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(6046), "", "Ne radi brzo punjenje!", "sifraservisa5" }
+                    { 1, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7950), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7950), "Ocistiti prednju kameru", "Zamjena LCDa", "sifraservisa1" },
+                    { 2, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7954), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7954), "", "zakljucan google acc", "sifraservisa2" },
+                    { 3, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7956), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7955), "bitini podatci", "Spor", "sifraservisa3" },
+                    { 4, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7957), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7956), "", "Nema slike", "sifraservisa4" },
+                    { 5, new DateTime(2024, 1, 18, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7958), new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7957), "", "Ne radi brzo punjenje!", "sifraservisa5" }
                 });
 
             migrationBuilder.InsertData(
@@ -538,8 +551,12 @@ namespace itservicecenter.Migrations
 
             migrationBuilder.InsertData(
                 table: "Admin",
-                column: "ID",
-                value: 1);
+                columns: new[] { "ID", "GradID", "SpolID" },
+                values: new object[,]
+                {
+                    { 1, 22, 1 },
+                    { 6, 1, 1 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Prodavac",
@@ -610,10 +627,10 @@ namespace itservicecenter.Migrations
                 columns: new[] { "Datum", "ServiserID", "ServisniDioID", "Kolicina" },
                 values: new object[,]
                 {
-                    { new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5689), 2, 1, 3 },
-                    { new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5695), 2, 2, 3 },
-                    { new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5698), 2, 3, 2 },
-                    { new DateTime(2024, 1, 12, 7, 7, 52, 392, DateTimeKind.Local).AddTicks(5701), 2, 4, 1 }
+                    { new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7775), 2, 1, 3 },
+                    { new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7776), 2, 2, 3 },
+                    { new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7776), 2, 3, 2 },
+                    { new DateTime(2024, 1, 16, 19, 52, 18, 496, DateTimeKind.Local).AddTicks(7777), 2, 4, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -629,9 +646,19 @@ namespace itservicecenter.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AutenfitikacijaToken_KorisnickiNalogId",
+                name: "IX_Admin_GradID",
+                table: "Admin",
+                column: "GradID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Admin_SpolID",
+                table: "Admin",
+                column: "SpolID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AutenfitikacijaToken_KorisnickiNalogID",
                 table: "AutenfitikacijaToken",
-                column: "KorisnickiNalogId");
+                column: "KorisnickiNalogID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LogKretanjePoSistemu_KorisnikID",

@@ -6,7 +6,7 @@ namespace itservicecenter.Configuration
 {
     public class ServiserConfiguration : IEntityTypeConfiguration<Serviser>
     {
-        public void Configure(EntityTypeBuilder<Serviser> builder)
+        public void Configure (EntityTypeBuilder<Serviser> builder)
         {
             builder.HasData(
                 new Serviser
