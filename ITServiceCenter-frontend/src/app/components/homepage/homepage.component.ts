@@ -23,7 +23,7 @@ export class HomepageComponent implements OnInit {
   znak: any = '+';
 
   ngOnInit(): void {
-    this.fetchFAQ();
+    //this.fetchFAQ();
   }
 
   fetchFAQ() {
