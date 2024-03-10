@@ -1,0 +1,280 @@
+header {
+  background-color: #02060a;
+  display: flex;
+  justify-content: space-between;
+  width: auto;
+  height: 100px;
+  padding: 10px;
+}
+header,
+.search,
+.signin,
+.about {
+  box-shadow: -3px 5px 5px 0px rgba(31, 31, 31, 0.75);
+  -webkit-box-shadow: -3px 5px 5px 0px rgba(31, 31, 31, 0.75);
+  -moz-box-shadow: -3px 5px 5px 0px rgba(31, 31, 31, 0.75);
+}
+
+main {
+  height: 1000px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+div.navbar {
+  margin-right: 100px;
+  overflow: hidden;
+}
+.nav-link {
+  font-family: monospace;
+  font-size: 20px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
+  padding: 20px 0px;
+  margin: 0px 20px;
+  display: inline-block;
+  position: relative;
+  opacity: 0.9;
+  font-weight: bold;
+}
+
+.nav-link:hover {
+  opacity: 1;
+}
+
+.nav-link::before {
+  transition: 300ms;
+  height: 5px;
+  content: "";
+  position: absolute;
+  background-color: white;
+}
+
+.nav-link-ltr::before {
+  width: 0%;
+  bottom: 10px;
+}
+
+.nav-link-ltr:hover::before {
+  width: 100%;
+}
+
+.divLogo {
+  margin-left: 250px;
+  margin-top: 10px;
+}
+
+.button-login-header {
+  background-color: white;
+  margin-right: 70px;
+  margin-top: 10px;
+  padding: 20px;
+  font-family: monospace;
+  font-size: 20px;
+  width: auto;
+  height: 60px;
+  font-weight: bold;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+.signin,
+.search {
+  width: 500px;
+  height: 530px;
+  background-color: #02060a;
+  padding: 20px;
+  margin-left: 250px;
+  margin-top: 100px;
+  color: white;
+  text-align: center;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.signin-text {
+  text-align: left;
+  width: 120px;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  padding: 10px;
+  background-color: white;
+  color: #02060a;
+  margin: 40px;
+}
+
+input {
+  width: auto;
+  padding: 15px;
+  border-radius: 0;
+  border: none;
+  margin-left: 50px;
+  font-family: monospace;
+  font-size: 17px;
+  font-weight: bold;
+}
+input:focus {
+  outline: #abb2b8;
+}
+input:valid {
+  background-color: #abb2b8;
+}
+
+.button,
+.button-text-cancel,
+.button-submit {
+  margin: 40px 0px;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+}
+.button-text,
+.button-text-cancel,
+.button-submit {
+  padding: 15px;
+  margin-top: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.button-text:hover,
+.button-text-cancel:hover,
+.button-login-header:hover,
+.button-submit:hover {
+  background-color: #516269;
+  cursor: pointer;
+  color: white;
+}
+.button-text-cancel:hover {
+  background-color: rgb(158, 2, 2);
+}
+
+.search {
+  width: 500px;
+  height: 400px;
+  margin-right: 150px;
+}
+
+.search-text {
+  text-align: left;
+  width: 100px;
+  font-weight: bolder;
+  letter-spacing: 2px;
+  padding: 10px;
+  background-color: white;
+  color: #02060a;
+  margin: 40px;
+}
+.about-title,
+.FAQ-title,
+.Contact-title {
+  background-color: white;
+  color: #02060a;
+  padding: 20px;
+  width: 150px;
+  margin: 50px 0px 70px 250px;
+  font-weight: bolder;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+
+.about,
+.FAQ,
+.Contact {
+  background-color: #02060a;
+  color: white;
+  padding: 20px;
+  margin-top: 200px;
+  width: 100%;
+  height: 500px;
+  color: white;
+  font-family: monospace;
+  font-size: 17px;
+  height: auto;
+}
+.FAQ,
+.Contact {
+  margin-top: 0px;
+  height: auto;
+}
+
+.h1-about {
+  margin-left: 250px;
+  margin-bottom: 20px;
+  padding: 10px;
+  letter-spacing: 2px;
+}
+.h1-FAQ {
+  margin-left: 250px;
+  margin-bottom: 20px;
+  padding: 10px;
+  letter-spacing: 2px;
+}
+.h1-FAQ:hover {
+  cursor: pointer;
+}
+
+.p-about,
+.p-FAQ {
+  margin-left: 250px;
+  margin-right: 150px;
+  background-color: #516269;
+  padding: 40px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 35px;
+}
+
+.Contact {
+  background: #02060a;
+}
+
+.input-box-contact {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20%;
+  margin-right: 35%;
+}
+
+.input-box-subject,
+.input-box-Message {
+  margin-left: 21.2%;
+  width: 83%;
+}
+.textarea-Message {
+  font-weight: bold;
+  font-size: 20px;
+  height: 200px;
+  margin-left: 50px;
+  padding: 10px;
+  width: 45.3%;
+  margin-left: 120px;
+}
+.textarea-Message:active {
+  outline: none;
+}
+textarea:active {
+  outline: none;
+}
+.input-box-subject-input {
+  width: 45.3%;
+}
+.button-submit {
+  text-align: center;
+  margin-left: 27.7%;
+  width: 37.7%;
+}
+
+label {
+  font-weight: bold;
+}
+textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+}
