@@ -11,17 +11,29 @@ import { FAQGetAllEndpoint } from '../../endpoints/faq-endpoints/faq-get-all-end
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css',
 })
-export class HomepageComponent {
+export class HomepageComponent implements OnInit {
   constructor(
     private router: Router,
     private fAQGetAllEndpoint: FAQGetAllEndpoint
   ) {}
 
-  fetchFAQ() {}
+  podaciFAQ: any = null;
   jelVidljiv: boolean = false;
   prikaziFAQDiv: boolean = false;
-  podaciFAQ: any = null;
   znak: any = '+';
+
+  ngOnInit(): void {
+    this.fetchFAQ();
+  }
+
+  fetchFAQ() {
+    this.fAQGetAllEndpoint.obradi().subscribe({
+      next: (x) => {
+        this.podaciFAQ = x;
+      },
+      error: (x) => {},
+    });
+  }
 
   showSignin() {
     this.jelVidljiv = !this.jelVidljiv;
