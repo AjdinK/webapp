@@ -12,15 +12,12 @@
     <div class="navbar">
       <a class="nav-link nav-link-ltr" href="#home-logo">Home</a>
       <a class="nav-link nav-link-ltr" href="#about-section">About</a>
-      <a class="nav-link nav-link-ltr" href="#FAQ-section">FAQ</a>
-      <a class="nav-link nav-link-ltr" href="#Contact-section">Contact</a>
-    </div>
-    <div (click)="showSignin()" class="button-login-header">
-      <div class="button-login-header-text">Login</div>
+      <a class="nav-link nav-link-ltr" href="#">FAQ</a>
+      <a class="nav-link nav-link-ltr" href="#">Contact</a>
     </div>
   </header>
   <div class="content">
-    <div *ngIf="this.jelVidljiv" class="signin">
+    <div class="signin">
       <div class="signin-text">Sign In</div>
       <br /><br />
       <div class="input-box">
@@ -31,7 +28,6 @@
           required
         /><br /><br />
       </div>
-
       <div class="input-box">
         <label>Password</label>
         <input type="password" placeholder="Enter Your Password" required />
@@ -39,7 +35,6 @@
       </div>
       <div class="button">
         <div class="button-text">Login</div>
-        <div class="button-text-cancel" (click)="showSignin()">Cancel</div>
       </div>
     </div>
 
@@ -59,7 +54,6 @@
       </div>
     </div>
   </div>
-
   <div class="about" id="about-section">
     <div class="about-title">About Us</div>
     <div class="h1-about">
@@ -78,58 +72,6 @@
         Servisiranje i popravak printera, skenera, routera, kamera i ostale
         tehnološke opreme.
       </p>
-    </div>
-  </div>
-
-  <div class="FAQ" id="FAQ-section">
-    <div class="FAQ-title">FAQS</div>
-    <div class="h1-FAQ">
-      <h1 (click)="showOdgovor()">Koja je cijena servisa? {{ this.znak }}</h1>
-    </div>
-    <div *ngIf="this.prikaziFAQDiv" class="p-FAQ">
-      <p>Cijena servisa se određuje u odnosu na model i kvar uređaja.</p>
-    </div>
-    <!--ovo je samo za div test tempooo-->
-  </div>
-
-  <div class="Contact" id="Contact-section">
-    <div class="Contact-title">Contact</div>
-
-    <div class="input-box-contact">
-      <div>
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter your Name" required /><br /><br />
-      </div>
-
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="Enter your Email"
-          required
-        /><br /><br />
-      </div>
-    </div>
-    <div class="input-box-subject">
-      <label>Subject</label>
-      <input
-        class="input-box-subject-input"
-        type="text"
-        placeholder="Subject"
-        required
-      /><br /><br />
-    </div>
-    <div class="input-box-Message">
-      <textarea
-        class="textarea-Message"
-        type="text"
-        placeholder="Message"
-        required
-      ></textarea
-      ><br /><br />
-    </div>
-    <div class="button-submit">
-      <div class="button-submit-text">Submit</div>
     </div>
   </div>
 </main>
