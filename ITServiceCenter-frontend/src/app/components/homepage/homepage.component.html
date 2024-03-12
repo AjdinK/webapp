@@ -81,15 +81,14 @@
     </div>
   </div>
 
-  <div class="FAQ" id="FAQ-section">
+  <div class="FAQ">
     <div class="FAQ-title">FAQS</div>
-    <div class="h1-FAQ">
-      <h1 (click)="showOdgovor()">Koja je cijena servisa? {{ this.znak }}</h1>
+    <div class="FAQ-section">
+        <div *ngFor="let x of podaciFAQ">
+          <h1 (click)="showOdgovor(x)">{{ x.pitanje }}</h1>
+          <p class *ngIf="this.prikaziFAQDiv && this.pitanje.id == x.id">{{ this.pitanje.odgovor}}</p>
+        </div>
     </div>
-    <div *ngIf="this.prikaziFAQDiv" class="p-FAQ">
-      <p>Cijena servisa se određuje u odnosu na model i kvar uređaja.</p>
-    </div>
-    <!--ovo je samo za div test tempooo-->
   </div>
 
   <div class="Contact" id="Contact-section">

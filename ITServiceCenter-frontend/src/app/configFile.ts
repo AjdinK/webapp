@@ -1,3 +1,3 @@
-export class MojConfig {
-  static adresa_servera = 'https://localhost:7174';
+export class ConfigFile {
+  static adresa_servera = 'https://localhost:44357';
 }
