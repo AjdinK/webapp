@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
+}
+main {
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  color: white;
+  background: #000408;
+  width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  border: none ;
+  border-radius: 0;
+}
+
+.login-container h1 {
+  margin-bottom: 20px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 13px;
+  outline: none;
+  border: none;
+  border-radius: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+input:focus {
+  outline: #7cbffa;
+}
+input:valid {
+  background-color: white;
+}
+.login-container button {
+  background-color: white;
+  color: black;
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: bolder;
+  transition: 0.2s ease;
+  margin-top:20px;
+}
+
+.login-container button:hover{
+  background-color: #516269;
+  color: white;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.h1-prim{
+  color: #6C7F8D;
+  cursor: default;
+}
+
