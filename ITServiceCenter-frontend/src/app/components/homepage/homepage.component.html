@@ -1,71 +1,29 @@
-<main style="background-image: url('assets/background.jpg')">
+<body style="background-image: url(assets/background.jpg)">
   <header>
-    <div class="divLogo">
-      <img
-        id="home-logo"
-        src="assets/logo.png"
-        alt="websitelogo"
-        height="55px"
-        width="125px"
-      />
-    </div>
-    <div class="navbar">
-      <a class="nav-link nav-link-ltr" href="#home-logo">Home</a>
-      <a class="nav-link nav-link-ltr" href="#about-section">About</a>
-      <a class="nav-link nav-link-ltr" href="#FAQ-section">FAQ</a>
-      <a class="nav-link nav-link-ltr" href="#Contact-section">Contact</a>
-    </div>
-    <div (click)="showSignin()" class="button-login-header">
-      <div class="button-login-header-text">Login</div>
-    </div>
+    <nav class="navbar">
+      <a class="logo"
+        ><img src="assets/logo.png" height="45px" width="105px"
+      /></a>
+      <ul class="menu-links">
+        <li class="current"><a href="#" data-hover="Home">Home</a></li>
+        <li><a href="#AboutUs" data-hover="About Us">About Us</a></li>
+        <li><a href="#" data-hover="FAQ">FAQ</a></li>
+        <li><a href="#ContactUS" data-hover="Contact US">Contact</a></li>
+      </ul>
+      <button class="button-login-header">Login</button>
+    </nav>
   </header>
-  <div class="content">
-    <div *ngIf="this.jelVidljiv" class="signin">
-      <div class="signin-text">Sign In</div>
-      <br /><br />
-      <div class="input-box">
-        <label>Username</label>
-        <input
-          type="text"
-          placeholder="Enter your username"
-          required
-        /><br /><br />
-      </div>
 
-      <div class="input-box">
-        <label>Password</label>
-        <input type="password" placeholder="Enter Your Password" required />
-        <br /><br />
-      </div>
-      <div class="button">
-        <div class="button-text">Login</div>
-        <div class="button-text-cancel" (click)="showSignin()">Cancel</div>
-      </div>
-    </div>
-
+  <section class="search-section">
     <div class="search">
-      <div class="search-text">Search</div>
-      <br /><br />
-      <div class="input-box">
-        <label>Nalog Number</label>
-        <input
-          type="text"
-          placeholder="Enter your Nalog Number"
-          required
-        /><br /><br />
-      </div>
-      <div class="button">
-        <div class="button-text">Search</div>
-      </div>
+      <input type="text" placeholder="Search Nalog" />
+      <button class="search-button">Search</button>
     </div>
-  </div>
+  </section>
 
-  <div class="about" id="about-section">
-    <div class="about-title">About Us</div>
-    <div class="h1-about">
+  <section id="AboutUs" class="AboutUs-section">
+    <div class="AboutUs">
       <h1>Vaš pouzdani servisni centar za IT rješenja</h1>
-    </div>
-    <div class="p-about">
       <p>
         Dobrodošli u IT SERVICE CENTER , Vaš servisni centar za sve IT potrebe.
         Nudimo širok spektar usluga za popravak i održavanje različitih
@@ -79,56 +37,83 @@
         tehnološke opreme.
       </p>
     </div>
-  </div>
+  </section>
 
-  <div class="FAQ">
+  <section id="FAQ" class="AboutUs-section">
+    <div class="AboutUs">
+      <h1>Vaš pouzdani servisni centar za IT rješenja</h1>
+      <p>
+        Dobrodošli u IT SERVICE CENTER , Vaš servisni centar za sve IT potrebe.
+        Nudimo širok spektar usluga za popravak i održavanje različitih
+        tehnoloških uređaja, uključujući: Računara: Dijagnoza i popravak PC-a i
+        Mac računara, nadogradnja hardvera, instalacija softvera, uklanjanje
+        virusa i još mnogo toga. Mobiteli: Popravak slomljenih ekrana, zamjena
+        baterija, otključavanje mobitela, softverska rješenja i servisiranje
+        različitih modela mobitela. Tableti: Popravak ekrana, zamjena baterija,
+        dijagnostika i rješavanje softverskih problema. Druga tehnologija:
+        Servisiranje i popravak printera, skenera, routera, kamera i ostale
+        tehnološke opreme.
+      </p>
+    </div>
+  </section>
+
+  <section  class="FAQ-section">
+    <div class="AboutUs">
+      <h1>FAQ</h1>
+      <div class="h1-FAQ">
+        <!--<h1 (click)="showOdgovor()"->Koja je cijena servisa? {{ this.znak }}</h1>-->
+      </div>
+      <div *ngIf="this.prikaziFAQDiv" class="p-FAQ">
+        <p>Cijena servisa se određuje u odnosu na model i kvar uređaja.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="FAQ" id="FAQ-section">
     <div class="FAQ-title">FAQS</div>
-    <div class="FAQ-section">
-        <div *ngFor="let x of podaciFAQ">
-          <h1 (click)="showOdgovor(x)">{{ x.pitanje }}</h1>
-          <p class *ngIf="this.prikaziFAQDiv && this.pitanje.id == x.id">{{ this.pitanje.odgovor}}</p>
-        </div>
+    <div class="h1-FAQ">
+      <!--<h1 (click)="showOdgovor()"->Koja je cijena servisa? {{ this.znak }}</h1>-->
     </div>
+    <div *ngIf="this.prikaziFAQDiv" class="p-FAQ">
+      <p>Cijena servisa se određuje u odnosu na model i kvar uređaja.</p>
+    </div>
+    <!--ovo je samo za div test tempooo-->
   </div>
 
-  <div class="Contact" id="Contact-section">
-    <div class="Contact-title">Contact</div>
+  <section id = "ContactUS" class="ContactUS-section">
+    <div class ="ContactUS-wrapper">
+    <div class="ContactUS-info">
+      <h1>Contact US</h1>
+      <p>
+  <span  class = "text-img">
+    <img src="assets/karta.svg" height="30px" width="30px">
+    Novi grad 13 , Sarajevo , Bosna i hercegovina
+  </span>
+      </p>
+      <p>
+  <span  class = "text-img">
+    <img src="assets/tel.svg" height="30px" width="30px">
+    000-000-0000
+  </span>
+      </p>
+      <p>
+  <span  class = "text-img">
+    <img src="assets/email.svg" height="30px" width="30px">
+    itcenter&#64;gmail.com
+  </span>
+      </p>
+    </div>
 
-    <div class="input-box-contact">
-      <div>
-        <label>Full Name</label>
-        <input type="text" placeholder="Enter your Name" required /><br /><br />
-      </div>
+    <div class="ContactUS-form">
+      <label>Name</label> <br>
+      <input type="text"><br>
+      <label>Email</label> <br>
+      <input type="email"><br>
+      <label>Message</label><br>
+      <textarea></textarea><br>
+      <button class="button-login-header">Submit</button>
+    </div>
 
-      <div>
-        <label>Email</label>
-        <input
-          type="email"
-          placeholder="Enter your Email"
-          required
-        /><br /><br />
       </div>
-    </div>
-    <div class="input-box-subject">
-      <label>Subject</label>
-      <input
-        class="input-box-subject-input"
-        type="text"
-        placeholder="Subject"
-        required
-      /><br /><br />
-    </div>
-    <div class="input-box-Message">
-      <textarea
-        class="textarea-Message"
-        type="text"
-        placeholder="Message"
-        required
-      ></textarea
-      ><br /><br />
-    </div>
-    <div class="button-submit">
-      <div class="button-submit-text">Submit</div>
-    </div>
-  </div>
-</main>
+  </section>
+</body>

@@ -1,297 +1,231 @@
-main {
-  overflow-x: hidden;
-}
-header {
-  background-color: #02060a;
-  display: flex;
-  justify-content: space-between;
-  width: auto;
-  height: 100px;
-  padding: 10px;
-}
-header,
-.search,
-.signin,
-.about {
-  box-shadow: -3px 5px 5px 0px rgba(31, 31, 31, 0.75);
-  -webkit-box-shadow: -3px 5px 5px 0px rgba(31, 31, 31, 0.75);
-  -moz-box-shadow: -3px 5px 5px 0px rgba(31, 31, 31, 0.75);
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Space Grotesk", sans-serif;
 }
 
-main {
-  height: 1000px;
-  background-repeat: no-repeat;
+body {
+  height: 100vh;
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
-div.navbar {
-  margin-right: 100px;
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: #000408;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+
+header .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header .navbar .menu-links {
+  display: flex;
+  gap: 30px;
+}
+
+.menu-links li {
+  list-style-type: none;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.navbar button,
+.search-button,
+section div button {
+  background-color: white;
+  color: black;
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: bolder;
+  transition: 0.2s ease;
+}
+.navbar button:hover,
+.search-button:hover,
+section div button:hover{
+  background-color: #516269;
+  color: white;
+}
+
+.menu-links {
+  font-family: "Space Grotesk", sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.menu-links li {
+  display: inline-block;
+  list-style: outside none none;
+  margin: 0 1.5em;
+  padding: 0;
+}
+.menu-links a {
+  padding: 0.5em 0;
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  letter-spacing: 1px;
+  text-decoration: none;
+  letter-spacing: 3px;
+}
+.menu-links a:before,
+.menu-links a:after {
+  position: absolute;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.menu-links a:before {
+  top: 0;
+  display: block;
+  height: 3px;
+  width: 0%;
+  content: "";
+  background-color: #687b89;
+}
+.menu-links a:after {
+  left: 0;
+  top: 0;
+  padding: 0.5em 0;
+  position: absolute;
+  content: attr(data-hover);
+  color: #ffffff;
+  white-space: nowrap;
+  max-width: 0%;
   overflow: hidden;
 }
-.nav-link {
-  font-family: monospace;
-  font-size: 20px;
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: white;
-  padding: 20px 0px;
-  margin: 0px 20px;
-  display: inline-block;
-  position: relative;
-  opacity: 0.9;
-  font-weight: bold;
-}
-
-.nav-link:hover {
+.menu-links a:hover:before,
+.menu-links .current a:before {
   opacity: 1;
-}
-
-.nav-link::before {
-  transition: 300ms;
-  height: 5px;
-  content: "";
-  position: absolute;
-  background-color: white;
-}
-
-.nav-link-ltr::before {
-  width: 0%;
-  bottom: 10px;
-}
-
-.nav-link-ltr:hover::before {
   width: 100%;
 }
-
-.divLogo {
-  margin-left: 250px;
-  margin-top: 10px;
+.menu-links a:hover:after,
+.menu-links .current a:after {
+  max-width: 100%;
 }
 
-.button-login-header {
-  background-color: white;
-  margin-right: 70px;
-  margin-top: 10px;
-  padding: 20px;
-  font-family: monospace;
-  font-size: 20px;
-  width: auto;
-  height: 60px;
-  font-weight: bold;
-}
-
-.content {
+.search-section {
+  height: 100vh;
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 1;
 }
-.signin,
-.search {
-  width: 500px;
-  height: 530px;
-  background-color: #02060a;
+.search-section .search {
+  position: relative;
+  top: 20vh;
+  color: #fff;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  height: 100px;
+  background-color: #000408;
   padding: 20px;
-  margin-left: 250px;
-  margin-top: 100px;
-  color: white;
-  text-align: center;
-  font-family: monospace;
-  font-size: 20px;
+  overflow: hidden;
 }
 
-.signin-text {
-  text-align: left;
-  width: 120px;
-  font-weight: bolder;
-  letter-spacing: 2px;
-  padding: 10px;
-  background-color: white;
-  color: #02060a;
-  margin: 40px;
-}
-
-input {
-  width: auto;
+.search-section .search input {
+  width: 80%;
   padding: 15px;
+  outline: none;
+  border: none;
   border-radius: 0;
-  border: none;
-  margin-left: 50px;
-  font-family: monospace;
-  font-size: 17px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
   font-weight: bold;
-}
-input:focus {
-  outline: #abb2b8;
-}
-input:valid {
-  background-color: #abb2b8;
+  margin-top: 5px;
 }
 
-.button,
-.button-text-cancel,
-.button-submit {
-  margin: 40px 0px;
-  width: 100%;
-  height: 50px;
+.search-section .search input:focus {
+  outline: #7cbffa;
+}
+.search-section .search input:valid {
   background-color: white;
 }
-.button-text,
-.button-text-cancel,
-.button-submit {
-  padding: 15px;
-  margin-top: 10px;
-  color: black;
-  font-weight: bold;
+.search-button {
+  margin-left: 60px;
 }
 
-.button-text:hover,
-.button-text-cancel:hover,
-.button-login-header:hover,
-.button-submit:hover {
-  background-color: #516269;
-  cursor: pointer;
+.AboutUs-section,
+.ContactUS-section,
+.FAQ-section{
+  background-color: #000408;
+  padding: 50px;
   color: white;
 }
-.button-text-cancel:hover {
-  background-color: rgb(158, 2, 2);
+
+.AboutUs-section div , .ContactUS-wrapper,
+.FAQ-section{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.AboutUs-section div h1 , .ContactUS-info h1 {
+  font-size: 3.5rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+.AboutUs-section div p {
+  font-size: 1.7rem;
+  line-height: 3rem;
+  margin-bottom: 4rem;
 }
 
-.search {
-  width: 500px;
-  height: 400px;
-  margin-right: 150px;
-}
-
-.search-text {
-  text-align: left;
-  width: 100px;
-  font-weight: bolder;
-  letter-spacing: 2px;
-  padding: 10px;
-  background-color: white;
-  color: #02060a;
-  margin: 40px;
-}
-.about-title,
-.FAQ-title,
-.Contact-title {
-  background-color: white;
-  color: #02060a;
-  padding: 20px;
-  width: 150px;
-  margin: 50px 0px 70px 250px;
-  font-weight: bolder;
-  font-size: 1.3rem;
-  letter-spacing: 2px;
-}
-
-.about,
-.FAQ,
-.Contact {
-  background-color: #02060a;
-  color: white;
-  padding: 20px;
-  margin-top: 200px;
-  width: 100%;
-  height: 500px;
-  color: white;
-  font-family: monospace;
-  font-size: 17px;
-  height: auto;
-}
-.FAQ,
-.Contact {
-  margin-top: 0px;
-  height: auto;
-}
-
-.h1-about {
-  margin-left: 250px;
-  margin-bottom: 20px;
-  padding: 10px;
-  letter-spacing: 2px;
-}
-.h1-FAQ {
-  margin-left: 250px;
-  margin-bottom: 20px;
-  padding: 10px;
-  letter-spacing: 2px;
-}
-.h1-FAQ:hover {
-  cursor: pointer;
-}
-
-.p-about,
-.p-FAQ {
-  margin-left: 250px;
-  margin-right: 150px;
-  background-color: #516269;
-  padding: 40px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  line-height: 35px;
-}
-
-.Contact {
-  background: #02060a;
-}
-
-.input-box-contact {
+.ContactUS-wrapper{
   display: flex;
   justify-content: space-between;
-  margin-left: 20%;
-  margin-right: 35%;
 }
 
-.input-box-subject,
-.input-box-Message {
-  margin-left: 21.2%;
-  width: 83%;
-}
-.textarea-Message {
-  font-weight: bold;
-  font-size: 20px;
-  height: 200px;
-  margin-left: 50px;
-  padding: 10px;
-  width: 45.3%;
-  margin-left: 120px;
-}
-.textarea-Message:active {
-  outline: none;
-}
-textarea:active {
-  outline: none;
-}
-.input-box-subject-input {
-  width: 45.3%;
-}
-.button-submit {
-  text-align: center;
-  margin-left: 27.7%;
-  width: 37.7%;
+.text-img {
+  display: flex;
+  align-items: center; /* Aligns vertically */
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
-label {
-  font-weight: bold;
+.ContactUS-form {
+  margin-top: 60px;
+  width: 40%;
 }
-textarea {
+.ContactUS-form input ,
+.ContactUS-form textarea{
+  width: 100%;
+  padding: 10px 5px;
+  margin: 15px 0;
+  font-size: 1.5rem;
   border: none;
-  overflow: auto;
-  outline: none;
+}
+.ContactUS-form input:valid,
+.ContactUS-form input:active,
+.ContactUS-form textarea:active,
+.ContactUS-form textarea:focus{
+  outline:none;
+}
+.ContactUS-form input:focus,
+.ContactUS-form textarea:focus{
+  border: #677A88 solid 3px;
+}
+.ContactUS-form textarea {
+  height: 15rem;
+  resize: none;
 }
 
-ul {
-  background-color: #516269;
 
-  cursor: pointer;
-  margin-left: 250px;
-  margin-bottom: 20px;
-}
-li {
-  font-weight: bold;
-  font-size: 25px;
-  display: block;
-  padding: 3rem;
-}
