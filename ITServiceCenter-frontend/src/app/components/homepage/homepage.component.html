@@ -1,4 +1,4 @@
-<body style="background-image: url(assets/background.jpg)">
+<main style="background-image: url(assets/background.jpg)">
   <header>
     <nav class="navbar">
       <a class="logo"
@@ -7,7 +7,7 @@
       <ul class="menu-links">
         <li class="current"><a href="#" data-hover="Home">Home</a></li>
         <li><a href="#AboutUs" data-hover="About Us">About Us</a></li>
-        <li><a href="#" data-hover="FAQ">FAQ</a></li>
+        <li><a href="#FAQ" data-hover="FAQ">FAQ</a></li>
         <li><a href="#ContactUS" data-hover="Contact US">Contact</a></li>
       </ul>
       <button class="button-login-header">Login</button>
@@ -23,6 +23,7 @@
 
   <section id="AboutUs" class="AboutUs-section">
     <div class="AboutUs">
+      <h1 class="h1-prim">#About Us</h1>
       <h1>Vaš pouzdani servisni centar za IT rješenja</h1>
       <p>
         Dobrodošli u IT SERVICE CENTER , Vaš servisni centar za sve IT potrebe.
@@ -39,51 +40,22 @@
     </div>
   </section>
 
-  <section id="FAQ" class="AboutUs-section">
+  <section id="FAQ" class="FAQ-section">
     <div class="AboutUs">
-      <h1>Vaš pouzdani servisni centar za IT rješenja</h1>
-      <p>
-        Dobrodošli u IT SERVICE CENTER , Vaš servisni centar za sve IT potrebe.
-        Nudimo širok spektar usluga za popravak i održavanje različitih
-        tehnoloških uređaja, uključujući: Računara: Dijagnoza i popravak PC-a i
-        Mac računara, nadogradnja hardvera, instalacija softvera, uklanjanje
-        virusa i još mnogo toga. Mobiteli: Popravak slomljenih ekrana, zamjena
-        baterija, otključavanje mobitela, softverska rješenja i servisiranje
-        različitih modela mobitela. Tableti: Popravak ekrana, zamjena baterija,
-        dijagnostika i rješavanje softverskih problema. Druga tehnologija:
-        Servisiranje i popravak printera, skenera, routera, kamera i ostale
-        tehnološke opreme.
-      </p>
-    </div>
-  </section>
-
-  <section  class="FAQ-section">
-    <div class="AboutUs">
-      <h1>FAQ</h1>
-      <div class="h1-FAQ">
-        <!--<h1 (click)="showOdgovor()"->Koja je cijena servisa? {{ this.znak }}</h1>-->
-      </div>
-      <div *ngIf="this.prikaziFAQDiv" class="p-FAQ">
-        <p>Cijena servisa se određuje u odnosu na model i kvar uređaja.</p>
+      <h1 class="h1-prim">#FAQ</h1>
+      <div class="h1-FAQ" *ngFor="let x of this.podaciFAQ">
+        <h1 (click)="showOdgovor(x.id)">{{ x.pitanje }}</h1>
+        <div *ngIf="pitanje[x.id]" class="FAQ-odgovor">
+          <p>-> {{x.odgovor}}</p>
+        </div>
       </div>
     </div>
   </section>
-
-  <div class="FAQ" id="FAQ-section">
-    <div class="FAQ-title">FAQS</div>
-    <div class="h1-FAQ">
-      <!--<h1 (click)="showOdgovor()"->Koja je cijena servisa? {{ this.znak }}</h1>-->
-    </div>
-    <div *ngIf="this.prikaziFAQDiv" class="p-FAQ">
-      <p>Cijena servisa se određuje u odnosu na model i kvar uređaja.</p>
-    </div>
-    <!--ovo je samo za div test tempooo-->
-  </div>
 
   <section id = "ContactUS" class="ContactUS-section">
     <div class ="ContactUS-wrapper">
     <div class="ContactUS-info">
-      <h1>Contact US</h1>
+      <h1 class="h1-prim">#Contact US</h1>
       <p>
   <span  class = "text-img">
     <img src="assets/karta.svg" height="30px" width="30px">
@@ -116,4 +88,4 @@
 
       </div>
   </section>
-</body>
+</main>

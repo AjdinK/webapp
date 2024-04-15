@@ -6,7 +6,7 @@
   font-family: "Space Grotesk", sans-serif;
 }
 
-body {
+main {
   height: 100vh;
   background-position: center;
   background-size: cover;
@@ -167,23 +167,25 @@ section div button:hover{
 
 .AboutUs-section,
 .ContactUS-section,
-.FAQ-section{
+.FAQ-section {
   background-color: #000408;
   padding: 50px;
   color: white;
 }
 
 .AboutUs-section div , .ContactUS-wrapper,
-.FAQ-section{
+.FAQ-section div {
   max-width: 1200px;
   margin: 0 auto;
 }
-.AboutUs-section div h1 , .ContactUS-info h1 {
+.AboutUs-section div h1 , .ContactUS-info h1,
+.FAQ-section div h1{
   font-size: 3.5rem;
   margin-top: 4rem;
   margin-bottom: 4rem;
 }
-.AboutUs-section div p {
+.AboutUs-section div p,
+.FAQ-section div p {
   font-size: 1.7rem;
   line-height: 3rem;
   margin-bottom: 4rem;
@@ -228,4 +230,13 @@ section div button:hover{
   resize: none;
 }
 
+.h1-FAQ {
+  cursor: pointer;
+}
+.h1-prim{
+  color: #6C7F8D;
+}
+.FAQ-odgovor {
+  width: 100%;
+}
 

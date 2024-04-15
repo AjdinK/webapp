@@ -20,10 +20,7 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   podaciFAQ: any = null;
-  jelVidljiv: boolean = false;
-  prikaziFAQDiv: boolean = false;
-  znak: string = '+';
-  pitanje : any = null;
+  pitanje: { [key: number]: boolean } = {};
 
   ngOnInit(): void {
     this.fetchFAQ();
@@ -33,17 +30,13 @@ export class HomepageComponent implements OnInit {
     this.fAQGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.podaciFAQ = x.faqLista;
+        this.podaciFAQ.forEach((q:any) => this.pitanje[q.id] = false);
       },
       error: (x) => {},
     });
   }
 
-  showSignin() {
-    this.jelVidljiv = !this.jelVidljiv;
-  }
-  showOdgovor(x: any) {
-      this.pitanje = x;
-      this.prikaziFAQDiv = !this.prikaziFAQDiv;
-      this.znak = this.prikaziFAQDiv ? '-' : '+';
+  showOdgovor(id: number) {
+    this.pitanje[id] = !this.pitanje[id];
   }
 }
