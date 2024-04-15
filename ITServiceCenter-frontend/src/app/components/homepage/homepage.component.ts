@@ -39,4 +39,8 @@ export class HomepageComponent implements OnInit {
   showOdgovor(id: number) {
     this.pitanje[id] = !this.pitanje[id];
   }
+
+  logiraj() {
+    this.router.navigate(["/login"])
+  }
 }
