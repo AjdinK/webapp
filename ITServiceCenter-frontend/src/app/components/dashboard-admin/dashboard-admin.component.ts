@@ -16,4 +16,16 @@ export class DashboardAdminComponent {
   logout() {
   this.router.navigate(["/homepage"])
   }
+
+  fetchServiser() {
+
+  }
+
+  fetchProdavac() {
+
+  }
+
+  fetchNalog() {
+
+  }
 }

@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Space Grotesk", sans-serif;
+  user-select: none;
 }
 main {
   height: 100vh;
@@ -25,9 +26,10 @@ header {
 }
 nav {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
   align-items: center;
 }
+
 nav button , ul button {
   background-color: white;
   color: black;
@@ -49,13 +51,17 @@ ul button:hover {
 ul button {
   margin-top: 50px;
 }
+h1{
+  color: white;
+}
 
 .div-adminInfo{
-  width: 30%;
+  width: 20%;
   height: 100%;
   position: fixed;
   top: 100px;
   left: 0;
+  background-color: #000408;
 }
 .menu-links {
   color: white;
@@ -66,7 +72,6 @@ ul button {
 .menu-links li {
   color: white;
   padding: 20px;
-  margin-top: 20px;
   list-style-type: none;
   font-size: 1.5rem;
   transition: 0.2s ease-in;
