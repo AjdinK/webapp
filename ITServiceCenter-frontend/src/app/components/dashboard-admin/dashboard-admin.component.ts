@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Router} from "@angular/router";
+import {
+  ServiserGetAllEndpoint, ServiserGetAllResponse,
+  ServiserGetAllResponseServiseri
+} from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
+
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -9,8 +14,16 @@ import {Router} from "@angular/router";
   templateUrl: './dashboard-admin.component.html',
   styleUrl: './dashboard-admin.component.css'
 })
-export class DashboardAdminComponent {
-  constructor(private router : Router) {
+export class DashboardAdminComponent implements OnInit{
+  constructor(
+    private router : Router,
+    private serviserGetAllEndpoint : ServiserGetAllEndpoint,
+  ) {}
+
+  serviserPodaci : ServiserGetAllResponse | null = null;
+
+  ngOnInit(): void {
+    this.fetchServiser();
   }
 
   logout() {
@@ -18,7 +31,12 @@ export class DashboardAdminComponent {
   }
 
   fetchServiser() {
-
+    this.serviserGetAllEndpoint.obradi().subscribe({
+      next: x=> {
+        this.serviserPodaci = x;
+      },
+      error: x=> {}
+    })
   }
 
   fetchProdavac() {
@@ -26,6 +44,14 @@ export class DashboardAdminComponent {
   }
 
   fetchNalog() {
+
+  }
+
+  dodaj() {
+    alert("radi")
+  }
+
+  onNoClick() {
 
   }
 }
