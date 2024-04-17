@@ -1,14 +1,20 @@
 <main style="background-image: url(assets/background.jpg)">
   <div class="login-container">
-   <h1 class="h1-prim">Login</h1>
-    <form (ngSubmit)="onSubmit()">
+
+    <div class="text-img">
+      <img class="login-logo" src ="assets/login.svg" height="30" width="30">
+        <h1 class="h1-prim">Login</h1>
+    </div>
+
+
+    <form>
       <div class="form-group">
-        <label for="username">Email</label>
-        <input type="text" id="username" [(ngModel)]="username" name="username" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required>
       </div>
       <div class="form-group">
-        <label for="password">Lozinka</label>
-        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+        <label for="lozinka">Lozinka</label>
+        <input type="lozinka" id="lozinka" [(ngModel)]="lozinka" name="lozinka" required>
       </div>
       <button (click)="logirajSe()" type="submit">Login</button>
     </form>

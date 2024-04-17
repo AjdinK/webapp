@@ -80,5 +80,13 @@ label {
   color: #6C7F8D;
   cursor: default;
 }
-
+.text-img{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.login-logo{
+  position: relative;
+  top: 5px;
+}
 

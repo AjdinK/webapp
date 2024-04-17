@@ -11,13 +11,13 @@ import {Router} from "@angular/router";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private router : Router) {}
+  constructor (private router : Router) {}
 
-  username: string = '';
-  password: string = '';
-
-  onSubmit() {}
+  email: string = '';
+  lozinka: string = '';
 
   logirajSe() {
-  this.router.navigate(["dashboard-admin"]) }
+  this.router.navigate(["dashboard-admin"])
+  }
+
 }

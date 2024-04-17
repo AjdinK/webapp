@@ -5,6 +5,7 @@
   box-sizing: border-box;
   font-family: "Space Grotesk", sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 main {
   height: 100vh;
@@ -174,6 +175,7 @@ section div button:hover{
   background-color: #000408;
   padding: 50px;
   color: white;
+  user-select: none;
 }
 
 .AboutUs-section div , .ContactUS-wrapper,
