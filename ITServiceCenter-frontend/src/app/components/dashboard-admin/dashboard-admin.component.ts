@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -9,5 +10,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dashboard-admin.component.css'
 })
 export class DashboardAdminComponent {
+  constructor(private router : Router) {
+  }
 
+  logout() {
+  this.router.navigate(["/homepage"])
+  }
 }
