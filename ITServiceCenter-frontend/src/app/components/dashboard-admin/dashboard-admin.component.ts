@@ -39,7 +39,7 @@ export class DashboardAdminComponent implements OnInit{
 
   jelOtvorenMenu: boolean = true;
   dodajServiser:boolean = false;
-  dodajProdavaca: boolean;
+  // dodajProdavaca: boolean;
 
   ngOnInit(): void {
 
@@ -124,7 +124,7 @@ export class DashboardAdminComponent implements OnInit{
 
   zatvori() {
     this.dodajServiser = false;
-    this.dodajProdavaca = false;
+    // this.dodajProdavaca = false;
     this.fetchServiser();
   }
 }
