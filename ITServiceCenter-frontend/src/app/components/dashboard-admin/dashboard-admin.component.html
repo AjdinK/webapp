@@ -59,7 +59,7 @@
       <td>{{x.spolID}}</td>
       <td>{{x.isServiser}}</td>
       <td>
-        <button (click)="editServiser()">Edit</button>
+        <button (click)="editServiser(x)">Edit</button>
         <button class="brisiServiser" (click)="softDelete()">Brisi</button>
       </td>
     </tr>
@@ -95,13 +95,38 @@
           <td>{{x.spolID}}</td>
           <td>{{x.isProdavac}}</td>
           <td>
-            <button (click)="editServiser()">Edit</button>
+            <button (click)="editServiser(x)">Edit</button>
             <button class="brisiServiser" (click)="softDelete()">Brisi</button>
           </td>
         </tr>
         </tbody>
       </table>
-      </div>
+    </div>
 
-</div>
+  <form *ngIf="dodajServiser">
+    <div class="form-group">
+      <label for="ime">Ime:</label>
+      <input type="text" class="form-control" id="ime" name="ime" required [(ngModel)]="this.dodajNoviServiser.ime">
+    </div>
+    <div class="form-group">
+      <label for="prezime">Prezime:</label>
+      <input type="text" class="form-control" id="prezime"  name="prezime" required [(ngModel)]="this.dodajNoviServiser.prezime">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email"  name="email" required [(ngModel)]="this.dodajNoviServiser.email">
+    </div>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username"  name="username" required [(ngModel)]="this.dodajNoviServiser.username">
+    </div>
+    <div class="form-group">
+      <label for="isProdavac">Prodavac:</label>
+      <input class="checkbox" type="checkbox" id="isProdavac" name="isProdavac" [(ngModel)]="this.dodajNoviServiser.isServiser">
+    </div>
+    <button type="submit" class="btn-dodaj">Dodaj korisnika</button>
+    <button type="submit" class="btn-zatvori" (click)="zatvori()">Zatvori</button>
+  </form>
+
+  </div>
 </main>

@@ -20,6 +20,7 @@ import {
   styleUrl: './dashboard-admin.component.css'
 })
 export class DashboardAdminComponent implements OnInit{
+
   constructor(
     private router : Router,
     private serviserGetAllEndpoint : ServiserGetAllEndpoint,
@@ -30,12 +31,15 @@ export class DashboardAdminComponent implements OnInit{
   showServiser:boolean = false;
   serviserPodaci : ServiserGetAllResponseServiseri [] | null = [];
   searchServiser: string = "";
+  dodajNoviServiser: any;
 
   prodavacPodaci : ProdavacGetAllResponseProdavac [] | null = [];
   showProdavac:boolean = false;
   searchProdavac: string = "";
 
   jelOtvorenMenu: boolean = true;
+  dodajServiser:boolean = false;
+  dodajProdavaca: boolean;
 
   ngOnInit(): void {
 
@@ -51,6 +55,7 @@ export class DashboardAdminComponent implements OnInit{
         this.serviserPodaci = x.listaServiser;
         this.showServiser = !this.showServiser;
         this.showProdavac = false;
+        this.dodajServiser = false;
       },
       error: x=> {}
     })
@@ -92,8 +97,10 @@ export class DashboardAdminComponent implements OnInit{
 
   }
 
-  editServiser() {
-
+  editServiser(x:any) {
+    this.showServiser = false;
+    this.dodajServiser = true;
+    this.dodajNoviServiser = x;
   }
 
   filtrirajServiser() {
@@ -115,4 +122,9 @@ export class DashboardAdminComponent implements OnInit{
     );
   }
 
+  zatvori() {
+    this.dodajServiser = false;
+    this.dodajProdavaca = false;
+    this.fetchServiser();
+  }
 }
