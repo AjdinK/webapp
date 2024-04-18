@@ -1,24 +1,107 @@
 <main style="background-image: url(assets/background.jpg)">
   <header>
     <nav class="navbar">
-      <h1>/Admin managment</h1>
+      <div class="title-img">
+        <img src="assets/menu.svg" height="40" width="80px" alt="logo" (click)="otvoriMenu()">
+        <h1>/Admin managment</h1>
+      </div>
+
+      <div class="avatar-button">
+        <h2>Ime Admina..</h2>
+        <img  src="assets/avatar.svg" height="60" width="60" alt="avatar">
       <button (click)="logout()">Logout</button>
+      </div>
     </nav>
   </header>
-<div class="div-adminInfo">
+
+<div class="div-adminInfo" *ngIf="jelOtvorenMenu">
 
   <ul class="menu-links">
-    <li (click)="fetchServiser()"><img src="assets/serviseri.svg" alt="lista-logo" height="24" width="24">Lista Servisera</li>
-    <li (click)="fetchProdavac()"><img src="assets/prodavac.svg" alt="lista-logo" height="24" width="24">Lista Prodavaca</li>
-    <li (click)="fetchNalog()"><img src="assets/nalog.svg" alt="lista-logo" height="24" width="24">Naloge korisnika</li>
-    <li (click)="dodaj()"><img src="assets/dodajKorisnika.svg" alt="lista-logo" height="24" width="24">Dodaj novog korisnika</li>
-    <li><img src="assets/profile.svg" alt="lista-logo" height="24" width="24">Profil</li>
-    <li><img src="assets/postavke.svg" alt="lista-logo" height="24" width="24">Postavke</li>
-    <li (click)="logout()"><img src="assets/logout.svg" alt="lista-logo" height="24" width="24">Logout</li>
+    <li (click)="fetchServiser()"><img src="assets/serviseri.svg" alt="serviseri.svg" height="24" width="24">Lista Servisera</li>
+    <li (click)="fetchProdavac()"><img src="assets/prodavac.svg" alt="prodavac.svg" height="24" width="24">Lista Prodavaca</li>
+    <li (click)="fetchNalog()"><img src="assets/nalog.svg" alt="nalog.svg" height="24" width="24">Naloge korisnika</li>
+    <li (click)="dodaj()"><img src="assets/dodajKorisnika.svg" alt="dodajKorisnika.svg" height="24" width="24">Dodaj novog korisnika</li>
+    <li><img src="assets/profile.svg" alt="profile.svg" height="24" width="24">Profil</li>
+    <li (click)="idiHomepage()"><img src="assets/homepage.svg" alt="homepage.svg" height="24" width="24">Homepage</li>
+    <li><img src="assets/postavke.svg" alt="postavke.svg" height="24" width="24">Postavke</li>
+    <li (click)="logout()"><img src="assets/logout.svg" alt="logout.svg" height="24" width="24">Logout</li>
   </ul>
+
 </div>
 
 <div class="div-adminEdit">
-  
+
+  <div class="div-table" *ngIf="showServiser">
+      <input type="text" [(ngModel)]="this.searchServiser" placeholder="Pretraži servise..." />
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Grad ID</th>
+      <th>Spol ID</th>
+      <th>Is Serviser</th>
+      <th>Akcije</th>
+    </tr>
+    </thead>
+
+    <tbody *ngFor="let x of filtrirajServiser()">
+    <tr>
+      <td>{{x.id}}</td>
+      <td>{{x.ime}}</td>
+      <td>{{x.prezime}}</td>
+      <td>{{x.username}}</td>
+      <td>{{x.email}}</td>
+      <td>{{x.gradID}}</td>
+      <td>{{x.spolID}}</td>
+      <td>{{x.isServiser}}</td>
+      <td>
+        <button (click)="editServiser()">Edit</button>
+        <button class="brisiServiser" (click)="softDelete()">Brisi</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+    <div class="div-table" *ngIf="showProdavac">
+      <input type="text" [(ngModel)]="this.searchProdavac" placeholder="Pretraži prodavaca..." />
+      <table>
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Ime</th>
+          <th>Prezime</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Grad ID</th>
+          <th>Spol ID</th>
+          <th>Is Prodavac</th>
+          <th>Akcije</th>
+        </tr>
+        </thead>
+
+        <tbody *ngFor="let x of filtrirajProdavac()">
+        <tr>
+          <td>{{x.id}}</td>
+          <td>{{x.ime}}</td>
+          <td>{{x.prezime}}</td>
+          <td>{{x.username}}</td>
+          <td>{{x.email}}</td>
+          <td>{{x.gradID}}</td>
+          <td>{{x.spolID}}</td>
+          <td>{{x.isProdavac}}</td>
+          <td>
+            <button (click)="editServiser()">Edit</button>
+            <button class="brisiServiser" (click)="softDelete()">Brisi</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+
 </div>
 </main>

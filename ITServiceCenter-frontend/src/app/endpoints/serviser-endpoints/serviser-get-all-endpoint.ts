@@ -8,15 +8,13 @@ import {ConfigFile} from "../../configFile";
 export class ServiserGetAllEndpoint implements MyBaseEndpoint<void, ServiserGetAllResponse> {
   constructor(private httpKlijent : HttpClient) {}
     obradi(request: void): Observable<ServiserGetAllResponse> {
-    //https://localhost:44357/Serviser/GetAll
        let url = ConfigFile.adresa_servera + "/Serviser/GetAll";
-      //let url = "https://localhost:44357/Serviser/GetAll";
         return  this.httpKlijent.get<ServiserGetAllResponse>(url);
     }
 }
 
 export interface ServiserGetAllResponse {
-  serviseri : ServiserGetAllResponseServiseri [] ;
+  listaServiser : ServiserGetAllResponseServiseri [] ;
 }
 
 export interface ServiserGetAllResponseServiseri {

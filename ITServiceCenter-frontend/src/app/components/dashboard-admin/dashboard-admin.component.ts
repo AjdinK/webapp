@@ -5,12 +5,17 @@ import {
   ServiserGetAllEndpoint, ServiserGetAllResponse,
   ServiserGetAllResponseServiseri
 } from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
+import {FormsModule} from "@angular/forms";
+import {
+  ProdavacGetAllEndpoint,
+  ProdavacGetAllResponseProdavac
+} from "../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint";
 
 
 @Component({
   selector: 'app-dashboard-admin',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './dashboard-admin.component.html',
   styleUrl: './dashboard-admin.component.css'
 })
@@ -18,12 +23,22 @@ export class DashboardAdminComponent implements OnInit{
   constructor(
     private router : Router,
     private serviserGetAllEndpoint : ServiserGetAllEndpoint,
+    private prodavacGetAllEndpoint : ProdavacGetAllEndpoint,
   ) {}
 
-  serviserPodaci : ServiserGetAllResponse | null = null;
+
+  showServiser:boolean = false;
+  serviserPodaci : ServiserGetAllResponseServiseri [] | null = [];
+  searchServiser: string = "";
+
+  prodavacPodaci : ProdavacGetAllResponseProdavac [] | null = [];
+  showProdavac:boolean = false;
+  searchProdavac: string = "";
+
+  jelOtvorenMenu: boolean = true;
 
   ngOnInit(): void {
-    this.fetchServiser();
+
   }
 
   logout() {
@@ -33,15 +48,25 @@ export class DashboardAdminComponent implements OnInit{
   fetchServiser() {
     this.serviserGetAllEndpoint.obradi().subscribe({
       next: x=> {
-        this.serviserPodaci = x;
+        this.serviserPodaci = x.listaServiser;
+        this.showServiser = !this.showServiser;
+        this.showProdavac = false;
       },
       error: x=> {}
     })
   }
 
   fetchProdavac() {
-
+    this.prodavacGetAllEndpoint.obradi().subscribe({
+      next: x=> {
+        this.prodavacPodaci = x.listaProdavac;
+        this.showServiser = false;
+        this.showProdavac = !this.showProdavac;
+      },
+      error: x=> {}
+  })
   }
+
 
   fetchNalog() {
 
@@ -54,4 +79,40 @@ export class DashboardAdminComponent implements OnInit{
   onNoClick() {
 
   }
+
+  otvoriMenu() {
+    this.jelOtvorenMenu = !this.jelOtvorenMenu;
+  }
+
+  idiHomepage() {
+    this.router.navigate(["/homepage"]);
+  }
+
+  softDelete() {
+
+  }
+
+  editServiser() {
+
+  }
+
+  filtrirajServiser() {
+    if (this.serviserPodaci == null)
+      return [];
+    return this.serviserPodaci.filter( x =>
+      (x.ime.toLowerCase().startsWith(this.searchServiser.toLowerCase()))||
+      (x.prezime.toLowerCase().startsWith(this.searchServiser.toLowerCase()))||
+      (x.username.toLowerCase().startsWith(this.searchServiser.toLowerCase()))
+    );
+  }
+  filtrirajProdavac() {
+    if (this.prodavacPodaci == null)
+      return [];
+    return this.prodavacPodaci.filter( x =>
+      (x.ime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()))||
+      (x.prezime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()))||
+      (x.username.toLowerCase().startsWith(this.searchProdavac.toLowerCase()))
+    );
+  }
+
 }
