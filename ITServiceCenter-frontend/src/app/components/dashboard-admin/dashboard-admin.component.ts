@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
 import {
   ServiserGetAllEndpoint,
@@ -20,8 +20,11 @@ import {
   GradGetAllResponse,
   GradGetAllResponseGrad,
 } from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
-import {ServiserBrisiEndpoint} from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
-import {ProdavacSnimiEndpoint, ProdavacSnimiRequest} from "../../endpoints/prodavac-endpoints/prodavac-snimi-endpoint";
+import { ServiserBrisiEndpoint } from '../../endpoints/serviser-endpoints/serviser-brisi-endpoint';
+import {
+  ProdavacSnimiEndpoint,
+  ProdavacSnimiRequest,
+} from '../../endpoints/prodavac-endpoints/prodavac-snimi-endpoint';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -37,8 +40,8 @@ export class DashboardAdminComponent implements OnInit {
     private prodavacGetAllEndpoint: ProdavacGetAllEndpoint,
     private serviserSnimiEndpoint: ServiserSnimiEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint,
-    private serviserBrisiEndpoint : ServiserBrisiEndpoint,
-    private prodavacSnimiEndpoint: ProdavacSnimiEndpoint,
+    private serviserBrisiEndpoint: ServiserBrisiEndpoint,
+    private prodavacSnimiEndpoint: ProdavacSnimiEndpoint
   ) {}
 
   showServiserTable: boolean = false;
@@ -52,7 +55,6 @@ export class DashboardAdminComponent implements OnInit {
   searchProdavac: string = '';
   editOdabraniProdavac: boolean = false;
   odabraniProdavac: ProdavacSnimiRequest | null = null;
-
 
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
@@ -108,8 +110,6 @@ export class DashboardAdminComponent implements OnInit {
   idiHomepage() {
     this.router.navigate(['/homepage']);
   }
-
-  softDelete() {}
 
   editServiser(x: any) {
     this.showServiserTable = false;
@@ -174,15 +174,17 @@ export class DashboardAdminComponent implements OnInit {
     });
   }
 
-  DeleteServiser(id:number) {
+  DeleteServiser(id: number) {
     this.serviserBrisiEndpoint.obradi(id).subscribe({
-      next:x=> {
+      next: (x) => {
         this.fetchServiser();
-        this.showServiserTable= true;
+        this.showServiserTable = true;
       },
-      error:x=>{
-      },
-    })
+      error: (x) => {},
+    });
+  }
 
+  DeleteProdavac(arg0: number) {
+    throw new Error('Method not implemented.');
   }
 }

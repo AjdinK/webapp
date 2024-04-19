@@ -6,11 +6,11 @@
       <div class="avatar-button">
         <h2>Ime Admina..</h2>
         <img
-         ngSrc="assets/icons/profile.svg"
-         height="50"
-         width="50"
-         alt="profile.svg"
-       />
+          ngSrc="assets/icons/profile.svg"
+          height="50"
+          width="50"
+          alt="profile.svg"
+        />
         <button (click)="logout()">Logout</button>
       </div>
     </nav>
@@ -156,7 +156,7 @@
             <td>{{ x.isProdavac }}</td>
             <td>
               <button (click)="editProdavac(x)">Edit</button>
-              <button class="brisiServiser" (click)="softDelete()">
+              <button class="brisiServiser" (click)="DeleteProdavac(x.id)">
                 Brisi
               </button>
             </td>
@@ -213,8 +213,15 @@
 
       <div class="form-group">
         <label for="Grad">Grad</label>
-        <select id="Grad" name="Grad" class="select-grad" [(ngModel)]="this.odabraniServiser!.gradID">
-          <option *ngFor="let x of this.gradPodaci" [value]="x.id">{{x.naziv}}</option>
+        <select
+          id="Grad"
+          name="Grad"
+          class="select-grad"
+          [(ngModel)]="this.odabraniServiser!.gradID"
+        >
+          <option *ngFor="let x of this.gradPodaci" [value]="x.id">
+            {{ x.naziv }}
+          </option>
         </select>
       </div>
 
@@ -283,12 +290,19 @@
         />
       </div>
 
-        <div class="form-group">
-          <label for="Grad">Grad</label>
-          <select id="Grad2" name="Grad" class="select-grad" [(ngModel)]="this.odabraniProdavac!.gradID">
-            <option *ngFor="let x of this.gradPodaci" [value]="x.id">{{x.naziv}}</option>
-          </select>
-        </div>
+      <div class="form-group">
+        <label for="Grad">Grad</label>
+        <select
+          id="Grad2"
+          name="Grad"
+          class="select-grad"
+          [(ngModel)]="this.odabraniProdavac!.gradID"
+        >
+          <option *ngFor="let x of this.gradPodaci" [value]="x.id">
+            {{ x.naziv }}
+          </option>
+        </select>
+      </div>
 
       <div class="form-group">
         <label for="isProdavac">Prodavac:</label>
@@ -300,7 +314,9 @@
           [(ngModel)]="this.odabraniProdavac!.isProdavac"
         />
       </div>
-      <button type="submit" class="btn-save" (click)="sacuvajProdavac()">Save Prodavac</button>
+      <button type="submit" class="btn-save" (click)="sacuvajProdavac()">
+        Save Prodavac
+      </button>
       <button type="submit" class="btn-zatvori" (click)="zatvoriProdavacEdit()">
         Zatvori
       </button>

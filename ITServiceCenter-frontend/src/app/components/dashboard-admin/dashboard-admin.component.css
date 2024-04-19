@@ -30,7 +30,8 @@ nav {
   align-items: center;
 }
 
-nav button , ul button {
+nav button,
+ul button {
   background-color: white;
   color: black;
   padding: 15px 40px;
@@ -43,7 +44,7 @@ nav button , ul button {
   font-weight: bolder;
   transition: 0.2s ease;
 }
-nav button:hover ,
+nav button:hover,
 ul button:hover {
   background-color: #516269;
   color: white;
@@ -51,11 +52,11 @@ ul button:hover {
 ul button {
   margin-top: 50px;
 }
-h1{
+h1 {
   color: white;
 }
 
-.div-adminInfo{
+.div-adminInfo {
   width: 20%;
   height: 100%;
   display: block;
@@ -77,7 +78,7 @@ h1{
   list-style-type: none;
   font-size: 1.3rem;
 }
-.menu-links li:hover{
+.menu-links li:hover {
   cursor: pointer;
   background-color: #516269;
 }
@@ -89,21 +90,21 @@ h1{
 }
 
 .title-img,
-.avatar-button{
+.avatar-button {
   display: flex;
   gap: 40px;
   align-items: center;
 }
-.title-img img{
+.title-img img {
   cursor: pointer;
 }
 .avatar-button {
   margin-left: 0;
 }
-.avatar-button img:hover{
+.avatar-button img:hover {
   cursor: pointer;
 }
-.avatar-button h2{
+.avatar-button h2 {
   color: white;
 }
 
@@ -115,7 +116,7 @@ h1{
   justify-content: start;
   align-items: start;
   position: fixed;
-  right:0;
+  right: 0;
   top: 100px;
   transition: width 0.3s ease-in-out;
 }
@@ -128,7 +129,7 @@ h1{
   width: 100%; /* Set width to 100% when menu is closed */
 }
 
-.div-table{
+.div-table {
   background-color: #364049;
   width: 100%;
   height: fit-content;
@@ -150,16 +151,17 @@ table {
   width: 100%;
 }
 
-th, td {
+th,
+td {
   padding: 10px;
   border: 1px solid #ddd;
   text-align: left;
 }
-td{
+td {
   color: white;
 }
 td button {
-  border:none;
+  border: none;
   background-color: white;
   color: black;
   font-size: 1.1rem;
@@ -168,11 +170,11 @@ td button {
   width: 80px;
   height: 40px;
 }
-td button:hover{
+td button:hover {
   background-color: #516269;
   color: white;
 }
-td .brisiServiser:hover{
+td .brisiServiser:hover {
   background-color: #c58383;
   color: white;
 }
@@ -196,7 +198,7 @@ form {
   color: white;
   font-size: 1.1rem;
 }
-form input{
+form input {
   padding: 7px;
   font-size: 1.3rem;
   outline: none;
@@ -223,7 +225,7 @@ form input{
 }
 
 .btn-save,
-.btn-zatvori{
+.btn-zatvori {
   background-color: white;
   color: black;
   border: none;
@@ -235,23 +237,21 @@ form input{
   font-weight: 700;
   transition: 0.2s ease;
 }
-.btn-save:hover{
+.btn-save:hover {
   background-color: #516269;
   color: white;
 }
-.btn-zatvori:hover{
+.btn-zatvori:hover {
   background-color: indianred;
   color: white;
 }
 
 form input:valid,
-form input:active
-{
-  outline:none;
+form input:active {
+  outline: none;
 }
-form input:focus
-{
-  border: #677A88 solid 3px;
+form input:focus {
+  border: #677a88 solid 3px;
 }
 
 .select-grad {
@@ -262,7 +262,7 @@ form input:focus
   font-weight: 600;
   border-radius: 0;
 }
-.select-grad option{
+.select-grad option {
   font-size: 1rem;
   font-weight: 600;
   border-radius: 0;
