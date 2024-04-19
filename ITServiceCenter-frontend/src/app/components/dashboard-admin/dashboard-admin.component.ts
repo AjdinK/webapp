@@ -21,6 +21,7 @@ import {
   GradGetAllResponseGrad,
 } from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
 import {ServiserBrisiEndpoint} from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
+import {ProdavacSnimiEndpoint, ProdavacSnimiRequest} from "../../endpoints/prodavac-endpoints/prodavac-snimi-endpoint";
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -37,6 +38,7 @@ export class DashboardAdminComponent implements OnInit {
     private serviserSnimiEndpoint: ServiserSnimiEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint,
     private serviserBrisiEndpoint : ServiserBrisiEndpoint,
+    private prodavacSnimiEndpoint: ProdavacSnimiEndpoint,
   ) {}
 
   showServiserTable: boolean = false;
@@ -49,7 +51,8 @@ export class DashboardAdminComponent implements OnInit {
   showProdavacTable: boolean = false;
   searchProdavac: string = '';
   editOdabraniProdavac: boolean = false;
-  odabraniProdavac: any;
+  odabraniProdavac: ProdavacSnimiRequest | null = null;
+
 
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
@@ -156,6 +159,16 @@ export class DashboardAdminComponent implements OnInit {
       next: (x: any) => {
         this.editOdabraniServiser = false;
         this.fetchServiser();
+      },
+      error: (x: any) => {},
+    });
+  }
+
+  sacuvajProdavac() {
+    this.prodavacSnimiEndpoint.obradi(this.odabraniProdavac!).subscribe({
+      next: (x: any) => {
+        this.editOdabraniProdavac = false;
+        this.fetchProdavac();
       },
       error: (x: any) => {},
     });

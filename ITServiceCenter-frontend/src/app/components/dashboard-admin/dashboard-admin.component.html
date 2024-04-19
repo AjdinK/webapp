@@ -5,12 +5,12 @@
       <h1>/Admin managment</h1>
       <div class="avatar-button">
         <h2>Ime Admina..</h2>
-<!--        <img-->
-<!--          src="assets/profile.svg"-->
-<!--          height="50"-->
-<!--          width="50"-->
-<!--          alt="profile.svg"-->
-<!--        />-->
+        <img
+         ngSrc="assets/icons/profile.svg"
+         height="50"
+         width="50"
+         alt="profile.svg"
+       />
         <button (click)="logout()">Logout</button>
       </div>
     </nav>
@@ -246,7 +246,7 @@
           id="ime"
           name="ime"
           required
-          [(ngModel)]="this.odabraniProdavac.ime"
+          [(ngModel)]="this.odabraniProdavac!.ime"
         />
       </div>
       <div class="form-group">
@@ -257,7 +257,7 @@
           id="prezime"
           name="prezime"
           required
-          [(ngModel)]="this.odabraniProdavac.prezime"
+          [(ngModel)]="this.odabraniProdavac!.prezime"
         />
       </div>
       <div class="form-group">
@@ -268,7 +268,7 @@
           id="email"
           name="email"
           required
-          [(ngModel)]="this.odabraniProdavac.email"
+          [(ngModel)]="this.odabraniProdavac!.email"
         />
       </div>
       <div class="form-group">
@@ -279,9 +279,17 @@
           id="username"
           name="username"
           required
-          [(ngModel)]="this.odabraniProdavac.username"
+          [(ngModel)]="this.odabraniProdavac!.username"
         />
       </div>
+
+        <div class="form-group">
+          <label for="Grad">Grad</label>
+          <select id="Grad2" name="Grad" class="select-grad" [(ngModel)]="this.odabraniProdavac!.gradID">
+            <option *ngFor="let x of this.gradPodaci" [value]="x.id">{{x.naziv}}</option>
+          </select>
+        </div>
+
       <div class="form-group">
         <label for="isProdavac">Prodavac:</label>
         <input
@@ -289,10 +297,10 @@
           type="checkbox"
           id="isProdavac"
           name="isProdavac"
-          [(ngModel)]="this.odabraniProdavac.isServiser"
+          [(ngModel)]="this.odabraniProdavac!.isProdavac"
         />
       </div>
-      <button type="submit" class="btn-save">Save Prodavac</button>
+      <button type="submit" class="btn-save" (click)="sacuvajProdavac()">Save Prodavac</button>
       <button type="submit" class="btn-zatvori" (click)="zatvoriProdavacEdit()">
         Zatvori
       </button>
