@@ -34,6 +34,8 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
             Serviser!.Ime = request.Ime;
             Serviser.Prezime = request.Prezime;
             Serviser.Ime = request.Ime;
+            Serviser.Email = request.Email;
+            Serviser.Username = request.Username;
             Serviser.IsServiser = request.IsServiser;
             Serviser.GradID = request.GradID;
             Serviser.SpolID = request.SpolID;

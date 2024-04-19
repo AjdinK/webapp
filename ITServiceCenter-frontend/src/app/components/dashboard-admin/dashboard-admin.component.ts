@@ -56,6 +56,7 @@ export class DashboardAdminComponent implements OnInit{
         this.showServiserTable = !this.showServiserTable;
         this.showProdavacTable = false;
         this.editOdabraniProdavac = false;
+        this.editOdabraniServiser = false;
       },
       error: x=> {}
     })
@@ -137,7 +138,7 @@ export class DashboardAdminComponent implements OnInit{
   sacuvajServiser() {
     this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
       next: (x:any)=> {
-        this.zatvoriServiserEdit();
+        this.editOdabraniServiser = false;
         this.fetchServiser();
       },
       error:(x:any)=>{},
