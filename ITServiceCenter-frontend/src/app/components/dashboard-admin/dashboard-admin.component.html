@@ -1,11 +1,8 @@
 <main style="background-image: url(assets/background.jpg)">
+<!--  header bar -->
   <header>
     <nav class="navbar">
-      <div class="title-img">
-        <img src="assets/menu.svg" height="40" width="80px" alt="logo" (click)="otvoriMenu()">
         <h1>/Admin managment</h1>
-      </div>
-
       <div class="avatar-button">
         <h2>Ime Admina..</h2>
         <img  src="assets/avatar.svg" height="60" width="60" alt="avatar">
@@ -14,8 +11,8 @@
     </nav>
   </header>
 
-<div class="div-adminInfo" *ngIf="jelOtvorenMenu">
-
+<!--  left menu bar -->
+<div class="div-adminInfo">
   <ul class="menu-links">
     <li (click)="fetchServiser()"><img src="assets/serviseri.svg" alt="serviseri.svg" height="24" width="24">Lista Servisera</li>
     <li (click)="fetchProdavac()"><img src="assets/prodavac.svg" alt="prodavac.svg" height="24" width="24">Lista Prodavaca</li>
@@ -23,15 +20,14 @@
     <li (click)="dodaj()"><img src="assets/dodajKorisnika.svg" alt="dodajKorisnika.svg" height="24" width="24">Dodaj novog korisnika</li>
     <li><img src="assets/profile.svg" alt="profile.svg" height="24" width="24">Profil</li>
     <li (click)="idiHomepage()"><img src="assets/homepage.svg" alt="homepage.svg" height="24" width="24">Homepage</li>
-    <li><img src="assets/postavke.svg" alt="postavke.svg" height="24" width="24">Postavke</li>
     <li (click)="logout()"><img src="assets/logout.svg" alt="logout.svg" height="24" width="24">Logout</li>
   </ul>
-
 </div>
 
+<!--  right forms for data -->
 <div class="div-adminEdit">
-
-  <div class="div-table" *ngIf="showServiser">
+<!--  Serviser table to show data -->
+  <div class="div-table" *ngIf="showServiserTable">
       <input type="text" [(ngModel)]="this.searchServiser" placeholder="Pretraži servise..." />
   <table>
     <thead>
@@ -66,8 +62,8 @@
     </tbody>
   </table>
 </div>
-
-    <div class="div-table" *ngIf="showProdavac">
+    <!--Prodavac table to show data -->
+    <div class="div-table" *ngIf="showProdavacTable">
       <input type="text" [(ngModel)]="this.searchProdavac" placeholder="Pretraži prodavaca..." />
       <table>
         <thead>
@@ -95,37 +91,63 @@
           <td>{{x.spolID}}</td>
           <td>{{x.isProdavac}}</td>
           <td>
-            <button (click)="editServiser(x)">Edit</button>
+            <button (click)="editProdavac(x)">Edit</button>
             <button class="brisiServiser" (click)="softDelete()">Brisi</button>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
-
-  <form *ngIf="dodajServiser">
+  <!--Serviser from to edit data -->
+  <form *ngIf="editOdabraniServiser">
     <div class="form-group">
-      <label for="ime">Ime:</label>
-      <input type="text" class="form-control" id="ime" name="ime" required [(ngModel)]="this.dodajNoviServiser.ime">
+      <label for="imeServiser">Ime:</label>
+      <input type="text" class="form-control" id="imeServiser" name="ime" required [(ngModel)]="this.odabraniServiser.ime">
     </div>
     <div class="form-group">
-      <label for="prezime">Prezime:</label>
-      <input type="text" class="form-control" id="prezime"  name="prezime" required [(ngModel)]="this.dodajNoviServiser.prezime">
+      <label for="prezimeServiser">Prezime:</label>
+      <input type="text" class="form-control" id="prezimeServiser"  name="prezime" required [(ngModel)]="this.odabraniServiser.prezime">
     </div>
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email"  name="email" required [(ngModel)]="this.dodajNoviServiser.email">
+      <label for="emailServiser">Email:</label>
+      <input type="email" class="form-control" id="emailServiser"  name="email" required [(ngModel)]="this.odabraniServiser.email">
     </div>
     <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control" id="username"  name="username" required [(ngModel)]="this.dodajNoviServiser.username">
+      <label for="usernameServiser">Username:</label>
+      <input type="text" class="form-control" id="usernameServiser"  name="username" required [(ngModel)]="this.odabraniServiser.username">
     </div>
     <div class="form-group">
       <label for="isProdavac">Prodavac:</label>
-      <input class="checkbox" type="checkbox" id="isProdavac" name="isProdavac" [(ngModel)]="this.dodajNoviServiser.isServiser">
+      <input class="checkbox" type="checkbox" id="isProdavacServiser" name="isProdavac" [(ngModel)]="this.odabraniServiser.isServiser">
     </div>
-    <button type="submit" class="btn-dodaj">Dodaj korisnika</button>
-    <button type="submit" class="btn-zatvori" (click)="zatvori()">Zatvori</button>
+    <button type="submit" class="btn-save">Save Serviser</button>
+    <button type="submit" class="btn-zatvori" (click)="zatvoriServiserEdit()">Zatvori</button>
+  </form>
+
+  <!--Prodavac from to edit data -->
+  <form *ngIf="editOdabraniProdavac">
+    <div class="form-group">
+      <label for="ime">Ime:</label>
+      <input type="text" class="form-control" id="ime" name="ime" required [(ngModel)]="this.odabraniProdavac.ime">
+    </div>
+    <div class="form-group">
+      <label for="prezime">Prezime:</label>
+      <input type="text" class="form-control" id="prezime"  name="prezime" required [(ngModel)]="this.odabraniProdavac.prezime">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email"  name="email" required [(ngModel)]="this.odabraniProdavac.email">
+    </div>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username"  name="username" required [(ngModel)]="this.odabraniProdavac.username">
+    </div>
+    <div class="form-group">
+      <label for="isProdavac">Prodavac:</label>
+      <input class="checkbox" type="checkbox" id="isProdavac" name="isProdavac" [(ngModel)]="this.odabraniProdavac.isServiser">
+    </div>
+    <button type="submit" class="btn-save">Save Prodavac</button>
+    <button type="submit" class="btn-zatvori" (click)="zatvoriProdavacEdit()">Zatvori</button>
   </form>
 
   </div>

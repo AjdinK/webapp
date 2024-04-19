@@ -97,7 +97,6 @@ h1{
 }
 .title-img img{
   cursor: pointer;
-
 }
 .avatar-button {
   margin-left: 0;
@@ -223,7 +222,7 @@ form input{
   padding: 5px 10px;
 }
 
-.btn-dodaj,
+.btn-save,
 .btn-zatvori{
   background-color: white;
   color: black;
@@ -236,7 +235,7 @@ form input{
   font-weight: 700;
   transition: 0.2s ease;
 }
-.btn-dodaj:hover{
+.btn-save:hover{
   background-color: #516269;
   color: white;
 }

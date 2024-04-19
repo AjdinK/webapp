@@ -28,22 +28,20 @@ export class DashboardAdminComponent implements OnInit{
   ) {}
 
 
-  showServiser:boolean = false;
-  serviserPodaci : ServiserGetAllResponseServiseri [] | null = [];
-  searchServiser: string = "";
-  dodajNoviServiser: any;
+  showServiserTable:boolean = false;
+  serviserPodaci:ServiserGetAllResponseServiseri [] | null = [];
+  searchServiser:string = "";
+  editOdabraniServiser:boolean = false;
+  odabraniServiser: any;
 
-  prodavacPodaci : ProdavacGetAllResponseProdavac [] | null = [];
-  showProdavac:boolean = false;
-  searchProdavac: string = "";
 
-  jelOtvorenMenu: boolean = true;
-  dodajServiser:boolean = false;
-  // dodajProdavaca: boolean;
+  prodavacPodaci: ProdavacGetAllResponseProdavac [] | null = [];
+  showProdavacTable:boolean = false;
+  searchProdavac:string = "";
+  editOdabraniProdavac:boolean = false;
+  odabraniProdavac:any;
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   logout() {
   this.router.navigate(["/homepage"])
@@ -53,9 +51,9 @@ export class DashboardAdminComponent implements OnInit{
     this.serviserGetAllEndpoint.obradi().subscribe({
       next: x=> {
         this.serviserPodaci = x.listaServiser;
-        this.showServiser = !this.showServiser;
-        this.showProdavac = false;
-        this.dodajServiser = false;
+        this.showServiserTable = !this.showServiserTable;
+        this.showProdavacTable = false;
+        this.editOdabraniProdavac = false;
       },
       error: x=> {}
     })
@@ -65,8 +63,10 @@ export class DashboardAdminComponent implements OnInit{
     this.prodavacGetAllEndpoint.obradi().subscribe({
       next: x=> {
         this.prodavacPodaci = x.listaProdavac;
-        this.showServiser = false;
-        this.showProdavac = !this.showProdavac;
+        this.showServiserTable = false;
+        this.editOdabraniProdavac = false;
+        this.editOdabraniServiser = false;
+        this.showProdavacTable = !this.showProdavacTable;
       },
       error: x=> {}
   })
@@ -81,14 +81,6 @@ export class DashboardAdminComponent implements OnInit{
     alert("radi")
   }
 
-  onNoClick() {
-
-  }
-
-  otvoriMenu() {
-    this.jelOtvorenMenu = !this.jelOtvorenMenu;
-  }
-
   idiHomepage() {
     this.router.navigate(["/homepage"]);
   }
@@ -98,9 +90,9 @@ export class DashboardAdminComponent implements OnInit{
   }
 
   editServiser(x:any) {
-    this.showServiser = false;
-    this.dodajServiser = true;
-    this.dodajNoviServiser = x;
+    this.showServiserTable = false;
+    this.editOdabraniServiser = true;
+    this.odabraniServiser = x;
   }
 
   filtrirajServiser() {
@@ -122,9 +114,21 @@ export class DashboardAdminComponent implements OnInit{
     );
   }
 
-  zatvori() {
-    this.dodajServiser = false;
-    // this.dodajProdavaca = false;
+  zatvoriServiserEdit() {
+    this.editOdabraniServiser = false;
+    this.editOdabraniProdavac = false;
     this.fetchServiser();
+  }
+
+  zatvoriProdavacEdit() {
+    this.editOdabraniServiser = false;
+    this.editOdabraniProdavac = false;
+    this.fetchProdavac();
+  }
+
+  editProdavac(x: any) {
+    this.showProdavacTable = false;
+    this.editOdabraniProdavac = true;
+    this.odabraniProdavac = x;
   }
 }
