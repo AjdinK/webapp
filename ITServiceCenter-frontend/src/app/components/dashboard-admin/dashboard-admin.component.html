@@ -5,7 +5,7 @@
         <h1>/Admin managment</h1>
       <div class="avatar-button">
         <h2>Ime Admina..</h2>
-        <img  src="assets/avatar.svg" height="60" width="60" alt="avatar">
+        <img  src="assets/avatar.svg" height="50" width="50" alt="avatar.svg">
       <button (click)="logout()">Logout</button>
       </div>
     </nav>
@@ -102,25 +102,25 @@
   <form *ngIf="editOdabraniServiser">
     <div class="form-group">
       <label for="imeServiser">Ime:</label>
-      <input type="text" class="form-control" id="imeServiser" name="ime" required [(ngModel)]="this.odabraniServiser.ime">
+      <input type="text" class="form-control" id="imeServiser" name="ime" required [(ngModel)]="this.odabraniServiser!.ime">
     </div>
     <div class="form-group">
       <label for="prezimeServiser">Prezime:</label>
-      <input type="text" class="form-control" id="prezimeServiser"  name="prezime" required [(ngModel)]="this.odabraniServiser.prezime">
+      <input type="text" class="form-control" id="prezimeServiser"  name="prezime" required [(ngModel)]="this.odabraniServiser!.prezime">
     </div>
     <div class="form-group">
       <label for="emailServiser">Email:</label>
-      <input type="email" class="form-control" id="emailServiser"  name="email" required [(ngModel)]="this.odabraniServiser.email">
+      <input type="email" class="form-control" id="emailServiser"  name="email" required [(ngModel)]="this.odabraniServiser!.email">
     </div>
     <div class="form-group">
       <label for="usernameServiser">Username:</label>
-      <input type="text" class="form-control" id="usernameServiser"  name="username" required [(ngModel)]="this.odabraniServiser.username">
+      <input type="text" class="form-control" id="usernameServiser"  name="username" required [(ngModel)]="this.odabraniServiser!.username">
     </div>
     <div class="form-group">
       <label for="isProdavac">Prodavac:</label>
-      <input class="checkbox" type="checkbox" id="isProdavacServiser" name="isProdavac" [(ngModel)]="this.odabraniServiser.isServiser">
+      <input class="checkbox" type="checkbox" id="isProdavacServiser" name="isProdavac" [(ngModel)]="this.odabraniServiser!.isServiser">
     </div>
-    <button type="submit" class="btn-save">Save Serviser</button>
+    <button type="submit" class="btn-save" (click)="sacuvajServiser()">Save Serviser</button>
     <button type="submit" class="btn-zatvori" (click)="zatvoriServiserEdit()">Zatvori</button>
   </form>
 

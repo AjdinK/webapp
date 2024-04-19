@@ -10,6 +10,7 @@ import {
   ProdavacGetAllEndpoint,
   ProdavacGetAllResponseProdavac
 } from "../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint";
+import {ServiserSnimiEndpoint, ServiserSnimiRequest} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
 
 
 @Component({
@@ -25,6 +26,7 @@ export class DashboardAdminComponent implements OnInit{
     private router : Router,
     private serviserGetAllEndpoint : ServiserGetAllEndpoint,
     private prodavacGetAllEndpoint : ProdavacGetAllEndpoint,
+    private serviserSnimiEndpoint : ServiserSnimiEndpoint,
   ) {}
 
 
@@ -32,7 +34,7 @@ export class DashboardAdminComponent implements OnInit{
   serviserPodaci:ServiserGetAllResponseServiseri [] | null = [];
   searchServiser:string = "";
   editOdabraniServiser:boolean = false;
-  odabraniServiser: any;
+  odabraniServiser: ServiserSnimiRequest | null = null;
 
 
   prodavacPodaci: ProdavacGetAllResponseProdavac [] | null = [];
@@ -130,5 +132,15 @@ export class DashboardAdminComponent implements OnInit{
     this.showProdavacTable = false;
     this.editOdabraniProdavac = true;
     this.odabraniProdavac = x;
+  }
+
+  sacuvajServiser() {
+    this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
+      next: (x:any)=> {
+        this.zatvoriServiserEdit();
+        this.fetchServiser();
+      },
+      error:(x:any)=>{},
+    })
   }
 }
