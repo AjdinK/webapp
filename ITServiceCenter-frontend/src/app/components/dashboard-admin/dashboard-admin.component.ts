@@ -109,6 +109,8 @@ export class DashboardAdminComponent implements OnInit {
     this.router.navigate(['/homepage']);
   }
 
+  softDelete() {}
+
   editServiser(x: any) {
     this.showServiserTable = false;
     this.editOdabraniServiser = true;
@@ -181,10 +183,6 @@ export class DashboardAdminComponent implements OnInit {
       error:x=>{
       },
     })
-
-  }
-
-  DeleteProdavac(id:number) {
 
   }
 }
