@@ -16,8 +16,9 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Brisi
         public override async Task <int> Obradi ([FromQuery] ServiserBrisiRequest request, CancellationToken cancellationToken)
         {
             var Serviser = _applicationDbContext.Serviser.FirstOrDefault ( s => s.ID == request.ID);
-            if (Serviser != null){
-                _applicationDbContext.Remove (Serviser);
+
+            if (Serviser != null) {
+                Serviser.JelObrisan = true;
                 await _applicationDbContext.SaveChangesAsync(cancellationToken : cancellationToken);
                 return request.ID;
             }

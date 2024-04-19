@@ -18,6 +18,7 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.GetAll
         {
             var data = await _applicationDbContext.Serviser
             .OrderBy( s => s.ID)
+            .Where( s => !s.JelObrisan)
             .Select ( s => new ServiserGetAllResponseServiser{
                 ID = s.ID,
                 Ime = s.Ime,

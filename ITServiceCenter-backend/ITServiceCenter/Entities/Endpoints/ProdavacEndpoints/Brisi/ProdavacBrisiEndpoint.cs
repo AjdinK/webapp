@@ -17,7 +17,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Brisi
             var prodavac = _ApplicationDbContext.Prodavac.FirstOrDefault ( p => p.ID == request.ID );
 
             if (prodavac != null){
-                _ApplicationDbContext.Remove(prodavac);
+                prodavac.JelObrisan = true;
                 await _ApplicationDbContext.SaveChangesAsync();
                 return request.ID;
             }

@@ -4,8 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Space Grotesk", sans-serif;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+
 }
 main {
   height: 100vh;
@@ -85,7 +84,6 @@ section div button:hover{
   padding: 0.5em 0;
   color: rgba(255, 255, 255, 0.5);
   position: relative;
-  letter-spacing: 1px;
   text-decoration: none;
   letter-spacing: 3px;
 }
@@ -99,7 +97,7 @@ section div button:hover{
   top: 0;
   display: block;
   height: 3px;
-  width: 0%;
+  width: 0;
   content: "";
   background-color: #687b89;
 }
@@ -111,7 +109,7 @@ section div button:hover{
   content: attr(data-hover);
   color: #ffffff;
   white-space: nowrap;
-  max-width: 0%;
+  max-width: 0;
   overflow: hidden;
 }
 .menu-links a:hover:before,

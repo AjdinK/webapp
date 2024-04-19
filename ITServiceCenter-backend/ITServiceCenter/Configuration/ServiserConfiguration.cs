@@ -19,7 +19,8 @@ namespace itservicecenter.Configuration
                     IsServiser = true,
                     Username = "jasir",
                     Passweord = "jasir",
-                    Email = "test@test.com"
+                    Email = "test@test.com",
+                    JelObrisan = false,
                 },
                 new Serviser
                 {
@@ -31,8 +32,9 @@ namespace itservicecenter.Configuration
                     IsServiser = true,
                     Username = "adis",
                     Passweord = "adis",
-                    Email = "test@test.com"
-                    }
+                    Email = "test@test.com",
+                    JelObrisan = false,
+                }
                 );
         }
     }

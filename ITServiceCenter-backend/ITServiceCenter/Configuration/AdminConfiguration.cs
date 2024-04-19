@@ -21,7 +21,8 @@ namespace itservicecenter.Configuration
                     IsServiser = false,
                     GradID = 22,
                     SpolID = 1,
-                    Email = "test@test.com"
+                    Email = "test@test.com",
+                    JelObrisan = false,
                 },
                   new Admin
                 {
@@ -35,8 +36,9 @@ namespace itservicecenter.Configuration
                     IsServiser = true,
                     GradID = 1,
                     SpolID = 1,
-                    Email = "test@test.com"
-                }
+                    Email = "test@test.com",
+                    JelObrisan = false,
+                  }
             );
         }
     }

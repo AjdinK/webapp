@@ -1,119 +1,135 @@
-import {Component, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import { Router } from '@angular/router';
 import {
-  ServiserGetAllEndpoint, ServiserGetAllResponse,
-  ServiserGetAllResponseServiseri
-} from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
-import {FormsModule} from "@angular/forms";
+  ServiserGetAllEndpoint,
+  ServiserGetAllResponse,
+  ServiserGetAllResponseServiseri,
+} from '../../endpoints/serviser-endpoints/serviser-get-all-endpoint';
+import { FormsModule } from '@angular/forms';
 import {
   ProdavacGetAllEndpoint,
-  ProdavacGetAllResponseProdavac
-} from "../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint";
-import {ServiserSnimiEndpoint, ServiserSnimiRequest} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
-
+  ProdavacGetAllResponseProdavac,
+} from '../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint';
+import {
+  ServiserSnimiEndpoint,
+  ServiserSnimiRequest,
+} from '../../endpoints/serviser-endpoints/serviser-snimi-endpoint';
+import {
+  GradGetAllEndpoint,
+  GradGetAllResponse,
+  GradGetAllResponseGrad,
+} from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
+import {ServiserBrisiEndpoint} from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
 
 @Component({
   selector: 'app-dashboard-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgOptimizedImage],
   templateUrl: './dashboard-admin.component.html',
-  styleUrl: './dashboard-admin.component.css'
+  styleUrl: './dashboard-admin.component.css',
 })
-export class DashboardAdminComponent implements OnInit{
-
+export class DashboardAdminComponent implements OnInit {
   constructor(
-    private router : Router,
-    private serviserGetAllEndpoint : ServiserGetAllEndpoint,
-    private prodavacGetAllEndpoint : ProdavacGetAllEndpoint,
-    private serviserSnimiEndpoint : ServiserSnimiEndpoint,
+    private router: Router,
+    private serviserGetAllEndpoint: ServiserGetAllEndpoint,
+    private prodavacGetAllEndpoint: ProdavacGetAllEndpoint,
+    private serviserSnimiEndpoint: ServiserSnimiEndpoint,
+    private gradGetAllEndpoint: GradGetAllEndpoint,
+    private serviserBrisiEndpoint : ServiserBrisiEndpoint,
   ) {}
 
-
-  showServiserTable:boolean = false;
-  serviserPodaci:ServiserGetAllResponseServiseri [] | null = [];
-  searchServiser:string = "";
-  editOdabraniServiser:boolean = false;
+  showServiserTable: boolean = false;
+  serviserPodaci: ServiserGetAllResponseServiseri[] | null = [];
+  searchServiser: string = '';
+  editOdabraniServiser: boolean = false;
   odabraniServiser: ServiserSnimiRequest | null = null;
 
+  prodavacPodaci: ProdavacGetAllResponseProdavac[] | null = [];
+  showProdavacTable: boolean = false;
+  searchProdavac: string = '';
+  editOdabraniProdavac: boolean = false;
+  odabraniProdavac: any;
 
-  prodavacPodaci: ProdavacGetAllResponseProdavac [] | null = [];
-  showProdavacTable:boolean = false;
-  searchProdavac:string = "";
-  editOdabraniProdavac:boolean = false;
-  odabraniProdavac:any;
+  gradPodaci: GradGetAllResponseGrad[] | null = null;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.fetchGrad();
+  }
 
   logout() {
-  this.router.navigate(["/homepage"])
+    this.router.navigate(['/homepage']);
+  }
+
+  fetchGrad() {
+    this.gradGetAllEndpoint.obradi().subscribe({
+      next: (x) => {
+        this.gradPodaci = x.gradovi;
+      },
+      error: (x) => {},
+    });
   }
 
   fetchServiser() {
     this.serviserGetAllEndpoint.obradi().subscribe({
-      next: x=> {
+      next: (x) => {
         this.serviserPodaci = x.listaServiser;
         this.showServiserTable = !this.showServiserTable;
         this.showProdavacTable = false;
         this.editOdabraniProdavac = false;
         this.editOdabraniServiser = false;
       },
-      error: x=> {}
-    })
+      error: (x) => {},
+    });
   }
 
   fetchProdavac() {
     this.prodavacGetAllEndpoint.obradi().subscribe({
-      next: x=> {
+      next: (x) => {
         this.prodavacPodaci = x.listaProdavac;
         this.showServiserTable = false;
         this.editOdabraniProdavac = false;
         this.editOdabraniServiser = false;
         this.showProdavacTable = !this.showProdavacTable;
       },
-      error: x=> {}
-  })
+      error: (x) => {},
+    });
   }
 
-
-  fetchNalog() {
-
-  }
+  fetchNalog() {}
 
   dodaj() {
-    alert("radi")
+    alert('radi');
   }
 
   idiHomepage() {
-    this.router.navigate(["/homepage"]);
+    this.router.navigate(['/homepage']);
   }
 
-  softDelete() {
+  softDelete() {}
 
-  }
-
-  editServiser(x:any) {
+  editServiser(x: any) {
     this.showServiserTable = false;
     this.editOdabraniServiser = true;
     this.odabraniServiser = x;
   }
 
   filtrirajServiser() {
-    if (this.serviserPodaci == null)
-      return [];
-    return this.serviserPodaci.filter( x =>
-      (x.ime.toLowerCase().startsWith(this.searchServiser.toLowerCase()))||
-      (x.prezime.toLowerCase().startsWith(this.searchServiser.toLowerCase()))||
-      (x.username.toLowerCase().startsWith(this.searchServiser.toLowerCase()))
+    if (this.serviserPodaci == null) return [];
+    return this.serviserPodaci.filter(
+      (x) =>
+        x.ime.toLowerCase().startsWith(this.searchServiser.toLowerCase()) ||
+        x.prezime.toLowerCase().startsWith(this.searchServiser.toLowerCase()) ||
+        x.username.toLowerCase().startsWith(this.searchServiser.toLowerCase())
     );
   }
   filtrirajProdavac() {
-    if (this.prodavacPodaci == null)
-      return [];
-    return this.prodavacPodaci.filter( x =>
-      (x.ime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()))||
-      (x.prezime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()))||
-      (x.username.toLowerCase().startsWith(this.searchProdavac.toLowerCase()))
+    if (this.prodavacPodaci == null) return [];
+    return this.prodavacPodaci.filter(
+      (x) =>
+        x.ime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()) ||
+        x.prezime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()) ||
+        x.username.toLowerCase().startsWith(this.searchProdavac.toLowerCase())
     );
   }
 
@@ -137,11 +153,23 @@ export class DashboardAdminComponent implements OnInit{
 
   sacuvajServiser() {
     this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
-      next: (x:any)=> {
+      next: (x: any) => {
         this.editOdabraniServiser = false;
         this.fetchServiser();
       },
-      error:(x:any)=>{},
+      error: (x: any) => {},
+    });
+  }
+
+  DeleteServiser(id:number) {
+    this.serviserBrisiEndpoint.obradi(id).subscribe({
+      next:x=> {
+        this.fetchServiser();
+        this.showServiserTable= true;
+      },
+      error:x=>{
+      },
     })
+
   }
 }

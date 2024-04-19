@@ -17,6 +17,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
         {
             var data = await _ApplicationDbContext.Prodavac
             .OrderBy (p => p.ID)
+            .Where ( p => !p.JelObrisan)
             .Select ( p => new ProdavacGetAllResponseProdavac {
                 ID = p.ID,
                 Ime = p.Ime,

@@ -75,8 +75,7 @@ h1{
   color: white;
   padding: 20px;
   list-style-type: none;
-  font-size: 1.5rem;
-  transition: 0.2s ease-in;
+  font-size: 1.3rem;
 }
 .menu-links li:hover{
   cursor: pointer;
@@ -195,6 +194,7 @@ form {
   padding: 30px;
   background-color: #000408;
   color: white;
+  font-size: 1.1rem;
 }
 form input{
   padding: 7px;
@@ -244,7 +244,6 @@ form input{
   color: white;
 }
 
-
 form input:valid,
 form input:active
 {
@@ -255,3 +254,16 @@ form input:focus
   border: #677A88 solid 3px;
 }
 
+.select-grad {
+  width: 200px;
+  padding: 15px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 0;
+}
+.select-grad option{
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0;
+}

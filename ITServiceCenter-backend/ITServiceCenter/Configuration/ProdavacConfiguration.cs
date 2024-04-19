@@ -19,7 +19,8 @@ namespace itservicecenter.Configuration
                     Username = "alina",
                     Passweord = "alina",
                     IsProdavac = true,
-                    Email = "test@test.com"
+                    Email = "test@test.com",
+                    JelObrisan = false,
                 },
                 new Prodavac
                 {
@@ -31,7 +32,8 @@ namespace itservicecenter.Configuration
                     Username = "vedad",
                     Passweord = "vedad",
                     IsProdavac = true,
-                    Email = "test@test.com"
+                    Email = "test@test.com",
+                    JelObrisan = false,
                 }
             );
         }

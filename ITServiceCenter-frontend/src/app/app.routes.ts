@@ -7,12 +7,12 @@ export const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
-    title: 'Home page',
+    title: 'Homepage',
   },
   {
     path: 'homepage',
     component: HomepageComponent,
-    title: 'Home page',
+    title: 'Homepage',
   },
 
   {
