@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {
   ServiserGetAllEndpoint,
@@ -12,7 +12,7 @@ import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-e
 @Component({
   selector: 'app-serviser',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, NgOptimizedImage],
   templateUrl: './serviser.component.html',
   styleUrl: './serviser.component.css'
 })
@@ -34,6 +34,8 @@ export class ServiserComponent implements OnInit{
   searchServiser: string = '';
   editOdabraniServiser: boolean = false;
   odabraniServiser: ServiserSnimiRequest | null = null;
+  showNoviServiserForm: boolean = false;
+  noviServiser : ServiserSnimiRequest | null = null;
 
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
@@ -56,15 +58,29 @@ export class ServiserComponent implements OnInit{
     );
   }
 
-  sacuvajServiser() {
+  sacuvajServiser(msg : string) {
+    if (msg == "edit"){
     this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
       next: (x: any) => {
         this.editOdabraniServiser = false;
+        this.showNoviServiserForm = false;
         this.fetchServiser();
         this.showServiserTable = true;
       },
       error: (x: any) => {},
     });
+    }
+    else {
+      this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
+        next: (x: any) => {
+          this.editOdabraniServiser = false;
+          this.fetchServiser();
+          this.showServiserTable = true;
+          this.showNoviServiserForm = false;
+        },
+        error: (x: any) => {},
+      });
+    }
   }
 
   brisiServiser (id: number) {
@@ -96,6 +112,23 @@ export class ServiserComponent implements OnInit{
     this.editOdabraniServiser = false;
     this.fetchServiser();
     this.showServiserTable = true;
+    this.showNoviServiserForm = false;
   }
 
+  dodajNovi() {
+    this.showNoviServiserForm = true;
+    this.showServiserTable = false;
+    this.editOdabraniServiser = false;
+    this.noviServiser = {
+      id:0,
+      ime:'',
+      prezime:'',
+      gradID:1,
+      spolID:1,
+      isServiser:true,
+      username:'',
+      email:'',
+      }
+    }
 }
+

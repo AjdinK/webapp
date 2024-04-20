@@ -4,6 +4,7 @@
     [(ngModel)]="this.searchServiser"
     placeholder="Pretraži servise..."
   />
+    <button (click)="dodajNovi()" class="dodaj">+ Dodaj Serviser</button>
   <table>
     <thead>
     <tr>
@@ -108,12 +109,90 @@
       class="checkbox"
       type="checkbox"
       id="Serviser"
-      name="isProdavac"
+      name="isServiser"
       [(ngModel)]="this.odabraniServiser!.isServiser"
     />
   </div>
-  <button type="submit" class="btn-save" (click)="sacuvajServiser()">
+  <button type="submit" class="btn-save" (click)="sacuvajServiser('edit')">
     Save Serviser
+  </button>
+  <button type="submit" class="btn-zatvori" (click)="zatvoriServiserEdit()">
+    Zatvori
+  </button>
+</form>
+
+<!-- Form for adding new Serviser -->
+<form *ngIf="showNoviServiserForm">
+  <div class="form-group">
+    <label for="imeServiser">Ime:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="ime"
+      name="ime"
+      required
+      [(ngModel)]="this.noviServiser!.ime"
+    />
+  </div>
+  <div class="form-group">
+    <label for="prezimeServiser">Prezime:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="prezime"
+      name="prezime"
+      required
+      [(ngModel)]="this.noviServiser!.prezime"
+    />
+  </div>
+  <div class="form-group">
+    <label for="emailServiser">Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      required
+      [(ngModel)]="this.noviServiser!.email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="usernameServiser">Username:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      name="username"
+      required
+      [(ngModel)]="this.noviServiser!.username"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="Grad">Grad</label>
+    <select
+      id="Grad2"
+      name="Grad"
+      class="select-grad"
+      [(ngModel)]="this.noviServiser!.gradID">
+      <option *ngFor="let x of this.gradPodaci" [value]="x.id">
+        {{ x.naziv }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="Serviser">Serviser:</label>
+    <input
+      class="checkbox"
+      type="checkbox"
+      id="Serviser2"
+      name="isServiser"
+      [(ngModel)]="this.noviServiser!.isServiser"
+    />
+  </div>
+  <button type="submit" class="btn-save" (click)="sacuvajServiser('dodaj')">
+    Dodaj Serviser
   </button>
   <button type="submit" class="btn-zatvori" (click)="zatvoriServiserEdit()">
     Zatvori
