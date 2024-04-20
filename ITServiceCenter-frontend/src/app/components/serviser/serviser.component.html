@@ -1,0 +1,123 @@
+<div class="div-table" *ngIf="this.showServiserTable">
+  <input
+    type="text"
+    [(ngModel)]="this.searchServiser"
+    placeholder="Pretraži servise..."
+  />
+  <table>
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Ime</th>
+      <th>Prezime</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Grad ID</th>
+      <th>Spol ID</th>
+      <th>Is Serviser</th>
+      <th>Akcije</th>
+    </tr>
+    </thead>
+
+    <tbody *ngFor="let x of filtrirajServiser()">
+    <tr>
+      <td>{{ x.id }}</td>
+      <td>{{ x.ime }}</td>
+      <td>{{ x.prezime }}</td>
+      <td>{{ x.username }}</td>
+      <td>{{ x.email }}</td>
+      <td>{{ x.gradID }}</td>
+      <td>{{ x.spolID }}</td>
+      <td>{{ x.isServiser }}</td>
+      <td>
+        <button (click)="editServiser(x)">Edit</button>
+        <button class="brisiServiser" (click)="DeleteServiser(x.id)">
+          Brisi
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Serviser from for editing the data-->
+
+<form *ngIf="editOdabraniServiser">
+  <div class="form-group">
+    <label for="imeServiser">Ime:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="imeServiser"
+      name="ime"
+      required
+      [(ngModel)]="this.odabraniServiser!.ime"
+    />
+  </div>
+  <div class="form-group">
+    <label for="prezimeServiser">Prezime:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="prezimeServiser"
+      name="prezime"
+      required
+      [(ngModel)]="this.odabraniServiser!.prezime"
+    />
+  </div>
+  <div class="form-group">
+    <label for="emailServiser">Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="emailServiser"
+      name="email"
+      required
+      [(ngModel)]="this.odabraniServiser!.email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="usernameServiser">Username:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="usernameServiser"
+      name="username"
+      required
+      [(ngModel)]="this.odabraniServiser!.username"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="Grad">Grad</label>
+    <select
+      id="Grad"
+      name="Grad"
+      class="select-grad"
+      [(ngModel)]="this.odabraniServiser!.gradID"
+    >
+      <option *ngFor="let x of this.gradPodaci" [value]="x.id">
+        {{ x.naziv }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="Serviser">Serviser:</label>
+    <input
+      class="checkbox"
+      type="checkbox"
+      id="Serviser"
+      name="isProdavac"
+      [(ngModel)]="this.odabraniServiser!.isServiser"
+    />
+  </div>
+  <button type="submit" class="btn-save" (click)="sacuvajServiser()">
+    Save Serviser
+  </button>
+  <button type="submit" class="btn-zatvori" (click)="zatvoriServiserEdit()">
+    Zatvori
+  </button>
+</form>
+
+
