@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {Router} from "@angular/router";
 import {
   ServiserGetAllEndpoint,
   ServiserGetAllResponseServiseri
@@ -68,7 +67,7 @@ export class ServiserComponent implements OnInit{
     });
   }
 
-  DeleteServiser(id: number) {
+  brisiServiser (id: number) {
     this.serviserBrisiEndpoint.obradi(id).subscribe({
       next: (x) => {
         this.fetchServiser();

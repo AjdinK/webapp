@@ -6,10 +6,10 @@
       <div class="avatar-button">
         <h2>Ime Admina..</h2>
         <img
-          ngSrc="assets/icons/profile.svg"
+          ngSrc="../../../assets/icons/avatar.svg"
           height="50"
           width="50"
-          alt="profile.svg"
+          alt="profile"
         />
         <button (click)="logout()">Logout</button>
       </div>
@@ -21,16 +21,16 @@
     <ul class="menu-links">
       <li (click)="serviser()">
         <img
-          ngSrc="../../../assets/icons/serviseri.svg"
-          alt="serviseri.svg"
+          ngSrc="assets/icons/serviseri.svg"
+          alt="serviseri"
           height="24"
           width="24"
         />Lista Servisera
       </li>
-      <li (click)="fetchProdavac()">
+      <li (click)="prodavac()">
         <img
           ngSrc="../../../assets/icons/prodavac.svg"
-          alt="prodavac.svg"
+          alt="prodavac"
           height="24"
           width="24"
         />Lista Prodavaca
@@ -38,7 +38,7 @@
       <li (click)="fetchNalog()">
         <img
           ngSrc="../../../assets/icons/nalog.svg"
-          alt="nalog.svg"
+          alt="nalog"
           height="24"
           width="24"
         />Naloge korisnika
@@ -46,7 +46,7 @@
       <li (click)="dodaj()">
         <img
           ngSrc="../../../assets/icons/dodajKorisnika.svg"
-          alt="dodajKorisnika.svg"
+          alt="dodajKorisnika"
           height="24"
           width="24"
         />Dodaj novog korisnika
@@ -54,7 +54,7 @@
       <li>
         <img
           ngSrc="../../../assets/icons/profile.svg"
-          alt="profile.svg"
+          alt="profile"
           height="24"
           width="24"
         />Profil
@@ -62,7 +62,7 @@
       <li (click)="idiHomepage()">
         <img
           ngSrc="../../../assets/icons/homepage.svg"
-          alt="homepage.svg"
+          alt="homepage"
           height="24"
           width="24"
         />Homepage
@@ -70,7 +70,7 @@
       <li (click)="logout()">
         <img
           ngSrc="../../../assets/icons/logout.svg"
-          alt="logout.svg"
+          alt="logout"
           height="24"
           width="24"
         />Logout
@@ -78,135 +78,18 @@
     </ul>
   </div>
 
-  <!--  right forms for data -->
+  <!--  right div for table and forms -->
   <div class="div-adminEdit">
-    <!--  Serviser table to show data -->
+
+    <!--  Serviser component (add , edit , delete) -->
     <div class="div-serviser" *ngIf="showServiser">
       <app-serviser></app-serviser>
     </div>
 
-    <!--Prodavac table to show data -->
-    <div class="div-table" *ngIf="showProdavacTable">
-      <input
-        type="text"
-        [(ngModel)]="this.searchProdavac"
-        placeholder="Pretraži prodavaca..."
-      />
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Ime</th>
-            <th>Prezime</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Grad ID</th>
-            <th>Spol ID</th>
-            <th>Is Prodavac</th>
-            <th>Akcije</th>
-          </tr>
-        </thead>
-
-        <tbody *ngFor="let x of filtrirajProdavac()">
-          <tr>
-            <td>{{ x.id }}</td>
-            <td>{{ x.ime }}</td>
-            <td>{{ x.prezime }}</td>
-            <td>{{ x.username }}</td>
-            <td>{{ x.email }}</td>
-            <td>{{ x.gradID }}</td>
-            <td>{{ x.spolID }}</td>
-            <td>{{ x.isProdavac }}</td>
-            <td>
-              <button (click)="editProdavac(x)">Edit</button>
-              <button class="brisiServiser" (click)="DeleteProdavac(x.id)">
-                Brisi
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <!--  Prodavac component (add , edit , delete) -->
+    <div class="div-prodavac" *ngIf="showProdavac">
+      <app-prodavac></app-prodavac>
     </div>
 
-
-<!--    &lt;!&ndash;Prodavac from to edit data &ndash;&gt;-->
-<!--    <form *ngIf="editOdabraniProdavac">-->
-<!--      <div class="form-group">-->
-<!--        <label for="ime">Ime:</label>-->
-<!--        <input-->
-<!--          type="text"-->
-<!--          class="form-control"-->
-<!--          id="ime"-->
-<!--          name="ime"-->
-<!--          required-->
-<!--          [(ngModel)]="this.odabraniProdavac!.ime"-->
-<!--        />-->
-<!--      </div>-->
-<!--      <div class="form-group">-->
-<!--        <label for="prezime">Prezime:</label>-->
-<!--        <input-->
-<!--          type="text"-->
-<!--          class="form-control"-->
-<!--          id="prezime"-->
-<!--          name="prezime"-->
-<!--          required-->
-<!--          [(ngModel)]="this.odabraniProdavac!.prezime"-->
-<!--        />-->
-<!--      </div>-->
-<!--      <div class="form-group">-->
-<!--        <label for="email">Email:</label>-->
-<!--        <input-->
-<!--          type="email"-->
-<!--          class="form-control"-->
-<!--          id="email"-->
-<!--          name="email"-->
-<!--          required-->
-<!--          [(ngModel)]="this.odabraniProdavac!.email"-->
-<!--        />-->
-<!--      </div>-->
-<!--      <div class="form-group">-->
-<!--        <label for="username">Username:</label>-->
-<!--        <input-->
-<!--          type="text"-->
-<!--          class="form-control"-->
-<!--          id="username"-->
-<!--          name="username"-->
-<!--          required-->
-<!--          [(ngModel)]="this.odabraniProdavac!.username"-->
-<!--        />-->
-<!--      </div>-->
-
-<!--      <div class="form-group">-->
-<!--        <label for="Grad">Grad</label>-->
-<!--        <select-->
-<!--          id="Grad"-->
-<!--          name="Grad"-->
-<!--          class="select-grad"-->
-<!--          [(ngModel)]="this.odabraniProdavac!.gradID"-->
-<!--        >-->
-<!--          <option *ngFor="let x of this." [value]="x.id">-->
-<!--            {{ x.naziv }}-->
-<!--          </option>-->
-<!--        </select>-->
-<!--      </div>-->
-
-<!--      <div class="form-group">-->
-<!--        <label for="isProdavac">Prodavac:</label>-->
-<!--        <input-->
-<!--          class="checkbox"-->
-<!--          type="checkbox"-->
-<!--          id="isProdavac"-->
-<!--          name="isProdavac"-->
-<!--          [(ngModel)]="this.odabraniProdavac!.isProdavac"-->
-<!--        />-->
-<!--      </div>-->
-<!--      <button type="submit" class="btn-save" (click)="sacuvajProdavac()">-->
-<!--        Save Prodavac-->
-<!--      </button>-->
-<!--      <button type="submit" class="btn-zatvori" (click)="zatvoriProdavacEdit()">-->
-<!--        Zatvori-->
-<!--      </button>-->
-<!--    </form>-->
-<!---->
   </div>
 </main>
