@@ -4,6 +4,7 @@
       [(ngModel)]="this.searchProdavac"
       placeholder="Pretraži prodavaca..."
     />
+    <button (click)="dodajNovi()" class="dodaj">+ Dodaj Prodavac</button>
     <table>
       <thead>
       <tr>
@@ -106,6 +107,85 @@
         class="checkbox"
         type="checkbox"
         id="isProdavac"
+        name="isProdavac"
+        [(ngModel)]="this.odabraniProdavac!.isProdavac"
+      />
+    </div>
+    <button type="submit" class="btn-save" (click)="sacuvajProdavac()">
+      Save Prodavac
+    </button>
+    <button type="submit" class="btn-zatvori" (click)="zatvoriProdavacEdit()">
+      Zatvori
+    </button>
+  </form>
+
+<!--  Prodavac from add new -->
+  <form *ngIf="showNoviProdavacForm">
+    <div class="form-group">
+      <label for="ime">Ime:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="ime2"
+        name="ime"
+        required
+        [(ngModel)]="this.odabraniProdavac!.ime"
+      />
+    </div>
+    <div class="form-group">
+      <label for="prezime">Prezime:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="prezime2"
+        name="prezime"
+        required
+        [(ngModel)]="this.odabraniProdavac!.prezime"
+      />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email2"
+        name="email"
+        required
+        [(ngModel)]="this.odabraniProdavac!.email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username2"
+        name="username"
+        required
+        [(ngModel)]="this.odabraniProdavac!.username"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="Grad">Grad</label>
+      <select
+        id="Grad2"
+        name="Grad"
+        class="select-grad"
+        [(ngModel)]="this.odabraniProdavac!.gradID"
+      >
+        <option *ngFor="let x of this.gradPodaci" [value]="x.id">
+          {{ x.naziv }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="isProdavac">Prodavac:</label>
+      <input
+        class="checkbox"
+        type="checkbox"
+        id="isProdavac2"
         name="isProdavac"
         [(ngModel)]="this.odabraniProdavac!.isProdavac"
       />

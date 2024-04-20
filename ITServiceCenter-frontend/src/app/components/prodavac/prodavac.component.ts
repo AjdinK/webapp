@@ -8,6 +8,7 @@ import {ProdavacSnimiEndpoint, ProdavacSnimiRequest} from "../../endpoints/proda
 import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProdavacBrisiEndpoint} from "../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint";
+import {ServiserSnimiRequest} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
 
 @Component({
   selector: 'app-prodavac',
@@ -34,6 +35,8 @@ export class ProdavacComponent implements OnInit{
   searchProdavac: string = '';
   editOdabraniProdavac: boolean = false;
   odabraniProdavac: ProdavacSnimiRequest | null = null;
+  showNoviProdavacForm: boolean = false;
+  noviProdavac : ProdavacSnimiRequest | null = null;
 
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
@@ -53,7 +56,6 @@ export class ProdavacComponent implements OnInit{
       error: (x) => {},
     });
   }
-
   filtrirajProdavac() {
     if (this.prodavacPodaci == null) return [];
     return this.prodavacPodaci.filter(
@@ -63,7 +65,6 @@ export class ProdavacComponent implements OnInit{
         x.username.toLowerCase().startsWith(this.searchProdavac.toLowerCase())
     );
   }
-
   sacuvajProdavac() {
     this.prodavacSnimiEndpoint.obradi(this.odabraniProdavac!).subscribe({
       next: (x: any) => {
@@ -74,20 +75,16 @@ export class ProdavacComponent implements OnInit{
       error: (x: any) => {},
     });
   }
-
   editProdavac(x: any) {
     this.showProdavacTable = false;
     this.editOdabraniProdavac = true;
     this.odabraniProdavac = x;
   }
 
-
   zatvoriProdavacEdit() {
-    // this.editOdabraniServiser = false;
     this.editOdabraniProdavac = false;
     this.fetchProdavac();
   }
-
   brisiProdavac(id:number) {
     this.prodavacBrisiEndpoint.obradi(id).subscribe({
       next: (x) => {
@@ -98,4 +95,7 @@ export class ProdavacComponent implements OnInit{
     });
   }
 
+  dodajNovi() {
+
+  }
 }

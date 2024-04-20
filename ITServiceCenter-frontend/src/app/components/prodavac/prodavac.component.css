@@ -106,7 +106,8 @@ form input {
 }
 
 .btn-save,
-.btn-zatvori {
+.btn-zatvori,
+.dodaj{
   background-color: white;
   color: black;
   border: none;
@@ -118,7 +119,12 @@ form input {
   font-weight: 700;
   transition: 0.2s ease;
 }
-.btn-save:hover {
+.dodaj{
+  margin-bottom: 30px;
+}
+
+.btn-save:hover,
+.dodaj:hover{
   background-color: #516269;
   color: white;
 }
@@ -149,3 +155,4 @@ select option {
   font-weight: 500;
   border-radius: 0;
 }
+
