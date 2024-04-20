@@ -41,10 +41,9 @@ ul button {
   outline: none;
   cursor: pointer;
   letter-spacing: 2px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: "Space Grotesk", sans-serif;
   font-weight: bolder;
-  transition: 0.2s ease;
 }
 nav button:hover,
 ul button:hover {
@@ -54,8 +53,9 @@ ul button:hover {
 ul button {
   margin-top: 50px;
 }
-h1 {
+h1,h2 {
   color: white;
+  font-size: 1.5rem;
 }
 
 .div-adminInfo {
@@ -66,23 +66,21 @@ h1 {
   top: 100px;
   left: 0;
   background-color: #000408;
-  transition: all 2s ease-in-out;
   box-shadow: 3px -2px 13px 0 rgba(0,0,0,0.75);
-  -webkit-box-shadow: 3px -2px 13px 0 rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px -2px 13px 0 rgba(0,0,0,0.75);
 }
 .menu-links {
   color: white;
   background-color: #000408;
   width: 100%;
   margin-top: 30px;
+  align-items: center;
 }
 
 .menu-links li {
   color: white;
   padding: 20px;
   list-style-type: none;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 .menu-links li:hover {
   cursor: pointer;
@@ -91,7 +89,7 @@ h1 {
 
 .menu-links li img {
   position: relative;
-  top: 5px;
+  top: -3px;
   margin-right: 20px;
 }
 

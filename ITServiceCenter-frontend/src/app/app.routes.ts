@@ -25,4 +25,14 @@ export const routes: Routes = [
     component: DashboardAdminComponent,
     title: 'dashboard-admin',
   },
+  {
+    path: 'assets/ava',
+    component: HomepageComponent,
+    title: 'assets/ava',
+  },
+  {
+    path: 'assets/profile',
+    component: HomepageComponent,
+    title: 'assets/profile',
+  },
 ];

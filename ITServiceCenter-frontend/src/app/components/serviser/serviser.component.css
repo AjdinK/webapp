@@ -11,6 +11,7 @@
   background-color: #364049;
   height: fit-content;
   margin: 0 auto;
+  box-shadow: 3px -2px 13px 0 rgba(0,0,0,0.75);
 }
 .div-table input {
   width: 100%;
@@ -42,7 +43,8 @@ td button {
   border: none;
   background-color: white;
   color: black;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
   padding: 10px;
   margin-right: 10px;
   width: 80px;
@@ -67,6 +69,7 @@ tbody tr:nth-child(even) {
 }
 
 form {
+  box-shadow: 3px -2px 13px 0 rgba(0,0,0,0.75);
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -78,7 +81,7 @@ form {
 }
 form input {
   padding: 7px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   outline: none;
   border: none;
   border-radius: 0;
@@ -111,7 +114,7 @@ form input {
   border-radius: 0;
   cursor: pointer;
   margin-top: 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 700;
   transition: 0.2s ease;
 }
@@ -136,7 +139,7 @@ form input:focus {
   width: 200px;
   padding: 15px;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   border-radius: 0;
   font-family: "Space Grotesk", sans-serif;

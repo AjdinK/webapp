@@ -29,7 +29,7 @@ export class ProdavacComponent implements OnInit{
     this.fetchGrad();
   }
 
-  showProdavacTable: boolean = false;
+  showProdavacTable: boolean = true;
   prodavacPodaci: ProdavacGetAllResponseProdavac[] | null = [];
   searchProdavac: string = '';
   editOdabraniProdavac: boolean = false;
@@ -49,8 +49,6 @@ export class ProdavacComponent implements OnInit{
     this.prodavacGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.prodavacPodaci = x.listaProdavac;
-        this.editOdabraniProdavac = false;
-        this.showProdavacTable = !this.showProdavacTable;
       },
       error: (x) => {},
     });
