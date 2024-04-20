@@ -94,9 +94,9 @@ export class ServiserComponent implements OnInit{
   }
 
   editServiser(x: any) {
-    this.editOdabraniServiser = true;
-    this.odabraniServiser = x;
-    this.showServiserTable = false;
+      this.editOdabraniServiser = true;
+      this.odabraniServiser = x;
+      this.showServiserTable = false;
   }
 
   fetchGrad() {

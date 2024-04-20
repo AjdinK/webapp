@@ -36,7 +36,7 @@ main {
   border: none;
   border-radius: 0;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-top: 5px;
 }
@@ -55,7 +55,7 @@ input:valid {
   outline: none;
   cursor: pointer;
   letter-spacing: 2px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: "Space Grotesk", sans-serif;
   font-weight: bolder;
   transition: 0.2s ease;
