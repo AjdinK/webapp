@@ -9,6 +9,7 @@ import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-e
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ProdavacBrisiEndpoint} from "../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint";
 import {ServiserSnimiRequest} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
+import {ServiserGetAllResponseServiseri} from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
 
 @Component({
   selector: 'app-prodavac',
@@ -30,30 +31,35 @@ export class ProdavacComponent implements OnInit{
     this.fetchGrad();
   }
 
-  showProdavacTable: boolean = true;
   prodavacPodaci: ProdavacGetAllResponseProdavac[] | null = [];
+  gradPodaci: GradGetAllResponseGrad[] | null = null;
+
+
+  showProdavacTable: boolean = true;
+  showProdavacEdit: boolean = false;
+  showProdavacForm: boolean = false;
   searchProdavac: string = '';
-  editOdabraniProdavac: boolean = false;
+
   odabraniProdavac: ProdavacSnimiRequest | null = null;
-  showNoviProdavacForm: boolean = false;
   noviProdavac : ProdavacSnimiRequest | null = null;
 
-  gradPodaci: GradGetAllResponseGrad[] | null = null;
 
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.gradPodaci = x.gradovi;
+        console.log("Uspjensno fetch grad")
       },
-      error: (x) => {},
+      error: (x) => { alert("greska -> " + x.error) },
     });
   }
   fetchProdavac() {
     this.prodavacGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.prodavacPodaci = x.listaProdavac;
+        console.log("Uspjensno fetch prodavac")
       },
-      error: (x) => {},
+      error: (x) => { alert("greska -> " + x.error) },
     });
   }
   filtrirajProdavac() {
@@ -65,37 +71,72 @@ export class ProdavacComponent implements OnInit{
         x.username.toLowerCase().startsWith(this.searchProdavac.toLowerCase())
     );
   }
-  sacuvajProdavac() {
-    this.prodavacSnimiEndpoint.obradi(this.odabraniProdavac!).subscribe({
-      next: (x: any) => {
-        this.editOdabraniProdavac = false;
-        this.fetchProdavac();
-        this.showProdavacTable = true;
-      },
-      error: (x: any) => {},
-    });
+
+  snimiProdavac (msg : string) {
+    if (msg == "edit"){
+      if (confirm("Da li zelite snimiti izmjene"))
+        this.prodavacSnimiEndpoint.obradi(this.odabraniProdavac!).subscribe({
+          next: (x: any) => {
+            this.showProdavacEdit = false;
+            this.fetchProdavac();
+            this.showProdavacTable = true;
+            console.log("Uspjensno snimi prodavac")
+          },
+          error: (x) => { alert("greska -> " + x.error) },
+        });
+    }
+    else {
+      if (confirm("Da li zelite dodati novog Prodavaca"))
+        this.prodavacSnimiEndpoint.obradi(this.noviProdavac!).subscribe({
+          next: (x: any) => {
+            this.showProdavacEdit = false;
+            this.fetchProdavac();
+            this.showProdavacTable = true;
+            this.showProdavacForm = false;
+            console.log("Uspjensno add prodavac")
+          },
+          error: (x) => { alert("greska -> " + x.error) },
+        });
+    }
   }
+
+
   editProdavac(x: any) {
     this.showProdavacTable = false;
-    this.editOdabraniProdavac = true;
+    this.showProdavacEdit = true;
     this.odabraniProdavac = x;
   }
 
-  zatvoriProdavacEdit() {
-    this.editOdabraniProdavac = false;
+  closeEdit() {
+    this.showProdavacEdit = false;
     this.fetchProdavac();
   }
   brisiProdavac(id:number) {
-    this.prodavacBrisiEndpoint.obradi(id).subscribe({
+    if (confirm("Da li zelite izbrisati Prodavaca"))
+      this.prodavacBrisiEndpoint.obradi(id).subscribe({
       next: (x) => {
         this.fetchProdavac();
         this.showProdavacTable = true;
+        console.log("Uspjensno brisi prodavac")
       },
-      error: (x) => {},
+        error: (x) => { alert("greska -> " + x.error) },
     });
   }
 
   dodajNovi() {
-
+    this.showProdavacForm = true;
+    this.showProdavacTable = false;
+    this.showProdavacEdit = false;
+    this.noviProdavac = {
+      id:0,
+      ime:'',
+      prezime:'',
+      gradID:1,
+      spolID:1,
+      isProdavac:true,
+      username:'',
+      email:'',
+    }
   }
+
 }

@@ -43,7 +43,7 @@
 
 <!--Serviser from for editing the data-->
 
-<form *ngIf="editOdabraniServiser">
+<form *ngIf="showServiserEdit">
   <div class="form-group">
     <label for="imeServiser">Ime:</label>
     <input
@@ -113,16 +113,16 @@
       [(ngModel)]="this.odabraniServiser!.isServiser"
     />
   </div>
-  <button type="submit" class="btn-save" (click)="sacuvajServiser('edit')">
+  <button type="submit" class="btn-save" (click)="snimiServiser('edit')">
     Save Serviser
   </button>
-  <button type="submit" class="btn-zatvori" (click)="zatvoriServiserEdit()">
+  <button type="submit" class="btn-zatvori" (click)="closeEdit()">
     Zatvori
   </button>
 </form>
 
 <!-- Form for adding new Serviser -->
-<form *ngIf="showNoviServiserForm">
+<form *ngIf="showServiserForm">
   <div class="form-group">
     <label for="imeServiser">Ime:</label>
     <input
@@ -191,10 +191,10 @@
       [(ngModel)]="this.noviServiser!.isServiser"
     />
   </div>
-  <button type="submit" class="btn-save" (click)="sacuvajServiser('dodaj')">
+  <button type="submit" class="btn-save" (click)="snimiServiser('dodaj')">
     Dodaj Serviser
   </button>
-  <button type="submit" class="btn-zatvori" (click)="zatvoriServiserEdit()">
+  <button type="submit" class="btn-zatvori" (click)="closeEdit()">
     Zatvori
   </button>
 </form>

@@ -43,20 +43,13 @@
           width="24"
         />Naloge korisnika
       </li>
-      <li (click)="dodaj()">
-        <img
-          ngSrc="assets/icons/dodajKorisnika.svg"
-          alt="dodajKorisnika"
-          height="24"
-          width="24"
-        />Dodaj novog korisnika
-      </li>
       <li>
         <img
           ngSrc="assets/icons/profile.svg"
           alt="profile"
           height="24"
           width="24"
+          (click)="showAdmin()"
         />Profil
       </li>
       <li (click)="idiHomepage()">

@@ -29,15 +29,17 @@ export class ServiserComponent implements OnInit{
         this.fetchGrad();
     }
 
-  showServiserTable: boolean = true;
   serviserPodaci: ServiserGetAllResponseServiseri[] | null = [];
+  gradPodaci: GradGetAllResponseGrad[] | null = null;
+
+  showServiserTable: boolean = true;
+  showServiserEdit: boolean = false;
+  showServiserForm: boolean = false;
   searchServiser: string = '';
-  editOdabraniServiser: boolean = false;
+
   odabraniServiser: ServiserSnimiRequest | null = null;
-  showNoviServiserForm: boolean = false;
   noviServiser : ServiserSnimiRequest | null = null;
 
-  gradPodaci: GradGetAllResponseGrad[] | null = null;
 
   fetchServiser() {
     this.serviserGetAllEndpoint.obradi().subscribe({
@@ -58,13 +60,13 @@ export class ServiserComponent implements OnInit{
     );
   }
 
-  sacuvajServiser(msg : string) {
+  snimiServiser(msg : string) {
     if (msg == "edit"){
-      if (confirm("Da li zelite spasiti izmjene"))
+      if (confirm("Da li zelite snimiti izmjene"))
     this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
       next: (x: any) => {
-        this.editOdabraniServiser = false;
-        this.showNoviServiserForm = false;
+        this.showServiserEdit = false;
+        this.showServiserForm = false;
         this.fetchServiser();
         this.showServiserTable = true;
       },
@@ -75,10 +77,10 @@ export class ServiserComponent implements OnInit{
       if (confirm("Da li zelite dodati novog Servisera"))
         this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
         next: (x: any) => {
-          this.editOdabraniServiser = false;
+          this.showServiserEdit = false;
           this.fetchServiser();
           this.showServiserTable = true;
-          this.showNoviServiserForm = false;
+          this.showServiserForm = false;
         },
         error: (x: any) => {},
       });
@@ -97,7 +99,7 @@ export class ServiserComponent implements OnInit{
   }
 
   editServiser(x: any) {
-      this.editOdabraniServiser = true;
+      this.showServiserEdit = true;
       this.odabraniServiser = x;
       this.showServiserTable = false;
   }
@@ -111,17 +113,17 @@ export class ServiserComponent implements OnInit{
     });
   }
 
-  zatvoriServiserEdit() {
-    this.editOdabraniServiser = false;
+  closeEdit() {
+    this.showServiserEdit = false;
     this.fetchServiser();
     this.showServiserTable = true;
-    this.showNoviServiserForm = false;
+    this.showServiserForm = false;
   }
 
   dodajNovi() {
-    this.showNoviServiserForm = true;
+    this.showServiserForm = true;
     this.showServiserTable = false;
-    this.editOdabraniServiser = false;
+    this.showServiserEdit = false;
     this.noviServiser = {
       id:0,
       ime:'',
@@ -133,6 +135,5 @@ export class ServiserComponent implements OnInit{
       email:'',
       }
     }
-
 }
 

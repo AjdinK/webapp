@@ -51,5 +51,7 @@ export class DashboardAdminComponent implements OnInit {
     this.showServiser = false;
   }
 
+  showAdmin() {
 
+  }
 }

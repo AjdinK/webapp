@@ -41,7 +41,7 @@
     </table>
   </div>
 
-  <form *ngIf="editOdabraniProdavac">
+  <form *ngIf="showProdavacEdit">
     <div class="form-group">
       <label for="ime">Ime:</label>
       <input
@@ -111,16 +111,16 @@
         [(ngModel)]="this.odabraniProdavac!.isProdavac"
       />
     </div>
-    <button type="submit" class="btn-save" (click)="sacuvajProdavac()">
+    <button type="submit" class="btn-save" (click)="snimiProdavac('edit')">
       Save Prodavac
     </button>
-    <button type="submit" class="btn-zatvori" (click)="zatvoriProdavacEdit()">
+    <button type="submit" class="btn-zatvori" (click)="closeEdit()">
       Zatvori
     </button>
   </form>
 
 <!--  Prodavac from add new -->
-  <form *ngIf="showNoviProdavacForm">
+  <form *ngIf="showProdavacForm">
     <div class="form-group">
       <label for="ime">Ime:</label>
       <input
@@ -129,7 +129,7 @@
         id="ime2"
         name="ime"
         required
-        [(ngModel)]="this.odabraniProdavac!.ime"
+        [(ngModel)]="this.noviProdavac!.ime"
       />
     </div>
     <div class="form-group">
@@ -140,7 +140,7 @@
         id="prezime2"
         name="prezime"
         required
-        [(ngModel)]="this.odabraniProdavac!.prezime"
+        [(ngModel)]="this.noviProdavac!.prezime"
       />
     </div>
     <div class="form-group">
@@ -151,7 +151,7 @@
         id="email2"
         name="email"
         required
-        [(ngModel)]="this.odabraniProdavac!.email"
+        [(ngModel)]="this.noviProdavac!.email"
       />
     </div>
     <div class="form-group">
@@ -162,7 +162,7 @@
         id="username2"
         name="username"
         required
-        [(ngModel)]="this.odabraniProdavac!.username"
+        [(ngModel)]="this.noviProdavac!.username"
       />
     </div>
 
@@ -172,7 +172,7 @@
         id="Grad2"
         name="Grad"
         class="select-grad"
-        [(ngModel)]="this.odabraniProdavac!.gradID"
+        [(ngModel)]="this.noviProdavac!.gradID"
       >
         <option *ngFor="let x of this.gradPodaci" [value]="x.id">
           {{ x.naziv }}
@@ -187,13 +187,13 @@
         type="checkbox"
         id="isProdavac2"
         name="isProdavac"
-        [(ngModel)]="this.odabraniProdavac!.isProdavac"
+        [(ngModel)]="this.noviProdavac!.isProdavac"
       />
     </div>
-    <button type="submit" class="btn-save" (click)="sacuvajProdavac()">
+    <button type="submit" class="btn-save" (click)="snimiProdavac('novi')">
       Save Prodavac
     </button>
-    <button type="submit" class="btn-zatvori" (click)="zatvoriProdavacEdit()">
+    <button type="submit" class="btn-zatvori" (click)="closeEdit()">
       Zatvori
     </button>
   </form>
