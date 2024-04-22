@@ -48,7 +48,6 @@ export class ProdavacComponent implements OnInit{
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.gradPodaci = x.gradovi;
-        console.log("Uspjensno fetch grad")
       },
       error: (x) => { alert("greska -> " + x.error) },
     });
@@ -57,7 +56,6 @@ export class ProdavacComponent implements OnInit{
     this.prodavacGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.prodavacPodaci = x.listaProdavac;
-        console.log("Uspjensno fetch prodavac")
       },
       error: (x) => { alert("greska -> " + x.error) },
     });
@@ -80,7 +78,6 @@ export class ProdavacComponent implements OnInit{
             this.showProdavacEdit = false;
             this.fetchProdavac();
             this.showProdavacTable = true;
-            console.log("Uspjensno snimi prodavac")
           },
           error: (x) => { alert("greska -> " + x.error) },
         });
@@ -93,7 +90,6 @@ export class ProdavacComponent implements OnInit{
             this.fetchProdavac();
             this.showProdavacTable = true;
             this.showProdavacForm = false;
-            console.log("Uspjensno add prodavac")
           },
           error: (x) => { alert("greska -> " + x.error) },
         });
@@ -117,7 +113,6 @@ export class ProdavacComponent implements OnInit{
       next: (x) => {
         this.fetchProdavac();
         this.showProdavacTable = true;
-        console.log("Uspjensno brisi prodavac")
       },
         error: (x) => { alert("greska -> " + x.error) },
     });
@@ -138,5 +133,4 @@ export class ProdavacComponent implements OnInit{
       email:'',
     }
   }
-
 }

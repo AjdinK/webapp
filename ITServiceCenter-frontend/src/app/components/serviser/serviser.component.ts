@@ -46,7 +46,7 @@ export class ServiserComponent implements OnInit{
       next: (x) => {
         this.serviserPodaci = x.listaServiser;
       },
-      error: (x) => {},
+      error: (x) => { alert("greska -> " + x.error) },
     });
   }
 
@@ -70,7 +70,7 @@ export class ServiserComponent implements OnInit{
         this.fetchServiser();
         this.showServiserTable = true;
       },
-      error: (x: any) => {},
+      error: (x) => { alert("greska -> " + x.error) },
     });
     }
     else {
@@ -82,7 +82,7 @@ export class ServiserComponent implements OnInit{
           this.showServiserTable = true;
           this.showServiserForm = false;
         },
-        error: (x: any) => {},
+          error: (x) => { alert("greska -> " + x.error) },
       });
     }
   }
@@ -109,7 +109,7 @@ export class ServiserComponent implements OnInit{
       next: (x) => {
         this.gradPodaci = x.gradovi;
       },
-      error: (x) => {},
+      error: (x) => { alert("greska -> " + x.error) },
     });
   }
 
