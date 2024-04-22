@@ -52,6 +52,7 @@ export class ProdavacComponent implements OnInit{
       error: (x) => { alert("greska -> " + x.error) },
     });
   }
+
   fetchProdavac() {
     this.prodavacGetAllEndpoint.obradi().subscribe({
       next: (x) => {

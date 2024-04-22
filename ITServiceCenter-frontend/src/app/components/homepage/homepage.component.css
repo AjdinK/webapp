@@ -104,7 +104,7 @@ section div button:hover{
 .menu-links a:after {
   left: 0;
   top: 0;
-  padding: 0.5em 0;
+  padding: 0.4em 0;
   position: absolute;
   content: attr(data-hover);
   color: #ffffff;
