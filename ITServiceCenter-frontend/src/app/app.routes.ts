@@ -14,7 +14,6 @@ export const routes: Routes = [
     component: HomepageComponent,
     title: 'Homepage',
   },
-
   {
     path: 'login',
     component: LoginComponent,

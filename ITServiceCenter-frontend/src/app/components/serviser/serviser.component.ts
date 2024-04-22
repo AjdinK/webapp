@@ -60,6 +60,7 @@ export class ServiserComponent implements OnInit{
 
   sacuvajServiser(msg : string) {
     if (msg == "edit"){
+      if (confirm("Da li zelite spasiti izmjene"))
     this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
       next: (x: any) => {
         this.editOdabraniServiser = false;
@@ -71,7 +72,8 @@ export class ServiserComponent implements OnInit{
     });
     }
     else {
-      this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
+      if (confirm("Da li zelite dodati novog Servisera"))
+        this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
         next: (x: any) => {
           this.editOdabraniServiser = false;
           this.fetchServiser();
@@ -84,6 +86,7 @@ export class ServiserComponent implements OnInit{
   }
 
   brisiServiser (id: number) {
+    if (confirm("Da li zelite izbrisati Serviser"))
     this.serviserBrisiEndpoint.obradi(id).subscribe({
       next: (x) => {
         this.fetchServiser();

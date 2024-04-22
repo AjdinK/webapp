@@ -2,18 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {ServiserComponent} from "../serviser/serviser.component";
-import {ProdavacComponent} from "../prodavac/prodavac.component";
-
+import { ServiserComponent } from '../serviser/serviser.component';
+import { ProdavacComponent } from '../prodavac/prodavac.component';
 @Component({
   selector: 'app-dashboard-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgOptimizedImage, ServiserComponent, ProdavacComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    NgOptimizedImage,
+    ServiserComponent,
+    ProdavacComponent,
+  ],
   templateUrl: './dashboard-admin.component.html',
   styleUrl: './dashboard-admin.component.css',
 })
 export class DashboardAdminComponent implements OnInit {
-  constructor( private router: Router) {}
+
+  constructor(
+    private router: Router,
+  ) {}
+
 
   showServiser: boolean = false;
   showProdavac: boolean = false;
@@ -22,7 +31,6 @@ export class DashboardAdminComponent implements OnInit {
   logout() {
     this.router.navigate(['/homepage']);
   }
-
 
   fetchNalog() {}
 
@@ -42,5 +50,6 @@ export class DashboardAdminComponent implements OnInit {
     this.showProdavac = !this.showProdavac;
     this.showServiser = false;
   }
+
 
 }
