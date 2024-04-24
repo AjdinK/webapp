@@ -22,7 +22,7 @@ export class ContactUsComponent {
     poruka:'',
   }
 
-  posalji() {
+  posalji(porukaKontakt:any) {
   this.JelPoslano = true;
   }
 }

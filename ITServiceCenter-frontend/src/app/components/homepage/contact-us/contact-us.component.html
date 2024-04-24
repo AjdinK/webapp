@@ -50,7 +50,7 @@
         <span *ngIf="textarea_polje.errors?.['required']">Polje je obavezno</span>
         <span *ngIf="textarea_polje.errors?.['minlength']">Minimum 20 karaktera</span>
       </div>
-      <button (click)="posalji()" class="button-login-header">Submit</button>
+      <button (click)="posalji(porukaKontakt)" class="button-login-header">Submit</button>
     </div>
 
   </div>
