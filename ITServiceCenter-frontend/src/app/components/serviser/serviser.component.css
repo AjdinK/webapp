@@ -162,10 +162,14 @@ select option {
   border-radius: 0;
 }
 
-.greska-ime,.greska-email,.greska-textarea{
+.greska-div{
   width: 70%;
   margin-left: 13.5%;
   color:indianred;
   font-weight: 600;
   margin-bottom: 20px;
 }
+.greska-div::-ms-clear{
+  margin-bottom: 0;
+}
+

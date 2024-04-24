@@ -17,7 +17,6 @@ import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-e
   styleUrl: './serviser.component.css'
 })
 export class ServiserComponent implements OnInit{
-  JelPopunjeno:  boolean = false;
   constructor(
     private serviserGetAllEndpoint: ServiserGetAllEndpoint,
     private serviserSnimiEndpoint: ServiserSnimiEndpoint,
@@ -28,7 +27,9 @@ export class ServiserComponent implements OnInit{
   ngOnInit(): void {
         this.fetchServiser();
         this.fetchGrad();
-    }
+  }
+
+  JelPopunjeno:  boolean = false;
 
   serviserPodaci: ServiserGetAllResponseServiseri[] | null = [];
   gradPodaci: GradGetAllResponseGrad[] | null = null;
@@ -62,8 +63,6 @@ export class ServiserComponent implements OnInit{
   }
 
   snimiServiser(editForm:NgForm) {
-    const isValid = editForm.form.valid;
-    
     if (editForm.form.valid){
     this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
       next: (x: any) => {
@@ -72,22 +71,10 @@ export class ServiserComponent implements OnInit{
         this.fetchServiser();
         this.showServiserTable = true;
       },
-      error: (x) => { alert("greska -> " + x.error) },
+      error: (x) => { alert("greska snimiServiser -> " + x.error) },
     });
-      //
-      // if (confirm("Da li zelite dodati novog Servisera"))
-      //   this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
-      //   next: (x: any) => {
-      //     this.showServiserEdit = false;
-      //     this.fetchServiser();
-      //     this.showServiserTable = true;
-      //     this.showServiserForm = false;
-      //   },
-      //     error: (x) => { alert("greska -> " + x.error) },
-      // });
     }
   }
-
 
   brisiServiser (id: number) {
     if (confirm("Da li zelite izbrisati Serviser"))
@@ -96,7 +83,7 @@ export class ServiserComponent implements OnInit{
         this.fetchServiser();
         this.showServiserTable = true;
       },
-      error: (x) => { alert("greska -> " + x.error) }
+      error: (x) => { alert("greska brisiServiser -> " + x.error) }
     });
   }
 
@@ -137,5 +124,20 @@ export class ServiserComponent implements OnInit{
       email:'',
       }
     }
+
+  dodajServiser(dodajForm: NgForm) {
+    if (dodajForm.form.valid){
+      this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
+      next: (x: any) => {
+        this.showServiserEdit = false;
+        this.fetchServiser();
+        this.showServiserTable = true;
+        this.showServiserForm = false;
+      },
+        error: (x) => { alert("greska snimiServiser -> " + x.error) },
+    });
+    }
+  }
+
 }
 

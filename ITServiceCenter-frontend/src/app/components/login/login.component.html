@@ -10,7 +10,7 @@
     <form>
       <div class="form-group">
         <label for="email">Email</label>
-        <input #email_polje="ngModel" type="email" id="email" [(ngModel)]="email" name="email" pattern="[a-zA-Z0-9\-._]{1,}@[a-zA-Z\-]{2,}[.]{1}[a-zA-Z]{2,}" minlength="5" required>
+        <input #email_polje="ngModel" type="email" id="email" [(ngModel)]="email" name="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" minlength="5" required>
         <div class="greska-email" *ngIf="email_polje.invalid && (email_polje.dirty ||email_polje.touched) || this.JelLogiran">
           <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
           <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>

@@ -38,7 +38,7 @@
       </div>
 
       <label>Email</label> <br />
-      <input name="email" #email_polje="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" type="email" required [(ngModel)]="porukaKontakt.email"/><br />
+      <input name="email" #email_polje="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" type="email" required [(ngModel)]="porukaKontakt.email"/><br />
       <div class="greska-ime" *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPoslano">
         <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
         <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
