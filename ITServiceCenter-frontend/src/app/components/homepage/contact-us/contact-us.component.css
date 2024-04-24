@@ -1,0 +1,73 @@
+.ContactUS-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ContactUS-section {
+  background-color: #000408;
+  padding: 50px;
+  color: white;
+  user-select: none;
+}
+ .ContactUS-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ContactUS-info h1 {
+  font-size: 3.4rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.text-img {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.ContactUS-form {
+  margin-top: 60px;
+  width: 40%;
+}
+.ContactUS-form input ,
+.ContactUS-form textarea{
+  width: 100%;
+  padding: 10px 5px;
+  margin: 15px 0;
+  font-size: 1.2rem;
+  border: none;
+}
+.ContactUS-form input:valid,
+.ContactUS-form input:active,
+.ContactUS-form textarea:active,
+.ContactUS-form textarea:focus{
+  outline:none;
+}
+.ContactUS-form input:focus,
+.ContactUS-form textarea:focus{
+  border: #677A88 solid 3px;
+}
+.ContactUS-form textarea {
+  height: 15rem;
+  resize: none;
+}
+
+section div button {
+  background-color: white;
+  color: black;
+  padding: 15px 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: bolder;
+  transition: 0.2s ease;
+}
+section div button:hover {
+  background-color: #516269;
+  color: white;
+}

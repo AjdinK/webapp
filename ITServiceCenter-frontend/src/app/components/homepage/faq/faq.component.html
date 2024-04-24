@@ -1,0 +1,11 @@
+<section id="FAQ" class="FAQ-section">
+  <div class="AboutUs">
+    <h1 class="h1-prim">#FAQ</h1>
+    <div class="h1-FAQ" *ngFor="let x of this.podaciFAQ">
+      <h1 (click)="showOdgovor(x.id)">{{ x.pitanje }}</h1>
+      <div *ngIf="pitanje[x.id]" class="FAQ-odgovor">
+        <p>-> {{ x.odgovor }}</p>
+      </div>
+    </div>
+  </div>
+</section>
