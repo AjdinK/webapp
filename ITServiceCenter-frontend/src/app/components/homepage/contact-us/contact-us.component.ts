@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, NgForm} from "@angular/forms";
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 
 @Component({
@@ -25,18 +25,21 @@ export class ContactUsComponent {
     poruka:'',
   }
 
-  async posalji(porukaKontakt:any) {
-  this.JelPoslano = true;
+  async posalji (form:NgForm) {
+  if (form.form.valid){
   emailjs.init("rs86oYSzchfvEtq82");
     let response = await emailjs.send("service_jqhy61m","template_o0gkayw",{
-    from_name: porukaKontakt.ime,
+    from_name: this.porukaKontakt.ime,
     to_name: "Ajdin.kuduzovic@gmail.com",//itservicercenter@gmail.com
-    from_user: porukaKontakt.email,
-    message: porukaKontakt.message,
+    from_user: this.porukaKontakt.email,
+    message: this.porukaKontakt.message,
     reply_to: "test",
   });
     alert("Vasa Poruka poslata")
     this.clearForm();
+  }
+  else
+    this.JelPoslano = true;
 }
 
   private clearForm() {
@@ -45,5 +48,5 @@ export class ContactUsComponent {
       this.porukaKontakt.poruka="";
       this.JelPoslano = false;
   }
-  
+
 }
