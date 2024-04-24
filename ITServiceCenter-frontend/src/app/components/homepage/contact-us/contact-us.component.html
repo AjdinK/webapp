@@ -31,21 +31,21 @@
 
     <div class="ContactUS-form">
       <label>Ime</label> <br />
-      <input #ime_polje="ngModel" name="ime" type="text"  [(ngModel)]="porukaKontakt.ime" minlength="3" required/><br />
+      <input #ime_polje="ngModel" name="ime" type="text"  [(ngModel)]="porukaKontakt.ime" minlength="3" required placeholder="Ime"/><br />
       <div class="greska-ime" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPoslano">
         <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
         <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
       </div>
 
       <label>Email</label> <br />
-      <input name="email" #email_polje="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" type="email" required [(ngModel)]="porukaKontakt.email"/><br />
+      <input name="email" #email_polje="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" type="email" required [(ngModel)]="porukaKontakt.email" placeholder="Email"/><br />
       <div class="greska-ime" *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPoslano">
         <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
         <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
       </div>
 
       <label>Poruka</label><br />
-      <textarea #textarea_polje="ngModel" name="poruka" [(ngModel)]="porukaKontakt.poruka" required minlength="20" ></textarea><br />
+      <textarea #textarea_polje="ngModel" name="poruka" [(ngModel)]="porukaKontakt.poruka" required minlength="20" placeholder="Poruka" ></textarea><br />
       <div class="greska-ime" *ngIf="textarea_polje.invalid && (textarea_polje.touched || textarea_polje.dirty) || this.JelPoslano">
         <span *ngIf="textarea_polje.errors?.['required']">Polje je obavezno</span>
         <span *ngIf="textarea_polje.errors?.['minlength']">Minimum 20 karaktera</span>
