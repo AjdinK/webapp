@@ -18,9 +18,10 @@
       </div>
       <div class="form-group">
         <label for="lozinka">Lozinka</label>
-        <input type="password" #lozinka_polje="ngModel" id="lozinka" [(ngModel)]="lozinka" name="lozinka" required>
+        <input type="password" #lozinka_polje="ngModel" id="lozinka" [(ngModel)]="lozinka" name="lozinka" minlength="8" required>
         <div class="greska-password" *ngIf="lozinka_polje.dirty ||lozinka_polje.touched || this.JelLogiran">
           <span *ngIf="lozinka_polje.errors?.['required']">Polje je obavezno</span>
+          <span *ngIf="lozinka_polje.errors?.['minlength']">Vrijednost mora biti veća od 7</span>
         </div>
       </div>
       <button (click)="logirajSe()" type="submit">Login</button>

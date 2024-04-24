@@ -43,7 +43,7 @@
 
 <!--Serviser from for editing the data-->
 
-<form *ngIf="showServiserEdit">
+<form class="serviserForm" *ngIf="showServiserEdit" #editForm='ngForm'>
   <div class="form-group">
     <label for="imeServiser">Ime:</label>
     <input
@@ -52,8 +52,14 @@
       id="imeServiser"
       name="ime"
       required
+      minlength="3"
+      #ime_polje="ngModel"
       [(ngModel)]="this.odabraniServiser!.ime"
     />
+  </div>
+  <div class="greska-ime" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPopunjeno">
+    <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
   </div>
   <div class="form-group">
     <label for="prezimeServiser">Prezime:</label>
@@ -62,9 +68,15 @@
       class="form-control"
       id="prezimeServiser"
       name="prezime"
+      #prezime_polje='ngModel'
       required
+      minlength="3"
       [(ngModel)]="this.odabraniServiser!.prezime"
     />
+  </div>
+  <div class="greska-ime" *ngIf="prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty) || this.JelPopunjeno">
+    <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
   </div>
   <div class="form-group">
     <label for="emailServiser">Email:</label>
@@ -74,9 +86,16 @@
       id="emailServiser"
       name="email"
       required
+      #email_polje='ngModel'
       [(ngModel)]="this.odabraniServiser!.email"
+      pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
     />
   </div>
+  <div class="greska-ime" *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPopunjeno">
+    <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
+  </div>
+
   <div class="form-group">
     <label for="usernameServiser">Username:</label>
     <input
@@ -85,8 +104,15 @@
       id="usernameServiser"
       name="username"
       required
+      #username_polje = "ngModel"
+      minlength="5"
       [(ngModel)]="this.odabraniServiser!.username"
     />
+  </div>
+
+  <div class="greska-ime" *ngIf="username_polje.invalid && (username_polje.touched || username_polje.dirty) || this.JelPopunjeno">
+    <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 5 karaktera</span>
   </div>
 
   <div class="form-group">
@@ -113,7 +139,7 @@
       [(ngModel)]="this.odabraniServiser!.isServiser"
     />
   </div>
-  <button type="submit" class="btn-save" (click)="snimiServiser('edit')">
+  <button type="submit" class="btn-save" (click)="snimiServiser(editForm)">
     Save Serviser
   </button>
   <button type="submit" class="btn-zatvori" (click)="closeEdit()">
@@ -122,7 +148,7 @@
 </form>
 
 <!-- Form for adding new Serviser -->
-<form *ngIf="showServiserForm">
+<form *ngIf="showServiserForm" #editForm = 'ngForm'>
   <div class="form-group">
     <label for="imeServiser">Ime:</label>
     <input
@@ -191,7 +217,7 @@
       [(ngModel)]="this.noviServiser!.isServiser"
     />
   </div>
-  <button type="submit" class="btn-save" (click)="snimiServiser('dodaj')">
+  <button type="submit" class="btn-save" (click)="snimiServiser(editForm)">
     Dodaj Serviser
   </button>
   <button type="submit" class="btn-zatvori" (click)="closeEdit()">

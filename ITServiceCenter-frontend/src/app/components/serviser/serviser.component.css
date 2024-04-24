@@ -134,11 +134,17 @@ form input {
 }
 
 form input:valid,
-form input:active {
-  outline: none;
+form input:active,
+form input:focus:active:valid {
+  color: #687b89;
 }
+form input:focus:invalid{
+  color: indianred;
+  border-color: indianred;
+}
+
 form input:focus {
-  border: #677a88 solid 3px;
+  border: #677A88 solid 3px;
 }
 
 .select-grad {
@@ -156,3 +162,10 @@ select option {
   border-radius: 0;
 }
 
+.greska-ime,.greska-email,.greska-textarea{
+  width: 70%;
+  margin-left: 13.5%;
+  color:indianred;
+  font-weight: 600;
+  margin-bottom: 20px;
+}

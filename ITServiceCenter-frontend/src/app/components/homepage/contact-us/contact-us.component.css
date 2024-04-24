@@ -46,13 +46,16 @@
 .ContactUS-form textarea:focus{
   outline:none;
 }
-/*.ContactUS-form input:invalid{*/
-/*  border : 2px solid  darkred;*/
-/*}*/
 
 .ContactUS-form input:focus,
 .ContactUS-form textarea:focus{
   border: #677A88 solid 3px;
+}
+.ContactUS-form input:focus:invalid,
+.ContactUS-form textarea:focus:invalid
+{
+  color: indianred;
+  border-color: indianred;
 }
 .ContactUS-form textarea {
   height: 15rem;

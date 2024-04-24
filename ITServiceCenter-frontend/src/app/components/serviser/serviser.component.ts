@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {
   ServiserGetAllEndpoint,
   ServiserGetAllResponseServiseri
@@ -17,6 +17,7 @@ import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-e
   styleUrl: './serviser.component.css'
 })
 export class ServiserComponent implements OnInit{
+  JelPopunjeno:  boolean = false;
   constructor(
     private serviserGetAllEndpoint: ServiserGetAllEndpoint,
     private serviserSnimiEndpoint: ServiserSnimiEndpoint,
@@ -60,9 +61,10 @@ export class ServiserComponent implements OnInit{
     );
   }
 
-  snimiServiser(msg : string) {
-    if (msg == "edit"){
-      if (confirm("Da li zelite snimiti izmjene"))
+  snimiServiser(editForm:NgForm) {
+    const isValid = editForm.form.valid;
+    
+    if (editForm.form.valid){
     this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
       next: (x: any) => {
         this.showServiserEdit = false;
@@ -72,20 +74,20 @@ export class ServiserComponent implements OnInit{
       },
       error: (x) => { alert("greska -> " + x.error) },
     });
-    }
-    else {
-      if (confirm("Da li zelite dodati novog Servisera"))
-        this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
-        next: (x: any) => {
-          this.showServiserEdit = false;
-          this.fetchServiser();
-          this.showServiserTable = true;
-          this.showServiserForm = false;
-        },
-          error: (x) => { alert("greska -> " + x.error) },
-      });
+      //
+      // if (confirm("Da li zelite dodati novog Servisera"))
+      //   this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
+      //   next: (x: any) => {
+      //     this.showServiserEdit = false;
+      //     this.fetchServiser();
+      //     this.showServiserTable = true;
+      //     this.showServiserForm = false;
+      //   },
+      //     error: (x) => { alert("greska -> " + x.error) },
+      // });
     }
   }
+
 
   brisiServiser (id: number) {
     if (confirm("Da li zelite izbrisati Serviser"))
