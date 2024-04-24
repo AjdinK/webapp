@@ -6,7 +6,7 @@ import {
 } from "../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint";
 import {ProdavacSnimiEndpoint, ProdavacSnimiRequest} from "../../endpoints/prodavac-endpoints/prodavac-snimi-endpoint";
 import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {ProdavacBrisiEndpoint} from "../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint";
 import {ServiserSnimiRequest} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
 import {ServiserGetAllResponseServiseri} from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
@@ -31,6 +31,8 @@ export class ProdavacComponent implements OnInit{
     this.fetchGrad();
   }
 
+  JelPopunjeno: boolean = false;
+
   prodavacPodaci: ProdavacGetAllResponseProdavac[] | null = [];
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
@@ -49,7 +51,7 @@ export class ProdavacComponent implements OnInit{
       next: (x) => {
         this.gradPodaci = x.gradovi;
       },
-      error: (x) => { alert("greska -> " + x.error) },
+      error: (x) => { alert("greska fetchGrad -> " + x.error) },
     });
   }
 
@@ -58,7 +60,7 @@ export class ProdavacComponent implements OnInit{
       next: (x) => {
         this.prodavacPodaci = x.listaProdavac;
       },
-      error: (x) => { alert("greska -> " + x.error) },
+      error: (x) => { alert("greska fetchProdavac -> " + x.error) },
     });
   }
   filtrirajProdavac() {
@@ -71,32 +73,19 @@ export class ProdavacComponent implements OnInit{
     );
   }
 
-  snimiProdavac (msg : string) {
-    if (msg == "edit"){
-      if (confirm("Da li zelite snimiti izmjene"))
-        this.prodavacSnimiEndpoint.obradi(this.odabraniProdavac!).subscribe({
-          next: (x: any) => {
-            this.showProdavacEdit = false;
-            this.fetchProdavac();
-            this.showProdavacTable = true;
-          },
-          error: (x) => { alert("greska -> " + x.error) },
-        });
-    }
-    else {
-      if (confirm("Da li zelite dodati novog Prodavaca"))
-        this.prodavacSnimiEndpoint.obradi(this.noviProdavac!).subscribe({
-          next: (x: any) => {
-            this.showProdavacEdit = false;
-            this.fetchProdavac();
-            this.showProdavacTable = true;
-            this.showProdavacForm = false;
-          },
-          error: (x) => { alert("greska -> " + x.error) },
-        });
+  snimiProdavac(editForm:NgForm) {
+    if (editForm.form.valid){
+      this.prodavacSnimiEndpoint.obradi(this.odabraniProdavac!).subscribe({
+        next: (x: any) => {
+          this.showProdavacEdit = false;
+          this.showProdavacForm = false;
+          this.fetchProdavac();
+          this.showProdavacTable = true;
+        },
+        error: (x) => { alert("greska snimiProdavac -> " + x.error) },
+      });
     }
   }
-
 
   editProdavac(x: any) {
     this.showProdavacTable = false;
@@ -107,7 +96,10 @@ export class ProdavacComponent implements OnInit{
   closeEdit() {
     this.showProdavacEdit = false;
     this.fetchProdavac();
+    this.showProdavacTable = true;
+    this.showProdavacForm = false;
   }
+
   brisiProdavac(id:number) {
     if (confirm("Da li zelite izbrisati Prodavaca"))
       this.prodavacBrisiEndpoint.obradi(id).subscribe({
@@ -115,7 +107,7 @@ export class ProdavacComponent implements OnInit{
         this.fetchProdavac();
         this.showProdavacTable = true;
       },
-        error: (x) => { alert("greska -> " + x.error) },
+        error: (x) => { alert("greska brisiProdavac -> " + x.error) },
     });
   }
 
@@ -134,4 +126,19 @@ export class ProdavacComponent implements OnInit{
       email:'',
     }
   }
+
+  dodajProdavac(dodajForm: NgForm) {
+    if (dodajForm.form.valid){
+      this.prodavacSnimiEndpoint.obradi(this.noviProdavac!).subscribe({
+        next: (x: any) => {
+          this.showProdavacEdit = false;
+          this.fetchProdavac();
+          this.showProdavacTable = true;
+          this.showProdavacForm = false;
+        },
+        error: (x) => { alert("greska dodajProdavac -> " + x.error) },
+      });
+    }
+  }
+
 }

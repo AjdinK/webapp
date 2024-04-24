@@ -82,11 +82,10 @@ form {
 form input {
   padding: 7px;
   font-size: 1rem;
-  outline: none;
-  border: none;
   border-radius: 0;
   font-family: "Space Grotesk", sans-serif;
   font-weight: bold;
+  color: #000408;
 }
 
 .form-group {
@@ -133,14 +132,6 @@ form input {
   color: white;
 }
 
-form input:valid,
-form input:active {
-  outline: none;
-}
-form input:focus {
-  border: #677a88 solid 3px;
-}
-
 .select-grad {
   width: 200px;
   padding: 15px;
@@ -154,5 +145,13 @@ select option {
   font-size: 1rem;
   font-weight: 500;
   border-radius: 0;
+}
+
+.greska-div{
+  width: 70%;
+  margin-left: 13.5%;
+  color:indianred;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
