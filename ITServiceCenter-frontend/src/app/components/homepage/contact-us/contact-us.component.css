@@ -41,10 +41,15 @@
 }
 .ContactUS-form input:valid,
 .ContactUS-form input:active,
+.ContactUS-form input:focus,
 .ContactUS-form textarea:active,
 .ContactUS-form textarea:focus{
   outline:none;
 }
+/*.ContactUS-form input:invalid{*/
+/*  border : 2px solid  darkred;*/
+/*}*/
+
 .ContactUS-form input:focus,
 .ContactUS-form textarea:focus{
   border: #677A88 solid 3px;
@@ -73,4 +78,9 @@ section div button:hover {
 }
 .h1-prim {
   color: #6C7F8D;
+}
+.greska-ime,.greska-email,.greska-textarea{
+  color:red;
+  font-weight: 600;
+  margin-bottom: 20px;
 }

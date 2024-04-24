@@ -94,7 +94,7 @@ export class ServiserComponent implements OnInit{
         this.fetchServiser();
         this.showServiserTable = true;
       },
-      error: (x) => {},
+      error: (x) => { alert("greska -> " + x.error) }
     });
   }
 

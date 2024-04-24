@@ -26,7 +26,7 @@ export class FaqComponent implements OnInit {
         this.podaciFAQ = x.faqLista;
         this.podaciFAQ.forEach ((q:any) => this.pitanje[q.id] = false);
       },
-      error: (x) => { alert("Error -> " + x.status) },
+      error: (x) => { }
     });
   }
 

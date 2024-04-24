@@ -5,43 +5,54 @@
       <p>
           <span class="text-img">
             <img
-              src="../../../assets/icons/karta.svg"
-              height="30px"
-              width="30px"
-            />
+              ngSrc="assets/icons/karta.svg"
+              alt="karta"
+              height="24" width="24"/>
             Novi grad 13 , Sarajevo , Bosna i hercegovina
           </span>
       </p>
       <p>
           <span class="text-img">
             <img
-              src="../../../assets/icons/tel.svg"
-              height="30px"
-              width="30px"
-            />
+              ngSrc="assets/icons/tel.svg"
+              alt="tel"
+              height="24" width="24"/>
             000-000-0000
           </span>
       </p>
-      <p>
-          <span class="text-img">
-            <img
-              src="../../../assets/icons/email.svg"
-              height="30px"
-              width="30px"
-            />
+      <p> <span class="text-img">
+        <img
+          ngSrc="assets/icons/email.svg"
+          alt="email" height="24" width="24"/>
             itcenter&#64;gmail.com
           </span>
       </p>
     </div>
 
     <div class="ContactUS-form">
-      <label>Name</label> <br />
-      <input type="text" /><br />
+      <label>Ime</label> <br />
+      <input #ime_polje="ngModel" name="ime" type="text"  [(ngModel)]="porukaKontakt.ime" minlength="3" required/><br />
+      <div class="greska-ime" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPoslano">
+        <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
+        <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
+      </div>
+
       <label>Email</label> <br />
-      <input type="email" /><br />
-      <label>Message</label><br />
-      <textarea></textarea><br />
-      <button class="button-login-header">Submit</button>
+      <input name="email" #email_polje="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" type="email" required [(ngModel)]="porukaKontakt.email"/><br />
+      <div class="greska-ime" *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPoslano">
+        <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
+        <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
+      </div>
+
+      <label>Poruka</label><br />
+      <textarea #textarea_polje="ngModel" name="poruka" [(ngModel)]="porukaKontakt.poruka" required minlength="20" ></textarea><br />
+      <div class="greska-ime" *ngIf="textarea_polje.invalid && (textarea_polje.touched || textarea_polje.dirty) || this.JelPoslano">
+        <span *ngIf="textarea_polje.errors?.['required']">Polje je obavezno</span>
+        <span *ngIf="textarea_polje.errors?.['minlength']">Minimum 20 karaktera</span>
+      </div>
+      <button (click)="posalji()" class="button-login-header">Submit</button>
     </div>
+
   </div>
+
 </section>
