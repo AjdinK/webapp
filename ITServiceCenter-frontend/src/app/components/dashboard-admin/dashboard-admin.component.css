@@ -124,7 +124,8 @@ h1,h2 {
   top: 100px;
 }
 .div-serviser ,
-.div-prodavac {
+.div-prodavac,
+.div-admin {
   width: 100%;
 }
 

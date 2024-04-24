@@ -98,7 +98,7 @@ export class ServiserComponent implements OnInit{
       next: (x) => {
         this.gradPodaci = x.gradovi;
       },
-      error: (x) => { alert("greska -> " + x.error) },
+      error: (x) => { alert("greska fetchGrad -> " + x.error) },
     });
   }
 

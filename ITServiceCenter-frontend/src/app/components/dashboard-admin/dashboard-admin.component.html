@@ -43,13 +43,12 @@
           width="24"
         />Naloge korisnika
       </li>
-      <li>
+      <li (click)="admin()">
         <img
           ngSrc="assets/icons/profile.svg"
           alt="profile"
           height="24"
           width="24"
-          (click)="showAdmin()"
         />Profil
       </li>
       <li (click)="idiHomepage()">
@@ -71,8 +70,9 @@
     </ul>
   </div>
 
-  <!--  right div for table and forms -->
+  <!--  right div for tables and forms -->
   <div class="div-adminEdit">
+
     <!--  Serviser component (add , edit , delete) -->
     <div class="div-serviser" *ngIf="showServiser">
       <app-serviser></app-serviser>
@@ -81,6 +81,11 @@
     <!--  Prodavac component (add , edit , delete) -->
     <div class="div-prodavac" *ngIf="showProdavac">
       <app-prodavac></app-prodavac>
+    </div>
+
+    <!--  Admin Form ( edit only , add from DB) -->
+    <div class="div-admin" *ngIf="showAdmin">
+      <app-admin></app-admin>
     </div>
 
 

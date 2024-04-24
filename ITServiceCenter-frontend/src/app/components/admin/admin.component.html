@@ -1,0 +1,116 @@
+<form #editForm = 'ngForm' *ngIf="this.adminPodaci">
+  <div class="form-group">
+    <label for="ime">Ime:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="ime"
+      name="ime"
+      required
+      minlength="3"
+      pattern="[A-Za-z\s]+"
+      #ime_polje = 'ngModel'
+      [(ngModel)]="this.adminPodaci!.ime"
+    />
+  </div>
+
+  <div class="greska-div" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPopunjeno">
+    <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="ime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
+    <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
+  </div>
+
+  <div class="form-group">
+    <label for="prezime">Prezime:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="prezime"
+      name="prezime"
+      required
+      pattern="[A-Za-z\s]+"
+      #prezime_polje = 'ngModel'
+      [(ngModel)]="this.adminPodaci!.prezime"
+    />
+  </div>
+
+  <div class="greska-div" *ngIf="prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty) || this.JelPopunjeno">
+    <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
+    <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      required
+      pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
+      #email_polje = 'ngModel'
+      [(ngModel)]="this.adminPodaci!.email"
+    />
+  </div>
+
+  <div class="greska-div" *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPopunjeno">
+    <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
+  </div>
+
+
+  <div class="form-group">
+    <label for="Grad">Grad</label>
+    <select
+      id="Grad"
+      name="Grad"
+      class="select-grad"
+      [(ngModel)]="this.adminPodaci!.gradId">
+      <option *ngFor="let x of this.gradPodaci" [value]="x.id">
+        {{ x.naziv }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="Admin">Admin:</label>
+    <input
+      class="checkbox"
+      type="checkbox"
+      id="Admin"
+      name="isAdmin"
+      [(ngModel)]="this.adminPodaci!.isAdmin"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="adminServiser">Serviser:</label>
+    <input
+      class="checkbox"
+      type="checkbox"
+      id="adminServiser"
+      name="adminServiser"
+      [(ngModel)]="this.adminPodaci!.isServiser"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="adminProdavac">Prodavac:</label>
+    <input
+      class="checkbox"
+      type="checkbox"
+      id="adminProdavac"
+      name="adminProdavac"
+      [(ngModel)]="this.adminPodaci!.isProdavac"
+    />
+  </div>
+
+
+  <button type="submit" class="btn-save" (click)="snimi(editForm)">
+    Snimi
+  </button>
+  <button type="submit" class="btn-zatvori" (click)="closeEdit()">
+    Zatvori
+  </button>
+</form>
