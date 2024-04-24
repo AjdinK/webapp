@@ -49,6 +49,10 @@ main {
   color: indianred;
   border-color: indianred;
 }
+form input:focus {
+  border: #677A88 solid 3px;
+}
+
 
 
 .login-container button {
@@ -69,10 +73,6 @@ main {
 .login-container button:hover{
   background-color: #516269;
   color: white;
-}
-
-form input:focus {
-  border: #677A88 solid 3px;
 }
 
 .form-group {

@@ -42,7 +42,7 @@ export class ContactUsComponent {
     this.JelPoslano = true;
 }
 
-  private clearForm() {
+    private clearForm() {
       this.porukaKontakt.ime="";
       this.porukaKontakt.email="";
       this.porukaKontakt.poruka="";

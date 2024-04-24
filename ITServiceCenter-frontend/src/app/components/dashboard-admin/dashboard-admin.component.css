@@ -59,7 +59,7 @@ h1,h2 {
 }
 
 .div-adminInfo {
-  width: 20%;
+  width: 15%;
   height: 100%;
   display: block;
   position: fixed;
@@ -113,7 +113,7 @@ h1,h2 {
 }
 
 .div-adminEdit {
-  width: 80%;
+  width: 85%;
   height: 100%;
   padding: 40px;
   display: flex;
