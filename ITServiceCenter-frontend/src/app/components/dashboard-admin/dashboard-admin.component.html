@@ -4,12 +4,12 @@
     <nav class="navbar">
       <h1>/Admin managment</h1>
       <div class="avatar-button">
-        <h2>Ime Admina..</h2>
         <img
           ngSrc="assets/icons/avatar.svg"
           height="50"
           width="50"
           alt="avatar"
+          (click)="admin()"
         />
         <button (click)="logout()">Logout</button>
       </div>

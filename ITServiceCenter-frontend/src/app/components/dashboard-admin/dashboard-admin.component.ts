@@ -41,7 +41,7 @@ export class DashboardAdminComponent implements OnInit {
   serviser() {
     this.showServiser = !this.showServiser;
     this.showProdavac = false;
-    this.showAdmin = true;
+    this.showAdmin = false;
   }
   prodavac() {
     this.showProdavac = !this.showProdavac;
@@ -55,4 +55,9 @@ export class DashboardAdminComponent implements OnInit {
     this.showProdavac = false;
   }
 
+  closeAll() {
+    this.showAdmin = false;
+    this.showServiser = false;
+    this.showProdavac = false;
+  }
 }
