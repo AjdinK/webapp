@@ -90,3 +90,8 @@ label {
   top: 5px;
 }
 
+.greska-email,.greska-password{
+  color:indianred;
+  font-weight: 600;
+  margin-bottom: 20px;
+}

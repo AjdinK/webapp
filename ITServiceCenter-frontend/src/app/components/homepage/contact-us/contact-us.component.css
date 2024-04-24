@@ -80,7 +80,7 @@ section div button:hover {
   color: #6C7F8D;
 }
 .greska-ime,.greska-email,.greska-textarea{
-  color:red;
+  color:indianred;
   font-weight: 600;
   margin-bottom: 20px;
 }

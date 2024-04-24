@@ -12,11 +12,16 @@ import {HeaderComponent} from "../homepage/header/header.component";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+
+  JelLogiran: boolean = false;
   constructor (private router : Router) {}
 
   email: string = '';
   lozinka: string = '';
 
-  logirajSe() { this.router.navigate(["dashboard-admin"]) }
+  logirajSe() {
+    this.JelLogiran = true;
+    this.router.navigate(["dashboard-admin"])
+  }
 
 }
