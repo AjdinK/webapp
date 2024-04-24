@@ -24,7 +24,7 @@ export class FaqComponent implements OnInit {
     this.fAQGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.podaciFAQ = x.faqLista;
-        this.podaciFAQ.forEach((q:any) => this.pitanje[q.id] = false);
+        this.podaciFAQ.forEach ((q:any) => this.pitanje[q.id] = false);
       },
       error: (x) => { alert("Error -> " + x.status) },
     });
@@ -33,6 +33,4 @@ export class FaqComponent implements OnInit {
   showOdgovor(id: number) {
     this.pitanje[id] = !this.pitanje[id];
   }
-
-
 }

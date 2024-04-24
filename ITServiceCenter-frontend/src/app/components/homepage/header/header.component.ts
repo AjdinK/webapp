@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  showNavBar: boolean = true;
   constructor(private router : Router) {
   }
   logirajSe() {
