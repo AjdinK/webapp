@@ -28,6 +28,7 @@ export class AdminComponent implements OnInit{
   adminPodaci : AdminGetByIdResponse | null = null;
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
+  formTitle:string = 'Edit Admin';
 
   ngOnInit(): void {
     this.fetchAdmin();

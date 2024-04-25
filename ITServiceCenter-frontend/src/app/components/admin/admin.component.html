@@ -1,4 +1,5 @@
 <form #editForm='ngForm' *ngIf="this.adminPodaci && this.showAdminForm">
+  <h1>{{formTitle}}</h1>
   <div class="form-group">
     <label for="ime">Ime:</label>
     <input
@@ -106,11 +107,13 @@
     />
   </div>
 
-
-  <button type="submit" class="btn-save" (click)="snimi(editForm)">
-    Snimi
-  </button>
+  <div class="div-button">
   <button type="submit" class="btn-zatvori" (click)="closeEdit()">
     Zatvori
   </button>
+    <button type="submit" class="btn-save" (click)="snimi(editForm)">
+      Snimi
+    </button>
+  </div>
+
 </form>

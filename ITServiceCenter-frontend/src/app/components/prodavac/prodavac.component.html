@@ -42,6 +42,7 @@
 <!--Prodavac from for editing the data-->
 
 <form class="serviserForm" *ngIf="showProdavacEdit" #editForm='ngForm'>
+  <h1>{{formTitle}}</h1>
   <div class="form-group">
     <label for="imeProdavac">Ime:</label>
     <input
@@ -142,16 +143,21 @@
       [(ngModel)]="this.odabraniProdavac!.isProdavac"
     />
   </div>
-  <button type="submit" class="btn-save" (click)="snimiProdavac(editForm)">
-    Save Serviser
-  </button>
-  <button type="submit" class="btn-zatvori" (click)="closeEdit()">
-    Zatvori
-  </button>
+
+  <div class="div-button">
+    <button type="submit" class="btn-zatvori" (click)="closeEdit()">
+      Zatvori
+    </button>
+    <button type="submit" class="btn-save" (click)="snimiProdavac(editForm)">
+      Snimi
+    </button>
+  </div>
+
 </form>
 
 <!-- Form for adding new Serviser -->
 <form *ngIf="showProdavacForm" #dodajForm = 'ngForm'>
+  <h1>{{formTitle}}</h1>
   <div class="form-group">
     <label for="imeProdavac">Ime:</label>
     <input
@@ -256,12 +262,16 @@
       [(ngModel)]="this.noviProdavac!.isProdavac"
     />
   </div>
-  <button type="submit" class="btn-save" (click)="dodajProdavac(dodajForm)">
-    Dodaj Serviser
-  </button>
-  <button type="submit" class="btn-zatvori" (click)="closeEdit()">
-    Zatvori
-  </button>
+
+  <div class="div-button">
+    <button type="submit" class="btn-zatvori" (click)="closeEdit()">
+      Zatvori
+    </button>
+    <button type="submit" class="btn-save" (click)="dodajProdavac(dodajForm)">
+      Snimi
+    </button>
+  </div>
+
 </form>
 
 

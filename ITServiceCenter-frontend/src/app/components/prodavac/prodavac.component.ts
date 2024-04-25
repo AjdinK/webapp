@@ -42,6 +42,8 @@ export class ProdavacComponent implements OnInit{
   showProdavacForm: boolean = false;
   searchProdavac: string = '';
 
+  formTitle:string = '';
+
   odabraniProdavac: ProdavacSnimiRequest | null = null;
   noviProdavac : ProdavacSnimiRequest | null = null;
 
@@ -88,6 +90,7 @@ export class ProdavacComponent implements OnInit{
   }
 
   editProdavac(x: any) {
+    this.formTitle = 'Edit Prodavac';
     this.showProdavacTable = false;
     this.showProdavacEdit = true;
     this.odabraniProdavac = x;
@@ -112,6 +115,7 @@ export class ProdavacComponent implements OnInit{
   }
 
   dodajNovi() {
+    this.formTitle = 'Dodaj Prodavac';
     this.showProdavacForm = true;
     this.showProdavacTable = false;
     this.showProdavacEdit = false;

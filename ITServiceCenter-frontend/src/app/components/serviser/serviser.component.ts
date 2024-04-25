@@ -41,6 +41,7 @@ export class ServiserComponent implements OnInit{
 
   odabraniServiser: ServiserSnimiRequest | null = null;
   noviServiser : ServiserSnimiRequest | null = null;
+  formTitle: string = "";
 
 
   fetchServiser() {
@@ -88,6 +89,7 @@ export class ServiserComponent implements OnInit{
   }
 
   editServiser(x: any) {
+      this.formTitle = 'Edit Serviser';
       this.showServiserEdit = true;
       this.odabraniServiser = x;
       this.showServiserTable = false;
@@ -110,6 +112,7 @@ export class ServiserComponent implements OnInit{
   }
 
   dodajNovi() {
+    this.formTitle = "Dodaj Serviser";
     this.showServiserForm = true;
     this.showServiserTable = false;
     this.showServiserEdit = false;

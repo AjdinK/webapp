@@ -44,6 +44,7 @@ ul button {
   font-size: 1rem;
   font-family: "Space Grotesk", sans-serif;
   font-weight: bolder;
+  transition: 0.2s ease-in;
 }
 nav button:hover,
 ul button:hover {
