@@ -29,6 +29,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
                     IsAdmin = a.IsAdmin,
                     IsServiser = a.IsServiser,
                     IsProdavac = a.IsProdavac,
+                    Username = a.Username,
                 })
                 .SingleAsync(a => a.Id == request.Id, cancellationToken: cancellationToken);
 

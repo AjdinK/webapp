@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminGetByIdEndpoint, AdminGetByIdResponse} from "../../endpoints/admin-endpoints/admin-get-by-id-endpoint";
 import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
+import {AdminSnimiEndpoint, AdminSnimiRequest} from "../../endpoints/admin-endpoints/admin-snimi-endpoint";
 
 @Component({
   selector: 'app-admin',
@@ -11,7 +12,8 @@ import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-e
     FormsModule,
     NgForOf,
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgOptimizedImage
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.css'
@@ -20,12 +22,15 @@ export class AdminComponent implements OnInit{
 
   constructor (
     private adminGetByIdEndpoint:AdminGetByIdEndpoint,
-    private gradGetAllEndpoint: GradGetAllEndpoint
+    private gradGetAllEndpoint: GradGetAllEndpoint,
+    private adminSnimiEndpoint : AdminSnimiEndpoint,
     ) {}
 
   JelPopunjeno: boolean = false
   showAdminForm: boolean = true;
-  adminPodaci : AdminGetByIdResponse | null = null;
+  adminPodaciFetch : AdminGetByIdResponse | null = null;
+  adminPodaciEdit : AdminSnimiRequest | null = null;
+
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
   formTitle:string = 'Edit Admin';
@@ -38,7 +43,7 @@ export class AdminComponent implements OnInit{
   fetchAdmin() {
     this.adminGetByIdEndpoint.obradi(1).subscribe({
       next: (x) => {
-        this.adminPodaci = x;
+        this.adminPodaciFetch = x;
       },
       error: (x) => { alert("greska adminGetByIdEndpoint -> " + x.error) },
     });
@@ -53,13 +58,36 @@ export class AdminComponent implements OnInit{
     });
   }
 
-  snimi (dodajForm: NgForm) {
+  snimi (form: NgForm) {
+    if (form.form.valid){
+      this.adminPodaciEdit = this.adminPodaciFetch;
+      this.adminSnimiEndpoint.obradi(this.adminPodaciEdit!).subscribe({
+        next: (x) => {
+          this.showAdminForm = false;
+          this.fetchAdmin();
+        },
+        error: (x) => { alert("greska snimiAdmin - " + x.error) },
+      })
+    }
 
   }
 
   closeEdit() {
     this.showAdminForm = false;
     this.fetchAdmin();
+  }
+
+  generisiPreview() {
+    // @ts-ignore
+    let file = document.getElementById("slika-input").files[0];
+    if (file && this.adminPodaciFetch)
+    {
+      let reader = new FileReader();
+      reader.onload = ()=> {
+        this.adminPodaciFetch!.slika_base64_format = reader.result?.toString();
+      }
+      reader.readAsDataURL(file)
+    }
   }
 
 }

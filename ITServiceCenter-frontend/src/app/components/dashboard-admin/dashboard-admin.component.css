@@ -123,11 +123,13 @@ h1,h2 {
   position: fixed;
   right: 0;
   top: 100px;
+  overflow-y: auto;
 }
 .div-serviser ,
 .div-prodavac,
 .div-admin {
   width: 100%;
+  overflow-y: auto;
 }
 
 

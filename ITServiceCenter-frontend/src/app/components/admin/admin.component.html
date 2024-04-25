@@ -1,4 +1,4 @@
-<form #editForm='ngForm' *ngIf="this.adminPodaci && this.showAdminForm">
+<form #editForm='ngForm' *ngIf="this.adminPodaciFetch && this.showAdminForm">
   <h1>{{formTitle}}</h1>
   <div class="form-group">
     <label for="ime">Ime:</label>
@@ -11,7 +11,7 @@
       minlength="3"
       pattern="[A-Za-z\s]+"
       #ime_polje = 'ngModel'
-      [(ngModel)]="this.adminPodaci!.ime"
+      [(ngModel)]="this.adminPodaciFetch!.ime"
     />
   </div>
 
@@ -31,7 +31,7 @@
       required
       pattern="[A-Za-z\s]+"
       #prezime_polje = 'ngModel'
-      [(ngModel)]="this.adminPodaci!.prezime"
+      [(ngModel)]="this.adminPodaciFetch!.prezime"
     />
   </div>
 
@@ -39,6 +39,27 @@
     <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
     <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
+  </div>
+
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input
+      type="text"
+      class="form-control"
+      id="username"
+      name="username"
+      required
+      minlength="5"
+      pattern="[A-Za-z\s]+"
+      #username_polje='ngModel'
+      [(ngModel)]="this.adminPodaciFetch!.username"
+    />
+  </div>
+
+  <div class="greska-div" *ngIf="username_polje.invalid && (username_polje.touched || username_polje.dirty) || this.JelPopunjeno">
+    <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
+    <span *ngIf="username_polje.errors?.['minlength']">Minimum 5 karaktera</span>
   </div>
 
   <div class="form-group">
@@ -51,7 +72,7 @@
       required
       pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
       #email_polje = 'ngModel'
-      [(ngModel)]="this.adminPodaci!.email"
+      [(ngModel)]="this.adminPodaciFetch!.email"
     />
   </div>
 
@@ -60,6 +81,11 @@
     <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
   </div>
 
+  <div>
+    <label class="slika-label">Nova slika</label>
+    <input id="slika-input" type="file" accept="image/*" (change)= "generisiPreview()">
+    <img src='{{this.adminPodaciFetch.slika_base64_format}}' height=200 width="200" alt="slika_korisnika" class="slika">
+  </div>
 
   <div class="form-group">
     <label for="Grad">Grad</label>
@@ -67,7 +93,7 @@
       id="Grad"
       name="Grad"
       class="select-grad"
-      [(ngModel)]="this.adminPodaci!.gradId">
+      [(ngModel)]="this.adminPodaciFetch!.gradId">
       <option *ngFor="let x of this.gradPodaci" [value]="x.id">
         {{ x.naziv }}
       </option>
@@ -81,7 +107,7 @@
       type="checkbox"
       id="Admin"
       name="isAdmin"
-      [(ngModel)]="this.adminPodaci!.isAdmin"
+      [(ngModel)]="this.adminPodaciFetch!.isAdmin"
     />
   </div>
 
@@ -92,7 +118,7 @@
       type="checkbox"
       id="adminServiser"
       name="adminServiser"
-      [(ngModel)]="this.adminPodaci!.isServiser"
+      [(ngModel)]="this.adminPodaciFetch!.isServiser"
     />
   </div>
 
@@ -103,7 +129,7 @@
       type="checkbox"
       id="adminProdavac"
       name="adminProdavac"
-      [(ngModel)]="this.adminPodaci!.isProdavac"
+      [(ngModel)]="this.adminPodaciFetch!.isProdavac"
     />
   </div>
 

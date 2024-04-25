@@ -8,6 +8,7 @@ form {
   background-color: #000408;
   color: white;
   font-size: 1.1rem;
+  margin-bottom: 150px;
 }
 form input {
   padding: 7px;
@@ -59,6 +60,7 @@ form input {
 }
 
 .select-grad {
+  margin-top: 30px;
   width: 200px;
   padding: 15px;
   border: none;
@@ -113,5 +115,23 @@ form h1 {
   text-align: center;
   margin-bottom: 40px;
 }
-
-
+/*#slika-input{*/
+/*  width: 87.2%;*/
+/*  margin-left: 12.8%;*/
+/*  margin-bottom: 30px;*/
+/*  margin-top: -30px;*/
+/*}*/
+/*.slika{*/
+/*  padding: 10px;*/
+/*  border : 2px solid white;*/
+/*}*/
+input#slika-input {
+  width: 15%;
+  margin: 30px 0;
+}
+input#slika-input img {
+  margin: 30px 0;
+}
+.slika-label{
+  margin-right: 6%;
+}

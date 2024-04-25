@@ -5,27 +5,26 @@ import {ConfigFile} from "../../configFile";
 import {Injectable} from "@angular/core";
 
 @Injectable({ providedIn: 'root' })
-export class AdminGetByIdEndpoint implements MyBaseEndpoint<number, AdminGetByIdResponse> {
+export class AdminSnimiEndpoint implements MyBaseEndpoint<AdminSnimiRequest, number> {
 
   constructor(private httpKlijent : HttpClient) {}
 
-    obradi(request: number): Observable<AdminGetByIdResponse> {
-    let url = ConfigFile.adresa_servera + "/Admin/GetById?Id=" + request;
-        return this.httpKlijent.get<AdminGetByIdResponse>(url);
+    obradi(request: AdminSnimiRequest): Observable<number> {
+    let url = ConfigFile.adresa_servera + "/Admin/GetById?Id=";
+        return this.httpKlijent.post<number>(url , request);
     }
 
 }
 
-export interface AdminGetByIdResponse {
+export interface AdminSnimiRequest {
   id:number;
   ime:string;
   prezime:string;
+  username:string;
   email:string;
   isAdmin:boolean;
   isServiser:boolean;
   isProdavac:boolean;
   gradId:number;
-  spolId:number;
-  username:string;
   slika_base64_format: string | undefined;
 }
