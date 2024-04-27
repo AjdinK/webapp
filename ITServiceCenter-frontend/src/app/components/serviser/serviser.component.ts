@@ -1,35 +1,41 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import {
   ServiserGetAllEndpoint,
-  ServiserGetAllResponseServiseri
-} from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
-import {ServiserSnimiEndpoint, ServiserSnimiRequest} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
-import {ServiserBrisiEndpoint} from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
-import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
+  ServiserGetAllResponseServiseri,
+} from '../../endpoints/serviser-endpoints/serviser-get-all-endpoint';
+import {
+  ServiserSnimiEndpoint,
+  ServiserSnimiRequest,
+} from '../../endpoints/serviser-endpoints/serviser-snimi-endpoint';
+import { ServiserBrisiEndpoint } from '../../endpoints/serviser-endpoints/serviser-brisi-endpoint';
+import {
+  GradGetAllEndpoint,
+  GradGetAllResponseGrad,
+} from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
 
 @Component({
   selector: 'app-serviser',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule, NgOptimizedImage],
   templateUrl: './serviser.component.html',
-  styleUrl: './serviser.component.css'
+  styleUrl: './serviser.component.css',
 })
-export class ServiserComponent implements OnInit{
+export class ServiserComponent implements OnInit {
   constructor(
     private serviserGetAllEndpoint: ServiserGetAllEndpoint,
     private serviserSnimiEndpoint: ServiserSnimiEndpoint,
     private serviserBrisiEndpoint: ServiserBrisiEndpoint,
-    private gradGetAllEndpoint: GradGetAllEndpoint,
+    private gradGetAllEndpoint: GradGetAllEndpoint
   ) {}
 
   ngOnInit(): void {
-        this.fetchServiser();
-        this.fetchGrad();
+    this.fetchServiser();
+    this.fetchGrad();
   }
 
-  JelPopunjeno:  boolean = false;
+  JelPopunjeno: boolean = false;
 
   serviserPodaci: ServiserGetAllResponseServiseri[] | null = [];
   gradPodaci: GradGetAllResponseGrad[] | null = null;
@@ -40,19 +46,22 @@ export class ServiserComponent implements OnInit{
   searchServiser: string = '';
 
   odabraniServiser: ServiserSnimiRequest | null = null;
-  noviServiser : ServiserSnimiRequest | null = null;
-  formTitle: string = "";
+  noviServiser: ServiserSnimiRequest | null = null;
+  formTitle: string = '';
 
-
+  //fetch serviser data from db
   fetchServiser() {
     this.serviserGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.serviserPodaci = x.listaServiser;
       },
-      error: (x) => { alert("greska -> " + x.error) },
+      error: (x) => {
+        alert('greska -> ' + x.error);
+      },
     });
   }
 
+  //search for serviser using ime , prezime or username
   filtrirajServiser() {
     if (this.serviserPodaci == null) return [];
     return this.serviserPodaci.filter(
@@ -63,47 +72,59 @@ export class ServiserComponent implements OnInit{
     );
   }
 
-  snimiServiser(editForm:NgForm) {
-    if (editForm.form.valid){
-    this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
-      next: (x: any) => {
-        this.showServiserEdit = false;
-        this.showServiserForm = false;
-        this.fetchServiser();
-        this.showServiserTable = true;
-      },
-      error: (x) => { alert("greska snimiServiser -> " + x.error) },
-    });
+  //save serviser data from the form and check the form if is it valid? or not
+  snimiServiser(editForm: NgForm) {
+    if (editForm.form.valid) {
+      this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
+        next: (x: any) => {
+          this.showServiserEdit = false;
+          this.showServiserForm = false;
+          this.fetchServiser();
+          this.showServiserTable = true;
+        },
+        error: (x) => {
+          alert('greska snimiServiser -> ' + x.error);
+        },
+      });
     }
+    this.JelPopunjeno = true;
   }
 
-  brisiServiser (id: number) {
-    if (confirm("Da li zelite izbrisati Serviser"))
-    this.serviserBrisiEndpoint.obradi(id).subscribe({
-      next: (x) => {
-        this.fetchServiser();
-        this.showServiserTable = true;
-      },
-      error: (x) => { alert("greska brisiServiser -> " + x.error) }
-    });
+  //soft delete the user from the data
+  brisiServiser(id: number) {
+    if (confirm('Da li zelite izbrisati Serviser'))
+      this.serviserBrisiEndpoint.obradi(id).subscribe({
+        next: (x) => {
+          this.fetchServiser();
+          this.showServiserTable = true;
+        },
+        error: (x) => {
+          alert('greska brisiServiser -> ' + x.error);
+        },
+      });
   }
 
+  //show the edit form and hide the data table when press on edit button
   editServiser(x: any) {
-      this.formTitle = 'Edit Serviser';
-      this.showServiserEdit = true;
-      this.odabraniServiser = x;
-      this.showServiserTable = false;
+    this.formTitle = 'Edit Serviser';
+    this.showServiserEdit = true;
+    this.odabraniServiser = x;
+    this.showServiserTable = false;
   }
 
+  //fetch grad data from db
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
         this.gradPodaci = x.gradovi;
       },
-      error: (x) => { alert("greska fetchGrad -> " + x.error) },
+      error: (x) => {
+        alert('greska fetchGrad -> ' + x.error);
+      },
     });
   }
 
+  //close the edit form and show the data table refreshed when press on zatvori button
   closeEdit() {
     this.showServiserEdit = false;
     this.fetchServiser();
@@ -111,36 +132,74 @@ export class ServiserComponent implements OnInit{
     this.showServiserForm = false;
   }
 
+  //adding new serviser and show the form
   dodajNovi() {
-    this.formTitle = "Dodaj Serviser";
+    this.formTitle = 'Dodaj Serviser';
     this.showServiserForm = true;
     this.showServiserTable = false;
     this.showServiserEdit = false;
     this.noviServiser = {
-      id:0,
-      ime:'',
-      prezime:'',
-      gradID:1,
-      spolID:1,
-      isServiser:true,
-      username:'',
-      email:'',
-      }
-    }
+      id: 0,
+      ime: '',
+      prezime: '',
+      gradID: 1,
+      spolID: 1,
+      isServiser: true,
+      username: '',
+      email: '',
+      slikaKorisnikaNovaString: '',
+    };
+  }
 
+  //save serviser data from the form and check the data if is it valid? or not
   dodajServiser(dodajForm: NgForm) {
-    if (dodajForm.form.valid){
+    if (dodajForm.form.valid) {
       this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
-      next: (x: any) => {
-        this.showServiserEdit = false;
-        this.fetchServiser();
-        this.showServiserTable = true;
-        this.showServiserForm = false;
-      },
-        error: (x) => { alert("greska snimiServiser -> " + x.error) },
-    });
+        next: (x: any) => {
+          this.showServiserEdit = false;
+          this.fetchServiser();
+          this.showServiserTable = true;
+          this.showServiserForm = false;
+        },
+        error: (x) => {
+          alert('greska snimiServiser -> ' + x.error);
+        },
+      });
+    }
+    this.JelPopunjeno = true;
+  }
+
+  //to show the image in preview box for the edit form
+  generisiPreview() {
+    // @ts-ignore
+    let file = document.getElementById('slika-input').files[0];
+    if (file && this.odabraniServiser) {
+      let reader = new FileReader();
+      reader.onload = () => {
+        this.odabraniServiser!.slikaKorisnikaNovaString =
+          reader.result?.toString();
+      };
+      reader.readAsDataURL(file);
     }
   }
 
-}
+  //to show the image in preview box for the new user
+  generisiPreviewZaNovi() {
+    // @ts-ignore
+    let file = document.getElementById('slika-input').files[0];
+    if (file && this.noviServiser) {
+      let reader = new FileReader();
+      reader.onload = () => {
+        this.noviServiser!.slikaKorisnikaNovaString = reader.result?.toString();
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
+  //to load the image from db and to add the missing part
+  showSlikaFromDB() {
+    return (
+      'data:image/png;base64,' + this.odabraniServiser!.slikaKorisnikaNovaString
+    );
+  }
+}

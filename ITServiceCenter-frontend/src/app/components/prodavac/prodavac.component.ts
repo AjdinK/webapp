@@ -37,8 +37,6 @@ export class ProdavacComponent implements OnInit {
     this.fetchGrad();
   }
 
-  JelPopunjeno: boolean = false;
-
   prodavacPodaci: ProdavacGetAllResponseProdavac[] | null = [];
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
@@ -48,10 +46,12 @@ export class ProdavacComponent implements OnInit {
   searchProdavac: string = '';
 
   formTitle: string = '';
+  JelPopunjeno: boolean = false;
 
   odabraniProdavac: ProdavacSnimiRequest | null = null;
   noviProdavac: ProdavacSnimiRequest | null = null;
 
+  //fetch grad data from db
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
@@ -63,6 +63,7 @@ export class ProdavacComponent implements OnInit {
     });
   }
 
+  //fetch prodavac data from db
   fetchProdavac() {
     this.prodavacGetAllEndpoint.obradi().subscribe({
       next: (x) => {
@@ -74,6 +75,7 @@ export class ProdavacComponent implements OnInit {
     });
   }
 
+  //search for prodavac using ime , prezime or username
   filtrirajProdavac() {
     if (this.prodavacPodaci == null) return [];
     return this.prodavacPodaci.filter(
@@ -84,6 +86,7 @@ export class ProdavacComponent implements OnInit {
     );
   }
 
+  //save prodavac data from the form and check the form if is it valid? or not
   snimiProdavac(editForm: NgForm) {
     if (editForm.form.valid) {
       this.prodavacSnimiEndpoint.obradi(this.odabraniProdavac!).subscribe({
@@ -101,6 +104,7 @@ export class ProdavacComponent implements OnInit {
     this.JelPopunjeno = true;
   }
 
+  //show the edit form and hide the data table when press on edit button
   editProdavac(x: any) {
     this.formTitle = 'Edit Prodavac';
     this.showProdavacTable = false;
@@ -108,6 +112,7 @@ export class ProdavacComponent implements OnInit {
     this.odabraniProdavac = x;
   }
 
+  //close the edit form and show the data table refreshed when press on zatvori button
   closeEdit() {
     this.showProdavacEdit = false;
     this.fetchProdavac();
@@ -115,6 +120,7 @@ export class ProdavacComponent implements OnInit {
     this.showProdavacForm = false;
   }
 
+  //soft delete the user from the data
   brisiProdavac(id: number) {
     if (confirm('Da li zelite izbrisati Prodavaca'))
       this.prodavacBrisiEndpoint.obradi(id).subscribe({
@@ -128,6 +134,7 @@ export class ProdavacComponent implements OnInit {
       });
   }
 
+  //adding new prodavac and show the form
   dodajNovi() {
     this.formTitle = 'Dodaj Prodavac';
     this.showProdavacForm = true;
@@ -142,10 +149,11 @@ export class ProdavacComponent implements OnInit {
       isProdavac: true,
       username: '',
       email: '',
-      slikaKorisnikaNovaString: 'Not_Found',
+      slikaKorisnikaNovaString: '',
     };
   }
 
+  //save serviser data from the form and check the data if is it valid? or not
   dodajProdavac(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
       this.prodavacSnimiEndpoint.obradi(this.noviProdavac!).subscribe({
@@ -163,7 +171,7 @@ export class ProdavacComponent implements OnInit {
     this.JelPopunjeno = true;
   }
 
-  //to show the image in preview box
+  //to show the image in preview box for the edit form
   generisiPreview() {
     // @ts-ignore
     let file = document.getElementById('slika-input').files[0];
@@ -177,6 +185,7 @@ export class ProdavacComponent implements OnInit {
     }
   }
 
+  //to show the image in preview box for the new user
   generisiPreviewZaNovi() {
     // @ts-ignore
     let file = document.getElementById('slika-input').files[0];

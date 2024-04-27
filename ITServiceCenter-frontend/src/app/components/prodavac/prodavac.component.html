@@ -1,7 +1,7 @@
 <!-- table to show the fetch data from db in table and CRUD operation for prodavac , it show only if set true -->
 
 <div class="div-table" *ngIf="this.showProdavacTable">
-  <input type="text" [(ngModel)]="this.searchProdavac" placeholder="Pretraži servise..." />
+  <input type="text" [(ngModel)]="this.searchProdavac" placeholder="Pretraži prodavac....." />
   <button (click)="dodajNovi()" class="dodaj">+ Dodaj Prodavac</button>
   <table>
     <thead>
