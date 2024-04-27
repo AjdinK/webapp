@@ -15,11 +15,13 @@ header .navbar {
   justify-content: space-between;
   max-width: 1200px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 header .navbar .menu-links {
   display: flex;
   gap: 30px;
+  overflow: hidden;
 }
 
 .menu-links li {
@@ -30,9 +32,7 @@ header .navbar .menu-links {
   letter-spacing: 2px;
 }
 
-.navbar button,
-.search-button,
-section div button {
+.navbar button {
   background-color: white;
   color: black;
   padding: 15px 40px;
@@ -44,10 +44,11 @@ section div button {
   font-family: "Space Grotesk", sans-serif;
   font-weight: bolder;
   transition: 0.2s ease;
+  overflow: hidden;
 }
 .navbar button:hover,
 .search-button:hover,
-section div button:hover{
+section div button:hover {
   background-color: #516269;
   color: white;
 }
@@ -105,4 +106,14 @@ section div button:hover{
 .menu-links a:hover:after,
 .menu-links .current a:after {
   max-width: 100%;
+}
+
+@media only screen and (max-width: 960px) {
+  .navbar button {
+    display: none;
+  }
+
+  .menu-links li {
+    display: none;
+  }
 }

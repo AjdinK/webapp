@@ -4,90 +4,57 @@
     <nav class="navbar">
       <h1>/Admin managment</h1>
       <div class="avatar-button">
-        <img
-          ngSrc="assets/icons/avatar.svg"
-          height="50"
-          width="50"
-          alt="avatar"
-          (click)="admin()"
-        />
+        <img ngSrc="assets/icons/avatar.svg" height="50" width="50" alt="avatar" (click)="admin()" />
         <button (click)="logout()">Logout</button>
       </div>
     </nav>
   </header>
 
-  <!--  left menu bar -->
+
+
+  <!--  left menu bar (setting tab) -->
   <div class="div-adminInfo">
     <ul class="menu-links">
       <li (click)="serviser()">
-        <img
-          ngSrc="assets/icons/serviseri.svg"
-          alt="serviseri"
-          height="24"
-          width="24"
-        />Lista Servisera
+        <img ngSrc="assets/icons/serviseri.svg" alt="serviseri" height="24" width="24" />Lista Servisera
       </li>
       <li (click)="prodavac()">
-        <img
-          ngSrc="assets/icons/prodavac.svg"
-          alt="prodavac"
-          height="24"
-          width="24"
-        />Lista Prodavaca
+        <img ngSrc="assets/icons/prodavac.svg" alt="prodavac" height="24" width="24" />Lista Prodavaca
       </li>
       <li (click)="fetchNalog()">
-        <img
-          ngSrc="assets/icons/nalog.svg"
-          alt="nalog"
-          height="24"
-          width="24"
-        />Naloge korisnika
+        <img ngSrc="assets/icons/nalog.svg" alt="nalog" height="24" width="24" />Naloge korisnika
       </li>
       <li (click)="admin()">
-        <img
-          ngSrc="assets/icons/profile.svg"
-          alt="profile"
-          height="24"
-          width="24"
-        />Profil
+        <img ngSrc="assets/icons/profile.svg" alt="profile" height="24" width="24" />Profil
       </li>
       <li (click)="idiHomepage()">
-        <img
-          ngSrc="assets/icons/homepage.svg"
-          alt="homepage"
-          height="24"
-          width="24"
-        />Homepage
+        <img ngSrc="assets/icons/homepage.svg" alt="homepage" height="24" width="24" />Homepage
       </li>
       <li (click)="logout()">
-        <img
-          ngSrc="assets/icons/logout.svg"
-          alt="logout"
-          height="24"
-          width="24"
-        />Logout
+        <img ngSrc="assets/icons/logout.svg" alt="logout" height="24" width="24" />Logout
       </li>
     </ul>
   </div>
 
-  <!--  right div for tables and forms -->
+
+
+  <!--  right div for tables and forms data it will show serviser , prodavac and admin component -->
   <div class="div-adminEdit">
 
-    <!--  Serviser component (add , edit , delete) -->
+    <!-- show Serviser component (add , edit , delete) only on true -->
     <div class="div-serviser" *ngIf="showServiser">
       <app-serviser></app-serviser>
     </div>
 
-    <!--  Prodavac component (add , edit , delete) -->
+    <!-- show prodavac component (add , edit , delete) only on true -->
     <div class="div-prodavac" *ngIf="showProdavac">
       <app-prodavac></app-prodavac>
     </div>
 
-    <!--  Admin Form ( edit only , add from DB) -->
+    <!-- show admin component (add , edit , delete) only on true -->
     <div class="div-admin" *ngIf="showAdmin">
       <app-admin></app-admin>
     </div>
-
 
   </div>
 </main>

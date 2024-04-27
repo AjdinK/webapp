@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ServiserComponent } from '../serviser/serviser.component';
 import { ProdavacComponent } from '../prodavac/prodavac.component';
-import {AdminGetByIdEndpoint} from "../../endpoints/admin-endpoints/admin-get-by-id-endpoint";
-import {AdminComponent} from "../admin/admin.component";
+import { AdminGetByIdEndpoint } from '../../endpoints/admin-endpoints/admin-get-by-id-endpoint';
+import { AdminComponent } from '../admin/admin.component';
 @Component({
   selector: 'app-dashboard-admin',
   standalone: true,
@@ -21,16 +21,16 @@ import {AdminComponent} from "../admin/admin.component";
   styleUrl: './dashboard-admin.component.css',
 })
 export class DashboardAdminComponent implements OnInit {
-
-  constructor ( private router: Router ) {}
-
+  constructor(private router: Router) {}
 
   showServiser: boolean = false;
   showProdavac: boolean = false;
   showAdmin: boolean = false;
 
   ngOnInit(): void {}
-  logout() { this.router.navigate(['/homepage']); }
+  logout() {
+    this.router.navigate(['/homepage']);
+  }
 
   fetchNalog() {}
 
@@ -51,12 +51,6 @@ export class DashboardAdminComponent implements OnInit {
 
   admin() {
     this.showAdmin = !this.showAdmin;
-    this.showServiser = false;
-    this.showProdavac = false;
-  }
-
-  closeAll() {
-    this.showAdmin = false;
     this.showServiser = false;
     this.showProdavac = false;
   }

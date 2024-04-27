@@ -3,50 +3,56 @@
     <div class="ContactUS-info">
       <h1 class="h1-prim">#Contact US</h1>
       <p>
-          <span class="text-img">
-            <img
-              ngSrc="assets/icons/karta.svg"
-              alt="karta"
-              height="24" width="24"/>
-            Novi grad 13 , Sarajevo , Bosna i hercegovina
-          </span>
+        <span class="text-img">
+          <img ngSrc="assets/icons/karta.svg" alt="karta" height="24" width="24" />
+          Novi grad 13 , Sarajevo , Bosna i hercegovina
+        </span>
       </p>
       <p>
-          <span class="text-img">
-            <img
-              ngSrc="assets/icons/tel.svg"
-              alt="tel"
-              height="24" width="24"/>
-            000-000-0000
-          </span>
+        <span class="text-img">
+          <img ngSrc="assets/icons/tel.svg" alt="tel" height="24" width="24" />
+          000-000-0000
+        </span>
       </p>
       <p> <span class="text-img">
-        <img
-          ngSrc="assets/icons/email.svg"
-          alt="email" height="24" width="24"/>
-            itcenter&#64;gmail.com
-          </span>
+          <img ngSrc="assets/icons/email.svg" alt="email" height="24" width="24" />
+          itcenter&#64;gmail.com
+        </span>
       </p>
     </div>
 
+
+    <!-- form to send data,info and contact the IT service center  -->
+
     <form class="ContactUS-form" #porukaForm='ngForm'>
       <label>Ime</label> <br />
-      <input #ime_polje="ngModel" name="ime" type="text"  [(ngModel)]="porukaKontakt.ime" minlength="3" required placeholder="Ime"/><br />
-      <div class="greska-ime" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPoslano">
+      <input #ime_polje="ngModel" name="ime" type="text" [(ngModel)]="porukaKontakt.ime" minlength="3" required
+        placeholder="Ime" /><br />
+
+      <!-- div for validation and to print erros , it shows only on dirty , touched ,
+    or when the user press submit button when fileds are invalid
+    and it also use pattern to enter only characters without numbers
+    same thing for prezime,username,email..etc
+-->
+      <div class="greska-ime" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPopunjeno">
         <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
         <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
       </div>
 
       <label>Email</label> <br />
-      <input name="email" #email_polje="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" type="email" required [(ngModel)]="porukaKontakt.email" placeholder="Email"/><br />
-      <div class="greska-ime" *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPoslano">
+      <input name="email" #email_polje="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
+        type="email" required [(ngModel)]="porukaKontakt.email" placeholder="Email" /><br />
+      <div class="greska-ime"
+        *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPopunjeno">
         <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
         <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
       </div>
 
       <label>Poruka</label><br />
-      <textarea #textarea_polje="ngModel" name="poruka" [(ngModel)]="porukaKontakt.poruka" required minlength="20" placeholder="Poruka" ></textarea><br />
-      <div class="greska-ime" *ngIf="textarea_polje.invalid && (textarea_polje.touched || textarea_polje.dirty) || this.JelPoslano">
+      <textarea #textarea_polje="ngModel" name="poruka" [(ngModel)]="porukaKontakt.poruka" required minlength="20"
+        placeholder="Poruka"></textarea><br />
+      <div class="greska-ime"
+        *ngIf="textarea_polje.invalid && (textarea_polje.touched || textarea_polje.dirty) || this.JelPopunjeno">
         <span *ngIf="textarea_polje.errors?.['required']">Polje je obavezno</span>
         <span *ngIf="textarea_polje.errors?.['minlength']">Minimum 20 karaktera</span>
       </div>
@@ -54,5 +60,4 @@
     </form>
 
   </div>
-
 </section>

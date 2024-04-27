@@ -65,7 +65,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  //save admin data from db and check the form if is it valid? or not
+  //save admin data from the form and check the form if is it valid? or not
   snimi(editForm: NgForm) {
     if (editForm.form.valid) {
       this.adminSnimiEndpoint.obradi(this.adminPodaciFetch!).subscribe({

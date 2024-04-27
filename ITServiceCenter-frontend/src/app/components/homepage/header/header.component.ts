@@ -1,17 +1,16 @@
-import {Component, Input} from '@angular/core';
-import {Router} from "@angular/router";
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent {
   showNavBar: boolean = true;
-  constructor(private router : Router) {
-  }
+  constructor(private router: Router) {}
   logirajSe() {
     this.router.navigate(['/login']);
   }

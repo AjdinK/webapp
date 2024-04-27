@@ -1,4 +1,4 @@
-.search-button{
+.search-button {
   background-color: white;
   color: black;
   padding: 15px 40px;
@@ -10,12 +10,12 @@
   font-family: "Space Grotesk", sans-serif;
   font-weight: bolder;
   transition: 0.2s ease;
+  overflow: hidden;
 }
 .search-button:hover {
   background-color: #516269;
   color: white;
 }
-
 
 .search-section {
   height: 100vh;
@@ -23,6 +23,7 @@
   align-items: center;
   padding: 0 20px;
   z-index: 1;
+  overflow: hidden;
 }
 .search-section .search {
   position: relative;
@@ -47,6 +48,7 @@
   font-size: 1rem;
   font-weight: bold;
   margin-top: 5px;
+  overflow: hidden;
 }
 .search-section .search button {
   font-size: 1rem;
@@ -61,4 +63,6 @@
 .search-button {
   margin-left: 60px;
 }
-
+button {
+  overflow: hidden;
+}
