@@ -20,8 +20,8 @@ header .navbar {
 
 header .navbar .menu-links {
   display: flex;
+  align-items: center;
   gap: 30px;
-  overflow: hidden;
 }
 
 .menu-links li {
@@ -46,9 +46,7 @@ header .navbar .menu-links {
   transition: 0.2s ease;
   overflow: hidden;
 }
-.navbar button:hover,
-.search-button:hover,
-section div button:hover {
+.navbar button:hover {
   background-color: #516269;
   color: white;
 }
