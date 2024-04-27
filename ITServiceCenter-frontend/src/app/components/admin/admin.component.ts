@@ -33,9 +33,7 @@ export class AdminComponent implements OnInit {
   adminPodaciEdit: AdminSnimiRequest | null = null;
 
   gradPodaci: GradGetAllResponseGrad[] | null = null;
-
   formTitle: string = 'Edit Admin';
-
   JelPopunjeno: boolean = false;
 
   ngOnInit(): void {
@@ -80,6 +78,7 @@ export class AdminComponent implements OnInit {
         },
       });
     }
+    this.JelPopunjeno = true;
   }
   //close and refresh admin data from db
   closeEdit() {

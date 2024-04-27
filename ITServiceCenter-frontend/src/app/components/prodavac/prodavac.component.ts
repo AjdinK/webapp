@@ -98,6 +98,7 @@ export class ProdavacComponent implements OnInit {
         },
       });
     }
+    this.JelPopunjeno = true;
   }
 
   editProdavac(x: any) {
@@ -141,7 +142,7 @@ export class ProdavacComponent implements OnInit {
       isProdavac: true,
       username: '',
       email: '',
-      slikaKorisnikaNovaString: '',
+      slikaKorisnikaNovaString: 'Not_Found',
     };
   }
 
@@ -159,6 +160,7 @@ export class ProdavacComponent implements OnInit {
         },
       });
     }
+    this.JelPopunjeno = true;
   }
 
   //to show the image in preview box
@@ -170,6 +172,18 @@ export class ProdavacComponent implements OnInit {
       reader.onload = () => {
         this.odabraniProdavac!.slikaKorisnikaNovaString =
           reader.result?.toString();
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  generisiPreviewZaNovi() {
+    // @ts-ignore
+    let file = document.getElementById('slika-input').files[0];
+    if (file && this.noviProdavac) {
+      let reader = new FileReader();
+      reader.onload = () => {
+        this.noviProdavac!.slikaKorisnikaNovaString = reader.result?.toString();
       };
       reader.readAsDataURL(file);
     }
