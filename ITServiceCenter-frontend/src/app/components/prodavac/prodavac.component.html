@@ -1,40 +1,36 @@
 <div class="div-table" *ngIf="this.showProdavacTable">
-  <input
-    type="text"
-    [(ngModel)]="this.searchProdavac"
-    placeholder="Pretraži servise..."
-  />
+  <input type="text" [(ngModel)]="this.searchProdavac" placeholder="Pretraži servise..." />
   <button (click)="dodajNovi()" class="dodaj">+ Dodaj Prodavac</button>
   <table>
     <thead>
-    <tr>
-      <th>Id</th>
-      <th>Ime</th>
-      <th>Prezime</th>
-      <th>Username</th>
-      <th>Email</th>
-      <th>Grad ID</th>
-      <th>Spol ID</th>
-      <th>Is Prodavac</th>
-      <th>Akcije</th>
-    </tr>
+      <tr>
+        <th>Id</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Grad ID</th>
+        <th>Spol ID</th>
+        <th>Is Prodavac</th>
+        <th>Akcije</th>
+      </tr>
     </thead>
 
     <tbody *ngFor="let x of filtrirajProdavac()">
-    <tr>
-      <td>{{ x.id }}</td>
-      <td>{{ x.ime }}</td>
-      <td>{{ x.prezime }}</td>
-      <td>{{ x.username }}</td>
-      <td>{{ x.email }}</td>
-      <td>{{ x.gradID }}</td>
-      <td>{{ x.spolID }}</td>
-      <td>{{ x.isProdavac }}</td>
-      <td>
-        <button (click)="editProdavac(x)">Edit</button>
-        <button class="brisiServiser" (click)="brisiProdavac(x.id)"> Brisi </button>
-      </td>
-    </tr>
+      <tr>
+        <td>{{ x.id }}</td>
+        <td>{{ x.ime }}</td>
+        <td>{{ x.prezime }}</td>
+        <td>{{ x.username }}</td>
+        <td>{{ x.email }}</td>
+        <td>{{ x.gradID }}</td>
+        <td>{{ x.spolID }}</td>
+        <td>{{ x.isProdavac }}</td>
+        <td>
+          <button (click)="editProdavac(x)">Edit</button>
+          <button class="brisiServiser" (click)="brisiProdavac(x.id)"> Brisi </button>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -45,17 +41,8 @@
   <h1>{{formTitle}}</h1>
   <div class="form-group">
     <label for="imeProdavac">Ime:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="imeProdavac"
-      name="ime"
-      required
-      minlength="3"
-      pattern="[A-Za-z\s]+"
-      #ime_polje="ngModel"
-      [(ngModel)]="this.odabraniProdavac!.ime"
-    />
+    <input type="text" class="form-control" id="imeProdavac" name="ime" required minlength="3" pattern="[A-Za-z\s]+"
+      #ime_polje="ngModel" [(ngModel)]="this.odabraniProdavac!.ime" />
   </div>
   <div class="greska-div" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPopunjeno">
     <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
@@ -65,58 +52,35 @@
 
   <div class="form-group">
     <label for="prezimeProdavac">Prezime:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="prezimeProdavac"
-      name="prezime"
-      #prezime_polje='ngModel'
-      required
-      minlength="3"
-      pattern="[A-Za-z\s]+"
-      [(ngModel)]="this.odabraniProdavac!.prezime"
-    />
+    <input type="text" class="form-control" id="prezimeProdavac" name="prezime" #prezime_polje='ngModel' required
+      minlength="3" pattern="[A-Za-z\s]+" [(ngModel)]="this.odabraniProdavac!.prezime" />
   </div>
-  <div class="greska-div" *ngIf="prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty) || this.JelPopunjeno">
+  <div class="greska-div"
+    *ngIf="prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty) || this.JelPopunjeno">
     <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
     <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
   </div>
   <div class="form-group">
     <label for="emailProdavac">Email:</label>
-    <input
-      type="email"
-      class="form-control"
-      id="emailProdavac"
-      name="email"
-      required
-      #email_polje='ngModel'
-      [(ngModel)]="this.odabraniProdavac!.email"
-      pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
-    />
+    <input type="email" class="form-control" id="emailProdavac" name="email" required #email_polje='ngModel'
+      [(ngModel)]="this.odabraniProdavac!.email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" />
   </div>
 
-  <div class="greska-div" *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPopunjeno">
+  <div class="greska-div"
+    *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPopunjeno">
     <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
   </div>
 
   <div class="form-group">
     <label for="usernameProdavac">Username:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="usernameProdavac"
-      name="username"
-      required
-      pattern="[A-Za-z\s]+"
-      #username_polje = "ngModel"
-      minlength="5"
-      [(ngModel)]="this.odabraniProdavac!.username"
-    />
+    <input type="text" class="form-control" id="usernameProdavac" name="username" required pattern="[A-Za-z\s]+"
+      #username_polje="ngModel" minlength="5" [(ngModel)]="this.odabraniProdavac!.username" />
   </div>
 
-  <div class="greska-div" *ngIf="username_polje.invalid && (username_polje.touched || username_polje.dirty) || this.JelPopunjeno">
+  <div class="greska-div"
+    *ngIf="username_polje.invalid && (username_polje.touched || username_polje.dirty) || this.JelPopunjeno">
     <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
     <span *ngIf="username_polje.errors?.['minlength']">Minimum 5 karaktera</span>
@@ -124,24 +88,15 @@
 
   <div class="form-group">
     <label for="Grad">Grad</label>
-    <select
-      id="Grad"
-      name="Grad"
-      class="select-grad"
-      [(ngModel)]="this.odabraniProdavac!.gradID">
+    <select id="Grad" name="Grad" class="select-grad" [(ngModel)]="this.odabraniProdavac!.gradID">
       <option *ngFor="let x of this.gradPodaci" [value]="x.id"> {{ x.naziv }} </option>
     </select>
   </div>
 
   <div class="form-group">
     <label for="Prodavac">Prodavac:</label>
-    <input
-      class="checkbox"
-      type="checkbox"
-      id="Prodavac"
-      name="isServiser"
-      [(ngModel)]="this.odabraniProdavac!.isProdavac"
-    />
+    <input class="checkbox" type="checkbox" id="Prodavac" name="isServiser"
+      [(ngModel)]="this.odabraniProdavac!.isProdavac" />
   </div>
 
   <div class="div-button">
@@ -155,22 +110,13 @@
 
 </form>
 
-<!-- Form for adding new Serviser -->
-<form *ngIf="showProdavacForm" #dodajForm = 'ngForm'>
+<!-- Form for adding new Prodavac -->
+<form *ngIf="showProdavacForm" #dodajForm='ngForm'>
   <h1>{{formTitle}}</h1>
   <div class="form-group">
     <label for="imeProdavac">Ime:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="ime"
-      name="ime"
-      required
-      minlength="3"
-      pattern="[A-Za-z\s]+"
-      #ime_polje = 'ngModel'
-      [(ngModel)]="this.noviProdavac!.ime"
-    />
+    <input type="text" class="form-control" id="ime" name="ime" required minlength="3" pattern="[A-Za-z\s]+"
+      #ime_polje='ngModel' [(ngModel)]="this.noviProdavac!.ime" />
   </div>
 
   <div class="greska-div" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPopunjeno">
@@ -181,19 +127,12 @@
 
   <div class="form-group">
     <label for="prezimeProdavac">Prezime:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="prezime"
-      name="prezime"
-      required
-      pattern="[A-Za-z\s]+"
-      #prezime_polje = 'ngModel'
-      [(ngModel)]="this.noviProdavac!.prezime"
-    />
+    <input type="text" class="form-control" id="prezime" name="prezime" required pattern="[A-Za-z\s]+"
+      #prezime_polje='ngModel' [(ngModel)]="this.noviProdavac!.prezime" />
   </div>
 
-  <div class="greska-div" *ngIf="prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty) || this.JelPopunjeno">
+  <div class="greska-div"
+    *ngIf="prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty) || this.JelPopunjeno">
     <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
     <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
@@ -201,39 +140,25 @@
 
   <div class="form-group">
     <label for="emailProdavac">Email:</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      name="email"
-      required
-      pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
-      #email_polje = 'ngModel'
-      [(ngModel)]="this.noviProdavac!.email"
-    />
+    <input type="email" class="form-control" id="email" name="email" required
+      pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" #email_polje='ngModel'
+      [(ngModel)]="this.noviProdavac!.email" />
   </div>
 
-  <div class="greska-div" *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPopunjeno">
+  <div class="greska-div"
+    *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPopunjeno">
     <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
   </div>
 
   <div class="form-group">
     <label for="usernameProdavac">Username:</label>
-    <input
-      type="text"
-      class="form-control"
-      id="username"
-      name="username"
-      required
-      minlength="5"
-      pattern="[A-Za-z\s]+"
-      #username_polje='ngModel'
-      [(ngModel)]="this.noviProdavac!.username"
-    />
+    <input type="text" class="form-control" id="username" name="username" required minlength="5" pattern="[A-Za-z\s]+"
+      #username_polje='ngModel' [(ngModel)]="this.noviProdavac!.username" />
   </div>
 
-  <div class="greska-div" *ngIf="username_polje.invalid && (username_polje.touched || username_polje.dirty) || this.JelPopunjeno">
+  <div class="greska-div"
+    *ngIf="username_polje.invalid && (username_polje.touched || username_polje.dirty) || this.JelPopunjeno">
     <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
     <span *ngIf="username_polje.errors?.['minlength']">Minimum 5 karaktera</span>
@@ -241,11 +166,7 @@
 
   <div class="form-group">
     <label for="Grad">Grad</label>
-    <select
-      id="Grad2"
-      name="Grad"
-      class="select-grad"
-      [(ngModel)]="this.noviProdavac!.gradID">
+    <select id="Grad2" name="Grad" class="select-grad" [(ngModel)]="this.noviProdavac!.gradID">
       <option *ngFor="let x of this.gradPodaci" [value]="x.id">
         {{ x.naziv }}
       </option>
@@ -254,13 +175,8 @@
 
   <div class="form-group">
     <label for="Prodavac">Prodavac:</label>
-    <input
-      class="checkbox"
-      type="checkbox"
-      id="Serviser2"
-      name="isServiser"
-      [(ngModel)]="this.noviProdavac!.isProdavac"
-    />
+    <input class="checkbox" type="checkbox" id="Serviser2" name="isServiser"
+      [(ngModel)]="this.noviProdavac!.isProdavac" />
   </div>
 
   <div class="div-button">
@@ -273,5 +189,3 @@
   </div>
 
 </form>
-
-

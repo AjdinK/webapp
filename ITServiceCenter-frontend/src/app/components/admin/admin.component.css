@@ -129,4 +129,10 @@ input#slika-input img {
 img {
   padding: 5px;
   border: white 2px solid;
+  overflow: hidden;
+}
+select {
+  overflow: hidden;
+  background-color: white;
+  color: #000408;
 }

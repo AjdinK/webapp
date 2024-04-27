@@ -28,7 +28,6 @@ export class AdminComponent implements OnInit {
     private adminSnimiEndpoint: AdminSnimiEndpoint
   ) {}
 
-  JelPopunjeno: boolean = false;
   showAdminForm: boolean = true;
   adminPodaciFetch: AdminGetByIdResponse | null = null;
   adminPodaciEdit: AdminSnimiRequest | null = null;
@@ -37,11 +36,14 @@ export class AdminComponent implements OnInit {
 
   formTitle: string = 'Edit Admin';
 
+  JelPopunjeno: boolean = false;
+
   ngOnInit(): void {
     this.fetchAdmin();
     this.fetchGrad();
   }
 
+  //fetch Admin data from db
   fetchAdmin() {
     this.adminGetByIdEndpoint.obradi(1).subscribe({
       next: (x) => {
@@ -53,6 +55,7 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  //fetch grad data from db
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
@@ -64,9 +67,10 @@ export class AdminComponent implements OnInit {
     });
   }
 
+  //save admin data from db and check the form if is it valid? or not
   snimi(editForm: NgForm) {
     if (editForm.form.valid) {
-      this.adminSnimiEndpoint.obradi(this.adminPodaciEdit!).subscribe({
+      this.adminSnimiEndpoint.obradi(this.adminPodaciFetch!).subscribe({
         next: (x) => {
           this.showAdminForm = false;
           this.fetchAdmin();
@@ -75,14 +79,15 @@ export class AdminComponent implements OnInit {
           alert('greska snimiAdmin - ' + x.error);
         },
       });
-    } else alert('Ne radi');
+    }
   }
-
+  //close and refresh admin data from db
   closeEdit() {
     this.showAdminForm = false;
     this.fetchAdmin();
   }
 
+  //to show the image in preview box
   generisiPreview() {
     // @ts-ignore
     let file = document.getElementById('slika-input').files[0];
@@ -96,7 +101,10 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  showSlikaFromDB(s: AdminGetByIdResponse) {
-    return 'data:image/png;base64,' + s.slikaKorisnikaNovaString;
+  //to load the image from db and to add the missing part
+  showSlikaFromDB() {
+    return (
+      'data:image/png;base64,' + this.adminPodaciFetch!.slikaKorisnikaNovaString
+    );
   }
 }

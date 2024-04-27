@@ -1,3 +1,4 @@
+<!-- form edit for admin and it show only if there is data from api and bool is true -->
 <form #editForm="ngForm" *ngIf="this.adminPodaciFetch && this.showAdminForm">
   <h1>{{ formTitle }}</h1>
   <div class="form-group">
@@ -6,6 +7,11 @@
       #ime_polje="ngModel" [(ngModel)]="this.adminPodaciFetch!.ime" />
   </div>
 
+  <!-- div for validation and to print erros , it shows only on dirty , touched ,
+    or when the user press submit button when fileds are invalid
+    and it also use pattern to enter only characters without numbers
+    same thing for prezime,username,email..etc
+-->
   <div class="greska-div" *ngIf="
       (ime_polje.invalid && (ime_polje.touched || ime_polje.dirty)) ||
       this.JelPopunjeno
@@ -87,12 +93,17 @@
       [(ngModel)]="this.adminPodaciFetch!.isProdavac" />
   </div>
 
+  <!-- div to show 2 pictuers the old from db and the new one uploaded -->
+
   <div class="form-group">
     <label for="slika-input" class="slika-label">Nova slika</label>
     <input id="slika-input" name="slika-input" type="file" accept="image/*" (change)="generisiPreview()" />
-    <img src="{{ showSlikaFromDB(this.adminPodaciFetch!) }}" height="200" width="200" alt="slika_korisnika"
+    <img src={{showSlikaFromDB()}} height="200" width="200" alt="slika" class="slika" />
+    <img src={{this.adminPodaciFetch!.slikaKorisnikaNovaString}} height="200" width="200" alt="Nova Slika"
       class="slika" />
   </div>
+
+  <!-- submit changes when everything is fine and valid -->
 
   <div class="div-button">
     <button type="submit" class="btn-zatvori" (click)="closeEdit()">
