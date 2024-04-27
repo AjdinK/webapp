@@ -1,39 +1,41 @@
-import {Component, OnInit} from '@angular/core';
-import {AdminGetByIdEndpoint, AdminGetByIdResponse} from "../../endpoints/admin-endpoints/admin-get-by-id-endpoint";
-import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
-import {GradGetAllEndpoint, GradGetAllResponseGrad} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
-import {AdminSnimiEndpoint, AdminSnimiRequest} from "../../endpoints/admin-endpoints/admin-snimi-endpoint";
+import { Component, OnInit } from '@angular/core';
+import {
+  AdminGetByIdEndpoint,
+  AdminGetByIdResponse,
+} from '../../endpoints/admin-endpoints/admin-get-by-id-endpoint';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+import {
+  GradGetAllEndpoint,
+  GradGetAllResponseGrad,
+} from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
+import {
+  AdminSnimiEndpoint,
+  AdminSnimiRequest,
+} from '../../endpoints/admin-endpoints/admin-snimi-endpoint';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [
-    FormsModule,
-    NgForOf,
-    NgIf,
-    ReactiveFormsModule,
-    NgOptimizedImage
-  ],
+  imports: [FormsModule, NgForOf, NgIf, ReactiveFormsModule, NgOptimizedImage],
   templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css'
+  styleUrl: './admin.component.css',
 })
-export class AdminComponent implements OnInit{
-
-  constructor (
-    private adminGetByIdEndpoint:AdminGetByIdEndpoint,
+export class AdminComponent implements OnInit {
+  constructor(
+    private adminGetByIdEndpoint: AdminGetByIdEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint,
-    private adminSnimiEndpoint : AdminSnimiEndpoint,
-    ) {}
+    private adminSnimiEndpoint: AdminSnimiEndpoint
+  ) {}
 
-  JelPopunjeno: boolean = false
+  JelPopunjeno: boolean = false;
   showAdminForm: boolean = true;
-  adminPodaciFetch : AdminGetByIdResponse | null = null;
-  adminPodaciEdit : AdminSnimiRequest | null = null;
+  adminPodaciFetch: AdminGetByIdResponse | null = null;
+  adminPodaciEdit: AdminSnimiRequest | null = null;
 
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
-  formTitle:string = 'Edit Admin';
+  formTitle: string = 'Edit Admin';
 
   ngOnInit(): void {
     this.fetchAdmin();
@@ -45,7 +47,9 @@ export class AdminComponent implements OnInit{
       next: (x) => {
         this.adminPodaciFetch = x;
       },
-      error: (x) => { alert("greska adminGetByIdEndpoint -> " + x.error) },
+      error: (x) => {
+        alert('greska adminGetByIdEndpoint -> ' + x.error);
+      },
     });
   }
 
@@ -54,22 +58,24 @@ export class AdminComponent implements OnInit{
       next: (x) => {
         this.gradPodaci = x.gradovi;
       },
-      error: (x) => { alert("greska fetchGrad -> " + x.error) },
+      error: (x) => {
+        alert('greska fetchGrad -> ' + x.error);
+      },
     });
   }
 
-  snimi (form: NgForm) {
-    if (form.form.valid){
-      this.adminPodaciEdit = this.adminPodaciFetch;
+  snimi(editForm: NgForm) {
+    if (editForm.form.valid) {
       this.adminSnimiEndpoint.obradi(this.adminPodaciEdit!).subscribe({
         next: (x) => {
           this.showAdminForm = false;
           this.fetchAdmin();
         },
-        error: (x) => { alert("greska snimiAdmin - " + x.error) },
-      })
-    }
-
+        error: (x) => {
+          alert('greska snimiAdmin - ' + x.error);
+        },
+      });
+    } else alert('Ne radi');
   }
 
   closeEdit() {
@@ -79,15 +85,14 @@ export class AdminComponent implements OnInit{
 
   generisiPreview() {
     // @ts-ignore
-    let file = document.getElementById("slika-input").files[0];
-    if (file && this.adminPodaciFetch)
-    {
+    let file = document.getElementById('slika-input').files[0];
+    if (file && this.adminPodaciFetch) {
       let reader = new FileReader();
-      reader.onload = ()=> {
-        this.adminPodaciFetch!.slika_base64_format = reader.result?.toString();
-      }
-      reader.readAsDataURL(file)
+      reader.onload = () => {
+        this.adminPodaciFetch!.slikaKorisnikaBajtovi =
+          reader.result?.toString();
+      };
+      reader.readAsDataURL(file);
     }
   }
-
 }

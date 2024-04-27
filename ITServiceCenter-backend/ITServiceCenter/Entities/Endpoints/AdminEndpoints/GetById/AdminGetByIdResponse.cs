@@ -8,7 +8,6 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Username { get; set; }
-
         public string Email { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsServiser { get; set; }

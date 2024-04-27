@@ -1,30 +1,30 @@
-import { Observable } from "rxjs";
-import {MyBaseEndpoint} from "../my-base-endpoint";
-import {HttpClient} from "@angular/common/http";
-import {ConfigFile} from "../../configFile";
-import {Injectable} from "@angular/core";
+import { Observable } from 'rxjs';
+import { MyBaseEndpoint } from '../my-base-endpoint';
+import { HttpClient } from '@angular/common/http';
+import { ConfigFile } from '../../configFile';
+import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
-export class AdminSnimiEndpoint implements MyBaseEndpoint<AdminSnimiRequest, number> {
+export class AdminSnimiEndpoint
+  implements MyBaseEndpoint<AdminSnimiRequest, number>
+{
+  constructor(private httpKlijent: HttpClient) {}
 
-  constructor(private httpKlijent : HttpClient) {}
-
-    obradi(request: AdminSnimiRequest): Observable<number> {
-    let url = ConfigFile.adresa_servera + "/Admin/GetById?Id=";
-        return this.httpKlijent.post<number>(url , request);
-    }
-
+  obradi(request: AdminSnimiRequest): Observable<number> {
+    let url = ConfigFile.adresa_servera + '/Admin/Snimi';
+    return this.httpKlijent.post<number>(url, request);
+  }
 }
 
 export interface AdminSnimiRequest {
-  id:number;
-  ime:string;
-  prezime:string;
-  username:string;
-  email:string;
-  isAdmin:boolean;
-  isServiser:boolean;
-  isProdavac:boolean;
-  gradId:number;
-  slika_base64_format: string | undefined;
+  id: number;
+  ime: string;
+  prezime: string;
+  username: string;
+  email: string;
+  isAdmin: boolean;
+  isServiser: boolean;
+  isProdavac: boolean;
+  gradId: number;
+  slikaBase64Format: string | undefined;
 }

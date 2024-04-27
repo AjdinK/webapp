@@ -11,7 +11,7 @@
         public bool IsServiser { get; set; }
         public bool IsProdavac { get; set; }
         public int GradId { get; set; }
-        public string Slika_base64_format { get; set; }
+        public string? SlikaKorisnikaNovaString { get; set; }
 
     }
 }

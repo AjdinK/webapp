@@ -1,7 +1,9 @@
-﻿using itservicecenter.Data;
+﻿using FIT_Api_Examples.Helper;
+using itservicecenter.Data;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
+using SkiaSharp;
 using System.Text.Json.Serialization;
 
 namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
@@ -13,7 +15,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
         {
             _ApplicationDbContext = ApplicationDbContext;
         }
-        [HttpPost ("Admin/Snimi")]
+        [HttpPost("Admin/Snimi")]
         public override async Task<int> Obradi([FromBody] AdminSnimiRequest request, CancellationToken cancellationToken)
         {
             Models.Admin? Admin;
@@ -23,10 +25,10 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
                 Admin = new Admin();
                 Admin.Passweord = "test";
                 Admin.Email = "test@test.com";
-             }
-            else {
-
-                Admin =  _ApplicationDbContext.Admin.FirstOrDefault(a => a.ID == request.Id);
+            }
+            else
+            {
+                Admin = _ApplicationDbContext.Admin.FirstOrDefault(a => a.ID == request.Id);
             }
 
             Admin.SpolID = 1;
@@ -39,8 +41,28 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
             Admin.IsServiser = request.IsServiser;
             Admin.IsAdmin = request.IsAdmin;
 
+            if (!string.IsNullOrEmpty(request.SlikaKorisnikaNovaString))
+            {
+
+                byte[]? SlikaBajtovi = request.SlikaKorisnikaNovaString?.ParsirajBase64();
+
+                if (SlikaBajtovi == null) throw new Exception ("format slike nije base64");
+
+                byte[]? SlikaBajtoviResizedVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 75);
+                byte[]? SlikaBajtoviResizedMala = ImageHelper.ResizeSlike(SlikaBajtovi, 50, 75);
+                Admin.SlikaKorisnikaTrenutnoBajt = SlikaBajtoviResizedVelika;
+
+                //Opcija za snimanje u File System
+                if (SlikaBajtoviResizedVelika != null)
+                    Fajlovi.Snimi(SlikaBajtoviResizedVelika, "SlikeKorisnika/velika-" + Admin.ID + ".png");
+
+                if (SlikaBajtoviResizedMala != null)
+                   Fajlovi.Snimi(SlikaBajtoviResizedMala, "SlikeKorisnika/mala-" + Admin.ID + ".png");
+            }
+
             await _ApplicationDbContext.SaveChangesAsync();
             return Admin.ID;
         }
     }
 }
+

@@ -1,5 +1,5 @@
 form {
-  box-shadow: 3px -2px 13px 0 rgba(0,0,0,0.75);
+  box-shadow: 3px -2px 13px 0 rgba(0, 0, 0, 0.75);
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@ form input {
 
 .btn-save,
 .btn-zatvori,
-.dodaj{
+.dodaj {
   background-color: white;
   color: black;
   border: none;
@@ -50,17 +50,16 @@ form input {
   transition: 0.15s ease-in;
   width: 20%;
 }
-.dodaj{
+.dodaj {
   margin-bottom: 30px;
 }
 
-.dodaj:hover{
+.dodaj:hover {
   background-color: #516269;
   color: white;
 }
 
 .select-grad {
-  margin-top: 30px;
   width: 200px;
   padding: 15px;
   border: none;
@@ -75,18 +74,19 @@ select option {
   border-radius: 0;
 }
 
-.greska-div{
+.greska-div {
   width: 70%;
   margin-left: 13.5%;
-  color:indianred;
+  color: indianred;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
-.div-button{
+.div-button {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 30px
+  margin-bottom: 30px;
+  margin-top: 40px;
 }
 
 .btn-save {
@@ -115,16 +115,7 @@ form h1 {
   text-align: center;
   margin-bottom: 40px;
 }
-/*#slika-input{*/
-/*  width: 87.2%;*/
-/*  margin-left: 12.8%;*/
-/*  margin-bottom: 30px;*/
-/*  margin-top: -30px;*/
-/*}*/
-/*.slika{*/
-/*  padding: 10px;*/
-/*  border : 2px solid white;*/
-/*}*/
+
 input#slika-input {
   width: 15%;
   margin: 30px 0;
@@ -132,6 +123,10 @@ input#slika-input {
 input#slika-input img {
   margin: 30px 0;
 }
-.slika-label{
-  margin-right: 6%;
+.slika-label {
+  margin-right: 2%;
+}
+img {
+  padding: 5px;
+  border: white 2px solid;
 }

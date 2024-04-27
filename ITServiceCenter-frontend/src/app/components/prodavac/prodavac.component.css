@@ -11,7 +11,8 @@
   background-color: #364049;
   height: fit-content;
   margin: 0 auto;
-  box-shadow: 3px -2px 13px 0 rgba(0,0,0,0.75);
+  box-shadow: 3px -2px 13px 0 rgba(0, 0, 0, 0.75);
+  overflow: hidden;
 }
 .div-table input {
   width: 100%;
@@ -56,7 +57,7 @@ td button:hover {
   color: white;
 }
 td .brisiServiser:hover {
-  background-color: indianred;;
+  background-color: indianred;
   color: white;
 }
 
@@ -70,7 +71,7 @@ tbody tr:nth-child(even) {
 }
 
 form {
-  box-shadow: 3px -2px 13px 0 rgba(0,0,0,0.75);
+  box-shadow: 3px -2px 13px 0 rgba(0, 0, 0, 0.75);
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -80,6 +81,7 @@ form {
   color: white;
   font-size: 1.1rem;
   margin-bottom: 150px;
+  overflow: hidden;
 }
 form input {
   padding: 7px;
@@ -108,7 +110,7 @@ form input {
 
 .btn-save,
 .btn-zatvori,
-.dodaj{
+.dodaj {
   background-color: white;
   color: black;
   border: none;
@@ -122,15 +124,15 @@ form input {
 }
 
 .btn-save,
-.btn-zatvori{
+.btn-zatvori {
   width: 20%;
 }
 
-.dodaj{
+.dodaj {
   margin-bottom: 30px;
 }
 
-.dodaj:hover{
+.dodaj:hover {
   background-color: #516269;
   color: white;
 }
@@ -147,6 +149,7 @@ form input {
   font-weight: 500;
   border-radius: 0;
   font-family: "Space Grotesk", sans-serif;
+  overflow: hidden;
 }
 select option {
   font-size: 1rem;
@@ -154,18 +157,18 @@ select option {
   border-radius: 0;
 }
 
-.greska-div{
+.greska-div {
   width: 70%;
   margin-left: 13.5%;
-  color:indianred;
+  color: indianred;
   font-weight: 600;
   margin-bottom: 20px;
 }
 
-.div-button{
+.div-button {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 30px
+  margin-bottom: 30px;
 }
 
 .btn-save {

@@ -1,3 +1,4 @@
+using FIT_Api_Examples.Helper;
 using itservicecenter.Data;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
                 GradID = a.GradID,
                 SpolID = a.SpolID,
                 Email = a.Email,
+                SlikaKorisnikaNovaString = a.SlikaKorisnikaTrenutnoBajt.ToBase64()?? "Not_Found",
             })
             .ToListAsync(cancellationToken :cancellationToken);
 
