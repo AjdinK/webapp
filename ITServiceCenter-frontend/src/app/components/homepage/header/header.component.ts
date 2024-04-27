@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -14,13 +14,5 @@ export class HeaderComponent {
 
   logirajSe() {
     this.router.navigate(['/login']);
-  }
-
-  showMenu() {
-    throw new Error('Method not implemented.');
-  }
-
-  closeMenu() {
-    throw new Error('Method not implemented.');
   }
 }
