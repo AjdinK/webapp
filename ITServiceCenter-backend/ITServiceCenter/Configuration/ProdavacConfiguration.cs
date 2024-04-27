@@ -1,4 +1,5 @@
-﻿using itservicecenter.Entities.Models;
+﻿using FIT_Api_Examples.Helper;
+using itservicecenter.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,6 +22,8 @@ namespace itservicecenter.Configuration
                     IsProdavac = true,
                     Email = "test@test.com",
                     JelObrisan = false,
+                    SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png"),
+
                 },
                 new Prodavac
                 {
@@ -34,6 +37,7 @@ namespace itservicecenter.Configuration
                     IsProdavac = true,
                     Email = "test@test.com",
                     JelObrisan = false,
+                    SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png"),
                 }
             );
         }

@@ -10,5 +10,7 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
         public bool IsServiser { get; set; }
         public int GradID { get; set; }
         public int SpolID { get; set; }
+        public string? SlikaKorisnikaNovaString { get; set; }
+
     }
 }

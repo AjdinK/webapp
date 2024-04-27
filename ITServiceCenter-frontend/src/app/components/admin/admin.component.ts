@@ -89,10 +89,14 @@ export class AdminComponent implements OnInit {
     if (file && this.adminPodaciFetch) {
       let reader = new FileReader();
       reader.onload = () => {
-        this.adminPodaciFetch!.slikaKorisnikaBajtovi =
+        this.adminPodaciFetch!.slikaKorisnikaNovaString =
           reader.result?.toString();
       };
       reader.readAsDataURL(file);
     }
+  }
+
+  showSlikaFromDB(s: AdminGetByIdResponse) {
+    return 'data:image/png;base64,' + s.slikaKorisnikaNovaString;
   }
 }

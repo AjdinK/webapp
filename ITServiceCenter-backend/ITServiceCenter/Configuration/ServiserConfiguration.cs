@@ -1,4 +1,5 @@
-﻿using itservicecenter.Entities.Models;
+﻿using FIT_Api_Examples.Helper;
+using itservicecenter.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,6 +22,7 @@ namespace itservicecenter.Configuration
                     Passweord = "jasir",
                     Email = "test@test.com",
                     JelObrisan = false,
+                    SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png"),
                 },
                 new Serviser
                 {
@@ -34,6 +36,7 @@ namespace itservicecenter.Configuration
                     Passweord = "adis",
                     Email = "test@test.com",
                     JelObrisan = false,
+                    SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png"),
                 }
                 );
         }

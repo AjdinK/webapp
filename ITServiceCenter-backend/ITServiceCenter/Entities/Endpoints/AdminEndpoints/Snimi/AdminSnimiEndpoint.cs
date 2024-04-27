@@ -43,7 +43,6 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
 
             if (!string.IsNullOrEmpty(request.SlikaKorisnikaNovaString))
             {
-
                 byte[]? SlikaBajtovi = request.SlikaKorisnikaNovaString?.ParsirajBase64();
 
                 if (SlikaBajtovi == null) throw new Exception ("format slike nije base64");
@@ -54,10 +53,10 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
 
                 //Opcija za snimanje u File System
                 if (SlikaBajtoviResizedVelika != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika, "SlikeKorisnika/velika-" + Admin.ID + ".png");
+                    Fajlovi.Snimi(SlikaBajtoviResizedVelika, $"wwwroot/profile_images/SlikeKorisnika/{Admin.Username} +_velika" + ".png");
 
                 if (SlikaBajtoviResizedMala != null)
-                   Fajlovi.Snimi(SlikaBajtoviResizedMala, "SlikeKorisnika/mala-" + Admin.ID + ".png");
+                    Fajlovi.Snimi(SlikaBajtoviResizedVelika, $"wwwroot/profile_images/SlikeKorisnika/{Admin.Username} +_mala" + ".png");
             }
 
             await _ApplicationDbContext.SaveChangesAsync();

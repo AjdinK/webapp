@@ -1,4 +1,5 @@
-﻿using itservicecenter.Data;
+﻿using FIT_Api_Examples.Helper;
+using itservicecenter.Data;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
                     IsServiser = a.IsServiser,
                     IsProdavac = a.IsProdavac,
                     Username = a.Username,
+                    SlikaKorisnikaNovaString = a.SlikaKorisnikaTrenutnoBajt.ToBase64()
                 })
                 .SingleAsync(a => a.Id == request.Id, cancellationToken: cancellationToken);
 

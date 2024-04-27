@@ -90,7 +90,7 @@
   <div class="form-group">
     <label for="slika-input" class="slika-label">Nova slika</label>
     <input id="slika-input" name="slika-input" type="file" accept="image/*" (change)="generisiPreview()" />
-    <img src="{{ this.adminPodaciFetch.slikaKorisnikaBajtovi }}" height="200" width="200" alt="slika_korisnika"
+    <img src="{{ showSlikaFromDB(this.adminPodaciFetch!) }}" height="200" width="200" alt="slika_korisnika"
       class="slika" />
   </div>
 

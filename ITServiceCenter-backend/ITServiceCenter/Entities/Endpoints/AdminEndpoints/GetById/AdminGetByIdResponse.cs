@@ -14,6 +14,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
         public bool IsProdavac { get; set; }
         public int GradId { get; set; }
         public int SpolId { get; set; }
+        public string? SlikaKorisnikaNovaString { get; set; }
 
     }
 }

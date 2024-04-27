@@ -17,7 +17,7 @@ namespace FIT_Api_Examples.Helper
             }
         }
 
-        public static void Snimi(byte[] bajtoviBytes, string path)
+        public static void Snimi (byte[] bajtoviBytes, string path)
         {
             var directoryName = Path.GetDirectoryName(path);
             if (directoryName != null)

@@ -1,3 +1,4 @@
+using FIT_Api_Examples.Helper;
 using itservicecenter.Data;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
                 GradID = p.GradID,
                 SpolID = p.SpolID,
                 Email = p.Email,
+                SlikaKorisnikaNovaString = p.SlikaKorisnikaTrenutnoBajt.ToBase64()
             })
             .ToListAsync ( cancellationToken : cancellationToken);
 
