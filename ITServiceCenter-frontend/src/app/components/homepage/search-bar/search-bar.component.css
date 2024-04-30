@@ -1,16 +1,17 @@
 .search-button {
   background-color: white;
   color: black;
-  padding: 15px 40px;
+  padding: 20px 40px;
   border: none;
   outline: none;
   cursor: pointer;
   letter-spacing: 2px;
-  font-size: 1.1rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: bolder;
+  font-size: 1.6rem;
+  font-weight: 600;
   transition: 0.2s ease;
   overflow: hidden;
+  margin: 30px auto;
+  width: 20%;
 }
 .search-button:hover {
   background-color: #516269;
@@ -26,27 +27,31 @@
   overflow: hidden;
 }
 .search-section .search {
+  display: flex;
+  flex-direction: column;
   position: relative;
-  top: 20vh;
+  top: -20vh;
   color: #fff;
-  max-width: 1200px;
+  max-width: 1215px;
   margin: 0 auto;
   width: 100%;
-  height: 100px;
+  height: 258px;
   background-color: #000408;
-  padding: 20px;
+  padding: -62px;
   overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
 }
 
 .search-section .search input {
-  width: 80%;
-  padding: 15px;
+  margin: 0 auto;
+  width: 70%;
+  padding: 15px 20px;
   outline: none;
   border: none;
   border-radius: 0;
   font-family: "Space Grotesk", sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 600;
   margin-top: 5px;
   overflow: hidden;
 }
@@ -65,4 +70,39 @@
 }
 button {
   overflow: hidden;
+}
+
+@media only screen and (max-width: 960px) {
+  .search-section {
+    margin: auto 0;
+  }
+
+  .search-section .search {
+    position: relative;
+    top: 20vh;
+    color: #fff;
+    margin: 0 auto;
+    width: 100%;
+    height: fit-content;
+    background-color: #000408;
+    padding: 5px;
+  }
+  div input {
+    width: 100%;
+  }
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 3px;
+  width: 100%;
+  margin: 20px 0;
+  font-size: 3rem;
+}
+.input-button {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
