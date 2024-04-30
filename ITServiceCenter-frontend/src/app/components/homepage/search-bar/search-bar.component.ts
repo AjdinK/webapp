@@ -11,8 +11,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchBarComponent {
   constructor() {}
+
+  jelPopunjeno: boolean = false;
+
   pretregaObj: any = {
     id: 0,
     sifra: '',
   };
+  pretrega() {
+    this.jelPopunjeno = true;
+    throw new Error('Method not implemented.');
+  }
 }

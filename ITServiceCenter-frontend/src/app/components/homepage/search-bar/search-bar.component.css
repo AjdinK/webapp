@@ -1,7 +1,7 @@
 .search-button {
   background-color: white;
   color: black;
-  padding: 20px 40px;
+  padding: 19px 40px;
   border: none;
   outline: none;
   cursor: pointer;
@@ -112,4 +112,34 @@ h1 {
   color: indianred;
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 960px) {
+  .search-section .search {
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  .input-button {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .search-section .search input {
+    width: 95%;
+  }
+  .search-section .search button {
+    padding-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    margin-left: 20px;
+    border-bottom-style: solid;
+    border-bottom-width: 0px;
+    padding-top: 15px;
+  }
 }
