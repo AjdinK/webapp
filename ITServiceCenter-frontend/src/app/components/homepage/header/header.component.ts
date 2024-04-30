@@ -12,7 +12,12 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 export class HeaderComponent {
   constructor(private router: Router) {}
 
+  openMenu: boolean = false;
+
   logirajSe() {
     this.router.navigate(['/login']);
+  }
+  toggleMenu() {
+    this.openMenu = !this.openMenu;
   }
 }

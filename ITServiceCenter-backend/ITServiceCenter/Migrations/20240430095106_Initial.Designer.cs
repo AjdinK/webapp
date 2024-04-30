@@ -12,8 +12,8 @@ using itservicecenter.Data;
 namespace itservicecenter.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240427171236_init")]
-    partial class init
+    [Migration("20240430095106_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -541,7 +541,7 @@ namespace itservicecenter.Migrations
                         {
                             ID = 1,
                             CijenaServisa = 210f,
-                            DatumPreuzimanja = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(3096),
+                            DatumPreuzimanja = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(7145),
                             Garancija = "30 Dana",
                             Napomena = "",
                             SifraRacuna = "sifraracuna1"
@@ -610,28 +610,28 @@ namespace itservicecenter.Migrations
                         {
                             ServiserID = 2,
                             ServisniDioID = 1,
-                            Datum = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(3723),
+                            Datum = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(7767),
                             Kolicina = 3
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 2,
-                            Datum = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(3732),
+                            Datum = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(7775),
                             Kolicina = 3
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 3,
-                            Datum = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(3734),
+                            Datum = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(7777),
                             Kolicina = 2
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 4,
-                            Datum = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(3736),
+                            Datum = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(7779),
                             Kolicina = 1
                         });
                 });
@@ -806,8 +806,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 1,
-                            DatumPredaje = new DateTime(2024, 4, 29, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4079),
-                            DatumZaprimanja = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4074),
+                            DatumPredaje = new DateTime(2024, 5, 2, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8040),
+                            DatumZaprimanja = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8036),
                             Napomena = "Ocistiti prednju kameru",
                             Problem = "Zamjena LCDa",
                             SifraNaloga = "sifraservisa1"
@@ -815,8 +815,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 2,
-                            DatumPredaje = new DateTime(2024, 4, 29, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4087),
-                            DatumZaprimanja = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4086),
+                            DatumPredaje = new DateTime(2024, 5, 2, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8047),
+                            DatumZaprimanja = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8046),
                             Napomena = "",
                             Problem = "zakljucan google acc",
                             SifraNaloga = "sifraservisa2"
@@ -824,8 +824,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 3,
-                            DatumPredaje = new DateTime(2024, 4, 29, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4091),
-                            DatumZaprimanja = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4089),
+                            DatumPredaje = new DateTime(2024, 5, 2, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8051),
+                            DatumZaprimanja = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8049),
                             Napomena = "bitini podatci",
                             Problem = "Spor",
                             SifraNaloga = "sifraservisa3"
@@ -833,8 +833,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 4,
-                            DatumPredaje = new DateTime(2024, 4, 29, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4094),
-                            DatumZaprimanja = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4092),
+                            DatumPredaje = new DateTime(2024, 5, 2, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8054),
+                            DatumZaprimanja = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8052),
                             Napomena = "",
                             Problem = "Nema slike",
                             SifraNaloga = "sifraservisa4"
@@ -842,8 +842,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 5,
-                            DatumPredaje = new DateTime(2024, 4, 29, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4097),
-                            DatumZaprimanja = new DateTime(2024, 4, 27, 19, 12, 36, 300, DateTimeKind.Local).AddTicks(4096),
+                            DatumPredaje = new DateTime(2024, 5, 2, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8057),
+                            DatumZaprimanja = new DateTime(2024, 4, 30, 11, 51, 6, 261, DateTimeKind.Local).AddTicks(8056),
                             Napomena = "",
                             Problem = "Ne radi brzo punjenje!",
                             SifraNaloga = "sifraservisa5"

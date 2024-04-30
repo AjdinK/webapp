@@ -3,8 +3,9 @@
     <a class="logo">
       <img src="../../../assets/icons/logo.png" height="45px" width="105px" />
     </a>
-    <ul class="menu-links">
-      <img class="close-menu-icon" src="assets/icons/close.svg" alt="close" height="35" width="35" />
+    <ul class="menu-links" [ngClass]="{ 'show': !this.openMenu, 'hidden': this.openMenu }">
+      <img class="close-menu-icon" src="assets/icons/close.svg" alt="close" height="35" width="35"
+        (click)="toggleMenu()" />
       <li class="current"><a href="#Home" data-hover="Home">Home</a></li>
       <li><a href="#AboutUs" data-hover="About Us">About Us</a></li>
       <li><a href="#FAQ" data-hover="FAQ">FAQ</a></li>
@@ -12,5 +13,5 @@
     </ul>
     <button class="button-login-header" (click)="logirajSe()">Login</button>
   </nav>
-  <img class="menu-icon" src="assets/icons/menu.svg" alt="menu" height="35" width="35" />
+  <img class="menu-icon" src="assets/icons/menu.svg" alt="menu" height="35" width="35" (click)="toggleMenu()" />
 </header>
