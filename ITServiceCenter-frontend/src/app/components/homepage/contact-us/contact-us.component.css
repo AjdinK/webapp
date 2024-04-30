@@ -9,7 +9,7 @@
   color: white;
   user-select: none;
 }
- .ContactUS-wrapper {
+.ContactUS-wrapper {
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -31,10 +31,10 @@
   margin-top: 60px;
   width: 40%;
 }
-.ContactUS-form input ,
-.ContactUS-form textarea{
+.ContactUS-form input,
+.ContactUS-form textarea {
   width: 100%;
-  padding: 10px 5px;
+  padding: 10px 15px;
   margin: 15px 0;
   font-size: 1.2rem;
   border: none;
@@ -43,17 +43,16 @@
 .ContactUS-form input:active,
 .ContactUS-form input:focus,
 .ContactUS-form textarea:active,
-.ContactUS-form textarea:focus{
-  outline:none;
+.ContactUS-form textarea:focus {
+  outline: none;
 }
 
 .ContactUS-form input:focus,
-.ContactUS-form textarea:focus{
-  border: #677A88 solid 3px;
+.ContactUS-form textarea:focus {
+  border: #677a88 solid 3px;
 }
 .ContactUS-form input:focus:invalid,
-.ContactUS-form textarea:focus:invalid
-{
+.ContactUS-form textarea:focus:invalid {
   color: indianred;
   border-color: indianred;
 }
@@ -80,10 +79,12 @@ section div button:hover {
   color: white;
 }
 .h1-prim {
-  color: #6C7F8D;
+  color: #6c7f8d;
 }
-.greska-ime,.greska-email,.greska-textarea{
-  color:indianred;
+.greska-ime,
+.greska-email,
+.greska-textarea {
+  color: indianred;
   font-weight: 600;
   margin-bottom: 20px;
 }

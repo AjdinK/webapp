@@ -5,8 +5,7 @@
   border: none;
   outline: none;
   cursor: pointer;
-  letter-spacing: 2px;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
   transition: 0.2s ease;
   overflow: hidden;
@@ -27,10 +26,11 @@
   overflow: hidden;
 }
 .search-section .search {
+  padding: 15px;
   display: flex;
   flex-direction: column;
   position: relative;
-  top: -20vh;
+  top: 10vh;
   color: #fff;
   max-width: 1215px;
   margin: 0 auto;
@@ -93,16 +93,23 @@ button {
 }
 
 h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  letter-spacing: 3px;
   width: 100%;
-  margin: 20px 0;
+  margin: 30px 0 5px 20px;
   font-size: 3rem;
+  color: #6c7f8d;
 }
 .input-button {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.greska-div {
+  position: relative;
+  bottom: 20px;
+  left: 25px;
+  width: 70%;
+  color: indianred;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
