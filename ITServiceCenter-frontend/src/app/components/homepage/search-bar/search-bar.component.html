@@ -7,7 +7,7 @@
       <div class='input-button'>
         <input #input_polje='ngModel' [(ngModel)]="this.pretregaObj.sifra" type="text"
           placeholder="Unesite sifru naloga ......" name='pretrega' minlength="5" required />
-        <button class="search-button" (click)="pretrega()">Search</button>
+        <button class="search-button" (click)="pretrega()">Pretrega >></button>
       </div>
       <div class="greska-div"
         *ngIf="(this.input_polje.invalid && (this.input_polje.dirty || this.input_polje.touched) || this.jelPopunjeno)">

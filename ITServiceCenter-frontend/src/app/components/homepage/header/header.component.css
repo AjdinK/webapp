@@ -52,10 +52,10 @@ header .navbar .menu-links {
 }
 
 .menu-links {
-  font-family: "Space Grotesk", sans-serif;
   text-align: center;
   text-transform: uppercase;
   font-weight: 500;
+  transition: transform 0.3s ease-in-out;
 }
 
 .menu-links li {
@@ -122,9 +122,12 @@ header .navbar .menu-links {
     display: block;
     position: absolute;
     top: 40px;
-    right: 200px;
+    right: 230px;
     z-index: 5;
     cursor: pointer;
+  }
+  header {
+    position: fixed;
   }
   .close-menu-icon {
     cursor: pointer;
@@ -155,5 +158,9 @@ header .navbar .menu-links {
   .menu-links a {
     font-size: 2rem;
     overflow: hidden;
+  }
+  .navbar button {
+    position: relative;
+    right: 30px;
   }
 }
