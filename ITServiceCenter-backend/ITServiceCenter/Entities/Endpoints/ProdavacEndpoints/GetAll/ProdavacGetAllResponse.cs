@@ -1,8 +1,16 @@
+using FIT_Api_Examples.Helper;
+
 namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
 {
     public class ProdavacGetAllResponse
     {
         public List <ProdavacGetAllResponseProdavac> ListaProdavac { get; set; }
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
+        public int PageSize { get; set; }
+        public int TotalCount { get; set; }
+        public bool HasPrevios { get; set; }
+        public bool HasNext { get; set; }
     }
 
     public class ProdavacGetAllResponseProdavac {

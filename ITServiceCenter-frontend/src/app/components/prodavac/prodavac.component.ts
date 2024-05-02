@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ProdavacGetAllEndpoint,
+  ProdavacGetAllRequest,
+  ProdavacGetAllResponse,
   ProdavacGetAllResponseProdavac,
 } from '../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint';
 import {
@@ -37,7 +39,11 @@ export class ProdavacComponent implements OnInit {
     this.fetchGrad();
   }
 
-  prodavacPodaci: ProdavacGetAllResponseProdavac[] | null = [];
+  currentPage: number = 1;
+
+  prodavacPodaci: ProdavacGetAllResponse | null = null;
+  prodavacRequestPage: ProdavacGetAllRequest | null = null;
+
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
   showProdavacTable: boolean = true;
@@ -63,11 +69,13 @@ export class ProdavacComponent implements OnInit {
     });
   }
 
+  //https://localhost:7174/Prodavac/GetAll?PageNumber=1&PageSize=5
+
   //fetch prodavac data from db
   fetchProdavac() {
-    this.prodavacGetAllEndpoint.obradi().subscribe({
+    this.prodavacGetAllEndpoint.obradi(this.currentPage!).subscribe({
       next: (x) => {
-        this.prodavacPodaci = x.listaProdavac;
+        this.prodavacPodaci = x;
       },
       error: (x) => {
         alert('greska fetchProdavac -> ' + x.error);
@@ -75,11 +83,17 @@ export class ProdavacComponent implements OnInit {
     });
   }
 
+  getPageInfo() {
+    alert('radi');
+    this.prodavacRequestPage!.pageNumber = this.currentPage;
+    this.prodavacRequestPage!.pageSize = 5;
+  }
+
   //search for prodavac using ime , prezime or username
   filtrirajProdavac() {
     if (this.prodavacPodaci == null) return [];
-    return this.prodavacPodaci.filter(
-      (x) =>
+    return this.prodavacPodaci.listaProdavac.filter(
+      (x: any) =>
         x.ime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()) ||
         x.prezime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()) ||
         x.username.toLowerCase().startsWith(this.searchProdavac.toLowerCase())
@@ -203,5 +217,39 @@ export class ProdavacComponent implements OnInit {
     return (
       'data:image/png;base64,' + this.odabraniProdavac!.slikaKorisnikaNovaString
     );
+  }
+
+  pageNumbersArray(): number[] {
+    let rez = [];
+    for (let i = 0; i < this.totalPages(); i++) {
+      rez.push(i + 1);
+    }
+    return rez;
+  }
+
+  private totalPages() {
+    if (this.prodavacPodaci != null) return this.prodavacPodaci?.totalPages;
+
+    return 1;
+  }
+
+  goToPage(p: number) {
+    this.currentPage = p;
+    this.fetchProdavac();
+  }
+
+  goToPrev(p: number) {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fetchProdavac();
+    }
+    if (p == this.currentPage) return;
+  }
+  goToNext(p: number) {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+      this.fetchProdavac();
+    }
+    if (p == this.currentPage) return;
   }
 }

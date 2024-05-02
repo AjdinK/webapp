@@ -6,17 +6,34 @@ import { ConfigFile } from '../../configFile';
 
 @Injectable({ providedIn: 'root' })
 export class ProdavacGetAllEndpoint
-  implements MyBaseEndpoint<void, ProdavacGetAllResponse>
+  implements MyBaseEndpoint<number, ProdavacGetAllResponse>
 {
   constructor(private httpKlijent: HttpClient) {}
-  obradi(request: void): Observable<ProdavacGetAllResponse> {
-    let url = ConfigFile.adresa_servera + '/Prodavac/GetAll';
+  obradi(pageNumber: number): Observable<ProdavacGetAllResponse> {
+    //https://localhost:7174/Prodavac/GetAll?PageNumber=1&PageSize=5
+    let url =
+      ConfigFile.adresa_servera +
+      '/Prodavac/GetAll?PageNumber=' +
+      pageNumber +
+      '&PageSize=' +
+      5;
     return this.httpKlijent.get<ProdavacGetAllResponse>(url);
   }
 }
 
+export interface ProdavacGetAllRequest {
+  pageSize: number;
+  pageNumber: number;
+}
+
 export interface ProdavacGetAllResponse {
   listaProdavac: ProdavacGetAllResponseProdavac[];
+  currentPage: number;
+  totalPages: number;
+  pageSize: number;
+  totalCount: number;
+  hasPrevios: boolean;
+  hasNext: boolean;
 }
 
 export interface ProdavacGetAllResponseProdavac {

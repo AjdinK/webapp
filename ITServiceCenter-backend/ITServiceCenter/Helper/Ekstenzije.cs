@@ -27,6 +27,9 @@ namespace FIT_Api_Examples.Helper
 
         public static string ToBase64 (this byte[] bajtovi)
         {
+            if (bajtovi == null)
+                return String.Empty;
+            
             return System.Convert.ToBase64String(bajtovi);
         }
     }
