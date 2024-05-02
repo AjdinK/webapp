@@ -15,7 +15,8 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
         }
 
         [HttpGet ("Prodavac/GetAll")]
-        public override async  Task <ProdavacGetAllResponse> Obradi ([FromQuery] ProdavacGetAllRequest request, CancellationToken cancellationToken)
+        public override async  Task <ProdavacGetAllResponse> Obradi 
+            ([FromQuery] ProdavacGetAllRequest request, CancellationToken cancellationToken)
         {
             var data =  _ApplicationDbContext.Prodavac
                 .OrderBy(p => p.ID)

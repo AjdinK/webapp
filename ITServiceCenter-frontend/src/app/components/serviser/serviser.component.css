@@ -40,7 +40,10 @@ td {
 td {
   color: white;
 }
-td button {
+td button,
+.button-Previous,
+.button-next,
+.broj-page {
   border: none;
   background-color: white;
   color: black;
@@ -52,7 +55,13 @@ td button {
   height: 40px;
   transition: 0.2s ease-in;
 }
-td button:hover {
+.broj-page {
+  width: fit-content;
+}
+td button:hover,
+.button-Previous:hover,
+.button-next:hover,
+.broj-page:hover {
   background-color: #516269;
   color: white;
 }
@@ -76,21 +85,20 @@ form {
   display: flex;
   flex-direction: column;
   margin: 30px auto;
-  padding: 30px;
+  padding: 50px;
   background-color: #000408;
   color: white;
   font-size: 1.1rem;
   margin-bottom: 150px;
 }
 form input {
-  padding: 7px;
+  padding: 10px;
   font-size: 1rem;
   border-radius: 0;
   font-family: "Space Grotesk", sans-serif;
   font-weight: bold;
   color: #000408;
 }
-
 .form-group {
   margin-bottom: 20px;
   display: flex;
@@ -106,14 +114,13 @@ form input {
   flex: 1;
   padding: 5px 10px;
 }
-
 .btn-save,
 .btn-zatvori,
 .dodaj {
   background-color: white;
   color: black;
   border: none;
-  padding: 8px 16px;
+  padding: 10px 20px;
   border-radius: 0;
   cursor: pointer;
   margin-top: 10px;
@@ -128,6 +135,11 @@ form input {
 }
 .dodaj {
   margin-bottom: 30px;
+}
+
+.dodaj:hover {
+  background-color: #516269;
+  color: white;
 }
 
 .select-grad {
@@ -153,15 +165,11 @@ select option {
   margin-bottom: 20px;
 }
 
-.dodaj:hover {
-  background-color: #516269;
-  color: white;
-}
-
 .div-button {
   display: flex;
   justify-content: space-evenly;
   margin-bottom: 30px;
+  margin-top: 40px;
 }
 
 .btn-save {
@@ -210,4 +218,7 @@ select {
   overflow: hidden;
   background-color: white;
   color: #000408;
+}
+.nav {
+  margin: 10px 0;
 }

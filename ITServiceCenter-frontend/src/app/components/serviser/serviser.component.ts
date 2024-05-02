@@ -3,6 +3,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import {
   ServiserGetAllEndpoint,
+  ServiserGetAllResponse,
   ServiserGetAllResponseServiseri,
 } from '../../endpoints/serviser-endpoints/serviser-get-all-endpoint';
 import {
@@ -35,9 +36,11 @@ export class ServiserComponent implements OnInit {
     this.fetchGrad();
   }
 
+  currentPage: number = 1;
+
   JelPopunjeno: boolean = false;
 
-  serviserPodaci: ServiserGetAllResponseServiseri[] | null = [];
+  serviserPodaci: ServiserGetAllResponse | null = null;
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
   showServiserTable: boolean = true;
@@ -51,9 +54,9 @@ export class ServiserComponent implements OnInit {
 
   //fetch serviser data from db
   fetchServiser() {
-    this.serviserGetAllEndpoint.obradi().subscribe({
+    this.serviserGetAllEndpoint.obradi(this.currentPage!).subscribe({
       next: (x) => {
-        this.serviserPodaci = x.listaServiser;
+        this.serviserPodaci = x;
       },
       error: (x) => {
         alert('greska -> ' + x.error);
@@ -64,7 +67,7 @@ export class ServiserComponent implements OnInit {
   //search for serviser using ime , prezime or username
   filtrirajServiser() {
     if (this.serviserPodaci == null) return [];
-    return this.serviserPodaci.filter(
+    return this.serviserPodaci.listaServiser.filter(
       (x) =>
         x.ime.toLowerCase().startsWith(this.searchServiser.toLowerCase()) ||
         x.prezime.toLowerCase().startsWith(this.searchServiser.toLowerCase()) ||
@@ -201,5 +204,39 @@ export class ServiserComponent implements OnInit {
     return (
       'data:image/png;base64,' + this.odabraniServiser!.slikaKorisnikaNovaString
     );
+  }
+
+  pageNumbersArray(): number[] {
+    let rez = [];
+    for (let i = 0; i < this.totalPages(); i++) {
+      rez.push(i + 1);
+    }
+    return rez;
+  }
+
+  private totalPages() {
+    if (this.serviserPodaci != null) return this.serviserPodaci?.totalPages;
+
+    return 1;
+  }
+
+  goToPage(p: number) {
+    this.currentPage = p;
+    this.fetchServiser();
+  }
+
+  goToPrev(p: number) {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fetchServiser();
+    }
+    if (p == this.currentPage) return;
+  }
+  goToNext(p: number) {
+    if (this.currentPage < this.totalPages()) {
+      this.currentPage++;
+      this.fetchServiser();
+    }
+    if (p == this.currentPage) return;
   }
 }

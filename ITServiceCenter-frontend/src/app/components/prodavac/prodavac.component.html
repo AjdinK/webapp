@@ -37,21 +37,14 @@
   </table>
 
   <div class="nav">
-    <button class="button-Previous" (click)="goToPrev(currentPage)"> Previous
-    </button>
+    <button class="button-Previous" (click)="goToPrev(currentPage)">Previous</button>
 
     <button class="broj-page" *ngFor="let p of pageNumbersArray()" (click)="goToPage(p)">
       {{p}}
     </button>
 
-    <button class="button-next" (click)="goToNext(currentPage)">Next > </button>
+    <button class="button-next" (click)="goToNext(currentPage)">Next</button>
   </div>
-
-
-
-
-
-
 
 
   <!-- form edit for prodavac and it show only if bool is true the user press the button edit from the table -->

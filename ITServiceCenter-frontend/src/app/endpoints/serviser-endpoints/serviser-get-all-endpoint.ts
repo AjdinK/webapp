@@ -6,17 +6,28 @@ import { ConfigFile } from '../../configFile';
 
 @Injectable({ providedIn: 'root' })
 export class ServiserGetAllEndpoint
-  implements MyBaseEndpoint<void, ServiserGetAllResponse>
+  implements MyBaseEndpoint<number, ServiserGetAllResponse>
 {
   constructor(private httpKlijent: HttpClient) {}
-  obradi(request: void): Observable<ServiserGetAllResponse> {
-    let url = ConfigFile.adresa_servera + '/Serviser/GetAll';
+  obradi(request: number): Observable<ServiserGetAllResponse> {
+    let url =
+      ConfigFile.adresa_servera +
+      '/Serviser/GetAll?PageNumber=' +
+      request +
+      '&PageSize=' +
+      6;
     return this.httpKlijent.get<ServiserGetAllResponse>(url);
   }
 }
 
 export interface ServiserGetAllResponse {
   listaServiser: ServiserGetAllResponseServiseri[];
+  currentPage: number;
+  totalPages: number;
+  pageSize: number;
+  totalCount: number;
+  hasPrevios: boolean;
+  hasNext: boolean;
 }
 
 export interface ServiserGetAllResponseServiseri {
