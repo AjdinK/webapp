@@ -164,3 +164,8 @@ header .navbar .menu-links {
     right: 30px;
   }
 }
+@media only screen and (max-width: 370px) {
+  img {
+    display: none;
+  }
+}
