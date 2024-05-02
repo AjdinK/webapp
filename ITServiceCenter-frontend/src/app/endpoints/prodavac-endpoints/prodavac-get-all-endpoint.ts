@@ -10,20 +10,14 @@ export class ProdavacGetAllEndpoint
 {
   constructor(private httpKlijent: HttpClient) {}
   obradi(pageNumber: number): Observable<ProdavacGetAllResponse> {
-    //https://localhost:7174/Prodavac/GetAll?PageNumber=1&PageSize=5
     let url =
       ConfigFile.adresa_servera +
       '/Prodavac/GetAll?PageNumber=' +
       pageNumber +
       '&PageSize=' +
-      5;
+      6;
     return this.httpKlijent.get<ProdavacGetAllResponse>(url);
   }
-}
-
-export interface ProdavacGetAllRequest {
-  pageSize: number;
-  pageNumber: number;
 }
 
 export interface ProdavacGetAllResponse {

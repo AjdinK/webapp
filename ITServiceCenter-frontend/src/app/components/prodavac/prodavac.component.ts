@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   ProdavacGetAllEndpoint,
-  ProdavacGetAllRequest,
   ProdavacGetAllResponse,
   ProdavacGetAllResponseProdavac,
 } from '../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint';
@@ -42,7 +41,6 @@ export class ProdavacComponent implements OnInit {
   currentPage: number = 1;
 
   prodavacPodaci: ProdavacGetAllResponse | null = null;
-  prodavacRequestPage: ProdavacGetAllRequest | null = null;
 
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
@@ -69,8 +67,6 @@ export class ProdavacComponent implements OnInit {
     });
   }
 
-  //https://localhost:7174/Prodavac/GetAll?PageNumber=1&PageSize=5
-
   //fetch prodavac data from db
   fetchProdavac() {
     this.prodavacGetAllEndpoint.obradi(this.currentPage!).subscribe({
@@ -81,12 +77,6 @@ export class ProdavacComponent implements OnInit {
         alert('greska fetchProdavac -> ' + x.error);
       },
     });
-  }
-
-  getPageInfo() {
-    alert('radi');
-    this.prodavacRequestPage!.pageNumber = this.currentPage;
-    this.prodavacRequestPage!.pageSize = 5;
   }
 
   //search for prodavac using ime , prezime or username
