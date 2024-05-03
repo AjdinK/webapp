@@ -1,29 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
 import {
   ProdavacGetAllEndpoint,
   ProdavacGetAllResponse,
   ProdavacGetAllResponseProdavac,
-} from '../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint';
+} from "../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint";
 import {
   ProdavacSnimiEndpoint,
   ProdavacSnimiRequest,
-} from '../../endpoints/prodavac-endpoints/prodavac-snimi-endpoint';
+} from "../../endpoints/prodavac-endpoints/prodavac-snimi-endpoint";
 import {
   GradGetAllEndpoint,
   GradGetAllResponseGrad,
-} from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
-import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
-import { ProdavacBrisiEndpoint } from '../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint';
-import { ServiserSnimiRequest } from '../../endpoints/serviser-endpoints/serviser-snimi-endpoint';
-import { ServiserGetAllResponseServiseri } from '../../endpoints/serviser-endpoints/serviser-get-all-endpoint';
+} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
+import { FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
+import { ProdavacBrisiEndpoint } from "../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint";
+import { ServiserSnimiRequest } from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
+import { ServiserGetAllResponseServiseri } from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
 
 @Component({
-  selector: 'app-prodavac',
+  selector: "app-prodavac",
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
-  templateUrl: './prodavac.component.html',
-  styleUrl: './prodavac.component.css',
+  templateUrl: "./prodavac.component.html",
+  styleUrl: "./prodavac.component.css",
 })
 export class ProdavacComponent implements OnInit {
   constructor(
@@ -47,9 +47,9 @@ export class ProdavacComponent implements OnInit {
   showProdavacTable: boolean = true;
   showProdavacEdit: boolean = false;
   showProdavacForm: boolean = false;
-  searchProdavac: string = '';
+  searchProdavac: string = "";
 
-  formTitle: string = '';
+  formTitle: string = "";
   JelPopunjeno: boolean = false;
 
   odabraniProdavac: ProdavacSnimiRequest | null = null;
@@ -62,7 +62,7 @@ export class ProdavacComponent implements OnInit {
         this.gradPodaci = x.gradovi;
       },
       error: (x) => {
-        alert('greska fetchGrad -> ' + x.error);
+        alert("greska fetchGrad -> " + x.error);
       },
     });
   }
@@ -74,7 +74,7 @@ export class ProdavacComponent implements OnInit {
         this.prodavacPodaci = x;
       },
       error: (x) => {
-        alert('greska fetchProdavac -> ' + x.error);
+        alert("greska fetchProdavac -> " + x.error);
       },
     });
   }
@@ -101,7 +101,7 @@ export class ProdavacComponent implements OnInit {
           this.showProdavacTable = true;
         },
         error: (x) => {
-          alert('greska snimiProdavac -> ' + x.error);
+          alert("greska snimiProdavac -> " + x.error);
         },
       });
     }
@@ -110,7 +110,7 @@ export class ProdavacComponent implements OnInit {
 
   //show the edit form and hide the data table when press on edit button
   editProdavac(x: any) {
-    this.formTitle = 'Edit Prodavac';
+    this.formTitle = "Edit Prodavac";
     this.showProdavacTable = false;
     this.showProdavacEdit = true;
     this.odabraniProdavac = x;
@@ -126,34 +126,34 @@ export class ProdavacComponent implements OnInit {
 
   //soft delete the user from the data
   brisiProdavac(id: number) {
-    if (confirm('Da li zelite izbrisati Prodavaca'))
+    if (confirm("Da li zelite izbrisati Prodavaca"))
       this.prodavacBrisiEndpoint.obradi(id).subscribe({
         next: (x) => {
           this.fetchProdavac();
           this.showProdavacTable = true;
         },
         error: (x) => {
-          alert('greska brisiProdavac -> ' + x.error);
+          alert("greska brisiProdavac -> " + x.error);
         },
       });
   }
 
   //adding new prodavac and show the form
   dodajNovi() {
-    this.formTitle = 'Dodaj Prodavac';
+    this.formTitle = "Dodaj Prodavac";
     this.showProdavacForm = true;
     this.showProdavacTable = false;
     this.showProdavacEdit = false;
     this.noviProdavac = {
       id: 0,
-      ime: '',
-      prezime: '',
+      ime: "",
+      prezime: "",
       gradID: 1,
       spolID: 1,
       isProdavac: true,
-      username: '',
-      email: '',
-      slikaKorisnikaNovaString: '',
+      username: "",
+      email: "",
+      slikaKorisnikaNovaString: "",
     };
   }
 
@@ -168,7 +168,7 @@ export class ProdavacComponent implements OnInit {
           this.showProdavacForm = false;
         },
         error: (x) => {
-          alert('greska dodajProdavac -> ' + x.error);
+          alert("greska dodajProdavac -> " + x.error);
         },
       });
     }
@@ -178,12 +178,11 @@ export class ProdavacComponent implements OnInit {
   //to show the image in preview box for the edit form
   generisiPreview() {
     // @ts-ignore
-    let file = document.getElementById('slika-input').files[0];
+    let file = document.getElementById("slika-input").files[0];
     if (file && this.odabraniProdavac) {
       let reader = new FileReader();
       reader.onload = () => {
-        this.odabraniProdavac!.slikaKorisnikaNovaString =
-          reader.result?.toString();
+        this.odabraniProdavac!.slikaKorisnikaNovaString = reader.result?.toString();
       };
       reader.readAsDataURL(file);
     }
@@ -192,7 +191,7 @@ export class ProdavacComponent implements OnInit {
   //to show the image in preview box for the new user
   generisiPreviewZaNovi() {
     // @ts-ignore
-    let file = document.getElementById('slika-input').files[0];
+    let file = document.getElementById("slika-input").files[0];
     if (file && this.noviProdavac) {
       let reader = new FileReader();
       reader.onload = () => {
@@ -205,7 +204,7 @@ export class ProdavacComponent implements OnInit {
   //to load the image from db and to add the missing part
   showSlikaFromDB() {
     return (
-      'data:image/png;base64,' + this.odabraniProdavac!.slikaKorisnikaNovaString
+      "data:image/png;base64," + this.odabraniProdavac!.slikaKorisnikaNovaString
     );
   }
 

@@ -1,38 +1,38 @@
-import { Routes } from '@angular/router';
-import { HomepageComponent } from './components/homepage/homepage.component';
-import { LoginComponent } from './components/login/login.component';
-import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
+import { Routes } from "@angular/router";
+import { HomepageComponent } from "./components/homepage/homepage.component";
+import { LoginComponent } from "./components/login/login.component";
+import { DashboardAdminComponent } from "./components/dashboard-admin/dashboard-admin.component";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: HomepageComponent,
-    title: 'Homepage',
+    title: "Homepage",
   },
   {
-    path: 'homepage',
+    path: "homepage",
     component: HomepageComponent,
-    title: 'Homepage',
+    title: "Homepage",
   },
   {
-    path: 'login',
+    path: "login",
     component: LoginComponent,
-    title: 'login',
+    title: "login",
   },
   {
-    path: 'dashboard-admin',
+    path: "dashboard-admin",
     component: DashboardAdminComponent,
-    title: 'dashboard-admin',
+    title: "dashboard-admin",
   },
   {
-    path: 'assets/ava',
+    path: "assets/ava",
     component: HomepageComponent,
-    title: 'assets/ava',
+    title: "assets/ava",
   },
   {
-    path: 'assets/profile',
+    path: "assets/profile",
     component: HomepageComponent,
-    title: 'assets/profile',
+    title: "assets/profile",
   },
-  { path: '**', redirectTo: 'homepage' },
+  { path: "**", redirectTo: "homepage" },
 ];

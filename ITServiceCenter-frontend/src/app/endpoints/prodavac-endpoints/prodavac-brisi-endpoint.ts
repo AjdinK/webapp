@@ -1,14 +1,14 @@
 import { Observable } from "rxjs";
-import {MyBaseEndpoint} from "../my-base-endpoint";
-import {HttpClient} from "@angular/common/http";
-import {ConfigFile} from "../../configFile";
-import {Injectable} from "@angular/core";
+import { MyBaseEndpoint } from "../my-base-endpoint";
+import { HttpClient } from "@angular/common/http";
+import { ConfigFile } from "../../configFile";
+import { Injectable } from "@angular/core";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ProdavacBrisiEndpoint implements MyBaseEndpoint<number, number> {
-  constructor(private httpKlijent : HttpClient) {}
-    obradi(request: number): Observable<number> {
-        let url = ConfigFile.adresa_servera + "/Prodavac/Brisi?ID=" + request;
-        return this.httpKlijent.delete<number>(url);
-    }
+  constructor(private httpKlijent: HttpClient) {}
+  obradi(request: number): Observable<number> {
+    let url = ConfigFile.adresa_servera + "/Prodavac/Brisi?ID=" + request;
+    return this.httpKlijent.delete<number>(url);
+  }
 }
