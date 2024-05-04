@@ -1,5 +1,6 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
-export interface MyBaseEndpoint<TRequest, TRespones> {
-  obradi(request: TRequest): Observable<TRespones>;
+export interface MyBaseEndpoint <TRequest , TRespones>{
+  obradi (request : TRequest): Observable<TRespones>;
 }
+

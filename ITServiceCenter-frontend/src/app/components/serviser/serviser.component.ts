@@ -1,27 +1,27 @@
-import { Component, OnInit } from "@angular/core";
-import { CommonModule, NgOptimizedImage } from "@angular/common";
-import { FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import {
   ServiserGetAllEndpoint,
   ServiserGetAllResponse,
   ServiserGetAllResponseServiseri,
-} from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
+} from '../../endpoints/serviser-endpoints/serviser-get-all-endpoint';
 import {
   ServiserSnimiEndpoint,
   ServiserSnimiRequest,
-} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
-import { ServiserBrisiEndpoint } from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
+} from '../../endpoints/serviser-endpoints/serviser-snimi-endpoint';
+import { ServiserBrisiEndpoint } from '../../endpoints/serviser-endpoints/serviser-brisi-endpoint';
 import {
   GradGetAllEndpoint,
   GradGetAllResponseGrad,
-} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
+} from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
 
 @Component({
-  selector: "app-serviser",
+  selector: 'app-serviser',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule, NgOptimizedImage],
-  templateUrl: "./serviser.component.html",
-  styleUrl: "./serviser.component.css",
+  templateUrl: './serviser.component.html',
+  styleUrl: './serviser.component.css',
 })
 export class ServiserComponent implements OnInit {
   constructor(
@@ -46,11 +46,11 @@ export class ServiserComponent implements OnInit {
   showServiserTable: boolean = true;
   showServiserEdit: boolean = false;
   showServiserForm: boolean = false;
-  searchServiser: string = "";
+  searchServiser: string = '';
 
   odabraniServiser: ServiserSnimiRequest | null = null;
   noviServiser: ServiserSnimiRequest | null = null;
-  formTitle: string = "";
+  formTitle: string = '';
 
   //fetch serviser data from db
   fetchServiser() {
@@ -59,7 +59,7 @@ export class ServiserComponent implements OnInit {
         this.serviserPodaci = x;
       },
       error: (x) => {
-        alert("greska -> " + x.error);
+        alert('greska -> ' + x.error);
       },
     });
   }
@@ -86,7 +86,7 @@ export class ServiserComponent implements OnInit {
           this.showServiserTable = true;
         },
         error: (x) => {
-          alert("greska snimiServiser -> " + x.error);
+          alert('greska snimiServiser -> ' + x.error);
         },
       });
     }
@@ -95,21 +95,21 @@ export class ServiserComponent implements OnInit {
 
   //soft delete the user from the data
   brisiServiser(id: number) {
-    if (confirm("Da li zelite izbrisati Serviser"))
+    if (confirm('Da li zelite izbrisati Serviser'))
       this.serviserBrisiEndpoint.obradi(id).subscribe({
         next: (x) => {
           this.fetchServiser();
           this.showServiserTable = true;
         },
         error: (x) => {
-          alert("greska brisiServiser -> " + x.error);
+          alert('greska brisiServiser -> ' + x.error);
         },
       });
   }
 
   //show the edit form and hide the data table when press on edit button
   editServiser(x: any) {
-    this.formTitle = "Edit Serviser";
+    this.formTitle = 'Edit Serviser';
     this.showServiserEdit = true;
     this.odabraniServiser = x;
     this.showServiserTable = false;
@@ -122,7 +122,7 @@ export class ServiserComponent implements OnInit {
         this.gradPodaci = x.gradovi;
       },
       error: (x) => {
-        alert("greska fetchGrad -> " + x.error);
+        alert('greska fetchGrad -> ' + x.error);
       },
     });
   }
@@ -137,20 +137,20 @@ export class ServiserComponent implements OnInit {
 
   //adding new serviser and show the form
   dodajNovi() {
-    this.formTitle = "Dodaj Serviser";
+    this.formTitle = 'Dodaj Serviser';
     this.showServiserForm = true;
     this.showServiserTable = false;
     this.showServiserEdit = false;
     this.noviServiser = {
       id: 0,
-      ime: "",
-      prezime: "",
+      ime: '',
+      prezime: '',
       gradID: 1,
       spolID: 1,
       isServiser: true,
-      username: "",
-      email: "",
-      slikaKorisnikaNovaString: "",
+      username: '',
+      email: '',
+      slikaKorisnikaNovaString: '',
     };
   }
 
@@ -165,7 +165,7 @@ export class ServiserComponent implements OnInit {
           this.showServiserForm = false;
         },
         error: (x) => {
-          alert("greska snimiServiser -> " + x.error);
+          alert('greska snimiServiser -> ' + x.error);
         },
       });
     }
@@ -175,11 +175,12 @@ export class ServiserComponent implements OnInit {
   //to show the image in preview box for the edit form
   generisiPreview() {
     // @ts-ignore
-    let file = document.getElementById("slika-input").files[0];
+    let file = document.getElementById('slika-input').files[0];
     if (file && this.odabraniServiser) {
       let reader = new FileReader();
       reader.onload = () => {
-        this.odabraniServiser!.slikaKorisnikaNovaString = reader.result?.toString();
+        this.odabraniServiser!.slikaKorisnikaNovaString =
+          reader.result?.toString();
       };
       reader.readAsDataURL(file);
     }
@@ -188,7 +189,7 @@ export class ServiserComponent implements OnInit {
   //to show the image in preview box for the new user
   generisiPreviewZaNovi() {
     // @ts-ignore
-    let file = document.getElementById("slika-input").files[0];
+    let file = document.getElementById('slika-input').files[0];
     if (file && this.noviServiser) {
       let reader = new FileReader();
       reader.onload = () => {
@@ -201,7 +202,7 @@ export class ServiserComponent implements OnInit {
   //to load the image from db and to add the missing part
   showSlikaFromDB() {
     return (
-      "data:image/png;base64," + this.odabraniServiser!.slikaKorisnikaNovaString
+      'data:image/png;base64,' + this.odabraniServiser!.slikaKorisnikaNovaString
     );
   }
 

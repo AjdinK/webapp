@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Identity;
 
 namespace itservicecenter.Entities.Models
 {
     [Table("KorsnickiNalog")]
-    public class KorisnickiNalog 
+    public class KorisnickiNalog
     {
         [Key]
         public int ID { get; set; }
