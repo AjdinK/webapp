@@ -99,8 +99,11 @@
 
     <label for="slika-input">Nova slika</label>
     <input id="input-pic" type='file' accept="image/*" (change)="onFileSelected($event);" />
-    <img id="oldPic" src="https://localhost:7174/Admin/GetImgById?id=1" height="200" width="200" alt="old pic" />
-    <img id="newPic" src="{{ this.novaSlikaAdmin }}" height="200" width="200" />
+
+
+    <img id="oldPic" src="https://localhost:7174/Admin/GetImgById?id=1" />
+    <img id="newPic" src="{{ this.novaSlikaAdmin }}" />
+
 
   </div>
 

@@ -79,6 +79,7 @@ export class AdminComponent implements OnInit {
         next: (x) => {
           this.showAdminForm = false;
           this.fetchAdmin();
+          this.staraSlikaAdmin = this.novaSlikaAdmin;
         },
         error: (x) => {
           alert("greska snimiAdmin - " + x.error);
@@ -104,19 +105,6 @@ export class AdminComponent implements OnInit {
     }
   }
   //to show the image in preview box
-
-  // fetchAdminImg(id: number) {
-  //   this.httpKlijent
-  //     .get(`https://localhost:7174/Admin/GetImgById?id=${id}`)
-  //     .subscribe({
-  //       next: (imageUrl) => {
-  //         this.staraSlikaAdmin = imageUrl;
-  //       },
-  //       error: (error) => {
-  //         console.error("Error fetching profile picture:", error);
-  //       },
-  //     });
-  // }
 
   protected readonly ConfigFile = ConfigFile;
 }
