@@ -31,7 +31,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
                     IsServiser = a.IsServiser,
                     IsProdavac = a.IsProdavac,
                     Username = a.Username,
-                    SlikaKorisnikaBase64 = a.SlikaKorisnika,
+                    SlikaKorisnikaBase64 = a.SlikaKorisnikaVelika,
                 })
                 .SingleAsync(a => a.Id == request.Id, cancellationToken: cancellationToken);
 

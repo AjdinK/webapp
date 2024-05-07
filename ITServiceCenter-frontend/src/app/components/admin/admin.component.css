@@ -114,23 +114,13 @@ form h1 {
   margin-bottom: 40px;
 }
 
-input#slika-input {
-  width: 15%;
-  margin: 30px 0;
+#input-pic {
+  margin-left: 5%;
+  margin-right: 0;
+  width: 150px;
 }
-input#slika-input img {
-  margin: 30px 0;
-}
-.slika-label {
-  margin-right: 2%;
-}
-img{
-  padding: 5px;
-  border: white 2px solid;
-  overflow: hidden;
-}
-select {
-  overflow: hidden;
-  background-color: white;
-  color: #000408;
+#oldPic,
+#newPic {
+  margin-right: 20px;
+  border: #516269 solid 5px;
 }

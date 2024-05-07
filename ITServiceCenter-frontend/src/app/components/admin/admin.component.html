@@ -95,13 +95,15 @@
 
   <!-- div to show 2 pictuers the old from db and the new one uploaded -->
 
-  <div class="form-group">
-    <label for="slika-input" class="slika-label">Nova slika</label>
-    <input id="slika-input" name="slika-input" type="file" accept="image/*" (change)="generisiPreview()" />
-    <img class="profilna-slika"  width="200" height="200" src="{{ConfigFile.adresa_servera}}/admin/slika?id={{this.adminPodaciFetch!.id}}">
-    <img alt="Nova Slika" class="slika" height="200" src={{this.adminPodaciFetch!.slikaKorisnikaBase64}}
-      width="200" />
+  <div>
+
+    <label for="slika-input">Nova slika</label>
+    <input id="input-pic" type='file' accept="image/*" (change)="onFileSelected($event);" />
+    <img id="oldPic" src="https://localhost:7174/Admin/GetImgById?id=1" height="200" width="200" alt="old pic" />
+    <img id="newPic" src="{{ this.novaSlikaAdmin }}" height="200" width="200" />
+
   </div>
+
 
   <!-- submit changes when everything is fine and valid -->
 

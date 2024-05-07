@@ -66,15 +66,14 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
                     Directory.CreateDirectory(folderPath);
                 }
 
-                Admin.SlikaKorisnika = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
-                Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
+                // Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
 
-                // Admin.SlikaKorisnikaVelika = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
-                // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviVelika,
-                //     cancellationToken);
-
-                await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaVelika, SlikaBajtoviMala,
+                Admin.SlikaKorisnikaVelika = $"{folderPath}/{Admin.ID}-velika.jpg";
+                await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaVelika, SlikaBajtoviVelika,
                     cancellationToken);
+
+                // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviMala,
+                //     cancellationToken);
             }
 
             await _ApplicationDbContext.SaveChangesAsync();

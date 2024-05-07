@@ -6,8 +6,8 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints
     [ApiController]
     public class AdminGetImgById : ControllerBase
     {
-        [HttpGet("Admin/Slika")]
-        public async Task <FileContentResult> GetByID(int id, CancellationToken cancellationToken)
+        [HttpGet("Admin/GetImgById")]
+        public async Task <FileContentResult> GetByID([FromQuery] int id, CancellationToken cancellationToken)
         {
             var folderPath = "slike-admin";
             byte[] slika;
@@ -29,16 +29,11 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints
 
         static string GetMimeType(string fileName)
         {
-            // Create a new instance of FileExtensionContentTypeProvider
             var provider = new FileExtensionContentTypeProvider();
-
-            // Try to get the MIME type
             if (provider.TryGetContentType(fileName, out var contentType))
             {
                 return contentType;
             }
-
-            // If the MIME type cannot be determined, you can provide a default or handle it accordingly
             return "application/octet-stream";
         }
     }

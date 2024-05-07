@@ -1,41 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 import {
   AdminGetByIdEndpoint,
   AdminGetByIdResponse,
-} from '../../endpoints/admin-endpoints/admin-get-by-id-endpoint';
-import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
-import { NgForOf, NgIf, NgOptimizedImage } from '@angular/common';
+} from "../../endpoints/admin-endpoints/admin-get-by-id-endpoint";
+import { FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
+import { NgForOf, NgIf, NgOptimizedImage } from "@angular/common";
 import {
   GradGetAllEndpoint,
   GradGetAllResponseGrad,
-} from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
+} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
 import {
   AdminSnimiEndpoint,
   AdminSnimiRequest,
-} from '../../endpoints/admin-endpoints/admin-snimi-endpoint';
-import {ConfigFile} from "../../configFile";
-
+} from "../../endpoints/admin-endpoints/admin-snimi-endpoint";
+import { ConfigFile } from "../../configFile";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-admin',
+  selector: "app-admin",
   standalone: true,
   imports: [FormsModule, NgForOf, NgIf, ReactiveFormsModule, NgOptimizedImage],
-  templateUrl: './admin.component.html',
-  styleUrl: './admin.component.css',
+  templateUrl: "./admin.component.html",
+  styleUrl: "./admin.component.css",
 })
 export class AdminComponent implements OnInit {
   constructor(
     private adminGetByIdEndpoint: AdminGetByIdEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint,
     private adminSnimiEndpoint: AdminSnimiEndpoint,
+    private httpKlijent: HttpClient
   ) {}
 
+  staraSlikaAdmin: any;
+  novaSlikaAdmin: any;
   showAdminForm: boolean = true;
   adminPodaciFetch: AdminGetByIdResponse | null = null;
   adminPodaciEdit: AdminSnimiRequest | null = null;
 
   gradPodaci: GradGetAllResponseGrad[] | null = null;
-  formTitle: string = 'Edit Admin';
+  formTitle: string = "Edit Admin";
   JelPopunjeno: boolean = false;
 
   ngOnInit(): void {
@@ -43,15 +46,15 @@ export class AdminComponent implements OnInit {
     this.fetchGrad();
   }
 
-
   //fetch Admin data from db
+  //TODO: take the id from the login admin
   fetchAdmin() {
     this.adminGetByIdEndpoint.obradi(1).subscribe({
       next: (x) => {
         this.adminPodaciFetch = x;
       },
       error: (x) => {
-        alert('greska adminGetByIdEndpoint -> ' + x.error);
+        alert("greska adminGetByIdEndpoint -> " + x.error);
       },
     });
   }
@@ -63,7 +66,7 @@ export class AdminComponent implements OnInit {
         this.gradPodaci = x.gradovi;
       },
       error: (x) => {
-        alert('greska fetchGrad -> ' + x.error);
+        alert("greska fetchGrad -> " + x.error);
       },
     });
   }
@@ -71,37 +74,49 @@ export class AdminComponent implements OnInit {
   //save admin data from the form and check the form if is it valid? or not
   snimi(editForm: NgForm) {
     if (editForm.form.valid) {
+      this.adminPodaciFetch!.slikaKorisnikaBase64 = this.novaSlikaAdmin;
       this.adminSnimiEndpoint.obradi(this.adminPodaciFetch!).subscribe({
         next: (x) => {
           this.showAdminForm = false;
           this.fetchAdmin();
         },
         error: (x) => {
-          alert('greska snimiAdmin - ' + x.error);
+          alert("greska snimiAdmin - " + x.error);
         },
       });
     }
     this.JelPopunjeno = true;
   }
+
   //close and refresh admin data from db
   closeEdit() {
     this.showAdminForm = false;
     this.fetchAdmin();
   }
 
-  //to show the image in preview box
-  generisiPreview() {
-    // @ts-ignore
-    let file = document.getElementById('slika-input').files[0];
-    if (file && this.adminPodaciFetch) {
-      let reader = new FileReader();
-      reader.onload = () => {
-        this.adminPodaciFetch!.slikaKorisnikaBase64 =
-          reader.result?.toString();
+  onFileSelected(e: any) {
+    if (e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (event: any) => {
+        this.novaSlikaAdmin = event.target.result;
       };
-      reader.readAsDataURL(file);
     }
   }
+  //to show the image in preview box
+
+  // fetchAdminImg(id: number) {
+  //   this.httpKlijent
+  //     .get(`https://localhost:7174/Admin/GetImgById?id=${id}`)
+  //     .subscribe({
+  //       next: (imageUrl) => {
+  //         this.staraSlikaAdmin = imageUrl;
+  //       },
+  //       error: (error) => {
+  //         console.error("Error fetching profile picture:", error);
+  //       },
+  //     });
+  // }
 
   protected readonly ConfigFile = ConfigFile;
 }
