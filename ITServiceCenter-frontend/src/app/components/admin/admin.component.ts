@@ -14,6 +14,7 @@ import {
   AdminSnimiRequest,
 } from '../../endpoints/admin-endpoints/admin-snimi-endpoint';
 
+
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -25,7 +26,7 @@ export class AdminComponent implements OnInit {
   constructor(
     private adminGetByIdEndpoint: AdminGetByIdEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint,
-    private adminSnimiEndpoint: AdminSnimiEndpoint
+    private adminSnimiEndpoint: AdminSnimiEndpoint,
   ) {}
 
   showAdminForm: boolean = true;
@@ -40,6 +41,7 @@ export class AdminComponent implements OnInit {
     this.fetchAdmin();
     this.fetchGrad();
   }
+
 
   //fetch Admin data from db
   fetchAdmin() {

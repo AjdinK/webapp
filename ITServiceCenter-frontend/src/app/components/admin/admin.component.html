@@ -98,7 +98,7 @@
   <div class="form-group">
     <label for="slika-input" class="slika-label">Nova slika</label>
     <input id="slika-input" name="slika-input" type="file" accept="image/*" (change)="generisiPreview()" />
-    <img alt="slika" class="slika" height="200" src={{showSlikaFromDB()}} width="200" />
+    <img alt="slika" class="slika" height="200" src="{{this.imageUrl" width="200" />
     <img alt="Nova Slika" class="slika" height="200" ngSrc={{this.adminPodaciFetch!.slikaKorisnikaNovaString}}
       width="200" />
   </div>
