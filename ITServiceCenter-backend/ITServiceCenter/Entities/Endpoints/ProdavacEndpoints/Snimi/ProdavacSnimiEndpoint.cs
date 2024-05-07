@@ -33,9 +33,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
 
                 Prodavac.Email = request.Email;
                 Prodavac.Username = request.Username;
-                Prodavac.Passweord = "test";
-                Prodavac.SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
-            }
+                Prodavac.Passweord = "test"; }
             else
             {
                 Prodavac = _ApplicationDbContext.Prodavac.FirstOrDefault(p => p.ID == request.ID);
@@ -47,25 +45,6 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
             Prodavac.GradID = request.GradID;
             Prodavac.SpolID = request.SpolID;
 
-            if (!string.IsNullOrEmpty(request.SlikaKorisnikaNovaString))
-            {
-                byte[]? SlikaBajtovi = request.SlikaKorisnikaNovaString?.ParsirajBase64();
-
-                if (SlikaBajtovi == null) throw new Exception("format slike nije base64");
-
-                byte[]? SlikaBajtoviResizedVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 75);
-                byte[]? SlikaBajtoviResizedMala = ImageHelper.ResizeSlike(SlikaBajtovi, 50, 75);
-                Prodavac.SlikaKorisnikaTrenutnoBajt = SlikaBajtoviResizedVelika;
-
-                //Opcija za snimanje u File System
-                if (SlikaBajtoviResizedVelika != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika,
-                        $"wwwroot/profile_images/SlikeKorisnika/{Prodavac.Username} +_velika" + ".png");
-
-                if (SlikaBajtoviResizedMala != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika,
-                        $"wwwroot/profile_images/SlikeKorisnika/{Prodavac.Username} +_mala" + ".png");
-            }
 
             await _ApplicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
             return Prodavac.ID;

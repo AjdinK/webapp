@@ -39,6 +39,18 @@
     <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtest +_velika.png" />
     <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtesttest +_mala.png" />
     <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtesttest +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\jebop +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\jebop +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\lofecot +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\lofecot +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\nyjuti +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\nyjuti +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\tafybi +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\tafybi +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testTesttestTest +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testTesttestTest +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\wyhereqa +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\wyhereqa +_velika.png" />
   </ItemGroup>
 
 </Project>

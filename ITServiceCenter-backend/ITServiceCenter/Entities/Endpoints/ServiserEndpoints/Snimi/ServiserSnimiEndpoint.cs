@@ -30,7 +30,6 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
                 Serviser.Username = request.Username;
                 Serviser.Email = request.Email;
                 Serviser.Passweord = "test";
-                Serviser.SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
             }
             else
             {
@@ -45,26 +44,6 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
             Serviser.IsServiser = request.IsServiser;
             Serviser.GradID = request.GradID;
             Serviser.SpolID = request.SpolID;
-
-            if (!string.IsNullOrEmpty(request.SlikaKorisnikaNovaString))
-            {
-                byte[]? SlikaBajtovi = request.SlikaKorisnikaNovaString?.ParsirajBase64();
-
-                if (SlikaBajtovi == null) throw new Exception("format slike nije base64");
-
-                byte[]? SlikaBajtoviResizedVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 75);
-                byte[]? SlikaBajtoviResizedMala = ImageHelper.ResizeSlike(SlikaBajtovi, 50, 75);
-                Serviser.SlikaKorisnikaTrenutnoBajt = SlikaBajtoviResizedVelika;
-
-                //Opcija za snimanje u File System
-                if (SlikaBajtoviResizedVelika != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika,
-                        $"wwwroot/profile_images/SlikeKorisnika/{Serviser.Username} +_velika" + ".png");
-
-                if (SlikaBajtoviResizedMala != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika,
-                        $"wwwroot/profile_images/SlikeKorisnika/{Serviser.Username} +_mala" + ".png");
-            }
 
             await _applicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
             return Serviser.ID;

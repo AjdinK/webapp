@@ -22,8 +22,6 @@ namespace itservicecenter.Configuration
                     IsProdavac = true,
                     Email = "test@test.com",
                     JelObrisan = false,
-                    SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png"),
-
                 },
                 new Prodavac
                 {
@@ -37,7 +35,6 @@ namespace itservicecenter.Configuration
                     IsProdavac = true,
                     Email = "test@test.com",
                     JelObrisan = false,
-                    SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png"),
                 }
             );
         }

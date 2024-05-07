@@ -124,7 +124,7 @@ input#slika-input img {
 .slika-label {
   margin-right: 2%;
 }
-img {
+img{
   padding: 5px;
   border: white 2px solid;
   overflow: hidden;

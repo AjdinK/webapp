@@ -30,7 +30,6 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.GetAll
                     GradID = s.GradID,
                     SpolID = s.SpolID,
                     IsServiser = s.IsServiser,
-                    SlikaKorisnikaNovaString = s.SlikaKorisnikaTrenutnoBajt.ToBase64() ?? String.Empty
                 });
 
             var pagedList =

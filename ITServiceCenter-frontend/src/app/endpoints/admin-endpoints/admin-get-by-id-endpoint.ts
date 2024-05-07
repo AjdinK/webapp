@@ -27,5 +27,5 @@ export interface AdminGetByIdResponse {
   gradId: number;
   spolId: number;
   username: string;
-  slikaKorisnikaNovaString: string | undefined;
+  slikaKorisnikaBase64: string | undefined;
 }

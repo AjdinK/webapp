@@ -11,12 +11,15 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
     public class AdminSnimiEndpoint : MyBaseEndpoint<AdminSnimiRequest, int>
     {
         private readonly ApplicationDbContext _ApplicationDbContext;
+
         public AdminSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _ApplicationDbContext = ApplicationDbContext;
         }
+
         [HttpPost("Admin/Snimi")]
-        public override async Task<int> Obradi([FromBody] AdminSnimiRequest request, CancellationToken cancellationToken)
+        public override async Task<int> Obradi([FromBody] AdminSnimiRequest request,
+            CancellationToken cancellationToken)
         {
             Models.Admin? Admin;
 
@@ -42,25 +45,36 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
             Admin.IsAdmin = request.IsAdmin;
 
 
-            if (!string.IsNullOrEmpty(request.SlikaKorisnikaNovaString))
+            if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
             {
-                byte[]? SlikaBajtovi = request.SlikaKorisnikaNovaString?.ParsirajBase64();
+                byte[]? SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
 
-                if (SlikaBajtovi == null )
-                    throw new Exception ("format slike nije base64");
+                if (SlikaBajtovi == null)
+                    throw new Exception("pogresan base64 format");
 
-                byte[]? SlikaBajtoviResizedVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 75);
-                byte[]? SlikaBajtoviResizedMala = ImageHelper.ResizeSlike(SlikaBajtovi, 50, 75);
-                Admin.SlikaKorisnikaTrenutnoBajt = SlikaBajtoviResizedVelika;
+                byte[]? SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+                if (SlikaBajtoviVelika == null)
+                    throw new Exception("pogresan format slike");
 
-                //Opcija za snimanje u File System
-                if (SlikaBajtoviResizedVelika != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika,
-                        $"wwwroot/profile_images/SlikeKorisnika/{Admin.Username} +_velika" + ".png");
+                byte[]? SlikaBajtoviMala = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+                if (SlikaBajtoviMala == null)
+                    throw new Exception("pogresan format slike");
 
-                if (SlikaBajtoviResizedMala != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika,
-                        $"wwwroot/profile_images/SlikeKorisnika/{Admin.Username} +_mala" + ".png");
+                var folderPath = "slike-admin";
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                Admin.SlikaKorisnika = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
+                Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
+
+                // Admin.SlikaKorisnikaVelika = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
+                // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviVelika,
+                //     cancellationToken);
+
+                await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaVelika, SlikaBajtoviMala,
+                    cancellationToken);
             }
 
             await _ApplicationDbContext.SaveChangesAsync();
@@ -68,4 +82,3 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
         }
     }
 }
-

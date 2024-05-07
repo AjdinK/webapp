@@ -16,7 +16,6 @@ namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
         public bool IsServiser { get; set; }
         public int GradID { get; set; }
         public int SpolID { get; set; }
-        public string? SlikaKorisnikaNovaString { get; set; }
-
+        public string? SlikaKorisnikaBase64 { get; set; }
     }
 }

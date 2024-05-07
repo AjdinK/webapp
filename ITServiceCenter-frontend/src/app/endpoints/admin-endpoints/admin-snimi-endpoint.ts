@@ -26,5 +26,5 @@ export interface AdminSnimiRequest {
   isServiser: boolean;
   isProdavac: boolean;
   gradId: number;
-  slikaKorisnikaNovaString: string | undefined;
+  slikaKorisnikaBase64: string | undefined;
 }

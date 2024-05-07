@@ -29,7 +29,7 @@ namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
                 GradID = a.GradID,
                 SpolID = a.SpolID,
                 Email = a.Email,
-                SlikaKorisnikaNovaString = a.SlikaKorisnikaTrenutnoBajt.ToBase64()?? "Not_Found",
+                SlikaKorisnikaBase64 = a.SlikaKorisnikaMala,
             })
             .ToListAsync(cancellationToken :cancellationToken);
 

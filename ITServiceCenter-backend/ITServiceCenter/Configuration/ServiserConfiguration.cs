@@ -22,7 +22,6 @@ namespace itservicecenter.Configuration
                     Passweord = "jasir",
                     Email = "test@test.com",
                     JelObrisan = false,
-                    SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png"),
                 },
                 new Serviser
                 {
@@ -36,7 +35,6 @@ namespace itservicecenter.Configuration
                     Passweord = "adis",
                     Email = "test@test.com",
                     JelObrisan = false,
-                    SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png"),
                 }
                 );
         }

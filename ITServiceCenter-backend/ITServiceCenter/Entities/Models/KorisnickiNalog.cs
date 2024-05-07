@@ -20,6 +20,8 @@ namespace itservicecenter.Entities.Models
         public bool IsProdavac { get; set; }
         public bool Is2FActive { get; set; }
         public bool JelObrisan { get; set; }
-        public byte[]? SlikaKorisnikaTrenutnoBajt { get; set; }
+        public string? SlikaKorisnika { get; set; }
+        public string? SlikaKorisnikaMala { get; set; }
+        public string? SlikaKorisnikaVelika { get; set; }
     }
 }

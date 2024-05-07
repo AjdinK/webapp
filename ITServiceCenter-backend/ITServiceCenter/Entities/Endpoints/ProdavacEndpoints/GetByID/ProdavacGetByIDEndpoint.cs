@@ -28,7 +28,6 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
                 GradID = p.GradID,
                 SpolID = p.SpolID,
                 Email = p.Email,
-                SlikaKorisnikaNovaString = p.SlikaKorisnikaTrenutnoBajt.ToBase64()
             })
             .SingleAsync ( p => p.ID == request.ID , cancellationToken : cancellationToken);
 

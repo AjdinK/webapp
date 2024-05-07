@@ -13,6 +13,7 @@ import {
   AdminSnimiEndpoint,
   AdminSnimiRequest,
 } from '../../endpoints/admin-endpoints/admin-snimi-endpoint';
+import {ConfigFile} from "../../configFile";
 
 
 @Component({
@@ -95,17 +96,12 @@ export class AdminComponent implements OnInit {
     if (file && this.adminPodaciFetch) {
       let reader = new FileReader();
       reader.onload = () => {
-        this.adminPodaciFetch!.slikaKorisnikaNovaString =
+        this.adminPodaciFetch!.slikaKorisnikaBase64 =
           reader.result?.toString();
       };
       reader.readAsDataURL(file);
     }
   }
 
-  //to load the image from db and to add the missing part
-  showSlikaFromDB() {
-    return (
-      'data:image/png;base64,' + this.adminPodaciFetch!.slikaKorisnikaNovaString
-    );
-  }
+  protected readonly ConfigFile = ConfigFile;
 }
