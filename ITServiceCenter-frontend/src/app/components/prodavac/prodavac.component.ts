@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import {
   ProdavacGetAllEndpoint,
   ProdavacGetAllResponse,
-  ProdavacGetAllResponseProdavac,
 } from '../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint';
 import {
   ProdavacSnimiEndpoint,
@@ -15,8 +14,7 @@ import {
 } from '../../endpoints/grad-endpoints/grad-get-all-endpoint';
 import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { ProdavacBrisiEndpoint } from '../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint';
-import { ServiserSnimiRequest } from '../../endpoints/serviser-endpoints/serviser-snimi-endpoint';
-import { ServiserGetAllResponseServiseri } from '../../endpoints/serviser-endpoints/serviser-get-all-endpoint';
+
 
 @Component({
   selector: 'app-prodavac',
@@ -26,6 +24,7 @@ import { ServiserGetAllResponseServiseri } from '../../endpoints/serviser-endpoi
   styleUrl: './prodavac.component.css',
 })
 export class ProdavacComponent implements OnInit {
+
   constructor(
     private prodavacGetAllEndpoint: ProdavacGetAllEndpoint,
     private prodavacSnimiEndpoint: ProdavacSnimiEndpoint,
@@ -39,9 +38,9 @@ export class ProdavacComponent implements OnInit {
   }
 
   currentPage: number = 1;
+  JelPopunjeno: boolean = false;
 
   prodavacPodaci: ProdavacGetAllResponse | null = null;
-
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
   showProdavacTable: boolean = true;
@@ -49,48 +48,34 @@ export class ProdavacComponent implements OnInit {
   showProdavacForm: boolean = false;
   searchProdavac: string = '';
 
-  formTitle: string = '';
-  JelPopunjeno: boolean = false;
-
   odabraniProdavac: ProdavacSnimiRequest | null = null;
   noviProdavac: ProdavacSnimiRequest | null = null;
+  formTitle: string = '';
 
-  //fetch grad data from db
-  fetchGrad() {
-    this.gradGetAllEndpoint.obradi().subscribe({
-      next: (x) => {
-        this.gradPodaci = x.gradovi;
-      },
-      error: (x) => {
-        alert('greska fetchGrad -> ' + x.error);
-      },
-    });
-  }
-
-  //fetch prodavac data from db
+  //fetch Prodavac data from db
   fetchProdavac() {
     this.prodavacGetAllEndpoint.obradi(this.currentPage!).subscribe({
       next: (x) => {
         this.prodavacPodaci = x;
       },
       error: (x) => {
-        alert('greska fetchProdavac -> ' + x.error);
+        alert('greska -> ' + x.error);
       },
     });
   }
 
-  //search for prodavac using ime , prezime or username
+  //search for Prodavac using ime , prezime or username
   filtrirajProdavac() {
     if (this.prodavacPodaci == null) return [];
     return this.prodavacPodaci.listaProdavac.filter(
-      (x: any) =>
+      (x) =>
         x.ime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()) ||
         x.prezime.toLowerCase().startsWith(this.searchProdavac.toLowerCase()) ||
         x.username.toLowerCase().startsWith(this.searchProdavac.toLowerCase())
     );
   }
 
-  //save prodavac data from the form and check the form if is it valid? or not
+  //save Prodavac data from the form and check the form if is it valid? or not
   snimiProdavac(editForm: NgForm) {
     if (editForm.form.valid) {
       this.prodavacSnimiEndpoint.obradi(this.odabraniProdavac!).subscribe({
@@ -108,25 +93,9 @@ export class ProdavacComponent implements OnInit {
     this.JelPopunjeno = true;
   }
 
-  //show the edit form and hide the data table when press on edit button
-  editProdavac(x: any) {
-    this.formTitle = 'Edit Prodavac';
-    this.showProdavacTable = false;
-    this.showProdavacEdit = true;
-    this.odabraniProdavac = x;
-  }
-
-  //close the edit form and show the data table refreshed when press on zatvori button
-  closeEdit() {
-    this.showProdavacEdit = false;
-    this.fetchProdavac();
-    this.showProdavacTable = true;
-    this.showProdavacForm = false;
-  }
-
   //soft delete the user from the data
   brisiProdavac(id: number) {
-    if (confirm('Da li zelite izbrisati Prodavaca'))
+    if (confirm('Da li zelite izbrisati Prodavac'))
       this.prodavacBrisiEndpoint.obradi(id).subscribe({
         next: (x) => {
           this.fetchProdavac();
@@ -138,7 +107,35 @@ export class ProdavacComponent implements OnInit {
       });
   }
 
-  //adding new prodavac and show the form
+  //show the edit form and hide the data table when press on edit button
+  editProdavac(x: any) {
+    this.formTitle = 'Edit Prodavac';
+    this.showProdavacEdit = true;
+    this.odabraniProdavac = x;
+    this.showProdavacTable = false;
+  }
+
+  //fetch grad data from db
+  fetchGrad() {
+    this.gradGetAllEndpoint.obradi().subscribe({
+      next: (x) => {
+        this.gradPodaci = x.gradovi;
+      },
+      error: (x) => {
+        alert('greska fetchGrad -> ' + x.error);
+      },
+    });
+  }
+
+  //close the edit form and show the data table refreshed when press on zatvori button
+  closeEdit() {
+    this.showProdavacEdit = false;
+    this.fetchProdavac();
+    this.showProdavacTable = true;
+    this.showProdavacForm = false;
+  }
+
+  //adding new Prodavac and show the form
   dodajNovi() {
     this.formTitle = 'Dodaj Prodavac';
     this.showProdavacForm = true;
@@ -157,7 +154,7 @@ export class ProdavacComponent implements OnInit {
     };
   }
 
-  //save serviser data from the form and check the data if is it valid? or not
+  //save Prodavac data from the form and check the data if is it valid? or not
   dodajProdavac(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
       this.prodavacSnimiEndpoint.obradi(this.noviProdavac!).subscribe({
@@ -168,7 +165,7 @@ export class ProdavacComponent implements OnInit {
           this.showProdavacForm = false;
         },
         error: (x) => {
-          alert('greska dodajProdavac -> ' + x.error);
+          alert('greska snimiProdavac -> ' + x.error);
         },
       });
     }
@@ -192,7 +189,7 @@ export class ProdavacComponent implements OnInit {
   //to show the image in preview box for the new user
   generisiPreviewZaNovi() {
     // @ts-ignore
-    let file = document.getElementById('slika-input').files[0];
+    let file = document.getElementById('slika-input_1').files[0];
     if (file && this.noviProdavac) {
       let reader = new FileReader();
       reader.onload = () => {

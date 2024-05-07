@@ -1,7 +1,7 @@
 <!-- table to show the fetch data from db in table and CRUD operation for prodavac , it show only if set true -->
 
 <div class="div-table" *ngIf="this.showProdavacTable">
-  <input type="text" [(ngModel)]="this.searchProdavac" placeholder="Pretraži prodavac....." />
+  <input type="text" [(ngModel)]="this.searchProdavac" placeholder="Pretrazi prodavac....." />
   <button (click)="dodajNovi()" class="dodaj">+ Dodaj Prodavac</button>
   <table>
     <thead>
@@ -30,29 +30,29 @@
         <td>{{ x.isProdavac }}</td>
         <td>
           <button (click)="editProdavac(x)">Edit</button>
-          <button class="brisiServiser" (click)="brisiProdavac(x.id)"> Brisi </button>
+          <button class="brisiProdavac" (click)="brisiProdavac(x.id)"> Brisi </button>
         </td>
       </tr>
     </tbody>
   </table>
 
   <div class="nav">
-    <button class="button-Previous" (click)="goToPrev(currentPage)">Previous</button>
+    <button class="button-Previous" (click)="goToPrev(currentPage)"> >> </button>
 
     <button class="broj-page" *ngFor="let p of pageNumbersArray()" (click)="goToPage(p)">
       {{p}}
     </button>
 
-    <button class="button-next" (click)="goToNext(currentPage)">Next</button>
+    <button class="button-next" (click)="goToNext(currentPage)"> << </button>
   </div>
-
+</div>
 
   <!-- form edit for prodavac and it show only if bool is true the user press the button edit from the table -->
   <form class="prodavacForm" *ngIf="showProdavacEdit" #editForm='ngForm'>
     <h1>{{ formTitle }}</h1>
     <div class="form-group">
-      <label for="ime">Ime:</label>
-      <input type="text" class="form-control" id="ime" name="ime" required minlength="3" pattern='[A-Za-z\sčćžđ]+'
+      <label for="imeProdavac">Ime:</label>
+      <input type="text" class="form-control" id="imeProdavac" name="ime" required minlength="3" pattern='[A-Za-z\sčćžđ]+'
         #ime_polje="ngModel" [(ngModel)]="this.odabraniProdavac!.ime" />
     </div>
 
@@ -72,8 +72,8 @@
     </div>
 
     <div class="form-group">
-      <label for="prezime">Prezime:</label>
-      <input type="text" class="form-control" id="prezime" name="prezime" required pattern='[A-Za-z\sčćžđ]+'
+      <label for="prezimeProdavac">Prezime:</label>
+      <input type="text" class="form-control" id="prezimeProdavac" name="prezime" required pattern='[A-Za-z\sčćžđ]+'
         #prezime_polje="ngModel" [(ngModel)]="this.odabraniProdavac!.prezime" />
     </div>
 
@@ -87,8 +87,8 @@
     </div>
 
     <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control" id="username" name="username" required minlength="5" pattern="[A-Za-z\s]+"
+      <label for="usernameProdavac">Username:</label>
+      <input type="text" class="form-control" id="usernameProdavac" name="username" required minlength="5" pattern="[A-Za-z\s]+"
         #username_polje="ngModel" [(ngModel)]="this.odabraniProdavac!.username" />
     </div>
 
@@ -103,8 +103,8 @@
     </div>
 
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" class="form-control" id="email" name="email" required
+      <label for="emailProdavac">Email:</label>
+      <input type="email" class="form-control" id="emailProdavac" name="email" required
         pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" #email_polje="ngModel"
         [(ngModel)]="this.odabraniProdavac!.email" />
     </div>
@@ -118,8 +118,8 @@
     </div>
 
     <div class="form-group">
-      <label for="Grad">Grad</label>
-      <select id="Grad" name="Grad" class="select-grad" [(ngModel)]="this.odabraniProdavac!.gradID">
+      <label for="GradProdavac">Grad</label>
+      <select id="GradProdavac" name="Grad" class="select-grad" [(ngModel)]="this.odabraniProdavac!.gradID">
         <option *ngFor="let x of this.gradPodaci" [value]="x.id">
           {{ x.naziv }}
         </option>
@@ -127,8 +127,8 @@
     </div>
 
     <div class="form-group">
-      <label for="adminProdavac">Prodavac:</label>
-      <input class="checkbox" type="checkbox" id="adminProdavac" name="adminProdavac"
+      <label for="isProdavac">Prodavac:</label>
+      <input class="checkbox" type="checkbox" id="isProdavac" name="isProdavac"
         [(ngModel)]="this.odabraniProdavac!.isProdavac" />
     </div>
 
@@ -139,7 +139,7 @@
       <input id="slika-input" name="slika-input" type="file" accept="image/*" (change)="generisiPreview()" />
       <img src={{showSlikaFromDB()}} height="200" width="200" alt="slika" class="slika" />
       <img src={{this.odabraniProdavac!.slikaKorisnikaNovaString}} height="200" width="200" alt="Nova Slika"
-        class="slika" />
+           class="slika" />
     </div>
 
     <!-- submit changes when everything is fine and valid -->
@@ -157,10 +157,11 @@
 
 
 
-
   <!-- form to add new prodavac and it show only if bool is true the user press the button edit -->
   <form class="prodavacForm" *ngIf="showProdavacForm" #addForm='ngForm'>
+
     <h1>{{ formTitle }}</h1>
+
     <div class="form-group">
       <label for="ime">Ime:</label>
       <input type="text" class="form-control" id="ime" name="ime" required minlength="3" pattern='[A-Za-z\sčćžđ]+'
@@ -247,7 +248,7 @@
 
     <div class="form-group">
       <label for="slika-input" class="slika-label">Nova slika</label>
-      <input id="slika-input" name="slika-input" type="file" accept="image/*" (change)="generisiPreviewZaNovi()" />
+      <input id="slika-input_1" name="slika-input" type="file" accept="image/*" (change)="generisiPreviewZaNovi()" />
       <img src={{this.noviProdavac!.slikaKorisnikaNovaString}} height="200" width="200" alt="Nova Slika"
         class="slika" />
     </div>
@@ -264,3 +265,4 @@
     </div>
 
   </form>
+

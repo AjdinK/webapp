@@ -30,4 +30,15 @@
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\ajdin +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\ajdin +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\alina +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\alina +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtest +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtest +_velika.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtesttest +_mala.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtesttest +_velika.png" />
+  </ItemGroup>
+
 </Project>

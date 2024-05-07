@@ -189,7 +189,7 @@ export class ServiserComponent implements OnInit {
   //to show the image in preview box for the new user
   generisiPreviewZaNovi() {
     // @ts-ignore
-    let file = document.getElementById('slika-input').files[0];
+    let file = document.getElementById('slika-input1').files[0];
     if (file && this.noviServiser) {
       let reader = new FileReader();
       reader.onload = () => {

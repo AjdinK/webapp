@@ -21,7 +21,7 @@ namespace itservicecenter.Data
             modelBuilder.Entity<Prodavac_Uredjaj>().HasKey(x => new {x.ProdavacID, x.UredjajID, x.ServisniNalogID});
             modelBuilder.Entity<Serviser_Kategorija>().HasKey(x => new { x.ServiserID, x.KategorijaID });
             modelBuilder.Entity<Serviser_ServisniDio>().HasKey(x => new { x.ServiserID, x.ServisniDioID, x.Datum });
-            //modelBuilder.Entity<Serviser_Uredjaj>().HasKey(x => new { x.ServiserID, x.UredjajID });
+            modelBuilder.Entity<Serviser_Uredjaj>().HasKey(x => new { x.ServiserID, x.UredjajID });
 
 
             modelBuilder.ApplyConfiguration(new AdminConfiguration());

@@ -19,17 +19,27 @@ namespace FIT_Api_Examples.Helper
             return list.OrderBy(arg => Guid.NewGuid()).Take(elementsCount).ToList();
         }
 
-        public static byte [] ParsirajBase64 (this string base64string)
+        public static byte[] ParsirajBase64(this string base64string)
         {
+            if (base64string != null)
+            {
+            if (!base64string.StartsWith("data:image/png;base64,"))
+            {
+                base64string = $"data:image/png;base64,{base64string}";
+            }
+
             base64string = base64string.Split(',')[1];
             return System.Convert.FromBase64String(base64string);
+            }
+
+            else
+            {
+                return Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
+            }
         }
 
         public static string ToBase64 (this byte[] bajtovi)
         {
-            if (bajtovi == null)
-                return String.Empty;
-            
             return System.Convert.ToBase64String(bajtovi);
         }
     }

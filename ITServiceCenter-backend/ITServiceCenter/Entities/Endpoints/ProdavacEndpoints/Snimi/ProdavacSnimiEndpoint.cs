@@ -15,24 +15,30 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
     public class ProdavacSnimiEndpoint : MyBaseEndpoint<ProdavacSnimiRequest, int>
     {
         private readonly ApplicationDbContext _ApplicationDbContext;
-        public ProdavacSnimiEndpoint (ApplicationDbContext ApplicationDbContext) {
+
+        public ProdavacSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
+        {
             _ApplicationDbContext = ApplicationDbContext;
         }
 
-        [HttpPost ("Prodavac/Snimi")]
-        public override async Task <int> Obradi ([FromBody] ProdavacSnimiRequest request, CancellationToken cancellationToken)
+        [HttpPost("Prodavac/Snimi")]
+        public override async Task<int> Obradi([FromBody] ProdavacSnimiRequest request,
+            CancellationToken cancellationToken)
         {
-            Prodavac? Prodavac ;
-            if (request.ID == 0){
-                Prodavac = new Prodavac ();
+            Prodavac? Prodavac;
+            if (request.ID == 0)
+            {
+                Prodavac = new Prodavac();
                 _ApplicationDbContext.Add(Prodavac);
 
                 Prodavac.Email = request.Email;
                 Prodavac.Username = request.Username;
                 Prodavac.Passweord = "test";
+                Prodavac.SlikaKorisnikaTrenutnoBajt = Fajlovi.Ucitaj("wwwroot/profile_images/empty.png");
             }
-            else {
-                Prodavac = _ApplicationDbContext.Prodavac.FirstOrDefault ( p => p.ID == request.ID);
+            else
+            {
+                Prodavac = _ApplicationDbContext.Prodavac.FirstOrDefault(p => p.ID == request.ID);
             }
 
             Prodavac!.Ime = request.Ime;
@@ -53,10 +59,12 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
 
                 //Opcija za snimanje u File System
                 if (SlikaBajtoviResizedVelika != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika, $"wwwroot/profile_images/SlikeKorisnika/{Prodavac.Username} +_velika" + ".png");
+                    Fajlovi.Snimi(SlikaBajtoviResizedVelika,
+                        $"wwwroot/profile_images/SlikeKorisnika/{Prodavac.Username} +_velika" + ".png");
 
                 if (SlikaBajtoviResizedMala != null)
-                    Fajlovi.Snimi(SlikaBajtoviResizedVelika, $"wwwroot/profile_images/SlikeKorisnika/{Prodavac.Username} +_mala" + ".png");
+                    Fajlovi.Snimi(SlikaBajtoviResizedVelika,
+                        $"wwwroot/profile_images/SlikeKorisnika/{Prodavac.Username} +_mala" + ".png");
             }
 
             await _ApplicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
