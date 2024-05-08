@@ -26,7 +26,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
                 Grad = _applicationDbContext.Grad.FirstOrDefault(g => g.ID == request.ID);
             }
 
-            Grad.Naziv = request.Naziv; 
+            Grad.Naziv = request.Naziv;
             await _applicationDbContext.SaveChangesAsync (cancellationToken : cancellationToken);
             return Grad.ID;
         }

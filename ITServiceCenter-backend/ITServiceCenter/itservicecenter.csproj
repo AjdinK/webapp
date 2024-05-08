@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.Identity.Web" Version="2.18.1" />
     <PackageReference Include="SkiaSharp" Version="2.88.8" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.8" />  
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.8" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,29 +28,6 @@
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\ajdin +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\ajdin +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\alina +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\alina +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtest +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtest +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtesttest +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testtesttest +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\jebop +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\jebop +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\lofecot +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\lofecot +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\nyjuti +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\nyjuti +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\tafybi +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\tafybi +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testTesttestTest +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\testTesttestTest +_velika.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\wyhereqa +_mala.png" />
-    <_ContentIncludedByDefault Remove="wwwroot\profile_images\SlikeKorisnika\wyhereqa +_velika.png" />
   </ItemGroup>
 
 </Project>

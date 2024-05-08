@@ -31,7 +31,6 @@ export class AdminComponent implements OnInit {
     private httpKlijent: HttpClient
   ) {}
 
-  staraSlikaAdmin: any;
   novaSlikaAdmin: any;
   showAdminForm: boolean = true;
   adminPodaciFetch: AdminGetByIdResponse | null = null;
@@ -79,7 +78,7 @@ export class AdminComponent implements OnInit {
         next: (x) => {
           this.showAdminForm = false;
           this.fetchAdmin();
-          this.staraSlikaAdmin = this.novaSlikaAdmin;
+          window.location.reload();
         },
         error: (x) => {
           alert("greska snimiAdmin - " + x.error);
