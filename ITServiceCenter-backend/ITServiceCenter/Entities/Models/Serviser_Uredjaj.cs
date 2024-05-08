@@ -17,6 +17,5 @@ namespace itservicecenter.Entities.Models
         [ForeignKey(nameof(Uredjaj))]
         public int UredjajID { get; set; }
         public Uredjaj Uredjaj { get; set; }
-
     }
 }

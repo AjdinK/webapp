@@ -1,4 +1,4 @@
 ﻿namespace itservicecenter.Helper
 {
-    public class NoRequest {}
+    public class NoRequest { }
 }

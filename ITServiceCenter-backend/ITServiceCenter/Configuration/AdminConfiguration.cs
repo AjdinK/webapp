@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace itservicecenter.Configuration
 {
-    public class AdminConfiguration : IEntityTypeConfiguration <Admin>
+    public class AdminConfiguration : IEntityTypeConfiguration<Admin>
     {
-        public void Configure(EntityTypeBuilder <Admin> builder)
+        public void Configure(EntityTypeBuilder<Admin> builder)
         {
             builder.HasData(
                 new Admin
@@ -16,7 +16,7 @@ namespace itservicecenter.Configuration
                     Ime = "Ajdin",
                     Prezime = "Kuduzović",
                     Username = "ajdin",
-                    Passweord ="ajdin",
+                    Passweord = "ajdin",
                     IsAdmin = true,
                     IsProdavac = false,
                     IsServiser = false,
@@ -25,13 +25,13 @@ namespace itservicecenter.Configuration
                     Email = "test@test.com",
                     JelObrisan = false,
                 },
-                  new Admin
+                new Admin
                 {
                     ID = 6,
                     Ime = "test",
                     Prezime = "test",
                     Username = "test",
-                    Passweord ="test",
+                    Passweord = "test",
                     IsAdmin = true,
                     IsProdavac = true,
                     IsServiser = true,
@@ -39,7 +39,7 @@ namespace itservicecenter.Configuration
                     SpolID = 1,
                     Email = "test@test.com",
                     JelObrisan = false,
-                  }
+                }
             );
         }
     }

@@ -1,7 +1,8 @@
 ﻿using SkiaSharp;
+
 public class ImageHelper
 {
-    public static byte[]? ResizeSlike (byte[] slikaBajtovi, int size, int quality)
+    public static byte[]? ResizeSlike(byte[] slikaBajtovi, int size, int quality)
     {
         using (var input = new MemoryStream(slikaBajtovi))
         {
@@ -9,7 +10,8 @@ public class ImageHelper
             {
                 using (var original = SKBitmap.Decode(inputStream))
                 {
-                    int width, height;
+                    int width,
+                        height;
                     if (original.Width > original.Height)
                     {
                         width = size;
@@ -21,10 +23,15 @@ public class ImageHelper
                         height = size;
                     }
 
-                    using (var resized = original
-                           .Resize(new SKImageInfo(width, height), SKBitmapResizeMethod.Lanczos3))
+                    using (
+                        var resized = original.Resize(
+                            new SKImageInfo(width, height),
+                            SKBitmapResizeMethod.Lanczos3
+                        )
+                    )
                     {
-                        if (resized == null) return null;
+                        if (resized == null)
+                            return null;
 
                         using (var image = SKImage.FromBitmap(resized))
                         {

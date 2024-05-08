@@ -8,13 +8,16 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public FAQBrisiEndpoint (ApplicationDbContext ApplicationDbContext)
+        public FAQBrisiEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _applicationDbContext = ApplicationDbContext;
         }
 
         [HttpDelete("FAQ/brisi")]
-        public override async Task <int> Obradi ([FromQuery] FAQBrisiRequest request, CancellationToken cancellationToken)
+        public override async Task<int> Obradi(
+            [FromQuery] FAQBrisiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             var FAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);
             if (FAQ != null)
@@ -23,7 +26,8 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi
                 await _applicationDbContext.SaveChangesAsync();
                 return request.ID;
             }
-            else {
+            else
+            {
                 throw new Exception("Error -> Pogresen ID");
             }
         }

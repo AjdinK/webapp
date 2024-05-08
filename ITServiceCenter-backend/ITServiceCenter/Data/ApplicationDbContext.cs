@@ -6,23 +6,42 @@ namespace itservicecenter.Data
 {
     public class ApplicationDbContext : DbContext
     {
-
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions options)
+            : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            foreach (
+                var relationship in modelBuilder
+                    .Model.GetEntityTypes()
+                    .SelectMany(e => e.GetForeignKeys())
+            )
             {
                 relationship.DeleteBehavior = DeleteBehavior.NoAction;
             }
 
-            modelBuilder.Entity<Prodavac_Uredjaj>().HasKey(x => new {x.ProdavacID, x.UredjajID, x.ServisniNalogID});
-            modelBuilder.Entity<Serviser_Kategorija>().HasKey(x => new { x.ServiserID, x.KategorijaID });
-            modelBuilder.Entity<Serviser_ServisniDio>().HasKey(x => new { x.ServiserID, x.ServisniDioID, x.Datum });
+            modelBuilder
+                .Entity<Prodavac_Uredjaj>()
+                .HasKey(x => new
+                {
+                    x.ProdavacID,
+                    x.UredjajID,
+                    x.ServisniNalogID
+                });
+            modelBuilder
+                .Entity<Serviser_Kategorija>()
+                .HasKey(x => new { x.ServiserID, x.KategorijaID });
+            modelBuilder
+                .Entity<Serviser_ServisniDio>()
+                .HasKey(x => new
+                {
+                    x.ServiserID,
+                    x.ServisniDioID,
+                    x.Datum
+                });
             modelBuilder.Entity<Serviser_Uredjaj>().HasKey(x => new { x.ServiserID, x.UredjajID });
-
 
             modelBuilder.ApplyConfiguration(new AdminConfiguration());
             modelBuilder.ApplyConfiguration(new FAQConfiguration());
@@ -41,8 +60,8 @@ namespace itservicecenter.Data
             modelBuilder.ApplyConfiguration(new SpolConfiguration());
             modelBuilder.ApplyConfiguration(new UredjajConfiguration());
             modelBuilder.ApplyConfiguration(new VrstaDioConfiguration());
-
         }
+
         public DbSet<Grad> Grad { get; set; }
         public DbSet<Admin> Admin { get; set; }
         public DbSet<AutenfitikacijaToken> AutenfitikacijaToken { get; set; }
@@ -55,7 +74,7 @@ namespace itservicecenter.Data
         public DbSet<Racun> Racun { get; set; }
         public DbSet<Serviser> Serviser { get; set; }
         public DbSet<Spol> Spol { get; set; }
-        public DbSet<VrstaDio> VrstaDio{ get; set; }
+        public DbSet<VrstaDio> VrstaDio { get; set; }
         public DbSet<Prodavac_Uredjaj> Prodavac_Uredjaj { get; set; }
         public DbSet<ServisniNalog> ServisniNalog { get; set; }
         public DbSet<Serviser_Uredjaj> Serviser_Uredjaj { get; set; }

@@ -7,12 +7,17 @@ namespace itservicecenter.Entities.Endpoints.VrstaDioEndpoints.Brisi
     public class VrstaDioBrisiEndpoint : MyBaseEndpoint<VrstaDioBrisiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
-        public VrstaDioBrisiEndpoint (ApplicationDbContext ApplicationDbContext)
+
+        public VrstaDioBrisiEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _applicationDbContext = ApplicationDbContext;
         }
-        [HttpDelete ("VrstaDio/Brisi")]
-        public override async Task<int> Obradi ([FromQuery] VrstaDioBrisiRequest request, CancellationToken cancellationToken)
+
+        [HttpDelete("VrstaDio/Brisi")]
+        public override async Task<int> Obradi(
+            [FromQuery] VrstaDioBrisiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             var VrstaDio = _applicationDbContext.VrstaDio.FirstOrDefault(v => v.ID == request.ID);
             if (VrstaDio != null)
@@ -21,8 +26,9 @@ namespace itservicecenter.Entities.Endpoints.VrstaDioEndpoints.Brisi
                 await _applicationDbContext.SaveChangesAsync();
                 return request.ID;
             }
-            else { 
-                throw new Exception ("Pogresen ID");
+            else
+            {
+                throw new Exception("Pogresen ID");
             }
         }
     }

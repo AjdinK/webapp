@@ -1,20 +1,19 @@
-import { Observable } from 'rxjs';
-import { MyBaseEndpoint } from '../my-base-endpoint';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { ConfigFile } from '../../configFile';
+import { Observable } from "rxjs";
+import { MyBaseEndpoint } from "../my-base-endpoint";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { ConfigFile } from "../../configFile";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ServiserGetAllEndpoint
-  implements MyBaseEndpoint<number, ServiserGetAllResponse>
-{
+  implements MyBaseEndpoint<number, ServiserGetAllResponse> {
   constructor(private httpKlijent: HttpClient) {}
   obradi(request: number): Observable<ServiserGetAllResponse> {
     let url =
       ConfigFile.adresa_servera +
-      '/Serviser/GetAll?PageNumber=' +
+      "/Serviser/GetAll?PageNumber=" +
       request +
-      '&PageSize=' +
+      "&PageSize=" +
       6;
     return this.httpKlijent.get<ServiserGetAllResponse>(url);
   }
@@ -39,5 +38,5 @@ export interface ServiserGetAllResponseServiseri {
   gradID: number;
   spolID: number;
   isServiser: boolean;
-  slikaKorisnikaNovaString: string | undefined;
+  slikaKorisnikaBase64: string | undefined;
 }

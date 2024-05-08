@@ -1,10 +1,10 @@
-﻿using FIT_Api_Examples.Helper;
+﻿using System.Text.Json.Serialization;
+using FIT_Api_Examples.Helper;
 using itservicecenter.Data;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
 using SkiaSharp;
-using System.Text.Json.Serialization;
 
 namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
 {
@@ -18,8 +18,10 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
         }
 
         [HttpPost("Admin/Snimi")]
-        public override async Task<int> Obradi([FromBody] AdminSnimiRequest request,
-            CancellationToken cancellationToken)
+        public override async Task<int> Obradi(
+            [FromBody] AdminSnimiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             Models.Admin? Admin;
 
@@ -43,7 +45,6 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
             Admin.IsProdavac = request.IsProdavac;
             Admin.IsServiser = request.IsServiser;
             Admin.IsAdmin = request.IsAdmin;
-
 
             if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
             {
@@ -69,8 +70,11 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
                 // Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
 
                 Admin.SlikaKorisnikaVelika = $"{folderPath}/{Admin.ID}-velika.jpg";
-                await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaVelika, SlikaBajtoviVelika,
-                    cancellationToken);
+                await System.IO.File.WriteAllBytesAsync(
+                    Admin.SlikaKorisnikaVelika,
+                    SlikaBajtoviVelika,
+                    cancellationToken
+                );
 
                 // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviMala,
                 //     cancellationToken);

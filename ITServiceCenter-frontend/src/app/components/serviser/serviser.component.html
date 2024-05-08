@@ -36,13 +36,14 @@
     </tbody>
   </table>
   <div class="nav">
-    <button class="button-Previous" (click)="goToPrev(currentPage)"> << </button>
+    <button class="button-Previous" (click)="goToPrev(currentPage)">
+      << </button>
 
-    <button class="broj-page" *ngFor="let p of pageNumbersArray()" (click)="goToPage(p)">
-      {{p}}
-    </button>
+        <button class="broj-page" *ngFor="let p of pageNumbersArray()" (click)="goToPage(p)">
+          {{p}}
+        </button>
 
-    <button class="button-next" (click)="goToNext(currentPage)"> >> </button>
+        <button class="button-next" (click)="goToNext(currentPage)"> >> </button>
   </div>
 </div>
 
@@ -89,8 +90,8 @@
 
   <div class="form-group">
     <label for="usernameServiser">Username:</label>
-    <input type="text" class="form-control" id="usernameServiser" name="username" required minlength="5" pattern="[A-Za-z\s]+"
-      #username_polje="ngModel" [(ngModel)]="this.odabraniServiser!.username" />
+    <input type="text" class="form-control" id="usernameServiser" name="username" required minlength="5"
+      pattern="[A-Za-z\s]+" #username_polje="ngModel" [(ngModel)]="this.odabraniServiser!.username" />
   </div>
 
   <div class="greska-div" *ngIf="
@@ -119,8 +120,8 @@
   </div>
 
   <div class="form-group">
-    <label for="GradServiser">Grad</label>
-    <select id="GradServiser" name="Grad" class="select-grad" [(ngModel)]="this.odabraniServiser!.gradID">
+    <label for="Grad">Grad</label>
+    <select id="Grad" name="Grad" class="select-grad" [(ngModel)]="this.odabraniServiser!.gradID">
       <option *ngFor="let x of this.gradPodaci" [value]="x.id">
         {{ x.naziv }}
       </option>
@@ -135,12 +136,16 @@
 
   <!-- div to show 2 pictuers the old from db and the new one uploaded -->
 
-  <div class="form-group">
-    <label for="slika-input" class="slika-label">Nova slika</label>
-    <input id="slika-input" name="slika-input" type="file" accept="image/*" (change)="generisiPreview()" />
-    <img src={{showSlikaFromDB()}} height="200" width="200" alt="slika" class="slika" />
-    <img src={{this.odabraniServiser!.slikaKorisnikaNovaString}} height="200" width="200" alt="Nova Slika"
-      class="slika" />
+  <div>
+
+    <label for="slika-input">Nova slika</label>
+    <input id="input-pic" type='file' accept="image/*" (change)="onFileSelected($event);" />
+
+    <img id="oldPic" height="200" width="200"
+      src="{{ConfigFile.adresa_servera}}/Serviser/GetImg?username={{this.odabraniServiser?.username?.toLocaleLowerCase()}}" />
+
+    <img id="newPic" src="{{ this.novaSlikaSerivser }}" />
+
   </div>
 
   <!-- submit changes when everything is fine and valid -->
@@ -159,7 +164,7 @@
 
 
 <!-- form to add new serviser and it show only if bool is true the user press the button edit -->
-<form class="prodavacForm" *ngIf="showServiserForm" #addForm='ngForm'>
+<form class="serviserForm" *ngIf="showServiserForm" #addForm='ngForm'>
   <h1>{{ formTitle }}</h1>
   <div class="form-group">
     <label for="ime">Ime:</label>
@@ -229,8 +234,8 @@
   </div>
 
   <div class="form-group">
-    <label for="Grad">Grad</label>
-    <select id="Grad" name="Grad" class="select-grad" [(ngModel)]="this.noviServiser!.gradID">
+    <label for="GradServiser">Grad</label>
+    <select id="GradServiser" name="GradServiser" class="select-grad" [(ngModel)]="this.noviServiser!.gradID">
       <option *ngFor="let x of this.gradPodaci" [value]="x.id">
         {{ x.naziv }}
       </option>
@@ -238,16 +243,20 @@
   </div>
 
   <div class="form-group">
-    <label for="serviser">Prodavac:</label>
+    <label for="serviser">Serviser:</label>
     <input class="checkbox" type="checkbox" id="serviser" name="serviser" [(ngModel)]="this.noviServiser!.isServiser" />
   </div>
 
   <!-- div to show 2 pictuers the old from db and the new one uploaded -->
 
-  <div class="form-group">
-    <label for="slika-input" class="slika-label">Nova slika</label>
-    <input id="slika-input1" name="slika-input" type="file" accept="image/*" (change)="generisiPreviewZaNovi()" />
-    <img src={{this.noviServiser!.slikaKorisnikaNovaString}} height="200" width="200" alt="Nova Slika" class="slika" />
+  <div>
+
+    <label for="slika-input">Nova slika</label>
+    <input id="input-pic" type='file' accept="image/*" (change)="onFileSelected($event);" />
+
+    <img id="oldPic" height="200" width="200" src="{{ConfigFile.adresa_servera}}/Serviser/GetImg?username=0" />
+    <img id="newPic" src="{{ this.novaSlikaSerivser }}" />
+
   </div>
 
   <!-- submit changes when everything is fine and valid -->

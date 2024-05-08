@@ -15,6 +15,5 @@ namespace itservicecenter.Entities.Models
         [ForeignKey(nameof(ServisniDio))]
         public int ServisniDioID { get; set; }
         public ServisniDio ServisniDio { get; set; }
-
     }
 }

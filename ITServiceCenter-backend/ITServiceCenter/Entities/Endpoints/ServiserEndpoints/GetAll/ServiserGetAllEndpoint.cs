@@ -6,19 +6,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.GetAll
 {
-    public class ServiserGetAllEndpoint : MyBaseEndpoint<ServiserGetAllRequset, ServiserGetAllResponse>
+    public class ServiserGetAllEndpoint
+        : MyBaseEndpoint<ServiserGetAllRequset, ServiserGetAllResponse>
     {
         private readonly ApplicationDbContext _applicationDbContext;
-        public ServiserGetAllEndpoint (ApplicationDbContext ApplicationDbContext)
+
+        public ServiserGetAllEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpGet ("Serviser/GetAll")]
-        public override async Task <ServiserGetAllResponse> Obradi([FromQuery] ServiserGetAllRequset request, CancellationToken cancellationToken)
+        [HttpGet("Serviser/GetAll")]
+        public override async Task<ServiserGetAllResponse> Obradi(
+            [FromQuery] ServiserGetAllRequset request,
+            CancellationToken cancellationToken
+        )
         {
-            var data = _applicationDbContext.Serviser
-                .OrderBy(s => s.ID)
+            var data = _applicationDbContext
+                .Serviser.OrderBy(s => s.ID)
                 .Where(s => !s.JelObrisan)
                 .Select(s => new ServiserGetAllResponseServiser
                 {
@@ -30,12 +35,17 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.GetAll
                     GradID = s.GradID,
                     SpolID = s.SpolID,
                     IsServiser = s.IsServiser,
+                    SlikaKorisnikaBase64 = s.SlikaKorisnikaVelika
                 });
 
-            var pagedList =
-                PagedList<ServiserGetAllResponseServiser>.Create(data, request.PageNumber, request.PageSize);
+            var pagedList = PagedList<ServiserGetAllResponseServiser>.Create(
+                data,
+                request.PageNumber,
+                request.PageSize
+            );
 
-            return new ServiserGetAllResponse {
+            return new ServiserGetAllResponse
+            {
                 ListaServiser = pagedList.DataItems,
                 CurrentPage = pagedList.CurrentPage,
                 PageSize = pagedList.PageSize,

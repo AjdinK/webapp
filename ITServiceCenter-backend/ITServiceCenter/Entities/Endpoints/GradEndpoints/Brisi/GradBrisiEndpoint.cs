@@ -8,13 +8,16 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Brisi
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public GradBrisiEndpoint (ApplicationDbContext ApplicationDbContext)
+        public GradBrisiEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _applicationDbContext = ApplicationDbContext;
         }
 
         [HttpDelete("Grad/brisi")]
-        public override async Task <int> Obradi ([FromQuery] GradBrisiRequest request, CancellationToken cancellationToken)
+        public override async Task<int> Obradi(
+            [FromQuery] GradBrisiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             var grad = _applicationDbContext.Grad.FirstOrDefault(g => g.ID == request.ID);
             if (grad != null)
@@ -23,9 +26,10 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Brisi
                 await _applicationDbContext.SaveChangesAsync();
                 return request.ID;
             }
-            else {
+            else
+            {
                 throw new Exception("Error -> Pogresen ID");
-            }   
+            }
         }
     }
 }

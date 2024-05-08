@@ -222,3 +222,19 @@ select {
 .nav {
   margin: 10px 0;
 }
+
+#input-pic {
+  margin-left: 5%;
+  margin-right: 0;
+  width: 150px;
+}
+#oldPic,
+#newPic {
+  margin-right: 20px;
+  height: 200px;
+  width: 200px;
+}
+
+.div-pic {
+  display: inline;
+}

@@ -10,13 +10,16 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Snimi
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public FAQSnimiEndpoint (ApplicationDbContext ApplicationDbContext)
+        public FAQSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpPost ("FAQ/Snimi")]
-        public override async Task <int> Obradi ([FromBody] FAQSnimiRequest request, CancellationToken cancellationToken)
+        [HttpPost("FAQ/Snimi")]
+        public override async Task<int> Obradi(
+            [FromBody] FAQSnimiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             Models.FAQ? fAQ;
 
@@ -25,15 +28,15 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Snimi
                 fAQ = new Models.FAQ();
                 _applicationDbContext.Add(fAQ);
             }
-            else {
+            else
+            {
                 fAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);
-                 }
+            }
 
             fAQ.Pitanje = request.Pitanje;
             fAQ.Odgovor = request.Odgovor;
             await _applicationDbContext.SaveChangesAsync();
             return fAQ.ID;
-            }
         }
     }
-
+}

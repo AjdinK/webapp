@@ -6,16 +6,20 @@ using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Snimi
 {
-    public class KategorijaSnimiEndpoint : MyBaseEndpoint <KategorijaSnimiRequest, int>
+    public class KategorijaSnimiEndpoint : MyBaseEndpoint<KategorijaSnimiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
-        public KategorijaSnimiEndpoint (ApplicationDbContext ApplicationDbContext)
+
+        public KategorijaSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpPost ("Kategorija/Snimi")]
-        public override async Task <int> Obradi ([FromBody] KategorijaSnimiRequest request, CancellationToken cancellationToken)
+        [HttpPost("Kategorija/Snimi")]
+        public override async Task<int> Obradi(
+            [FromBody] KategorijaSnimiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             Models.Kategorija? Kategorija;
             if (request.ID == 0)
@@ -23,8 +27,11 @@ namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Snimi
                 Kategorija = new Models.Kategorija();
                 _applicationDbContext.Add(Kategorija);
             }
-            else {
-                Kategorija = _applicationDbContext.Kategorija.FirstOrDefault(k => k.ID == request.ID);
+            else
+            {
+                Kategorija = _applicationDbContext.Kategorija.FirstOrDefault(k =>
+                    k.ID == request.ID
+                );
             }
 
             Kategorija.Naziv = request.Naziv;

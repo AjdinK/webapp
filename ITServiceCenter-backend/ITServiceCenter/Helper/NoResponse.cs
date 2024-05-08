@@ -1,4 +1,4 @@
 ﻿namespace itservicecenter.Helper
 {
-    public class NoResponse {}
+    public class NoResponse { }
 }

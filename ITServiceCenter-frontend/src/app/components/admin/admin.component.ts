@@ -94,6 +94,7 @@ export class AdminComponent implements OnInit {
     this.fetchAdmin();
   }
 
+  //preview for the uploaded img
   onFileSelected(e: any) {
     if (e.target.files) {
       var reader = new FileReader();
@@ -103,7 +104,6 @@ export class AdminComponent implements OnInit {
       };
     }
   }
-  //to show the image in preview box
 
   protected readonly ConfigFile = ConfigFile;
 }

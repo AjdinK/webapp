@@ -16,6 +16,5 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
         public int GradID { get; set; }
         public int SpolID { get; set; }
         public string? SlikaKorisnikaNovaString { get; set; }
-
     }
 }

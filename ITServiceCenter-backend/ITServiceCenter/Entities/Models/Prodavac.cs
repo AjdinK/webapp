@@ -6,11 +6,11 @@ namespace itservicecenter.Entities.Models
     [Table("Prodavac")]
     public class Prodavac : KorisnickiNalog
     {
-        [ForeignKey (nameof (Grad))]
+        [ForeignKey(nameof(Grad))]
         public int GradID { get; set; }
         public Grad Grad { get; set; }
 
-        [ForeignKey(nameof (Spol))]
+        [ForeignKey(nameof(Spol))]
         public int SpolID { get; set; }
         public Spol Spol { get; set; }
     }

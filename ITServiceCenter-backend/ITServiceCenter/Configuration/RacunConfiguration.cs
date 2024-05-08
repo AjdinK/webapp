@@ -17,7 +17,8 @@ namespace itservicecenter.Configuration
                     CijenaServisa = 210,
                     Garancija = "30 Dana",
                     Napomena = ""
-                });
+                }
+            );
         }
     }
 }

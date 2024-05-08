@@ -17,5 +17,3 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
         public string? SlikaKorisnikaBase64 { get; set; }
     }
 }
-
-                 

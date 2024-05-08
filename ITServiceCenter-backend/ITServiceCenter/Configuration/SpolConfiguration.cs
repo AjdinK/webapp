@@ -9,17 +9,9 @@ namespace itservicecenter.Configuration
         public void Configure(EntityTypeBuilder<Spol> builder)
         {
             builder.HasData(
-                new Spol
-                {
-                    ID = 1,
-                    Naziv = "Muški",
-                },
-                new Spol
-                {
-                    ID = 2,
-                    Naziv = "Ženski",
-                });
-
+                new Spol { ID = 1, Naziv = "Muški", },
+                new Spol { ID = 2, Naziv = "Ženski", }
+            );
         }
     }
 }

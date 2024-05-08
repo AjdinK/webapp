@@ -18,8 +18,10 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
         }
 
         [HttpPost("Serviser/Snimi")]
-        public override async Task<int> Obradi([FromBody] ServiserSnimiRequest request,
-            CancellationToken cancellationToken)
+        public override async Task<int> Obradi(
+            [FromBody] ServiserSnimiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             Serviser? Serviser;
             if (request.ID == 0)
@@ -44,6 +46,31 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
             Serviser.IsServiser = request.IsServiser;
             Serviser.GradID = request.GradID;
             Serviser.SpolID = request.SpolID;
+
+            if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
+            {
+                byte[]? SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
+
+                if (SlikaBajtovi == null)
+                    throw new Exception("pogresan base64 format");
+
+                byte[]? SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+                if (SlikaBajtoviVelika == null)
+                    throw new Exception("pogresan format slike");
+
+                var folderPath = "slike-serviser";
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                Serviser.SlikaKorisnikaVelika = $"{folderPath}-{Serviser.Username.ToLower()}-velika.jpg";
+                await System.IO.File.WriteAllBytesAsync(
+                    Serviser.SlikaKorisnikaVelika,
+                    SlikaBajtoviVelika,
+                    cancellationToken
+                );
+            }
 
             await _applicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
             return Serviser.ID;

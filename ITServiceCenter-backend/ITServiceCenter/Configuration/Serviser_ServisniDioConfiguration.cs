@@ -9,20 +9,20 @@ namespace itservicecenter.Configuration
         public void Configure(EntityTypeBuilder<Serviser_ServisniDio> builder)
         {
             builder.HasData(
-            new Serviser_ServisniDio
-            {
-                ServiserID = 2,
-                ServisniDioID = 1,
-                Kolicina = 3,
-                Datum = DateTime.Now
-            },
-              new Serviser_ServisniDio
-              {
-                  ServiserID = 2,
-                  ServisniDioID = 2,
-                  Kolicina = 3,
-                  Datum = DateTime.Now
-              },
+                new Serviser_ServisniDio
+                {
+                    ServiserID = 2,
+                    ServisniDioID = 1,
+                    Kolicina = 3,
+                    Datum = DateTime.Now
+                },
+                new Serviser_ServisniDio
+                {
+                    ServiserID = 2,
+                    ServisniDioID = 2,
+                    Kolicina = 3,
+                    Datum = DateTime.Now
+                },
                 new Serviser_ServisniDio
                 {
                     ServiserID = 2,
@@ -30,13 +30,13 @@ namespace itservicecenter.Configuration
                     Kolicina = 2,
                     Datum = DateTime.Now
                 },
-                  new Serviser_ServisniDio
-                  {
-                      ServiserID = 2,
-                      ServisniDioID = 4,
-                      Kolicina = 1,
-                      Datum = DateTime.Now
-                  }
+                new Serviser_ServisniDio
+                {
+                    ServiserID = 2,
+                    ServisniDioID = 4,
+                    Kolicina = 1,
+                    Datum = DateTime.Now
+                }
             );
         }
     }

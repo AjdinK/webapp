@@ -7,12 +7,17 @@ namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Brisi
     public class ProizvodjacBrisiEndpoint : MyBaseEndpoint<ProizvodjacBrisiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
-        public ProizvodjacBrisiEndpoint ( ApplicationDbContext ApplicationDbContext)
+
+        public ProizvodjacBrisiEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _applicationDbContext = ApplicationDbContext;
         }
-        [HttpDelete ("Proizvodjac/Brisi")]
-        public override async Task <int> Obradi([FromQuery] ProizvodjacBrisiRequest request, CancellationToken cancellationToken)
+
+        [HttpDelete("Proizvodjac/Brisi")]
+        public override async Task<int> Obradi(
+            [FromQuery] ProizvodjacBrisiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             var data = _applicationDbContext.Proizvodjac.FirstOrDefault(p => p.ID == request.ID);
             if (data != null)
@@ -21,7 +26,8 @@ namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Brisi
                 await _applicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
                 return request.ID;
             }
-            else {
+            else
+            {
                 throw new Exception("Pogresen ID");
             }
         }

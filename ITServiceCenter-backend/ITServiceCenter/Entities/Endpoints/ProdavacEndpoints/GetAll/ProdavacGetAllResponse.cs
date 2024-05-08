@@ -4,7 +4,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
 {
     public class ProdavacGetAllResponse
     {
-        public List <ProdavacGetAllResponseProdavac> ListaProdavac { get; set; }
+        public List<ProdavacGetAllResponseProdavac> ListaProdavac { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
         public int PageSize { get; set; }
@@ -13,7 +13,8 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
         public bool HasNext { get; set; }
     }
 
-    public class ProdavacGetAllResponseProdavac {
+    public class ProdavacGetAllResponseProdavac
+    {
         public int ID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
@@ -21,8 +22,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
         public bool IsProdavac { get; set; }
         public int GradID { get; set; }
         public int SpolID { get; set; }
-        public string Email { get ; set;}
+        public string Email { get; set; }
         public string? SlikaKorisnikaNovaString { get; set; }
-
     }
 }

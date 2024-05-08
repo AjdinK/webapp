@@ -4,6 +4,7 @@
     {
         public List<GradPretregaResponseGrad> Gradovi { get; set; }
     }
+
     public class GradPretregaResponseGrad
     {
         public int ID { get; set; }

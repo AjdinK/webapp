@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 namespace itservicecenter.Entities.Models
 {
     public class ServisniDio
@@ -16,7 +17,5 @@ namespace itservicecenter.Entities.Models
         [ForeignKey(nameof(VrstaDio))]
         public int VrstaDioID { get; set; }
         public VrstaDio VrstaDio { get; set; }
-
     }
 }
-

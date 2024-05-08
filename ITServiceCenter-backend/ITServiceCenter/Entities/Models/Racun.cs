@@ -11,6 +11,5 @@ namespace itservicecenter.Entities.Models
         public string Napomena { get; set; }
         public float CijenaServisa { get; set; }
         public string Garancija { get; set; }
-
     }
 }

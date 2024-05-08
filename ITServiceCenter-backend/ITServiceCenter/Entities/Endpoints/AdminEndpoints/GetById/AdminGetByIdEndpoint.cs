@@ -9,16 +9,20 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
     public class AdminGetByIdEndpoint : MyBaseEndpoint<AdminGetByIdRequest, AdminGetByIdResponse>
     {
         private readonly ApplicationDbContext _ApplicationDbContext;
+
         public AdminGetByIdEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _ApplicationDbContext = ApplicationDbContext;
         }
 
         [HttpGet("Admin/GetById")]
-        public async override Task<AdminGetByIdResponse> Obradi ([FromQuery] AdminGetByIdRequest request, CancellationToken cancellationToken)
+        public override async Task<AdminGetByIdResponse> Obradi(
+            [FromQuery] AdminGetByIdRequest request,
+            CancellationToken cancellationToken
+        )
         {
-            var data = await _ApplicationDbContext.Admin
-                .OrderBy(a => a.ID)
+            var data = await _ApplicationDbContext
+                .Admin.OrderBy(a => a.ID)
                 .Select(a => new AdminGetByIdResponse
                 {
                     Id = a.ID,

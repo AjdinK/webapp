@@ -2,10 +2,11 @@ namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
 {
     public class AdminGetAllResponse
     {
-        public List <AdminGetAllResponseAdmin> ListaAdmin {get;set;}
+        public List<AdminGetAllResponseAdmin> ListaAdmin { get; set; }
     }
 
-    public class AdminGetAllResponseAdmin {
+    public class AdminGetAllResponseAdmin
+    {
         public int ID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }

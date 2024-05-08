@@ -7,13 +7,17 @@ namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Snimi
     public class ProizvodjacSnimiEndpoint : MyBaseEndpoint<ProizvodjacSnimiRequest, int>
     {
         private readonly ApplicationDbContext _applicationDbContext;
-        public ProizvodjacSnimiEndpoint (ApplicationDbContext ApplicationDbContext)
+
+        public ProizvodjacSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
         {
             _applicationDbContext = ApplicationDbContext;
         }
 
-        [HttpPost ("Proizvodjac/Snimi")]
-        public override async Task<int> Obradi ([FromBody] ProizvodjacSnimiRequest request, CancellationToken cancellationToken)
+        [HttpPost("Proizvodjac/Snimi")]
+        public override async Task<int> Obradi(
+            [FromBody] ProizvodjacSnimiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             Models.Proizvodjac? Proizvodjac;
             if (request.ID == 0)
@@ -21,8 +25,11 @@ namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Snimi
                 Proizvodjac = new Models.Proizvodjac();
                 _applicationDbContext.Add(Proizvodjac);
             }
-            else {
-                Proizvodjac = _applicationDbContext.Proizvodjac.FirstOrDefault(p => p.ID == request.ID);
+            else
+            {
+                Proizvodjac = _applicationDbContext.Proizvodjac.FirstOrDefault(p =>
+                    p.ID == request.ID
+                );
             }
 
             Proizvodjac.Naziv = request.Naziv;

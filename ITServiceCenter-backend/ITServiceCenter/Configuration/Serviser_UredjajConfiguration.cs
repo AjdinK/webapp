@@ -17,39 +17,39 @@ namespace itservicecenter.Configuration
                     ServiserID = 2,
                     UredjajID = 1,
                 },
-                   new Serviser_Uredjaj
-                   {
-                       ID = 2,
-                       Status = "Radi se",
-                       Popravljeno = false,
-                       ServiserID = 2,
-                       UredjajID = 2,
-                   },
-                      new Serviser_Uredjaj
-                      {
-                          ID = 3,
-                          Status = "Ceka dio",
-                          Popravljeno = false,
-                          ServiserID = 2,
-                          UredjajID = 5,
-                      },
-                         new Serviser_Uredjaj
-                         {
-                             ID = 4,
-                             Status = "Radi se sistem...",
-                             Popravljeno = false,
-                             ServiserID = 3,
-                             UredjajID = 3,
-                         },
-                            new Serviser_Uredjaj
-                            {
-                                ID = 5,
-                                Status = "Analiza",
-                                Popravljeno = false,
-                                ServiserID = 2,
-                                UredjajID = 4,
-                            }
-                );
+                new Serviser_Uredjaj
+                {
+                    ID = 2,
+                    Status = "Radi se",
+                    Popravljeno = false,
+                    ServiserID = 2,
+                    UredjajID = 2,
+                },
+                new Serviser_Uredjaj
+                {
+                    ID = 3,
+                    Status = "Ceka dio",
+                    Popravljeno = false,
+                    ServiserID = 2,
+                    UredjajID = 5,
+                },
+                new Serviser_Uredjaj
+                {
+                    ID = 4,
+                    Status = "Radi se sistem...",
+                    Popravljeno = false,
+                    ServiserID = 3,
+                    UredjajID = 3,
+                },
+                new Serviser_Uredjaj
+                {
+                    ID = 5,
+                    Status = "Analiza",
+                    Popravljeno = false,
+                    ServiserID = 2,
+                    UredjajID = 4,
+                }
+            );
         }
     }
 }

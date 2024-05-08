@@ -19,15 +19,16 @@ namespace itservicecenter.Configuration
                 {
                     ID = 2,
                     Pitanje = "Kada će moj telefon biti završen?",
-                    Odgovor = "Vrijeme završetka servisa se određuje u trenutku kada se uređaj ostavlja na servis. Količina servisa, vrsta kvara, vrijeme ostavljanja servisa su neki od parametra koju utječu kada će vaš servis biti završen."
+                    Odgovor =
+                        "Vrijeme završetka servisa se određuje u trenutku kada se uređaj ostavlja na servis. Količina servisa, vrsta kvara, vrijeme ostavljanja servisa su neki od parametra koju utječu kada će vaš servis biti završen."
                 },
                 new FAQ
                 {
                     ID = 3,
                     Pitanje = "Kada se plaća servis?",
                     Odgovor = "Servis se plaća pri preuzimanju uređaja iz poslovnice."
-                });
-
+                }
+            );
         }
     }
 }

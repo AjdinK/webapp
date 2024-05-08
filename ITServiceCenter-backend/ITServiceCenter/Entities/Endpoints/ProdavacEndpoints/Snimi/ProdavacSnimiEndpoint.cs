@@ -22,8 +22,10 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
         }
 
         [HttpPost("Prodavac/Snimi")]
-        public override async Task<int> Obradi([FromBody] ProdavacSnimiRequest request,
-            CancellationToken cancellationToken)
+        public override async Task<int> Obradi(
+            [FromBody] ProdavacSnimiRequest request,
+            CancellationToken cancellationToken
+        )
         {
             Prodavac? Prodavac;
             if (request.ID == 0)
@@ -33,7 +35,8 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
 
                 Prodavac.Email = request.Email;
                 Prodavac.Username = request.Username;
-                Prodavac.Passweord = "test"; }
+                Prodavac.Passweord = "test";
+            }
             else
             {
                 Prodavac = _ApplicationDbContext.Prodavac.FirstOrDefault(p => p.ID == request.ID);
@@ -44,7 +47,6 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
             Prodavac.IsProdavac = request.IsProdavac;
             Prodavac.GradID = request.GradID;
             Prodavac.SpolID = request.SpolID;
-
 
             await _ApplicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
             return Prodavac.ID;

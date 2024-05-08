@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
 namespace itservicecenter.Entities.Models
@@ -19,6 +19,5 @@ namespace itservicecenter.Entities.Models
         [ForeignKey(nameof(KorisnickiNalog))]
         public int KorisnickiNalogID { get; set; }
         public KorisnickiNalog KorisnickiNalog { get; set; }
-
     }
 }

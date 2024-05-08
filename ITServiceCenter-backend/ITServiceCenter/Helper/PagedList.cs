@@ -7,7 +7,8 @@ namespace FIT_Api_Examples.Helper
     public class PagedList<T>
     {
         public List<T> DataItems { get; set; } = new List<T>();
-        private PagedList (List <T> items, int totalCount, int pageNumber, int pageSize)
+
+        private PagedList(List<T> items, int totalCount, int pageNumber, int pageSize)
         {
             TotalCount = totalCount;
             CurrentPage = pageNumber;
@@ -22,6 +23,7 @@ namespace FIT_Api_Examples.Helper
         public int TotalCount { get; }
         public bool HasPrevios => CurrentPage > 1;
         public bool HasNext => CurrentPage < TotalPages;
+
         public static PagedList<T> Create(IQueryable<T> source, int pageNumber, int pageSize)
         {
             var totalCount = source.Count();

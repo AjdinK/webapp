@@ -9,22 +9,11 @@ namespace itservicecenter.Configuration
         public void Configure(EntityTypeBuilder<Kategorija> builder)
         {
             builder.HasData(
-                new Kategorija { 
-                ID = 1, 
-                Naziv = "Mobitel"
-            },
-            new Kategorija {
-                ID = 2, 
-                Naziv = "Tablet" 
-            },
-            new Kategorija { 
-                ID = 3, 
-                Naziv = "Laptop" 
-            },
-            new Kategorija { 
-                ID = 4, 
-                Naziv = "Računar" 
-            });
+                new Kategorija { ID = 1, Naziv = "Mobitel" },
+                new Kategorija { ID = 2, Naziv = "Tablet" },
+                new Kategorija { ID = 3, Naziv = "Laptop" },
+                new Kategorija { ID = 4, Naziv = "Računar" }
+            );
         }
     }
 }
