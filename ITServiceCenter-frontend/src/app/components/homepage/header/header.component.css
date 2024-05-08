@@ -18,44 +18,65 @@ header .navbar {
   overflow: hidden;
 }
 
+.btn {
+  cursor: pointer;
+  position: relative;
+  padding: 13px 25px;
+  background: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  transition: all 1s;
+}
+.btn:after,
+.btn:before {
+  content: " ";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  border: 0px solid #fff;
+  transition: all 1s;
+}
+.btn:after {
+  top: -1px;
+  left: -1px;
+  border-top: 5px solid black;
+  border-left: 5px solid black;
+}
+.btn:before {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 5px solid black;
+  border-right: 5px solid black;
+}
+.btn:hover {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.btn:hover:before,
+.btn:hover:after {
+  width: 100%;
+  height: 100%;
+}
+
 header .navbar .menu-links {
   display: flex;
   align-items: center;
-  gap: 30px;
-}
-
-.menu-links li {
-  list-style-type: none;
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: 600;
-  font-size: 1.1rem;
-  letter-spacing: 2px;
-}
-
-.navbar button {
-  background-color: white;
-  color: black;
-  padding: 15px 40px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  letter-spacing: 2px;
-  font-size: 1.1rem;
-  font-family: "Space Grotesk", sans-serif;
-  font-weight: bolder;
-  transition: 0.2s ease;
-  overflow: hidden;
-}
-.navbar button:hover {
-  background-color: #516269;
-  color: white;
+  gap: 10px;
 }
 
 .menu-links {
   text-align: center;
   text-transform: uppercase;
-  font-weight: 500;
-  transition: transform 0.3s ease-in-out;
+  font-weight: 600;
+}
+
+.menu-links li {
+  list-style-type: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 2px;
 }
 
 .menu-links li {
@@ -66,43 +87,15 @@ header .navbar .menu-links {
 }
 .menu-links a {
   padding: 0.5em 0;
-  color: rgba(255, 255, 255, 0.5);
+  color: white;
   position: relative;
   text-decoration: none;
   letter-spacing: 3px;
+  transition: 0.3s ease-in;
 }
-.menu-links a:before,
-.menu-links a:after {
-  position: absolute;
-  transition: all 0.35s ease;
-}
-.menu-links a:before {
-  top: 0;
-  display: block;
-  height: 3px;
-  width: 0;
-  content: "";
-  background-color: #687b89;
-}
-.menu-links a:after {
-  left: 0;
-  top: 0;
-  padding: 0.4em 0;
-  position: absolute;
-  content: attr(data-hover);
-  color: #ffffff;
-  white-space: nowrap;
-  max-width: 0;
-  overflow: hidden;
-}
-.menu-links a:hover:before,
-.menu-links .current a:before {
-  opacity: 1;
-  width: 100%;
-}
-.menu-links a:hover:after,
-.menu-links .current a:after {
-  max-width: 100%;
+
+.menu-links a:hover {
+  color: #5d707d;
 }
 
 .close-menu-icon,
