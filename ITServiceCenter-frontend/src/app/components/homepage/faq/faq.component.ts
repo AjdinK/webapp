@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
-import { Router } from '@angular/router';
-import { FAQGetAllEndpoint } from '../../../endpoints/faq-endpoints/faq-get-all-endpoint';
+import { Component, OnInit } from "@angular/core";
+import { NgForOf, NgIf } from "@angular/common";
+import { Router } from "@angular/router";
+import { FAQGetAllEndpoint } from "../../../endpoints/faq-endpoints/faq-get-all-endpoint";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-faq',
+  selector: "app-faq",
   standalone: true,
-  imports: [NgForOf, NgIf],
-  templateUrl: './faq.component.html',
-  styleUrl: './faq.component.css',
+  imports: [NgForOf, NgIf, TranslateModule],
+  templateUrl: "./faq.component.html",
+  styleUrl: "./faq.component.css",
 })
 export class FaqComponent implements OnInit {
   constructor(private fAQGetAllEndpoint: FAQGetAllEndpoint) {}

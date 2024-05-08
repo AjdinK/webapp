@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-  imports: [NgOptimizedImage, FormsModule, CommonModule],
+  imports: [NgOptimizedImage, FormsModule, CommonModule,TranslateModule],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',
 })

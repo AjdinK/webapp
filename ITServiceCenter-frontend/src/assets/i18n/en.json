@@ -1,0 +1,23 @@
+{
+  "Home": "Home",
+  "About": "About",
+  "FAQ": "FAQ",
+  "Contact": "Contact",
+  "Login": "Login",
+  "#Search Nalog": "#Search Code",
+  "Enter the code here ...... ": "Enter the account code here ...... ",
+  "Search": "Search",
+  "Field Required": "Field Required",
+  "Minimum 5 Characters": "Minimum 5 Characters",
+  "#About Us": "#About Us",
+  "Your Reliable Service Center for IT Solutions": "Your Reliable Service Center for IT Solutions",
+  "Welcome": "Welcome to IT SERVICE CENTER, your one-stop shop for all your IT needs. We offer a wide range of services for the repair and maintenance of various technological devices, including:  * Computers: Diagnosis and repair of PCs and Macs, hardware upgrades, software installation, virus removal, and much more.  * Mobile Phones: Repair of cracked screens, battery replacements, phone unlocking, software solutions, and service for various phone models.  * Tablets: Screen repair, battery replacements, diagnostics, and software troubleshooting.  * Other Technology: Service and repair of printers, scanners, routers, cameras, and other technological equipment.",
+  "Question": "Question",
+  "Answer": "Answer",
+  "Koja je cijena servisa?": "What is the service price?",
+  "Cijena servisa se određuje u odnosu na model i kvar uređaja.": "The service price is determined based on the model and the fault of the device.",
+  "Kada će moj telefon biti završen?": "When will my phone be finished?",
+  "Vrijeme završetka servisa se određuje u trenutku kada se uređaj ostavlja na servis. Količina servisa, vrsta kvara, vrijeme ostavljanja servisa su neki od parametra koju utječu kada će vaš servis biti završen.": "The completion time for the service is determined at the time the device is left for service. The amount of service required, the type of fault, and the time the device is left for service are some of the factors that affect when your service will be completed",
+  "Kada se plaća servis?": "When is the service paid for?",
+  "Servis se plaća pri preuzimanju uređaja iz poslovnice.": "The service is paid for when you pick up the device from the store"
+}

@@ -76,7 +76,7 @@ header .navbar .menu-links {
   list-style-type: none;
   font-weight: 600;
   font-size: 1.2rem;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
 }
 
 .menu-links li {
@@ -90,7 +90,6 @@ header .navbar .menu-links {
   color: white;
   position: relative;
   text-decoration: none;
-  letter-spacing: 3px;
   transition: 0.3s ease-in;
 }
 
@@ -108,6 +107,13 @@ header .navbar .menu-links {
 
 .menu-links.show {
   display: block;
+}
+
+select {
+  width: 70px;
+  padding: 10px;
+  border: none;
+  border-radius: 0;
 }
 
 @media only screen and (max-width: 960px) {

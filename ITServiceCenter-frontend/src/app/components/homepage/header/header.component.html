@@ -6,12 +6,18 @@
     <ul class="menu-links" [ngClass]="{ 'show': !this.openMenu, 'hidden': this.openMenu }">
       <img class="close-menu-icon" src="assets/icons/close.svg" alt="close" height="35" width="35"
         (click)="toggleMenu()" />
-      <li class="current"><a href="#Home" data-hover="Home">Home</a></li>
-      <li><a href="#AboutUs" data-hover="About Us">About Us</a></li>
-      <li><a href="#FAQ" data-hover="FAQ">FAQ</a></li>
-      <li><a href="#ContactUS" data-hover="Contact US">Contact</a></li>
+      <li class="current"><a href="#Home">{{'Home'|translate}}</a></li>
+      <li><a href="#AboutUs">{{'About'|translate}}</a></li>
+      <li><a href="#FAQ">{{'FAQ'|translate}}</a></li>
+      <li><a href="#ContactUS">{{'Contact'|translate}}</a></li>
     </ul>
-    <button class="btn" (click)="logirajSe()">Login</button>
+    <button class="btn" (click)="logirajSe()">{{'Login'|translate}}</button>
+    <select name="" id="" (change)="promjeniLang($event)">
+      <option [selected]='lang=== "en"' value="en">EN</option>
+      <option [selected]='lang=== "bs"' value="bs">BA</option>
+      <option [selected]='lang=== "es"' value="es">ES</option>
+      <option [selected]='lang=== "gr"' value="gr">GR</option>
+    </select>
   </nav>
   <img class="menu-icon" src="assets/icons/menu.svg" alt="menu" height="35" width="35" (click)="toggleMenu()" />
 </header>
