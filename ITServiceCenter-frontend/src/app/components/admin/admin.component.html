@@ -100,7 +100,7 @@
     <label for="slika-input">Nova slika</label>
     <input id="input-pic" type='file' accept="image/*" (change)="onFileSelected($event);" />
 
-    <img id="oldPic" src="{{ConfigFile.adresa_servera}}/Admin/GetImgById?id={{this.adminPodaciFetch!.id}}" />
+    <img id="oldPic" src="{{ConfigFile.adresa_servera}}/Admin/GetImg?username={{this.adminPodaciFetch!.username}}" />
     <img id="newPic" src="{{ this.novaSlikaAdmin }}" />
 
   </div>

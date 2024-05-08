@@ -1,16 +1,15 @@
-import { Observable } from 'rxjs';
-import { MyBaseEndpoint } from '../my-base-endpoint';
-import { HttpClient } from '@angular/common/http';
-import { ConfigFile } from '../../configFile';
-import { Injectable } from '@angular/core';
+import { Observable } from "rxjs";
+import { MyBaseEndpoint } from "../my-base-endpoint";
+import { HttpClient } from "@angular/common/http";
+import { ConfigFile } from "../../configFile";
+import { Injectable } from "@angular/core";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class ProdavacSnimiEndpoint
-  implements MyBaseEndpoint<ProdavacSnimiRequest, void>
-{
+  implements MyBaseEndpoint<ProdavacSnimiRequest, void> {
   constructor(private httpKlijent: HttpClient) {}
   obradi(request: ProdavacSnimiRequest): Observable<void> {
-    let url = ConfigFile.adresa_servera + '/Prodavac/Snimi';
+    let url = ConfigFile.adresa_servera + "/Prodavac/Snimi";
     return this.httpKlijent.post<void>(url, request);
   }
 }
@@ -23,5 +22,5 @@ export interface ProdavacSnimiRequest {
   isProdavac: boolean;
   gradID: number;
   spolID: number;
-  slikaKorisnikaNovaString: string | undefined;
+  slikaKorisnikaBase64: string | undefined;
 }

@@ -57,11 +57,11 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
                 if (SlikaBajtoviVelika == null)
                     throw new Exception("pogresan format slike");
 
-                byte[]? SlikaBajtoviMala = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
-                if (SlikaBajtoviMala == null)
-                    throw new Exception("pogresan format slike");
+                // byte[]? SlikaBajtoviMala = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+                // if (SlikaBajtoviMala == null)
+                //     throw new Exception("pogresan format slike");
 
-                var folderPath = "slike-admin";
+                var folderPath = "wwwroot/slike-admin";
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
@@ -69,7 +69,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
 
                 // Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
 
-                Admin.SlikaKorisnikaVelika = $"{folderPath}/{Admin.ID}-velika.jpg";
+                Admin.SlikaKorisnikaVelika = $"{folderPath}/{Admin.Username}-velika.jpg";
                 await System.IO.File.WriteAllBytesAsync(
                     Admin.SlikaKorisnikaVelika,
                     SlikaBajtoviVelika,

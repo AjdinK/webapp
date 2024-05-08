@@ -35,6 +35,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
                     GradID = p.GradID,
                     SpolID = p.SpolID,
                     Email = p.Email,
+                    SlikaKorisnikaBase64 = p.SlikaKorisnikaVelika,
                 });
             var pagedProdavac = PagedList<ProdavacGetAllResponseProdavac>.Create(
                 data,

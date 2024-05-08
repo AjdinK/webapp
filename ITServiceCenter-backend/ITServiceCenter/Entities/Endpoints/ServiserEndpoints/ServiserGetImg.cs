@@ -1,23 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 
-namespace itservicecenter.Entities.Endpoints.AdminEndpoints
+namespace itservicecenter.Entities.Endpoints.ServiserEndpoints
 {
     [ApiController]
-    public class AdminGetImgById : ControllerBase
+    public class ServiserGetImgById : ControllerBase
     {
-        [HttpGet("Admin/GetImgById")]
-        public async Task<FileContentResult> GetByID(
-            [FromQuery] int id,
+        [HttpGet("Serviser/GetImg")]
+        public async Task<FileContentResult> GetImg(
+            [FromQuery] string? username,
             CancellationToken cancellationToken
         )
         {
-            var folderPath = "slike-admin";
+            var folderPath = "wwwroot/slike-serviser";
             byte[] slika;
 
             try
             {
-                var fileName = $"{folderPath}/{id}-velika.jpg";
+                var fileName = $"{folderPath}/{username?.ToLower()}-velika.jpg";
                 slika = await System.IO.File.ReadAllBytesAsync(fileName, cancellationToken);
                 return File(slika, GetMimeType(fileName));
             }

@@ -58,13 +58,13 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
                 if (SlikaBajtoviVelika == null)
                     throw new Exception("pogresan format slike");
 
-                var folderPath = "slike-serviser";
+                var folderPath = "wwwroot/slike-serviser";
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
                 }
 
-                Serviser.SlikaKorisnikaVelika = $"{folderPath}-{Serviser.Username.ToLower()}-velika.jpg";
+                Serviser.SlikaKorisnikaVelika = $"{folderPath}/{Serviser.Username.ToLower()}-velika.jpg";
                 await System.IO.File.WriteAllBytesAsync(
                     Serviser.SlikaKorisnikaVelika,
                     SlikaBajtoviVelika,

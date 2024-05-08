@@ -4,20 +4,20 @@ using Microsoft.AspNetCore.StaticFiles;
 namespace itservicecenter.Entities.Endpoints.ServiserEndpoints
 {
     [ApiController]
-    public class ServiserGetImgById : ControllerBase
+    public class ProdavacGetImgById : ControllerBase
     {
-        [HttpGet("Serviser/GetImg")]
-        public async Task<FileContentResult> GetByID(
-            [FromQuery] string username,
+        [HttpGet("Prodavac/GetImg")]
+        public async Task<FileContentResult> GetImg(
+            [FromQuery] string? username,
             CancellationToken cancellationToken
         )
         {
-            var folderPath = "slike-serviser";
+            var folderPath = "wwwroot/slike-prodavac";
             byte[] slika;
 
             try
             {
-                var fileName = $"{folderPath}-{username.ToLower()}-velika.jpg";
+                var fileName = $"{folderPath}/{username?.ToLower()}-velika.jpg";
                 slika = await System.IO.File.ReadAllBytesAsync(fileName, cancellationToken);
                 return File(slika, GetMimeType(fileName));
             }

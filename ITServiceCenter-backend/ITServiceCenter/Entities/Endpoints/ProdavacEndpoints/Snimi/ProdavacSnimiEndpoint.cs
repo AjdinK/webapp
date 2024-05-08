@@ -48,6 +48,31 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
             Prodavac.GradID = request.GradID;
             Prodavac.SpolID = request.SpolID;
 
+            if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
+            {
+                byte[]? SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
+
+                if (SlikaBajtovi == null)
+                    throw new Exception("pogresan base64 format");
+
+                byte[]? SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+                if (SlikaBajtoviVelika == null)
+                    throw new Exception("pogresan format slike");
+
+                var folderPath = "wwwroot/slike-prodavac";
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                Prodavac.SlikaKorisnikaVelika = $"{folderPath}/{Prodavac.Username.ToLower()}-velika.jpg";
+                await System.IO.File.WriteAllBytesAsync(
+                    Prodavac.SlikaKorisnikaVelika,
+                    SlikaBajtoviVelika,
+                    cancellationToken
+                );
+            }
+
             await _ApplicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
             return Prodavac.ID;
         }
