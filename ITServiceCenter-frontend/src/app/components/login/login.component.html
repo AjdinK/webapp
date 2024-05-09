@@ -15,7 +15,7 @@
         <div class="greska-email"
           *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty ||loginForm.controls['email'].touched) || this.JelLogiran">
           <span *ngIf="loginForm.controls['email'].errors?.['required']">{{'Field Required'|translate}}</span>
-          <span *ngIf="loginForm.controls['email'].errors?.['pattern']">
+          <span *ngIf="loginForm.controls['email'].errors?.['email']">
             {{'Email address is not valid'|translate}}
           </span>
         </div>

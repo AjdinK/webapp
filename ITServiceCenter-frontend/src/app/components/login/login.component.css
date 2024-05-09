@@ -20,8 +20,8 @@ main {
   background: #000408;
   width: 800px;
   margin: 0 auto;
-  padding: 30px;
-  border: none ;
+  padding: 50px;
+  border: none;
   border-radius: 0;
 }
 
@@ -43,17 +43,15 @@ main {
 .login-container input:valid,
 .login-container input:active,
 .login-container input:focus {
-  outline:none;
+  outline: none;
 }
-.login-container input:focus:invalid{
+.login-container input:focus:invalid {
   color: indianred;
   border-color: indianred;
 }
 form input:focus {
-  border: #677A88 solid 3px;
+  border: #677a88 solid 3px;
 }
-
-
 
 .login-container button {
   background-color: white;
@@ -67,10 +65,10 @@ form input:focus {
   font-family: "Space Grotesk", sans-serif;
   font-weight: bolder;
   transition: 0.2s ease;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
-.login-container button:hover{
+.login-container button:hover {
   background-color: #516269;
   color: white;
 }
@@ -84,22 +82,23 @@ label {
   margin-bottom: 5px;
 }
 
-.h1-prim{
-  color: #6C7F8D;
+.h1-prim {
+  color: #6c7f8d;
   cursor: default;
 }
-.text-img{
+.text-img {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
 }
-.login-logo{
+.login-logo {
   position: relative;
   top: 5px;
 }
 
-.greska-email,.greska-password{
-  color:indianred;
+.greska-email,
+.greska-password {
+  color: indianred;
   font-weight: 600;
   margin-bottom: 20px;
 }
