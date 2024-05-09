@@ -2,23 +2,26 @@
   <div class="login-container">
 
     <div class="text-img">
-      <img class="login-logo" src ="../../../assets/icons/login.svg" height="30" width="30">
-        <h1 class="h1-prim">Login</h1>
+      <img class="login-logo" src="../../../assets/icons/login.svg" height="30" width="30">
+      <h1 class="h1-prim">{{'Login'|translate}}</h1>
     </div>
 
 
     <form>
       <div class="form-group">
         <label for="email">Email</label>
-        <input #email_polje="ngModel" type="email" id="email" [(ngModel)]="email" name="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" minlength="5" required>
-        <div class="greska-email" *ngIf="email_polje.invalid && (email_polje.dirty ||email_polje.touched) || this.JelLogiran">
-          <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
-          <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
+        <input #email_polje="ngModel" type="email" id="email" [(ngModel)]="email" name="email"
+          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" minlength="5" required>
+        <div class="greska-email"
+          *ngIf="email_polje.invalid && (email_polje.dirty ||email_polje.touched) || this.JelLogiran">
+          <span *ngIf="email_polje.errors?.['required']">{{'Field Required'|translate}}</span>
+          <span *ngIf="email_polje.errors?.['pattern']">{{'Email address is not valid'|translate}}</span>
         </div>
       </div>
       <div class="form-group">
         <label for="lozinka">Lozinka</label>
-        <input type="password" #lozinka_polje="ngModel" id="lozinka" [(ngModel)]="lozinka" name="lozinka" minlength="8" required>
+        <input type="password" #lozinka_polje="ngModel" id="lozinka" [(ngModel)]="lozinka" name="lozinka" minlength="8"
+          required>
         <div class="greska-password" *ngIf="lozinka_polje.dirty ||lozinka_polje.touched || this.JelLogiran">
           <span *ngIf="lozinka_polje.errors?.['required']">Polje je obavezno</span>
           <span *ngIf="lozinka_polje.errors?.['minlength']">Vrijednost mora biti veća od 7</span>
@@ -29,4 +32,3 @@
   </div>
 
 </main>
-

@@ -19,7 +19,8 @@ export class HeaderComponent implements OnInit {
   lang: string = "";
   private readonly storage!: Storage;
   ngOnInit(): void {
-    // this.lang == localStorage.getItem("lang") || "en";
+    this.lang = localStorage.getItem("lang") || "en";
+    this.translateService.use(this.lang);
   }
   openMenu: boolean = false;
 
@@ -32,7 +33,8 @@ export class HeaderComponent implements OnInit {
 
   promjeniLang(lang: any) {
     const odabraniJezik = lang.target.value;
-    // localStorage.setItem("lang", odabraniJezik);
+    this.lang = odabraniJezik;
+    localStorage.setItem("lang", odabraniJezik);
     this.translateService.use(odabraniJezik);
   }
 }
