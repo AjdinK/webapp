@@ -6,25 +6,32 @@
       <h1 class="h1-prim">{{'Login'|translate}}</h1>
     </div>
 
-
     <form>
-      <div class="form-group">
+      <div class="form-group" [formGroup]="loginForm">
+
         <label for="email">{{'Email'|translate}}</label>
-        <input #email_polje="ngModel" type="email" id="email" [(ngModel)]="email" name="email"
-          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" minlength="5" required>
+        <input type="email" id="email" name="email" required formControlName="email">
+
         <div class="greska-email"
-          *ngIf="email_polje.invalid && (email_polje.dirty ||email_polje.touched) || this.JelLogiran">
-          <span *ngIf="email_polje.errors?.['required']">{{'Field Required'|translate}}</span>
-          <span *ngIf="email_polje.errors?.['pattern']">{{'Email address is not valid'|translate}}</span>
+          *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty ||loginForm.controls['email'].touched) || this.JelLogiran">
+          <span *ngIf="loginForm.controls['email'].errors?.['required']">{{'Field Required'|translate}}</span>
+          <span *ngIf="loginForm.controls['email'].errors?.['pattern']">
+            {{'Email address is not valid'|translate}}
+          </span>
         </div>
       </div>
-      <div class="form-group">
+
+      <div class="form-group" [formGroup]="loginForm">
+
         <label for="lozinka">{{'Password'|translate}}</label>
-        <input type="password" #lozinka_polje="ngModel" id="lozinka" [(ngModel)]="lozinka" name="lozinka" minlength="8"
-          required>
-        <div class="greska-password" *ngIf="lozinka_polje.dirty ||lozinka_polje.touched || this.JelLogiran">
-          <span *ngIf="lozinka_polje.errors?.['required']">{{'Field Required'|translate}}</span>
-          <span *ngIf="lozinka_polje.errors?.['minlength']">{{'Field Required'|translate}}</span>
+        <input type="password" id="lozinka" name="lozinka" required formControlName="password">
+
+        <div class="greska-password"
+          *ngIf="loginForm.controls['password'].dirty ||loginForm.controls['password'].touched || this.JelLogiran">
+          <span *ngIf="loginForm.controls['password'].errors?.['required']">{{'Field Required'|translate}}</span>
+          <span *ngIf="loginForm.controls['password'].errors?.['pattern']">
+            {{'Minimum 8 characters, At least one uppercase letter, At
+            least one lowercase letter, At least one number'|translate}}</span>
         </div>
       </div>
       <button (click)="logirajSe()" type="submit">{{'Login'|translate}}</button>

@@ -1,26 +1,25 @@
 import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-   imports: [NgOptimizedImage, FormsModule , ReactiveFormsModule, CommonModule,TranslateModule],
+   imports: [NgOptimizedImage , ReactiveFormsModule, CommonModule,TranslateModule],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',
 })
 export class ContactUsComponent {
 
-   kontaktForm : FormGroup;
+  kontaktForm : FormGroup;
 
- constructor() {
+  constructor() {
     this.kontaktForm = new FormGroup({
       ime: new FormControl('',[Validators.required,Validators.minLength(3)]),
       email : new FormControl('',[Validators.required,Validators.email]),
       poruka: new FormControl('',[Validators.required,Validators.maxLength(20)]),
-
     })
   }
 

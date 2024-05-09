@@ -26,5 +26,6 @@
   "message": "Nachricht",
   "Minimum 20 Characters": "Minimum 20 Zeichen",
   "Submit": "Senden",
-  "Password": "Passwort"
+  "Password": "Passwort",
+  "Minimum 8 characters, At least one uppercase letter, At least one lowercase letter, At least one number": "Mindestens 8 Zeichen, Mindestens ein Großbuchstabe, Mindestens ein Kleinbuchstabe, Mindestens eine Ziffer"
 }
