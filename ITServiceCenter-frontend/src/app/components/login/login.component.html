@@ -9,7 +9,7 @@
 
     <form>
       <div class="form-group">
-        <label for="email">Email</label>
+        <label for="email">{{'Email'|translate}}</label>
         <input #email_polje="ngModel" type="email" id="email" [(ngModel)]="email" name="email"
           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" minlength="5" required>
         <div class="greska-email"
@@ -19,15 +19,15 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="lozinka">Lozinka</label>
+        <label for="lozinka">{{'Password'|translate}}</label>
         <input type="password" #lozinka_polje="ngModel" id="lozinka" [(ngModel)]="lozinka" name="lozinka" minlength="8"
           required>
         <div class="greska-password" *ngIf="lozinka_polje.dirty ||lozinka_polje.touched || this.JelLogiran">
-          <span *ngIf="lozinka_polje.errors?.['required']">Polje je obavezno</span>
-          <span *ngIf="lozinka_polje.errors?.['minlength']">Vrijednost mora biti veća od 7</span>
+          <span *ngIf="lozinka_polje.errors?.['required']">{{'Field Required'|translate}}</span>
+          <span *ngIf="lozinka_polje.errors?.['minlength']">{{'Field Required'|translate}}</span>
         </div>
       </div>
-      <button (click)="logirajSe()" type="submit">Login</button>
+      <button (click)="logirajSe()" type="submit">{{'Login'|translate}}</button>
     </form>
   </div>
 

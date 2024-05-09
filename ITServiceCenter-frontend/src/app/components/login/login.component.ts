@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { Router } from "@angular/router";
 import { HeaderComponent } from "../homepage/header/header.component";
-import { TranslateModule } from "@ngx-translate/core";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-login",
@@ -12,9 +12,19 @@ import { TranslateModule } from "@ngx-translate/core";
   templateUrl: "./login.component.html",
   styleUrl: "./login.component.css",
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  constructor(
+    private router: Router,
+    private translateService: TranslateService
+  ) {}
+
+  lang: string = "";
   JelLogiran: boolean = false;
-  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.lang = localStorage.getItem("lang") || "en";
+    this.translateService.use(this.lang);
+  }
 
   email: string = "";
   lozinka: string = "";

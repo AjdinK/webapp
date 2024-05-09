@@ -19,5 +19,11 @@
   "Kada će moj telefon biti završen?": "When will my phone be finished?",
   "Vrijeme završetka servisa se određuje u trenutku kada se uređaj ostavlja na servis. Količina servisa, vrsta kvara, vrijeme ostavljanja servisa su neki od parametra koju utječu kada će vaš servis biti završen.": "The completion time for the service is determined at the time the device is left for service. The amount of service required, the type of fault, and the time the device is left for service are some of the factors that affect when your service will be completed",
   "Kada se plaća servis?": "When is the service paid for?",
-  "Servis se plaća pri preuzimanju uređaja iz poslovnice.": "The service is paid for when you pick up the device from the store"
+  "Servis se plaća pri preuzimanju uređaja iz poslovnice.": "The service is paid for when you pick up the device from the store",
+  "#Contact US": "#Contact US",
+  "Name": "Name",
+  "Email address is not valid": "Email address is not valid",
+  "message": "message",
+  "Minimum 20 Characters": "Minimum 20 Characters",
+  "Submit": "Submit"
 }
