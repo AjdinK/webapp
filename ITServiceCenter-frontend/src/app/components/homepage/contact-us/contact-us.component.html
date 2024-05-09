@@ -24,39 +24,38 @@
 
     <!-- form to send data,info and contact the IT service center  -->
 
-    <form class="ContactUS-form" #porukaForm='ngForm'>
+    <form class="ContactUS-form" [formGroup]="kontaktForm">
       <label>{{'Name'|translate}}</label> <br />
-      <input #ime_polje="ngModel" name="ime" type="text" [(ngModel)]="porukaKontakt.ime" minlength="3" required
-        placeholder="{{'Name'|translate}}" /><br />
+      <input name="ime" type="text" placeholder="{{'Name'|translate}}" formControlName="ime" required /><br />
 
       <!-- div for validation and to print erros , it shows only on dirty , touched ,
     or when the user press submit button when fileds are invalid
     and it also use pattern to enter only characters without numbers
     same thing for prezime,username,email..etc
 -->
-      <div class="greska-ime" *ngIf="ime_polje.invalid && (ime_polje.touched || ime_polje.dirty) || this.JelPopunjeno">
-        <span *ngIf="ime_polje.errors?.['required']">{{'Field Required'|translate}}</span>
-        <span *ngIf="ime_polje.errors?.['minlength']">{{'Minimum 5 karaktera'|translate}}</span>
+      <div class="greska-ime"
+        *ngIf="kontaktForm.controls['ime'].invalid && (kontaktForm.controls['ime'].touched || kontaktForm.controls['ime'].dirty) || this.JelPopunjeno">
+        <span *ngIf="kontaktForm.controls['ime'].errors?.['required']">{{'Field Required'|translate}}</span>
+        <span *ngIf="kontaktForm.controls['ime'].errors?.['minlength']">{{'Minimum 5 karaktera'|translate}}</span>
       </div>
 
       <label>Email</label> <br />
-      <input name="email" #email_polje="ngModel" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
-        type="email" required [(ngModel)]="porukaKontakt.email" placeholder="Email" /><br />
+      <input name="email" type="email" required placeholder="{{'Email'|translate}}" formControlName="email" /><br />
       <div class="greska-ime"
-        *ngIf="email_polje.invalid && (email_polje.touched || email_polje.dirty) || this.JelPopunjeno">
-        <span *ngIf="email_polje.errors?.['required']">{{'Field Required'|translate}}</span>
-        <span *ngIf="email_polje.errors?.['pattern']">{{'Email address is not valid'|translate}}</span>
+        *ngIf="kontaktForm.controls['email'].invalid && (kontaktForm.controls['email'].touched || kontaktForm.controls['email'].dirty) || this.JelPopunjeno">
+        <span *ngIf="kontaktForm.controls['email'].errors?.['required']">{{'Field Required'|translate}}</span>
+        <span *ngIf="kontaktForm.controls['email'].errors?.['email']">
+        </span> {{'Email address is not valid'|translate}}
       </div>
 
       <label>{{'message'|translate}}</label><br />
-      <textarea #textarea_polje="ngModel" name="poruka" [(ngModel)]="porukaKontakt.poruka" required minlength="20"
-        placeholder="{{'message'|translate}}"></textarea><br />
+      <textarea name="poruka" required placeholder="{{'message'|translate}}" formControlName="poruka"></textarea><br />
       <div class="greska-ime"
-        *ngIf="textarea_polje.invalid && (textarea_polje.touched || textarea_polje.dirty) || this.JelPopunjeno">
-        <span *ngIf="textarea_polje.errors?.['required']">{{'Field Required'|translate}}</span>
-        <span *ngIf="textarea_polje.errors?.['minlength']">{{"Minimum 20 Characters"|translate}}</span>
+        *ngIf="kontaktForm.controls['poruka'].invalid && (kontaktForm.controls['poruka'].touched || kontaktForm.controls['poruka'].dirty) || this.JelPopunjeno">
+        <span *ngIf="kontaktForm.controls['poruka'].errors?.['required']">{{'Field Required'|translate}}</span>
+        <span *ngIf="kontaktForm.controls['poruka'].errors?.['minlength']">{{"Minimum 20 Characters"|translate}}</span>
       </div>
-      <button (click)="posalji(porukaForm)" class="button-login-header">{{"Submit"|translate}}</button>
+      <button (click)="posalji()" class="button-login-header">{{"Submit"|translate}}</button>
     </form>
 
   </div>

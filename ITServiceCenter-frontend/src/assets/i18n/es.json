@@ -25,5 +25,6 @@
   "Email address is not valid": "La dirección de correo electrónico no es válida",
   "message": "Mensaje",
   "Minimum 20 Characters": "Mínimo 20 caracteres",
-  "Submit": "Enviar"
+  "Submit": "Enviar",
+  "Password": "Contraseña"
 }

@@ -25,5 +25,6 @@
   "Email address is not valid": "E-Mail-Adresse ist ungültig",
   "message": "Nachricht",
   "Minimum 20 Characters": "Minimum 20 Zeichen",
-  "Submit": "Senden"
+  "Submit": "Senden",
+  "Password": "Passwort"
 }
