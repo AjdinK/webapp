@@ -88,3 +88,12 @@ section div button:hover {
   font-weight: 600;
   margin-bottom: 20px;
 }
+
+@media only screen and (max-width: 960px) {
+  .ContactUS-wrapper {
+    flex-direction: column;
+  }
+  .ContactUS-form {
+    width: 100%;
+  }
+}

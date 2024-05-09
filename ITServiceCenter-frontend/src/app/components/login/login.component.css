@@ -20,13 +20,9 @@ main {
   background: #000408;
   width: 800px;
   margin: 0 auto;
-  padding: 50px;
+  padding: 80px;
   border: none;
   border-radius: 0;
-}
-
-.login-container h1 {
-  margin-bottom: 20px;
 }
 
 .login-container input {
@@ -88,12 +84,9 @@ label {
 }
 .text-img {
   display: flex;
+  align-items: center;
   gap: 10px;
-  margin-bottom: 10px;
-}
-.login-logo {
-  position: relative;
-  top: 5px;
+  margin-bottom: 30px;
 }
 
 .greska-email,
@@ -101,4 +94,11 @@ label {
   color: indianred;
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 960px) {
+  .login-container {
+    height: 50%;
+    margin: 0 30px;
+  }
 }

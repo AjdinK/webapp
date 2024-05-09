@@ -121,9 +121,13 @@ select {
     display: block;
     position: absolute;
     top: 40px;
-    right: 230px;
+    right: 110px;
     z-index: 5;
     cursor: pointer;
+  }
+  button.btn {
+    position: relative;
+    top: 0;
   }
   header {
     position: fixed;
