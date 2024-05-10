@@ -914,6 +914,7 @@ pip-log.txt
 #Translations
 *.mo
 
+
 #Mr Developer
 .mr.developer.cfg
 
@@ -923,3 +924,5 @@ pip-log.txt
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
+**/wwwroot/**
+**/Migrations-database/**
