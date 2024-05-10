@@ -17,10 +17,11 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   lang: string = "";
-  private readonly storage!: Storage;
   ngOnInit(): void {
-    this.lang = localStorage.getItem("lang") || "en";
-    this.translateService.use(this.lang);
+    if (typeof window !== "undefined" && window.localStorage) {
+      this.lang = localStorage.getItem("lang") || "en";
+      this.translateService.use(this.lang);
+    }
   }
   openMenu: boolean = false;
 

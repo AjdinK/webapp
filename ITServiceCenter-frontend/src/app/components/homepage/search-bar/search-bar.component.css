@@ -26,7 +26,7 @@
   overflow: hidden;
 }
 .search-section .search {
-  padding: 30px;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -34,7 +34,7 @@
   color: #fff;
   max-width: 1215px;
   margin: 0 auto;
-  height: 258px;
+  height: 300px;
   background-color: #000408;
   overflow: hidden;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
@@ -67,7 +67,7 @@ button {
 }
 h1 {
   width: 100%;
-  margin: 20px 0;
+  margin: 10px 0 20px;
   font-size: 3rem;
   color: #6c7f8d;
 }

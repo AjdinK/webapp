@@ -44,8 +44,10 @@ export class LoginComponent implements OnInit {
   JelLogiran: boolean = false;
 
   ngOnInit(): void {
-    this.lang = localStorage.getItem("lang") || "en";
-    this.translateService.use(this.lang);
+    if (typeof window !== "undefined" && window.localStorage) {
+      this.lang = localStorage.getItem("lang") || "en";
+      this.translateService.use(this.lang);
+    }
   }
 
   logirajSe() {
