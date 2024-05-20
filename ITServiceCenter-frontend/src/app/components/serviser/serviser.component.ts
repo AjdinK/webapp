@@ -41,6 +41,7 @@ export class ServiserComponent implements OnInit {
   currentPage: number = 1;
   JelPopunjeno: boolean = false;
   novaSlikaSerivser: any = null;
+  opcionalnaLozinka : string = "";
 
   serviserPodaci: ServiserGetAllResponse | null = null;
   gradPodaci: GradGetAllResponseGrad[] | null = null;
@@ -79,6 +80,10 @@ export class ServiserComponent implements OnInit {
 
   //save serviser data from the form and check the form if is it valid? or not
   snimiServiser(editForm: NgForm) {
+
+    if (this.opcionalnaLozinka != null){
+      this.odabraniServiser!.lozinka = this.opcionalnaLozinka;
+    }
     if (editForm.form.valid) {
       this.odabraniServiser!.slikaKorisnikaBase64 = this.novaSlikaSerivser;
       this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({

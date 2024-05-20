@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -6,14 +7,16 @@
   font-family: "Space Grotesk", sans-serif;
   user-select: none;
 }
+
 .div-table {
-  width: 90%;
+  max-width: 1300px;
   background-color: #364049;
   height: fit-content;
   margin: 0 auto;
   box-shadow: 3px -2px 13px 0 rgba(0, 0, 0, 0.75);
   overflow: hidden;
 }
+
 .div-table input {
   width: 100%;
   padding: 15px;
@@ -37,9 +40,11 @@ td {
   border: 1px solid #ddd;
   text-align: left;
 }
+
 td {
   color: white;
 }
+
 td button,
 .button-Previous,
 .button-next,
@@ -55,9 +60,11 @@ td button,
   height: 40px;
   transition: 0.2s ease-in;
 }
+
 .broj-page {
   width: fit-content;
 }
+
 td button:hover,
 .button-Previous:hover,
 .button-next:hover,
@@ -65,6 +72,7 @@ td button:hover,
   background-color: #516269;
   color: white;
 }
+
 td .brisiServiser:hover {
   background-color: indianred;
   color: white;
@@ -81,7 +89,7 @@ tbody tr:nth-child(even) {
 
 form {
   box-shadow: 3px -2px 13px 0 rgba(0, 0, 0, 0.75);
-  width: 70%;
+
   display: flex;
   flex-direction: column;
   margin: 30px auto;
@@ -90,7 +98,10 @@ form {
   color: white;
   font-size: 1.1rem;
   margin-bottom: 150px;
+  max-width: 900px;
+
 }
+
 form input {
   padding: 10px;
   font-size: 1rem;
@@ -99,6 +110,7 @@ form input {
   font-weight: bold;
   color: #000408;
 }
+
 .form-group {
   margin-bottom: 20px;
   display: flex;
@@ -114,6 +126,7 @@ form input {
   flex: 1;
   padding: 5px 10px;
 }
+
 .btn-save,
 .btn-zatvori,
 .dodaj {
@@ -133,6 +146,7 @@ form input {
 .btn-zatvori {
   width: 20%;
 }
+
 .dodaj {
   margin-bottom: 30px;
 }
@@ -151,6 +165,7 @@ form input {
   border-radius: 0;
   font-family: "Space Grotesk", sans-serif;
 }
+
 select option {
   font-size: 1rem;
   font-weight: 500;
@@ -203,22 +218,27 @@ input#slika-input {
   width: 15%;
   margin: 30px 0;
 }
+
 input#slika-input img {
   margin: 30px 0;
 }
+
 .slika-label {
   margin-right: 2%;
 }
+
 img {
   padding: 5px;
   border: white 2px solid;
   overflow: hidden;
 }
+
 select {
   overflow: hidden;
   background-color: white;
   color: #000408;
 }
+
 .nav {
   margin: 10px 0;
 }
@@ -228,9 +248,9 @@ select {
   margin-right: 0;
   width: 150px;
 }
-#oldPic,
-#newPic {
-  margin-right: 20px;
+
+.oldPic,
+.newPic {
   height: 200px;
   width: 200px;
 }

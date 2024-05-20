@@ -7,7 +7,7 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
         public string Prezime { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
-        public string Lozinka { get; set; }
+        public string? Lozinka { get; set; }
         public bool IsServiser { get; set; }
         public int GradID { get; set; }
         public int SpolID { get; set; }

@@ -122,16 +122,15 @@
 
   <div class="form-group">
     <label for="LozinkaServiser">Lozinka:</label>
-    <input type="password" class="form-control" id="LozinkaServiser2" name="lozinka" required
+    <input type="password" class="form-control" id="LozinkaServiser2" name="lozinka"
            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" #lozinka_polje="ngModel"
-           [(ngModel)]="this.odabraniServiser!.lozinka" />
+           [(ngModel)]="this.opcionalnaLozinka" />
   </div>
 
   <div class="greska-div" *ngIf="
       (lozinka_polje.invalid && (lozinka_polje.touched || lozinka_polje.dirty)) ||
       this.JelPopunjeno
     ">
-    <span *ngIf="lozinka_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="lozinka_polje.errors?.['pattern']">Lozinka mora biti 8 karaktera</span>
   </div>
 
