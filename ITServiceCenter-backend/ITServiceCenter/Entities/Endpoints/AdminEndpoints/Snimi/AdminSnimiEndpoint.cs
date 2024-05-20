@@ -1,10 +1,8 @@
-﻿using System.Text.Json.Serialization;
-using FIT_Api_Examples.Helper;
+﻿using FIT_Api_Examples.Helper;
 using itservicecenter.Data;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
-using SkiaSharp;
 
 namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
 {
@@ -23,12 +21,11 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
             CancellationToken cancellationToken
         )
         {
-            Models.Admin? Admin;
+            Admin? Admin;
 
             if (request.Id == 0)
             {
                 Admin = new Admin();
-                Admin.Passweord = "test";
                 Admin.Email = "test@test.com";
             }
             else
@@ -46,16 +43,26 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
             Admin.IsServiser = request.IsServiser;
             Admin.IsAdmin = request.IsAdmin;
 
+            if (request.Lozinka != null)
+            {
+                Admin.LozinkaSalt = PasswordGenerator.GenerateSalt();
+                Admin.LozinkaHash = PasswordGenerator.GenerateHash(Admin.LozinkaSalt, request.Lozinka);
+            }
+
             if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
             {
-                byte[]? SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
+                var SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
 
                 if (SlikaBajtovi == null)
+                {
                     throw new Exception("pogresan base64 format");
+                }
 
-                byte[]? SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+                var SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
                 if (SlikaBajtoviVelika == null)
+                {
                     throw new Exception("pogresan format slike");
+                }
 
                 // byte[]? SlikaBajtoviMala = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
                 // if (SlikaBajtoviMala == null)

@@ -11,6 +11,7 @@
         public bool IsServiser { get; set; }
         public bool IsProdavac { get; set; }
         public int GradId { get; set; }
+        public string Lozinka { get; set; }
         public string? SlikaKorisnikaBase64 { get; set; }
     }
 }

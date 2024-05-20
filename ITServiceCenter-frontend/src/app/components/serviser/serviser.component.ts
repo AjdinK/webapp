@@ -155,6 +155,7 @@ export class ServiserComponent implements OnInit {
       username: "",
       email: "",
       slikaKorisnikaBase64: "",
+      lozinka:""
     };
   }
 

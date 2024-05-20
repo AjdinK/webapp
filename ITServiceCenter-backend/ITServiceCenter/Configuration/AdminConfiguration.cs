@@ -1,5 +1,5 @@
-﻿using FIT_Api_Examples.Helper;
-using itservicecenter.Entities.Models;
+﻿using itservicecenter.Entities.Models;
+using itservicecenter.Helper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,6 +9,9 @@ namespace itservicecenter.Configuration
     {
         public void Configure(EntityTypeBuilder<Admin> builder)
         {
+            var salt = PasswordGenerator.GenerateSalt();
+            var hash = PasswordGenerator.GenerateHash(salt, "ajdin");
+
             builder.HasData(
                 new Admin
                 {
@@ -16,7 +19,6 @@ namespace itservicecenter.Configuration
                     Ime = "Ajdin",
                     Prezime = "Kuduzović",
                     Username = "ajdin",
-                    Passweord = "ajdin",
                     IsAdmin = true,
                     IsProdavac = false,
                     IsServiser = false,
@@ -24,21 +26,8 @@ namespace itservicecenter.Configuration
                     SpolID = 1,
                     Email = "test@test.com",
                     JelObrisan = false,
-                },
-                new Admin
-                {
-                    ID = 6,
-                    Ime = "test",
-                    Prezime = "test",
-                    Username = "test",
-                    Passweord = "test",
-                    IsAdmin = true,
-                    IsProdavac = true,
-                    IsServiser = true,
-                    GradID = 1,
-                    SpolID = 1,
-                    Email = "test@test.com",
-                    JelObrisan = false,
+                    LozinkaSalt = salt,
+                    LozinkaHash = hash
                 }
             );
         }

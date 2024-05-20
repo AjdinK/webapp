@@ -7,14 +7,16 @@ namespace itservicecenter.Entities.Models
     [Table("KorsnickiNalog")]
     public class KorisnickiNalog
     {
-        [Key]
-        public int ID { get; set; }
+        [Key] public int ID { get; set; }
+
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Username { get; set; }
 
-        [JsonIgnore]
-        public string Passweord { get; set; }
+        [JsonIgnore] public string LozinkaSalt { get; set; }
+
+        [JsonIgnore] public string LozinkaHash { get; set; }
+
         public string Email { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsServiser { get; set; }

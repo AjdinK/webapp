@@ -1,5 +1,5 @@
-﻿using FIT_Api_Examples.Helper;
-using itservicecenter.Entities.Models;
+﻿using itservicecenter.Entities.Models;
+using itservicecenter.Helper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -9,6 +9,9 @@ namespace itservicecenter.Configuration
     {
         public void Configure(EntityTypeBuilder<Prodavac> builder)
         {
+            var salt = PasswordGenerator.GenerateSalt();
+            var hash = PasswordGenerator.GenerateHash(salt, "alina");
+
             builder.HasData(
                 new Prodavac
                 {
@@ -18,11 +21,18 @@ namespace itservicecenter.Configuration
                     GradID = 4,
                     SpolID = 2,
                     Username = "alina",
-                    Passweord = "alina",
                     IsProdavac = true,
                     Email = "test@test.com",
                     JelObrisan = false,
-                },
+                    LozinkaSalt = salt,
+                    LozinkaHash = hash
+                }
+            );
+
+            salt = PasswordGenerator.GenerateSalt();
+            hash = PasswordGenerator.GenerateHash(salt, "vedad");
+
+            builder.HasData(
                 new Prodavac
                 {
                     ID = 5,
@@ -31,10 +41,11 @@ namespace itservicecenter.Configuration
                     GradID = 4,
                     SpolID = 1,
                     Username = "vedad",
-                    Passweord = "vedad",
                     IsProdavac = true,
                     Email = "test@test.com",
                     JelObrisan = false,
+                    LozinkaSalt = salt,
+                    LozinkaHash = hash
                 }
             );
         }

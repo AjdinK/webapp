@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FIT_Api_Examples.Helper;
 using itservicecenter.Data;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 
 namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
 {
@@ -35,7 +29,6 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
 
                 Prodavac.Email = request.Email;
                 Prodavac.Username = request.Username;
-                Prodavac.Passweord = "test";
             }
             else
             {
@@ -48,16 +41,27 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
             Prodavac.GradID = request.GradID;
             Prodavac.SpolID = request.SpolID;
 
+            if (request.Lozinka != null)
+            {
+                Prodavac.LozinkaSalt = PasswordGenerator.GenerateSalt();
+                Prodavac.LozinkaHash = PasswordGenerator.GenerateHash(Prodavac.LozinkaSalt, request.Lozinka);
+            }
+
+
             if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
             {
-                byte[]? SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
+                var SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
 
                 if (SlikaBajtovi == null)
+                {
                     throw new Exception("pogresan base64 format");
+                }
 
-                byte[]? SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+                var SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
                 if (SlikaBajtoviVelika == null)
+                {
                     throw new Exception("pogresan format slike");
+                }
 
                 var folderPath = "wwwroot/slike-prodavac";
                 if (!Directory.Exists(folderPath))
@@ -73,7 +77,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Snimi
                 );
             }
 
-            await _ApplicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
+            await _ApplicationDbContext.SaveChangesAsync(cancellationToken);
             return Prodavac.ID;
         }
     }

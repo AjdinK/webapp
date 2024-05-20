@@ -24,4 +24,5 @@ export interface ServiserSnimiRequest {
   gradID: number;
   spolID: number;
   slikaKorisnikaBase64: string | undefined;
+  lozinka:string;
 }

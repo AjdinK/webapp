@@ -40,6 +40,8 @@ export class ProdavacComponent implements OnInit {
   JelPopunjeno: boolean = false;
   novaSlikaProdavac: any = null;
 
+  opcionalnaLozinka: string = "";
+
   prodavacPodaci: ProdavacGetAllResponse | null = null;
   gradPodaci: GradGetAllResponseGrad[] | null = null;
 
@@ -77,6 +79,10 @@ export class ProdavacComponent implements OnInit {
 
   //save Prodavac data from the form and check the form if is it valid? or not
   snimiProdavac(editForm: NgForm) {
+
+    if (this.opcionalnaLozinka != null){
+      this.odabraniProdavac!.lozinka = this.opcionalnaLozinka;
+    }
     if (editForm.form.valid) {
       this.odabraniProdavac!.slikaKorisnikaBase64 = this.novaSlikaProdavac;
 
@@ -89,7 +95,7 @@ export class ProdavacComponent implements OnInit {
           window.location.reload();
         },
         error: (x) => {
-          alert("greska snimiProdavac -> " + x.error);
+          alert("greska snimiProdavac ovdje -> " + x.error);
         },
       });
     }
@@ -154,6 +160,7 @@ export class ProdavacComponent implements OnInit {
       username: "",
       email: "",
       slikaKorisnikaBase64: "",
+      lozinka:"",
     };
   }
 

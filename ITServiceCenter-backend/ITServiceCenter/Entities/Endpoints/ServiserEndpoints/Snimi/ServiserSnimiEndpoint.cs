@@ -1,9 +1,7 @@
-using System.IO.Compression;
 using FIT_Api_Examples.Helper;
 using itservicecenter.Data;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
@@ -31,7 +29,6 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
 
                 Serviser.Username = request.Username;
                 Serviser.Email = request.Email;
-                Serviser.Passweord = "test";
             }
             else
             {
@@ -47,16 +44,26 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
             Serviser.GradID = request.GradID;
             Serviser.SpolID = request.SpolID;
 
+            if (request.Lozinka != null)
+            {
+                Serviser.LozinkaSalt = PasswordGenerator.GenerateSalt();
+                Serviser.LozinkaHash = PasswordGenerator.GenerateHash(Serviser.LozinkaSalt, request.Lozinka);
+            }
+
             if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
             {
-                byte[]? SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
+                var SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
 
                 if (SlikaBajtovi == null)
+                {
                     throw new Exception("pogresan base64 format");
+                }
 
-                byte[]? SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+                var SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
                 if (SlikaBajtoviVelika == null)
+                {
                     throw new Exception("pogresan format slike");
+                }
 
                 var folderPath = "wwwroot/slike-serviser";
                 if (!Directory.Exists(folderPath))
@@ -72,7 +79,7 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
                 );
             }
 
-            await _applicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
+            await _applicationDbContext.SaveChangesAsync(cancellationToken);
             return Serviser.ID;
         }
     }
