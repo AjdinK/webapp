@@ -1,6 +1,6 @@
-﻿using FIT_Api_Examples.Helper;
-using itservicecenter.Data;
+﻿using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +16,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
         }
 
         [HttpGet("Admin/GetById")]
+        [Authorize(Roles = "Admin")]
         public override async Task<AdminGetByIdResponse> Obradi(
             [FromQuery] AdminGetByIdRequest request,
             CancellationToken cancellationToken
@@ -35,9 +36,9 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
                     IsServiser = a.IsServiser,
                     IsProdavac = a.IsProdavac,
                     Username = a.Username,
-                    SlikaKorisnikaBase64 = a.SlikaKorisnikaVelika,
+                    SlikaKorisnikaBase64 = a.SlikaKorisnikaVelika
                 })
-                .SingleAsync(a => a.Id == request.Id, cancellationToken: cancellationToken);
+                .SingleAsync(a => a.Id == request.Id, cancellationToken);
 
             return data;
         }

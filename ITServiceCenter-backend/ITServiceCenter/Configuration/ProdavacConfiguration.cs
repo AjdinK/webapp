@@ -22,7 +22,7 @@ namespace itservicecenter.Configuration
                     SpolID = 2,
                     Username = "alina",
                     IsProdavac = true,
-                    Email = "test@test.com",
+                    Email = "alina@alina.com",
                     JelObrisan = false,
                     LozinkaSalt = salt,
                     LozinkaHash = hash
@@ -42,7 +42,7 @@ namespace itservicecenter.Configuration
                     SpolID = 1,
                     Username = "vedad",
                     IsProdavac = true,
-                    Email = "test@test.com",
+                    Email = "vedad@vedad.com",
                     JelObrisan = false,
                     LozinkaSalt = salt,
                     LozinkaHash = hash

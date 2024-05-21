@@ -24,7 +24,7 @@ namespace itservicecenter.Configuration
                     IsServiser = false,
                     GradID = 22,
                     SpolID = 1,
-                    Email = "test@test.com",
+                    Email = "ajdin@ajdin.com",
                     JelObrisan = false,
                     LozinkaSalt = salt,
                     LozinkaHash = hash

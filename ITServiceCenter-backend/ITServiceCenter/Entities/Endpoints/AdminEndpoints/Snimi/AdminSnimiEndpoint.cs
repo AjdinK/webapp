@@ -2,6 +2,7 @@
 using itservicecenter.Data;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
@@ -15,7 +16,9 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
             _ApplicationDbContext = ApplicationDbContext;
         }
 
+
         [HttpPost("Admin/Snimi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromBody] AdminSnimiRequest request,
             CancellationToken cancellationToken
@@ -26,7 +29,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
             if (request.Id == 0)
             {
                 Admin = new Admin();
-                Admin.Email = "test@test.com";
+                _ApplicationDbContext.Add(Admin);
             }
             else
             {

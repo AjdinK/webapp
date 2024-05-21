@@ -1,6 +1,6 @@
-using FIT_Api_Examples.Helper;
 using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +15,7 @@ namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
             _ApplicationDbContext = ApplicationDbContext;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("Admin/GetAll")]
         public override async Task<AdminGetAllResponse> Obradi(
             [FromQuery] NoRequest request,
@@ -35,9 +36,9 @@ namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
                     GradID = a.GradID,
                     SpolID = a.SpolID,
                     Email = a.Email,
-                    SlikaKorisnikaBase64 = a.SlikaKorisnikaVelika,
+                    SlikaKorisnikaBase64 = a.SlikaKorisnikaVelika
                 })
-                .ToListAsync(cancellationToken: cancellationToken);
+                .ToListAsync(cancellationToken);
 
             return new AdminGetAllResponse { ListaAdmin = data };
         }
