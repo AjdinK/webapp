@@ -1,8 +1,7 @@
 ﻿using itservicecenter.Data;
 using itservicecenter.Helper;
-using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Brisi
 {
@@ -16,6 +15,7 @@ namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Brisi
         }
 
         [HttpDelete("Kategorija/brisi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromQuery] KategorijaBrisiRequest request,
             CancellationToken cancellationToken
@@ -26,12 +26,10 @@ namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Brisi
             {
                 _applicationDbContext.Kategorija.Remove(data);
                 await _applicationDbContext.SaveChangesAsync();
-                return (request.ID);
+                return request.ID;
             }
-            else
-            {
-                throw new Exception("Error -> Pogresen ID");
-            }
+
+            throw new Exception("Error -> Pogresen ID");
         }
     }
 }

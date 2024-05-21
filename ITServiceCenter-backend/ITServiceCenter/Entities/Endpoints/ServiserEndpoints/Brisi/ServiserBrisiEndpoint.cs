@@ -1,5 +1,6 @@
 using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Brisi
@@ -14,6 +15,7 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Brisi
         }
 
         [HttpDelete("Serviser/Brisi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromQuery] ServiserBrisiRequest request,
             CancellationToken cancellationToken
@@ -24,13 +26,11 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Brisi
             if (Serviser != null)
             {
                 Serviser.JelObrisan = true;
-                await _applicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
+                await _applicationDbContext.SaveChangesAsync(cancellationToken);
                 return request.ID;
             }
-            else
-            {
-                throw new Exception("Pogresen ID");
-            }
+
+            throw new Exception("Pogresen ID");
         }
     }
 }

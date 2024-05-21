@@ -1,8 +1,8 @@
 ﻿using itservicecenter.Data;
+using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
-using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
 {
@@ -16,15 +16,16 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
         }
 
         [HttpPost("Grad/Snimi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromBody] GradSnimiRequest request,
             CancellationToken cancellationToken
         )
         {
-            Models.Grad? Grad;
+            Grad? Grad;
             if (request.ID == 0)
             {
-                Grad = new Models.Grad();
+                Grad = new Grad();
                 _applicationDbContext.Add(Grad);
             }
             else
@@ -33,7 +34,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Dodaj
             }
 
             Grad.Naziv = request.Naziv;
-            await _applicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
+            await _applicationDbContext.SaveChangesAsync(cancellationToken);
             return Grad.ID;
         }
     }

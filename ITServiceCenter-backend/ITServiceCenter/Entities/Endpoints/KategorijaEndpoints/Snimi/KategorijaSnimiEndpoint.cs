@@ -1,8 +1,8 @@
 ﻿using itservicecenter.Data;
+using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
-using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
 namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Snimi
 {
@@ -16,15 +16,16 @@ namespace itservicecenter.Entities.Endpoints.KategorijaEndpoints.Snimi
         }
 
         [HttpPost("Kategorija/Snimi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromBody] KategorijaSnimiRequest request,
             CancellationToken cancellationToken
         )
         {
-            Models.Kategorija? Kategorija;
+            Kategorija? Kategorija;
             if (request.ID == 0)
             {
-                Kategorija = new Models.Kategorija();
+                Kategorija = new Kategorija();
                 _applicationDbContext.Add(Kategorija);
             }
             else

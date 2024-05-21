@@ -1,5 +1,6 @@
 using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Brisi
@@ -14,6 +15,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Brisi
         }
 
         [HttpDelete("Prodavac/Brisi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromQuery] ProdavacBrisiRequest request,
             CancellationToken cancellationToken
@@ -27,10 +29,8 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Brisi
                 await _ApplicationDbContext.SaveChangesAsync();
                 return request.ID;
             }
-            else
-            {
-                throw new Exception("Pogresen ID ");
-            }
+
+            throw new Exception("Pogresen ID ");
         }
     }
 }

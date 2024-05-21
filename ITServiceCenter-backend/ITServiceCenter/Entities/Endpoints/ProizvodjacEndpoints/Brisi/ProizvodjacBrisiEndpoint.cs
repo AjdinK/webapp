@@ -1,5 +1,6 @@
 ﻿using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Brisi
@@ -14,6 +15,7 @@ namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Brisi
         }
 
         [HttpDelete("Proizvodjac/Brisi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromQuery] ProizvodjacBrisiRequest request,
             CancellationToken cancellationToken
@@ -23,13 +25,11 @@ namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Brisi
             if (data != null)
             {
                 _applicationDbContext.Remove(data);
-                await _applicationDbContext.SaveChangesAsync(cancellationToken: cancellationToken);
+                await _applicationDbContext.SaveChangesAsync(cancellationToken);
                 return request.ID;
             }
-            else
-            {
-                throw new Exception("Pogresen ID");
-            }
+
+            throw new Exception("Pogresen ID");
         }
     }
 }

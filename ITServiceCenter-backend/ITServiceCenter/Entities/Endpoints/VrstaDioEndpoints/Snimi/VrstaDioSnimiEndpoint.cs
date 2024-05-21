@@ -1,5 +1,6 @@
 ﻿using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace itservicecenter.Entities.Endpoints.VrstaDioEndpoints.Snimi
@@ -14,6 +15,7 @@ namespace itservicecenter.Entities.Endpoints.VrstaDioEndpoints.Snimi
         }
 
         [HttpPost("VrstaDio/Snimi")]
+        [Authorize (Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromBody] VrstaDioSnimiRequest request,
             CancellationToken cancellationToken

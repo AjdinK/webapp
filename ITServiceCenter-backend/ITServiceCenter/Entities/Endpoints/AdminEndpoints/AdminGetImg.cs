@@ -7,6 +7,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints
     public class AdminGetImg : ControllerBase
     {
         [HttpGet("Admin/GetImg")]
+        // [Authorize(Roles = "Admin")]
         public async Task<FileContentResult> GetImg(
             [FromQuery] string? username,
             CancellationToken cancellationToken
@@ -23,19 +24,20 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints
             }
             catch (Exception ex)
             {
-                var fileName = $"wwwroot/profile_images/empty.png";
+                var fileName = "wwwroot/profile_images/empty.png";
                 slika = await System.IO.File.ReadAllBytesAsync(fileName, cancellationToken);
                 return File(slika, GetMimeType(fileName));
             }
         }
 
-        static string GetMimeType(string fileName)
+        private static string GetMimeType(string fileName)
         {
             var provider = new FileExtensionContentTypeProvider();
             if (provider.TryGetContentType(fileName, out var contentType))
             {
                 return contentType;
             }
+
             return "application/octet-stream";
         }
     }

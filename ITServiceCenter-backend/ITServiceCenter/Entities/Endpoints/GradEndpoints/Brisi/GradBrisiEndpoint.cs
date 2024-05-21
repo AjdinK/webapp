@@ -1,5 +1,6 @@
 ﻿using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace itservicecenter.Entities.Endpoints.GradEndpoints.Brisi
@@ -14,6 +15,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Brisi
         }
 
         [HttpDelete("Grad/brisi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromQuery] GradBrisiRequest request,
             CancellationToken cancellationToken
@@ -26,10 +28,8 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.Brisi
                 await _applicationDbContext.SaveChangesAsync();
                 return request.ID;
             }
-            else
-            {
-                throw new Exception("Error -> Pogresen ID");
-            }
+
+            throw new Exception("Error -> Pogresen ID");
         }
     }
 }

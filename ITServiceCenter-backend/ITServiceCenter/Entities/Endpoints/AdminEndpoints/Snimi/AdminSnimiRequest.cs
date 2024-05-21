@@ -7,16 +7,16 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Ime je obavezno")]
+        [Required(ErrorMessage = "Obavezno polje")]
         public string Ime { get; set; }
 
-        [Required(ErrorMessage = "Prezime je obavezno")]
+        [Required(ErrorMessage = "Obavezno polje")]
         public string Prezime { get; set; }
 
-        [Required(ErrorMessage = "Korisnicko ime je obavezno")]
+        [Required(ErrorMessage = "Obavezno polje")]
         public string Username { get; set; }
 
-        [Required(ErrorMessage = "Email je obavezn")]
+        [Required(ErrorMessage = "Obavezno polje")]
         [EmailAddress(ErrorMessage = "Unesite validan email")]
         public string Email { get; set; }
 
@@ -25,7 +25,7 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
         public bool IsProdavac { get; set; }
         public int GradId { get; set; }
 
-        [Required(ErrorMessage = "Lozinka je obavezna")]
+        [Required(ErrorMessage = "Obavezno polje")]
         [ValidatorLozinka]
         public string Lozinka { get; set; }
 

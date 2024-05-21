@@ -2,6 +2,7 @@ using FIT_Api_Examples.Helper;
 using itservicecenter.Data;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
@@ -16,6 +17,7 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
         }
 
         [HttpPost("Serviser/Snimi")]
+        [Authorize(Roles = "Admin")]
         public override async Task<int> Obradi(
             [FromBody] ServiserSnimiRequest request,
             CancellationToken cancellationToken
