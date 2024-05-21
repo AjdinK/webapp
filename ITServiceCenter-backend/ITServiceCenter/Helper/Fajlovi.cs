@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace FIT_Api_Examples.Helper
+namespace itservicecenter.Helper
 {
     public class Fajlovi
     {

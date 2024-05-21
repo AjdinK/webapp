@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FIT_Api_Examples.Helper
+namespace itservicecenter.Helper
 {
     public class PagedList<T>
     {

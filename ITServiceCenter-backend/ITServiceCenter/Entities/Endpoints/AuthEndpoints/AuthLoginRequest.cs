@@ -10,7 +10,6 @@ namespace itservicecenter.Entities.Endpoints.AuthEndpoints
         public string KorisnickoIme { get; set; }
 
         [Required(ErrorMessage = "Obavezno polje")]
-        [ValidatorLozinka]
         public string Lozinka { get; set; }
     }
 }

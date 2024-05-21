@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FIT_Api_Examples.Helper
+namespace itservicecenter.Helper
 {
     public static class Ekstenzije
     {

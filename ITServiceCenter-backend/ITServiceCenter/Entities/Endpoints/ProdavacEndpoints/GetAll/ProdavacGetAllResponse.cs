@@ -1,4 +1,3 @@
-using FIT_Api_Examples.Helper;
 
 namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
 {
