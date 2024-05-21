@@ -25,7 +25,7 @@ namespace itservicecenter.Entities.Endpoints.AuthEndpoints
         {
             if (request == null)
             {
-                return BadRequest("Invalid request.");
+                return BadRequest("Greska prazni podaci");
             }
 
             if (string.IsNullOrEmpty(request.KorisnickoIme) || string.IsNullOrEmpty(request.Lozinka))

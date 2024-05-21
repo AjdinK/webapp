@@ -30,7 +30,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.Brisi
                 return request.ID;
             }
 
-            throw new Exception("Pogresen ID ");
+            throw new UserException("Pogresen ID ");
         }
     }
 }

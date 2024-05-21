@@ -57,13 +57,13 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi
 
                 if (SlikaBajtovi == null)
                 {
-                    throw new Exception("pogresan base64 format");
+                    throw new UserException("pogresan base64 format");
                 }
 
                 var SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
                 if (SlikaBajtoviVelika == null)
                 {
-                    throw new Exception("pogresan format slike");
+                    throw new UserException("pogresan format slike");
                 }
 
                 // byte[]? SlikaBajtoviMala = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);

@@ -12,7 +12,6 @@ namespace itservicecenter.Helper
                 return new ValidationResult(
                     "Lozinka mora imati najmanje 8 znakova i najmanje jednu cifru.");
             }
-
             return ValidationResult.Success;
         }
     }
