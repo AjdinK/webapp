@@ -18,12 +18,13 @@ import {
 import { ConfigFile } from "../../configFile";
 import { assert } from "console";
 
+
 @Component({
   selector: "app-serviser",
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule, NgOptimizedImage],
   templateUrl: "./serviser.component.html",
-  styleUrl: "./serviser.component.css",
+  styleUrls: ["./serviser.component.css" , "../../../assets/styles/table_form.css"],
 })
 export class ServiserComponent implements OnInit {
   constructor(

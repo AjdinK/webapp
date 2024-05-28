@@ -21,7 +21,7 @@ import { ConfigFile } from "../../configFile";
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: "./prodavac.component.html",
-  styleUrl: "./prodavac.component.css",
+  styleUrls: ["./prodavac.component.css" , "../../../assets/styles/table_form.css"],
 })
 export class ProdavacComponent implements OnInit {
   constructor(

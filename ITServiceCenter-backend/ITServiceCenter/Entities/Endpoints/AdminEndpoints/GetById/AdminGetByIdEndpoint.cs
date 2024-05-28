@@ -16,7 +16,8 @@ namespace itservicecenter.Entities.Endpoints.AdminEndpoints.GetById
         }
 
         [HttpGet("Admin/GetById")]
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public override async Task<AdminGetByIdResponse> Obradi(
             [FromQuery] AdminGetByIdRequest request,
             CancellationToken cancellationToken

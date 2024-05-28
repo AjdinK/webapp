@@ -21,7 +21,7 @@ import { HttpClient } from "@angular/common/http";
   standalone: true,
   imports: [FormsModule, NgForOf, NgIf, ReactiveFormsModule, NgOptimizedImage],
   templateUrl: "./admin.component.html",
-  styleUrl: "./admin.component.css",
+  styleUrls: ["./admin.component.css" , "../../../assets/styles/table_form.css"],
 })
 export class AdminComponent implements OnInit {
   constructor(

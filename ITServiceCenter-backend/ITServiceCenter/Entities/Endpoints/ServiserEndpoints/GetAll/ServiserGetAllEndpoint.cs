@@ -1,5 +1,6 @@
 using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.GetAll
         }
 
         [HttpGet("Serviser/GetAll")]
+        [AllowAnonymous]
         public override async Task<ServiserGetAllResponse> Obradi(
             [FromQuery] ServiserGetAllRequset request,
             CancellationToken cancellationToken

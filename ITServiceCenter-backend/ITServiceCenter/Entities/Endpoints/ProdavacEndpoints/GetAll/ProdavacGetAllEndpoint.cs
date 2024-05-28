@@ -1,5 +1,6 @@
 using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ namespace ITServiceCenter.Entities.Endpoints.ProdavacEndpoints.GetByID
         }
 
         [HttpGet("Prodavac/GetAll")]
+        [AllowAnonymous]
         public override async Task<ProdavacGetAllResponse> Obradi(
             [FromQuery] ProdavacGetAllRequest request,
             CancellationToken cancellationToken

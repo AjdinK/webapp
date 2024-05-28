@@ -1,5 +1,6 @@
 ﻿using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
@@ -16,6 +17,7 @@ namespace itservicecenter.Entities.Endpoints.FAQEndpoints.GetAll
         }
 
         [HttpGet("FAQ/GetAll")]
+        [AllowAnonymous]
         public override async Task<FAQGetAllResponse> Obradi(
             [FromQuery] NoRequest request,
             CancellationToken cancellationToken

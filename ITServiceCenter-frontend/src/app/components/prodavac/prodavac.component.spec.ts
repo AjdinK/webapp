@@ -11,7 +11,7 @@ describe('ProdavacComponent', () => {
       imports: [ProdavacComponent]
     })
     .compileComponents();
-    
+
     fixture = TestBed.createComponent(ProdavacComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

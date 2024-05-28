@@ -1,5 +1,6 @@
 ﻿using itservicecenter.Data;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,7 @@ namespace itservicecenter.Entities.Endpoints.GradEndpoints.GetAll
         }
 
         [HttpGet("Grad/GetAll")]
+        [AllowAnonymous]
         public override async Task<GradGetAllResponse> Obradi(
             [FromQuery] NoRequest request,
             CancellationToken cancellationToken
