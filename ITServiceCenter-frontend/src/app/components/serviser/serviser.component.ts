@@ -1,22 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { CommonModule, NgOptimizedImage } from "@angular/common";
-import { FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
+import {Component, OnInit} from "@angular/core";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {
   ServiserGetAllEndpoint,
   ServiserGetAllResponse,
-  ServiserGetAllResponseServiseri,
 } from "../../endpoints/serviser-endpoints/serviser-get-all-endpoint";
-import {
-  ServiserSnimiEndpoint,
-  ServiserSnimiRequest,
-} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
-import { ServiserBrisiEndpoint } from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
-import {
-  GradGetAllEndpoint,
-  GradGetAllResponseGrad,
-} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
-import { ConfigFile } from "../../configFile";
-import { assert } from "console";
+import {ServiserSnimiEndpoint, ServiserSnimiRequest,} from "../../endpoints/serviser-endpoints/serviser-snimi-endpoint";
+import {ServiserBrisiEndpoint} from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
+import {GradGetAllEndpoint, GradGetAllResponseGrad,} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
+import {ConfigFile} from "../../configFile";
 
 
 @Component({
@@ -24,39 +16,38 @@ import { assert } from "console";
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule, NgOptimizedImage],
   templateUrl: "./serviser.component.html",
-  styleUrls: ["./serviser.component.css" , "../../../assets/styles/table_form.css"],
+  styleUrls: ["./serviser.component.css", "../../../assets/styles/table_form.css"],
 })
 export class ServiserComponent implements OnInit {
+  currentPage: number = 1;
+  JelPopunjeno: boolean = false;
+  novaSlikaSerivser: any = null;
+  opcionalnaLozinka: string = "";
+  serviserPodaci: ServiserGetAllResponse | null = null;
+  gradPodaci: GradGetAllResponseGrad[] | null = null;
+  showServiserTable: boolean = true;
+  showServiserEdit: boolean = false;
+  showServiserForm: boolean = false;
+  searchServiser: string = "";
+  odabraniServiser: ServiserSnimiRequest | null = null;
+  noviServiser: ServiserSnimiRequest | null = null;
+  formTitle: string = "";
+  protected readonly ConfigFile = ConfigFile;
+
   constructor(
     private serviserGetAllEndpoint: ServiserGetAllEndpoint,
     private serviserSnimiEndpoint: ServiserSnimiEndpoint,
     private serviserBrisiEndpoint: ServiserBrisiEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.fetchServiser();
     this.fetchGrad();
   }
 
-  currentPage: number = 1;
-  JelPopunjeno: boolean = false;
-  novaSlikaSerivser: any = null;
-  opcionalnaLozinka : string = "";
-
-  serviserPodaci: ServiserGetAllResponse | null = null;
-  gradPodaci: GradGetAllResponseGrad[] | null = null;
-
-  showServiserTable: boolean = true;
-  showServiserEdit: boolean = false;
-  showServiserForm: boolean = false;
-  searchServiser: string = "";
-
-  odabraniServiser: ServiserSnimiRequest | null = null;
-  noviServiser: ServiserSnimiRequest | null = null;
-  formTitle: string = "";
-
-  //fetch serviser data from db
+  //fetch serviser data form-element-wrapper db
   fetchServiser() {
     this.serviserGetAllEndpoint.obradi(this.currentPage!).subscribe({
       next: (x) => {
@@ -79,10 +70,10 @@ export class ServiserComponent implements OnInit {
     );
   }
 
-  //save serviser data from the form and check the form if is it valid? or not
+  //save serviser data form-element-wrapper the form and check the form if is it valid? or not
   snimiServiser(editForm: NgForm) {
 
-    if (this.opcionalnaLozinka != null){
+    if (this.opcionalnaLozinka != null) {
       this.odabraniServiser!.lozinka = this.opcionalnaLozinka;
     }
     if (editForm.form.valid) {
@@ -103,7 +94,7 @@ export class ServiserComponent implements OnInit {
     this.JelPopunjeno = true;
   }
 
-  //soft delete the user from the data
+  //soft delete the user form-element-wrapper the data
   brisiServiser(id: number) {
     if (confirm("Da li zelite izbrisati Serviser"))
       this.serviserBrisiEndpoint.obradi(id).subscribe({
@@ -125,7 +116,7 @@ export class ServiserComponent implements OnInit {
     this.showServiserTable = false;
   }
 
-  //fetch grad data from db
+  //fetch grad data form-element-wrapper db
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
@@ -161,11 +152,11 @@ export class ServiserComponent implements OnInit {
       username: "",
       email: "",
       slikaKorisnikaBase64: "",
-      lozinka:""
+      lozinka: ""
     };
   }
 
-  //save serviser data from the form and check the data if is it valid? or not
+  //save serviser data form-element-wrapper the form and check the data if is it valid? or not
   dodajServiser(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
       this.noviServiser!.slikaKorisnikaBase64 = this.novaSlikaSerivser;
@@ -204,12 +195,6 @@ export class ServiserComponent implements OnInit {
     return rez;
   }
 
-  private totalPages() {
-    if (this.serviserPodaci != null) return this.serviserPodaci?.totalPages;
-
-    return 1;
-  }
-
   goToPage(p: number) {
     this.currentPage = p;
     this.fetchServiser();
@@ -222,6 +207,7 @@ export class ServiserComponent implements OnInit {
     }
     if (p == this.currentPage) return;
   }
+
   goToNext(p: number) {
     if (this.currentPage < this.totalPages()) {
       this.currentPage++;
@@ -229,5 +215,10 @@ export class ServiserComponent implements OnInit {
     }
     if (p == this.currentPage) return;
   }
-  protected readonly ConfigFile = ConfigFile;
+
+  private totalPages() {
+    if (this.serviserPodaci != null) return this.serviserPodaci?.totalPages;
+
+    return 1;
+  }
 }

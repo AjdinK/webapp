@@ -1,0 +1,24 @@
+<div class="{{ className }}">
+  <label for="{{ labelFor }}">{{ label }}</label>
+  <ng-content></ng-content>
+</div>
+
+<div *ngIf="
+      (imePolje.invalid && (imePolje.touched || imePolje.dirty)) ||
+      this.JelPopunjeno" class="greska-div">
+
+
+  <div *ngIf="imePolje === 'email'; else notEmail">
+    <span *ngIf="imePolje.errors?.['pattern']">{{ Poruke.email }}</span>
+    <span *ngIf="imePolje.errors?.['required']">{{ Poruke.required }}</span>
+  </div>
+
+  <ng-template #notEmail>
+    <span *ngIf="imePolje.errors?.['minlength']">{{ Poruke.required }}</span>
+    <span *ngIf="imePolje.errors?.['required']">{{ Poruke.required }}</span>
+  </ng-template>
+
+</div>
+
+
+

@@ -1,60 +1,52 @@
-import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import {Component, OnInit} from "@angular/core";
+import {CommonModule} from "@angular/common";
 import {
   ProdavacGetAllEndpoint,
   ProdavacGetAllResponse,
 } from "../../endpoints/prodavac-endpoints/prodavac-get-all-endpoint";
-import {
-  ProdavacSnimiEndpoint,
-  ProdavacSnimiRequest,
-} from "../../endpoints/prodavac-endpoints/prodavac-snimi-endpoint";
-import {
-  GradGetAllEndpoint,
-  GradGetAllResponseGrad,
-} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
-import { FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
-import { ProdavacBrisiEndpoint } from "../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint";
-import { ConfigFile } from "../../configFile";
+import {ProdavacSnimiEndpoint, ProdavacSnimiRequest,} from "../../endpoints/prodavac-endpoints/prodavac-snimi-endpoint";
+import {GradGetAllEndpoint, GradGetAllResponseGrad,} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
+import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
+import {ProdavacBrisiEndpoint} from "../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint";
+import {ConfigFile} from "../../configFile";
 
 @Component({
   selector: "app-prodavac",
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: "./prodavac.component.html",
-  styleUrls: ["./prodavac.component.css" , "../../../assets/styles/table_form.css"],
+  styleUrls: ["./prodavac.component.css", "../../../assets/styles/table_form.css"],
 })
 export class ProdavacComponent implements OnInit {
+  currentPage: number = 1;
+  JelPopunjeno: boolean = false;
+  novaSlikaProdavac: any = null;
+  opcionalnaLozinka: string = "";
+  prodavacPodaci: ProdavacGetAllResponse | null = null;
+  gradPodaci: GradGetAllResponseGrad[] | null = null;
+  showProdavacTable: boolean = true;
+  showProdavacEdit: boolean = false;
+  showProdavacForm: boolean = false;
+  searchProdavac: string = "";
+  odabraniProdavac: ProdavacSnimiRequest | null = null;
+  noviProdavac: ProdavacSnimiRequest | null = null;
+  formTitle: string = "";
+  protected readonly ConfigFile = ConfigFile;
+
   constructor(
     private prodavacGetAllEndpoint: ProdavacGetAllEndpoint,
     private prodavacSnimiEndpoint: ProdavacSnimiEndpoint,
     private prodavacBrisiEndpoint: ProdavacBrisiEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.fetchProdavac();
     this.fetchGrad();
   }
 
-  currentPage: number = 1;
-  JelPopunjeno: boolean = false;
-  novaSlikaProdavac: any = null;
-
-  opcionalnaLozinka: string = "";
-
-  prodavacPodaci: ProdavacGetAllResponse | null = null;
-  gradPodaci: GradGetAllResponseGrad[] | null = null;
-
-  showProdavacTable: boolean = true;
-  showProdavacEdit: boolean = false;
-  showProdavacForm: boolean = false;
-  searchProdavac: string = "";
-
-  odabraniProdavac: ProdavacSnimiRequest | null = null;
-  noviProdavac: ProdavacSnimiRequest | null = null;
-  formTitle: string = "";
-
-  //fetch Prodavac data from db
+  //fetch Prodavac data form-element-wrapper db
   fetchProdavac() {
     this.prodavacGetAllEndpoint.obradi(this.currentPage!).subscribe({
       next: (x) => {
@@ -77,10 +69,10 @@ export class ProdavacComponent implements OnInit {
     );
   }
 
-  //save Prodavac data from the form and check the form if is it valid? or not
+  //save Prodavac data form-element-wrapper the form and check the form if is it valid? or not
   snimiProdavac(editForm: NgForm) {
 
-    if (this.opcionalnaLozinka != null){
+    if (this.opcionalnaLozinka != null) {
       this.odabraniProdavac!.lozinka = this.opcionalnaLozinka;
     }
     if (editForm.form.valid) {
@@ -102,7 +94,7 @@ export class ProdavacComponent implements OnInit {
     this.JelPopunjeno = true;
   }
 
-  //soft delete the user from the data
+  //soft delete the user form-element-wrapper the data
   brisiProdavac(id: number) {
     if (confirm("Da li zelite izbrisati Prodavac"))
       this.prodavacBrisiEndpoint.obradi(id).subscribe({
@@ -124,7 +116,7 @@ export class ProdavacComponent implements OnInit {
     this.showProdavacTable = false;
   }
 
-  //fetch grad data from db
+  //fetch grad data form-element-wrapper db
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
@@ -160,11 +152,11 @@ export class ProdavacComponent implements OnInit {
       username: "",
       email: "",
       slikaKorisnikaBase64: "",
-      lozinka:"",
+      lozinka: "",
     };
   }
 
-  //save Prodavac data from the form and check the data if is it valid? or not
+  //save Prodavac data form-element-wrapper the form and check the data if is it valid? or not
   dodajProdavac(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
       this.noviProdavac!.slikaKorisnikaBase64 = this.novaSlikaProdavac;
@@ -204,12 +196,6 @@ export class ProdavacComponent implements OnInit {
     return rez;
   }
 
-  private totalPages() {
-    if (this.prodavacPodaci != null) return this.prodavacPodaci?.totalPages;
-
-    return 1;
-  }
-
   goToPage(p: number) {
     this.currentPage = p;
     this.fetchProdavac();
@@ -222,6 +208,7 @@ export class ProdavacComponent implements OnInit {
     }
     if (p == this.currentPage) return;
   }
+
   goToNext(p: number) {
     if (this.currentPage < this.totalPages()) {
       this.currentPage++;
@@ -229,5 +216,10 @@ export class ProdavacComponent implements OnInit {
     }
     if (p == this.currentPage) return;
   }
-  protected readonly ConfigFile = ConfigFile;
+
+  private totalPages() {
+    if (this.prodavacPodaci != null) return this.prodavacPodaci?.totalPages;
+
+    return 1;
+  }
 }

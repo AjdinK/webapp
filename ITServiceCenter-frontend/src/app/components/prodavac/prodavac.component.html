@@ -1,4 +1,4 @@
-<!-- table to show the fetch data from db in table and CRUD operation for prodavac , it show only if set true -->
+<!-- table to show the fetch data form-element-wrapper db in table and CRUD operation for prodavac , it show only if set true -->
 
 <div *ngIf="this.showProdavacTable" class="div-table">
   <input [(ngModel)]="this.searchProdavac" placeholder="Pretrazi prodavac....." type="text"/>
@@ -49,7 +49,7 @@
   </div>
 </div>
 
-<!-- form edit for prodavac and it show only if bool is true the user press the button edit from the table -->
+<!-- form edit for prodavac and it show only if bool is true the user press the button edit form-element-wrapper the table -->
 <form #editForm='ngForm' *ngIf="showProdavacEdit" class="prodavacForm">
   <h1>{{ formTitle }}</h1>
   <div class="form-group">
@@ -154,7 +154,7 @@
            type="checkbox"/>
   </div>
 
-  <!-- div to show 2 pictuers the old from db and the new one uploaded -->
+  <!-- div to show 2 pictuers the old form-element-wrapper db and the new one uploaded -->
 
   <div>
 
@@ -290,7 +290,7 @@
            type="checkbox"/>
   </div>
 
-  <!-- div to show 2 pictuers the old from db and the new one uploaded -->
+  <!-- div to show 2 pictuers the old form-element-wrapper db and the new one uploaded -->
 
   <div>
 

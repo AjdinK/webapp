@@ -1,107 +1,86 @@
-<!-- form edit for admin and it show only if there is data from api and bool is true -->
 <form #editForm="ngForm" *ngIf="this.adminPodaciFetch && this.showAdminForm">
   <h1>{{ formTitle }}</h1>
-  <div class="form-group">
-    <label for="ime">Ime:</label>
-    <input type="text" class="form-control" id="ime" name="ime" required minlength="3" pattern='[A-Za-z\sčćžđ]+'
-      #ime_polje="ngModel" [(ngModel)]="this.adminPodaciFetch!.ime" />
-  </div>
 
-  <!-- div for validation and to print erros , it shows only on dirty , touched ,
-    or when the user press submit button when fileds are invalid
-    and it also use pattern to enter only characters without numbers
-    same thing for prezime,username,email..etc
--->
-  <div class="greska-div" *ngIf="
-      (ime_polje.invalid && (ime_polje.touched || ime_polje.dirty)) ||
-      this.JelPopunjeno
-    ">
-    <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="ime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
-  </div>
+  <!--ime component-->
+  <app-form-element-wrapper [className]="'form-group'" [imePolje]="ime" [labelFor]="'ime'" [label]="'Ime'">
+    <input #ime="ngModel" [(ngModel)]="this.adminPodaciFetch!.ime"
+           class="form-control"
+           id="ime"
+           minlength="3"
+           name="ime"
+           pattern='[A-Za-z\sčćžđ]+'
+           required type="text"/>
+  </app-form-element-wrapper>
 
-  <div class="form-group">
-    <label for="prezime">Prezime:</label>
-    <input type="text" class="form-control" id="prezime" name="prezime" required pattern='[A-Za-z\sčćžđ]+'
-      #prezime_polje="ngModel" [(ngModel)]="this.adminPodaciFetch!.prezime" />
-  </div>
 
-  <div class="greska-div" *ngIf="
-      (prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty)) ||
-      this.JelPopunjeno
-    ">
-    <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
-  </div>
+  <app-form-element-wrapper [className]="'form-group'" [imePolje]="prezime" [labelFor]="'prezime'" [label]="'Prezime'">
+    <input #prezime="ngModel"
+           [(ngModel)]="this.adminPodaciFetch!.prezime"
+           class="form-control"
+           id="prezime"
+           minlength="3"
+           name="prezime" pattern='[A-Za-z\sčćžđ]+'
+           required type="text"/>
+  </app-form-element-wrapper>
 
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" id="username" name="username" required minlength="5" pattern="[A-Za-z\s]+"
-      #username_polje="ngModel" [(ngModel)]="this.adminPodaciFetch!.username" />
-  </div>
 
-  <div class="greska-div" *ngIf="
-      (username_polje.invalid &&
-        (username_polje.touched || username_polje.dirty)) ||
-      this.JelPopunjeno
-    ">
-    <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="username_polje.errors?.['minlength']">Minimum 5 karaktera</span>
-  </div>
+  <!--username-->
 
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" class="form-control" id="email" name="email" required
-      pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" #email_polje="ngModel"
-      [(ngModel)]="this.adminPodaciFetch!.email" />
-  </div>
+  <app-form-element-wrapper [className]="'form-group'" [imePolje]="username" [labelFor]="'username'"
+                            [label]="'Username'">
+    <input #username="ngModel"
+           [(ngModel)]="this.adminPodaciFetch!.username"
+           class="form-control"
+           id="username"
+           minlength="3"
+           name="username" pattern='[A-Za-z\sčćžđ]+'
+           required type="text"/>
+  </app-form-element-wrapper>
 
-  <div class="greska-div" *ngIf="
-      (email_polje.invalid && (email_polje.touched || email_polje.dirty)) ||
-      this.JelPopunjeno
-    ">
-    <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
-  </div>
+  <!--email-->
 
-  <div class="form-group">
-    <label for="Grad">Grad</label>
-    <select id="Grad" name="Grad" class="select-grad" [(ngModel)]="this.adminPodaciFetch!.gradId">
-      <option *ngFor="let x of this.gradPodaci" [value]="x.id">
-        {{ x.naziv }}
-      </option>
-    </select>
-  </div>
+  <app-form-element-wrapper [className]="'form-group'" [imePolje]="email" [labelFor]="'email'"
+                            [label]="'Email'">
+    <input #email="ngModel"
+           [(ngModel)]="this.adminPodaciFetch!.email"
+           class="form-control"
+           id="email"
+           minlength="3"
+           name="email"
+           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
+           required type="email"/>
+  </app-form-element-wrapper>
+
 
   <div class="form-group">
     <label for="Admin">Admin:</label>
-    <input class="checkbox" type="checkbox" id="Admin" name="isAdmin" [(ngModel)]="this.adminPodaciFetch!.isAdmin" />
+
+    <input [(ngModel)]="this.adminPodaciFetch!.isAdmin" class="checkbox" id="Admin" name="isAdmin" type="checkbox"/>
+
   </div>
 
   <div class="form-group">
     <label for="adminServiser">Serviser:</label>
-    <input class="checkbox" type="checkbox" id="adminServiser" name="adminServiser"
-      [(ngModel)]="this.adminPodaciFetch!.isServiser" />
+    <input [(ngModel)]="this.adminPodaciFetch!.isServiser" class="checkbox" id="adminServiser" name="adminServiser"
+           type="checkbox"/>
   </div>
 
   <div class="form-group">
     <label for="adminProdavac">Prodavac:</label>
-    <input class="checkbox" type="checkbox" id="adminProdavac" name="adminProdavac"
-      [(ngModel)]="this.adminPodaciFetch!.isProdavac" />
+    <input [(ngModel)]="this.adminPodaciFetch!.isProdavac" class="checkbox" id="adminProdavac" name="adminProdavac"
+           type="checkbox"/>
   </div>
 
-  <!-- div to show 2 pictuers the old from db and the new one uploaded -->
+  <!-- div to show 2 pictuers the old form-element-wrapper db and the new one uploaded -->
 
   <div>
 
-    <label for="slika-input">Nova slika</label>
-    <input id="input-pic" type='file' accept="image/*" (change)="onFileSelected($event);" />
+    <label for="input-pic">Nova slika</label>
+    <input (change)="onFileSelected($event);" accept="image/*" id="input-pic" type='file'/>
 
-    <img class="oldPic" src="{{ConfigFile.adresa_servera}}/Admin/GetImg?username={{this.adminPodaciFetch!.username}}" />
-    <img class="newPic" src="{{ this.novaSlikaAdmin }}" />
+    <img class="oldPic"
+         src="{{ConfigFile.adresa_servera}}/Admin/GetImg?username={{this.adminPodaciFetch!.username}}"/>
+    <img class="newPic" src="{{ this.novaSlikaAdmin }}"/>
 
   </div>
 
@@ -109,10 +88,10 @@
   <!-- submit changes when everything is fine and valid -->
 
   <div class="div-button">
-    <button type="submit" class="btn-zatvori" (click)="closeEdit()">
+    <button (click)="closeEdit()" class="btn-zatvori" type="submit">
       Zatvori
     </button>
-    <button type="submit" class="btn-save" (click)="snimi(editForm)">
+    <button (click)="snimi(editForm)" class="btn-save" type="submit">
       Snimi
     </button>
   </div>

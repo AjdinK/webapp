@@ -1,33 +1,31 @@
-import { Component } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
-import { TranslateModule } from '@ngx-translate/core';
+import {Component} from '@angular/core';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import emailjs from '@emailjs/browser';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-contact-us',
   standalone: true,
-   imports: [NgOptimizedImage , ReactiveFormsModule, CommonModule,TranslateModule],
+  imports: [NgOptimizedImage, ReactiveFormsModule, CommonModule, TranslateModule],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',
 })
 export class ContactUsComponent {
 
-  kontaktForm : FormGroup;
-
-  constructor() {
-    this.kontaktForm = new FormGroup({
-      ime: new FormControl('',[Validators.required,Validators.minLength(3)]),
-      email : new FormControl('',[Validators.required,Validators.email]),
-      poruka: new FormControl('',[Validators.required,Validators.maxLength(20)]),
-    })
-  }
-
+  kontaktForm: FormGroup;
   // to show the error if the fields are empty when press on sumbit
   JelPopunjeno: boolean = false;
 
+  constructor() {
+    this.kontaktForm = new FormGroup({
+      ime: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      poruka: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    })
+  }
 
-  // using EMAILJS service to send the data from object (kontaktForm) to the email without using backend
+  // using EMAILJS service to send the data form-element-wrapper object (kontaktForm) to the email without using backend
   async posalji() {
     if (this.kontaktForm.valid) {
       emailjs.init('rs86oYSzchfvEtq82');
