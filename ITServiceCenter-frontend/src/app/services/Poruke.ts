@@ -4,7 +4,7 @@ export class Poruke {
   public static minlength3 = "Minimum 3 karaktera";
   public static email = "Email adresa nije validna";
   public static minlength5 = "Minimum 5 karaktera";
-  public static password = "Lozinka mora sadrzati minimum 8 karaktera, jedno veliko i malo slovo, jedno broj i jedan od sledecih znakova: !@#$%^&*()_+-=";
+  public static password = "Lozinka mora sadrzati minimum 7 karaktera, jedno veliko i malo slovo, jedno broj i jedan specijali znak ";
   public static notEmail = "Polje mora biti email adresu";
 
 }

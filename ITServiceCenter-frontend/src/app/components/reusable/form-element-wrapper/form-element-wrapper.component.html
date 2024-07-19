@@ -7,16 +7,16 @@
       (imePolje.invalid && (imePolje.touched || imePolje.dirty)) ||
       this.JelPopunjeno" class="greska-div">
 
-
-  <div *ngIf="imePolje === 'email'; else notEmail">
-    <span *ngIf="imePolje.errors?.['pattern']">{{ Poruke.email }}</span>
+  <div *ngIf="label ==='Email' ">
     <span *ngIf="imePolje.errors?.['required']">{{ Poruke.required }}</span>
+    <span *ngIf="imePolje.errors?.['pattern']">{{ Poruke.email }}</span>
   </div>
 
-  <ng-template #notEmail>
-    <span *ngIf="imePolje.errors?.['minlength']">{{ Poruke.required }}</span>
+  <div *ngIf="label ==='Ime' || label ==='Username'|| label ==='Prezime'">
+    <span *ngIf="imePolje.errors?.['pattern']">{{ Poruke.pattern }}</span>
     <span *ngIf="imePolje.errors?.['required']">{{ Poruke.required }}</span>
-  </ng-template>
+    <span *ngIf="imePolje.errors?.['minlength']">{{ Poruke.minlength3 }}</span>
+  </div>
 
 </div>
 

@@ -10,7 +10,7 @@ import {Poruke} from "../../../services/Poruke";
   imports: [
     FormsModule,
     JsonPipe,
-    NgIf
+    NgIf,
   ],
   templateUrl: './form-element-wrapper.component.html',
   styleUrl: './form-element-wrapper.component.css'
@@ -25,12 +25,4 @@ export class FormElementWrapperComponent {
   @Input() JelPopunjeno: boolean = false;
   protected readonly Poruke = Poruke;
 
-  getValidationMessage() {
-    const objKeys = Object.keys(this.validation);
-    if (objKeys.length !== 0) {
-      return this.validation[objKeys[0]];
-    } else {
-      return "";
-    }
-  }
 }
