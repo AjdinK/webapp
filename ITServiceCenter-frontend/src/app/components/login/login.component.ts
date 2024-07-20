@@ -4,8 +4,8 @@ import {FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Valida
 import {Router} from "@angular/router";
 import {HeaderComponent} from "../homepage/header/header.component";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
-import {HttpClient} from "@angular/common/http";
 import {AuthLoginRequest} from "../../endpoints/auth-endpoints/auth-login-request";
+import {AuthLoginEndpoint} from "../../endpoints/auth-endpoints/auth-login-endpoint";
 
 @Component({
   selector: "app-login",
@@ -28,9 +28,9 @@ export class LoginComponent implements OnInit {
   authRequest: AuthLoginRequest;
 
   constructor(
-    private httpKlijent: HttpClient,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private authLoginEndpoint: AuthLoginEndpoint
   ) {
     this.loginForm = new FormGroup({
       username: new FormControl("", [Validators.required]),
@@ -52,19 +52,36 @@ export class LoginComponent implements OnInit {
     this.authRequest.lozinka = this.loginForm.value.password;
 
     debugger;
+
     if (login.form.valid) {
-      this.httpKlijent.post('https://localhost:7174/AuthLoginEndpoint', this.authRequest).subscribe((x: any) => {
-        if (x.token) {
-          alert("uspjesno");
-          this.router.navigate(["dashboard-admin"]);
-          localStorage.setItem("token", x.token);
-        } else {
-          alert(x.message);
-        }
-      })
-    } else {
-      alert("Niste popunili sva polja");
-      this.JelLogiran = true;
+      this.authLoginEndpoint.obradi(this.authRequest!).subscribe({
+        next: (x) => {
+          if (x.token) {
+            alert("uspjesno");
+            this.router.navigate(["dashboard-admin"]);
+            localStorage.setItem("token", x.token);
+          }
+        },
+        error: (x) => {
+          alert("Error: " + x.message);
+        },
+
+      });
     }
+
+    // if (login.form.valid) {
+    //   this.httpKlijent.post('https://localhost:7174/AuthLoginEndpoint', this.authRequest).subscribe((x: any) => {
+    //     if (x.token) {
+    //       alert("uspjesno");
+    //       this.router.navigate(["dashboard-admin"]);
+    //       localStorage.setItem("token", x.token);
+    //     } else {
+    //       alert(x.message);
+    //     }
+    //   })
+    // } else {
+    //   alert("Niste popunili sva polja");
+    //   this.JelLogiran = true;
+    // }
   }
 }

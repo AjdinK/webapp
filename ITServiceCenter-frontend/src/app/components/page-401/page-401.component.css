@@ -1,0 +1,41 @@
+.wrapper {
+  display: grid;
+  height: 100vh;
+  place-content: center;
+  place-items: center;
+  background: #dfdfdf;
+}
+
+div h1 {
+  font-size: 7rem;
+  line-height: 1;
+  color: #0e0e0e;
+  margin-bottom: 1rem;
+}
+
+div p {
+  font-size: 2rem;
+  color: #0e0e0e;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+div a {
+  padding: 1rem 1.2rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: #171717;
+  text-decoration: none;
+}
+
+div a:hover {
+  transition: 0.3s ease-in;
+  background-color: #0e0e0e;
+}
+
+
+
+
+
