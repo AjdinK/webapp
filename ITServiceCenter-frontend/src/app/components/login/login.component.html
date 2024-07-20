@@ -2,41 +2,37 @@
   <div class="login-container">
 
     <div class="text-img">
-      <img class="login-logo" src="../../../assets/icons/login.svg" height="30" width="30">
-      <h1 class="h1-prim">{{'Login'|translate}}</h1>
+      <img class="login-logo" height="30" src="../../../assets/icons/login.svg" width="30">
+      <h1 class="h1-prim">{{ 'Login'|translate }}</h1>
     </div>
 
-    <form>
-      <div class="form-group" [formGroup]="loginForm">
+    <form #login="ngForm" action="/auth" method="POST">
+      <div [formGroup]="loginForm" class="form-group">
 
-        <label for="email">{{'Email'|translate}}</label>
-        <input type="email" id="email" name="email" required formControlName="email">
+        <label for="username">{{ 'Username'|translate }}</label>
+        <input formControlName="username" id="username" name="username" required type="username">
 
-        <div class="greska-email"
-          *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty ||loginForm.controls['email'].touched) || this.JelLogiran">
-          <span *ngIf="loginForm.controls['email'].errors?.['required']">{{'Field Required'|translate}}</span>
-          <span *ngIf="loginForm.controls['email'].errors?.['email']">
-            {{'Email address is not valid'|translate}}
-          </span>
+        <div
+          *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty ||loginForm.controls['username'].touched) || this.JelLogiran"
+          class="greska-email">
+          <span *ngIf="loginForm.controls['username'].errors?.['required']">{{ 'Field Required'|translate }}</span>
         </div>
+
       </div>
 
-      <div class="form-group" [formGroup]="loginForm">
+      <div [formGroup]="loginForm" class="form-group">
 
-        <label for="lozinka">{{'Password'|translate}}</label>
-        <input type="password" id="lozinka" name="lozinka" required formControlName="password">
+        <label for="lozinka">{{ 'Password'|translate }}</label>
+        <input formControlName="password" id="lozinka" name="lozinka" required type="password">
 
-        <div class="greska-password"
-          *ngIf="loginForm.controls['password'].dirty ||loginForm.controls['password'].touched || this.JelLogiran">
-          <span *ngIf="loginForm.controls['password'].errors?.['required']">{{'Field Required'|translate}}</span>
-          <span *ngIf="loginForm.controls['password'].errors?.['pattern']">
-            {{'Minimum 8 characters, At least one uppercase letter, At
-            least one lowercase letter, At least one number'|translate}}</span>
+        <div *ngIf="loginForm.controls['password'].dirty ||loginForm.controls['password'].touched || this.JelLogiran"
+             class="greska-password">
+          <span *ngIf="loginForm.controls['password'].errors?.['required']">{{ 'Field Required'|translate }}</span>
         </div>
+
       </div>
-      <button (click)="logirajSe()" type="submit">{{'Login'|translate}}</button>
+      <button (click)="logirajSe(login)" type="submit">{{ 'Login'|translate }}</button>
     </form>
-
 
 
   </div>

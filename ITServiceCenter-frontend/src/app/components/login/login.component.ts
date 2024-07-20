@@ -1,14 +1,11 @@
-import { Component, OnInit } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { Router } from "@angular/router";
-import { HeaderComponent } from "../homepage/header/header.component";
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import {Component, OnInit} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators,} from "@angular/forms";
+import {Router} from "@angular/router";
+import {HeaderComponent} from "../homepage/header/header.component";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {HttpClient} from "@angular/common/http";
+import {AuthLoginRequest} from "../../endpoints/auth-endpoints/auth-login-request";
 
 @Component({
   selector: "app-login",
@@ -18,30 +15,29 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
     HeaderComponent,
     TranslateModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   templateUrl: "./login.component.html",
   styleUrl: "./login.component.css",
 })
 export class LoginComponent implements OnInit {
-  passwordRegx: RegExp = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
 
   loginForm: FormGroup;
+  lang: string = "";
+  JelLogiran: boolean = false;
+  authRequest: AuthLoginRequest;
 
   constructor(
+    private httpKlijent: HttpClient,
     private router: Router,
     private translateService: TranslateService
   ) {
     this.loginForm = new FormGroup({
-      email: new FormControl("", [Validators.required, Validators.email]),
-      password: new FormControl("", [
-        Validators.required,
-        Validators.pattern(this.passwordRegx),
-      ]),
+      username: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
     });
+    this.authRequest = new AuthLoginRequest();
   }
-
-  lang: string = "";
-  JelLogiran: boolean = false;
 
   ngOnInit(): void {
     if (typeof window !== "undefined" && window.localStorage) {
@@ -50,8 +46,25 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  logirajSe() {
-    this.JelLogiran = true;
-    this.router.navigate(["dashboard-admin"]);
+  logirajSe(login: NgForm) {
+
+    this.authRequest.korisnickoIme = this.loginForm.value.username;
+    this.authRequest.lozinka = this.loginForm.value.password;
+
+    debugger;
+    if (login.form.valid) {
+      this.httpKlijent.post('https://localhost:7174/AuthLoginEndpoint', this.authRequest).subscribe((x: any) => {
+        if (x.token) {
+          alert("uspjesno");
+          this.router.navigate(["dashboard-admin"]);
+          localStorage.setItem("token", x.token);
+        } else {
+          alert(x.message);
+        }
+      })
+    } else {
+      alert("Niste popunili sva polja");
+      this.JelLogiran = true;
+    }
   }
 }
