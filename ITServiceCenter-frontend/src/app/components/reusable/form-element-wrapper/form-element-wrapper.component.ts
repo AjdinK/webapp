@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {JsonPipe, NgIf} from "@angular/common";
-import {Poruke} from "../../../services/Poruke";
+import {Poruke} from "../../../helpers/Poruke";
 
 
 @Component({

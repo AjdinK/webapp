@@ -51,37 +51,20 @@ export class LoginComponent implements OnInit {
     this.authRequest.korisnickoIme = this.loginForm.value.username;
     this.authRequest.lozinka = this.loginForm.value.password;
 
-    debugger;
-
     if (login.form.valid) {
       this.authLoginEndpoint.obradi(this.authRequest!).subscribe({
         next: (x) => {
           if (x.token) {
-            alert("uspjesno");
             this.router.navigate(["dashboard-admin"]);
             localStorage.setItem("token", x.token);
+            localStorage.setItem('role', JSON.stringify(x.role));
           }
         },
         error: (x) => {
-          alert("Error: " + x.message);
+          alert("Error: Nevazeci podaci za prijavu");
+          this.JelLogiran = true;
         },
-
       });
     }
-
-    // if (login.form.valid) {
-    //   this.httpKlijent.post('https://localhost:7174/AuthLoginEndpoint', this.authRequest).subscribe((x: any) => {
-    //     if (x.token) {
-    //       alert("uspjesno");
-    //       this.router.navigate(["dashboard-admin"]);
-    //       localStorage.setItem("token", x.token);
-    //     } else {
-    //       alert(x.message);
-    //     }
-    //   })
-    // } else {
-    //   alert("Niste popunili sva polja");
-    //   this.JelLogiran = true;
-    // }
   }
 }

@@ -30,13 +30,13 @@ public class AuthLoginEndpoint : ControllerBase
         var korisnik = await _context.KorisnickiNalog.FirstOrDefaultAsync(x => x.Username == request.KorisnickoIme);
 
         if (korisnik == null)
-            return BadRequest(new { error = "Nevazeci podaci za prijavu -> korisnicko ime ili lozinka" });
+            return BadRequest(new { error = "Nevazeci podaci za prijavu" });
 
 
         var hash = PasswordGenerator.GenerateHash(korisnik.LozinkaSalt, request.Lozinka);
 
         if (hash != korisnik.LozinkaHash)
-            return Unauthorized(new { error = "Nevazeci podaci za prijavu -> korisnicko ime ili lozinka" });
+            return Unauthorized(new { error = "Nevazeci podaci za prijavu" });
 
         var jwtToken = JwtTokenGenerator.GenerateToken(korisnik, _jwtKey);
 
@@ -52,11 +52,11 @@ public class AuthLoginEndpoint : ControllerBase
         await _context.SaveChangesAsync();
         return Ok(new
         {
-            Uloga = new List<string>
+            Role = new
             {
-                korisnik.IsProdavac ? "Prodavac" : "",
-                korisnik.IsAdmin ? "Admin" : "",
-                korisnik.IsServiser ? "Serviser" : ""
+                korisnik.IsAdmin,
+                korisnik.IsProdavac,
+                korisnik.IsServiser
             },
             Token = jwtToken
         });
