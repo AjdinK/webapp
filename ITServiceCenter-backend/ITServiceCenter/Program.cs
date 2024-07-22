@@ -1,5 +1,6 @@
 using System.Text;
 using itservicecenter.Data;
+using itservicecenter.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -21,9 +22,7 @@ builder.Services.AddEndpointsApiExplorer();
 var key = builder.Configuration["Jwt:Key"];
 
 if (string.IsNullOrEmpty(key) || key.Length < 32)
-{
     throw new ArgumentException("JWT kljuc mora imati najmanje 32 karaktera.");
-}
 
 var keyBytes = Encoding.ASCII.GetBytes(key);
 
@@ -75,7 +74,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-
+builder.Services.AddTransient<MyAuthService>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

@@ -5,16 +5,17 @@ import {DashboardAdminComponent} from './components/dashboard-admin/dashboard-ad
 import {Page404Component} from "./components/page-404/page404.component";
 import {Page401Component} from "./components/page-401/page-401.component";
 import {authGuard} from "./services/auth.guard";
+import {guestGuard} from "./services/guest.guard";
 
 export const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
-    canActivate: [],
   },
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [guestGuard]
   },
   {
     path: '404',
