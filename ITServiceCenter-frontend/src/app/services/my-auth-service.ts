@@ -22,6 +22,10 @@ export class MyAuthService {
     localStorage.removeItem('token');
   }
 
+  clearData() {
+    localStorage.clear();
+  }
+
   getToken(): string | null {
     return this.getValue('token');
   }

@@ -1,14 +1,14 @@
-import { Observable } from 'rxjs';
-import { MyBaseEndpoint } from '../my-base-endpoint';
-import { HttpClient } from '@angular/common/http';
-import { ConfigFile } from '../../configFile';
-import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs';
+import {MyBaseEndpoint} from '../my-base-endpoint';
+import {HttpClient} from '@angular/common/http';
+import {ConfigFile} from '../../configFile';
+import {Injectable} from '@angular/core';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AdminGetByIdEndpoint
-  implements MyBaseEndpoint<number, AdminGetByIdResponse>
-{
-  constructor(private httpKlijent: HttpClient) {}
+  implements MyBaseEndpoint<number, AdminGetByIdResponse> {
+  constructor(private httpKlijent: HttpClient) {
+  }
 
   obradi(request: number): Observable<AdminGetByIdResponse> {
     let url = ConfigFile.adresa_servera + '/Admin/GetById?Id=' + request;
@@ -27,5 +27,6 @@ export interface AdminGetByIdResponse {
   gradId: number;
   spolId: number;
   username: string;
+  lozinka: string;
   slikaKorisnikaBase64: string | undefined;
 }

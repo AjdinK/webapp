@@ -1,14 +1,14 @@
-import { Observable } from 'rxjs';
-import { MyBaseEndpoint } from '../my-base-endpoint';
-import { HttpClient } from '@angular/common/http';
-import { ConfigFile } from '../../configFile';
-import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs';
+import {MyBaseEndpoint} from '../my-base-endpoint';
+import {HttpClient} from '@angular/common/http';
+import {ConfigFile} from '../../configFile';
+import {Injectable} from '@angular/core';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AdminSnimiEndpoint
-  implements MyBaseEndpoint<AdminSnimiRequest, number>
-{
-  constructor(private httpKlijent: HttpClient) {}
+  implements MyBaseEndpoint<AdminSnimiRequest, number> {
+  constructor(private httpKlijent: HttpClient) {
+  }
 
   obradi(request: AdminSnimiRequest): Observable<number> {
     let url = ConfigFile.adresa_servera + '/Admin/Snimi';
@@ -22,6 +22,7 @@ export interface AdminSnimiRequest {
   prezime: string;
   username: string;
   email: string;
+  lozinka: string;
   isAdmin: boolean;
   isServiser: boolean;
   isProdavac: boolean;

@@ -81,7 +81,7 @@ export class AdminComponent implements OnInit {
           window.location.reload();
         },
         error: (x) => {
-          alert("greska snimiAdmin - " + x.error);
+          alert("Greska snimi admin " + x.message);
         },
       });
     }

@@ -13,7 +13,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   if (token !== null || role !== null) {
     const roleObj = JSON.parse(role);
-    return roleObj.isAdmin ? true : router.navigateByUrl('/401');
+    return (roleObj.isAdmin) ? true : router.navigateByUrl('/401');
   }
 
   router.navigateByUrl('/401');
