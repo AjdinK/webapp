@@ -5,7 +5,7 @@ namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi;
 
 public class ServiserSnimiRequest
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     [Required(ErrorMessage = "Obavezno polje")]
     public string Ime { get; set; }
@@ -24,9 +24,7 @@ public class ServiserSnimiRequest
     public int GradID { get; set; }
     public int SpolID { get; set; }
 
-    [Required(ErrorMessage = "Obavezno polje")]
-    [ValidatorLozinka]
-    public string? Lozinka { get; set; }
+    [ValidatorLozinka] public string? Lozinka { get; set; }
 
     public string? SlikaKorisnikaBase64 { get; set; }
 }

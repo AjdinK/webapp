@@ -5,7 +5,6 @@ import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {GradGetAllEndpoint, GradGetAllResponseGrad,} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
 import {AdminSnimiEndpoint, AdminSnimiRequest,} from "../../endpoints/admin-endpoints/admin-snimi-endpoint";
 import {ConfigFile} from "../../configFile";
-import {HttpClient} from "@angular/common/http";
 import {FormElementWrapperComponent} from "../reusable/form-element-wrapper/form-element-wrapper.component";
 
 
@@ -17,13 +16,13 @@ import {FormElementWrapperComponent} from "../reusable/form-element-wrapper/form
   styleUrls: ["./admin.component.css", "../../../assets/styles/table_form.css"],
 })
 export class AdminComponent implements OnInit {
-  novaSlikaAdmin: any;
-  showAdminForm: boolean = true;
-  adminPodaciFetch: AdminGetByIdResponse | null = null;
-  adminSnimiRequest: AdminSnimiRequest | null = null;
+  novaSlika: any;
+  showForm: boolean = true;
+  adminPodaci: AdminGetByIdResponse | null = null;
+  snimiRequest: AdminSnimiRequest | null = null;
   gradPodaci: GradGetAllResponseGrad[] | null = null;
   formTitle: string = "Edit Admin";
-  JelPopunjeno: boolean = false;
+  jelPopunjeno: boolean = false;
   adminForm: FormGroup;
   protected readonly ConfigFile = ConfigFile;
 
@@ -31,7 +30,6 @@ export class AdminComponent implements OnInit {
     private adminGetByIdEndpoint: AdminGetByIdEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint,
     private adminSnimiEndpoint: AdminSnimiEndpoint,
-    private httpKlijent: HttpClient
   ) {
     this.adminForm = new FormGroup({
       ime: new FormControl('', [Validators.required, Validators.pattern('[A-Za-z\\sčćžđ]+'), Validators.minLength(3)]),
@@ -41,7 +39,7 @@ export class AdminComponent implements OnInit {
   }
 
   dto(adminPodaciFetch: AdminGetByIdResponse) {
-    this.adminSnimiRequest = {
+    this.snimiRequest = {
       id: adminPodaciFetch!.id,
       ime: adminPodaciFetch!.ime,
       prezime: adminPodaciFetch!.prezime,
@@ -52,11 +50,9 @@ export class AdminComponent implements OnInit {
       isServiser: adminPodaciFetch!.isServiser,
       isProdavac: adminPodaciFetch!.isProdavac,
       gradId: adminPodaciFetch!.gradId,
-      slikaKorisnikaBase64: this.novaSlikaAdmin
+      slikaKorisnikaBase64: this.novaSlika
     }
   }
-
-  //fetch Admin data form-element-wrapper db
 
   ngOnInit(): void {
     this.fetchAdmin();
@@ -67,7 +63,7 @@ export class AdminComponent implements OnInit {
   fetchAdmin() {
     this.adminGetByIdEndpoint.obradi(1).subscribe({
       next: (x) => {
-        this.adminPodaciFetch = x;
+        this.adminPodaci = x;
       },
       error: (x) => {
         alert("greska adminGetByIdEndpoint -> " + x.error);
@@ -75,7 +71,6 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  //fetch grad data form-element-wrapper db
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
@@ -87,39 +82,39 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  //save admin data form-element-wrapper the form and check the form if is it valid? or not
   snimi(editForm: NgForm) {
     if (editForm.form.valid) {
-      // this.adminPodaciFetch!.slikaKorisnikaBase64 = this.novaSlikaAdmin;
-      this.dto(this.adminPodaciFetch!);
-      this.adminSnimiEndpoint.obradi(this.adminSnimiRequest!).subscribe({
+      this.dto(this.adminPodaci!);
+      this.adminSnimiEndpoint.obradi(this.snimiRequest!).subscribe({
         next: (x) => {
-          this.showAdminForm = false;
-          this.fetchAdmin();
-          window.location.reload();
+          this.reload();
         },
         error: (x) => {
           alert("Greska, snimi admin : " + x.message);
         },
       });
     }
-    this.JelPopunjeno = true;
+    this.jelPopunjeno = true;
   }
 
-  //close and refresh admin data form-element-wrapper db
-  closeEdit() {
-    this.showAdminForm = false;
+  close() {
+    this.showForm = false;
     this.fetchAdmin();
   }
 
-  //preview for the uploaded img
   onFileSelected(e: any) {
     if (e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (event: any) => {
-        this.novaSlikaAdmin = event.target.result;
+        this.novaSlika = event.target.result;
       };
     }
+  }
+
+  private reload() {
+    this.showForm = false;
+    this.fetchAdmin();
+    window.location.reload();
   }
 }

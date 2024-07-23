@@ -1,5 +1,3 @@
-<!-- table to show the fetch data form-element-wrapper db in table and CRUD operation for Serviser , it show only if set true -->
-
 <div *ngIf="this.showServiserTable" class="div-table">
   <input [(ngModel)]="this.searchServiser" placeholder="Pretrazi serviser ..." type="text"/>
   <button (click)="dodajNovi()" class="dodaj">+ Dodaj Serviser</button>
@@ -49,7 +47,127 @@
 </div>
 
 
-<!-- form edit for Serviser and it show only if bool is true the user press the button edit form-element-wrapper the table -->
+<form #addForm='ngForm' *ngIf="showServiserForm" class="serviserForm">
+  <h1>{{ formTitle }}</h1>
+  <div class="form-group">
+    <label for="ime">Ime:</label>
+    <input #ime_polje="ngModel" [(ngModel)]="this.noviServiser!.ime" class="form-control" id="ime" minlength="3"
+           name="ime" pattern='[A-Za-z\sčćžđ]+'
+           required type="text"/>
+  </div>
+
+  <div *ngIf="
+      (ime_polje.invalid && (ime_polje.touched || ime_polje.dirty)) ||
+      this.jelPopunjeno
+    " class="greska-div">
+    <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="ime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
+    <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
+  </div>
+
+  <div class="form-group">
+    <label for="prezime">Prezime:</label>
+    <input #prezime_polje="ngModel" [(ngModel)]="this.noviServiser!.prezime" class="form-control" id="prezime"
+           name="prezime" pattern='[A-Za-z\sčćžđ]+'
+           required type="text"/>
+  </div>
+
+  <div *ngIf="
+      (prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty)) ||
+      this.jelPopunjeno
+    " class="greska-div">
+    <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
+    <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
+  </div>
+
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input #username_polje="ngModel" [(ngModel)]="this.noviServiser!.username" class="form-control" id="username"
+           minlength="5" name="username" pattern="[A-Za-z\s]+"
+           required type="text"/>
+  </div>
+
+  <div *ngIf="
+      (username_polje.invalid &&
+        (username_polje.touched || username_polje.dirty)) ||
+      this.jelPopunjeno
+    " class="greska-div">
+    <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
+    <span *ngIf="username_polje.errors?.['minlength']">Minimum 5 karaktera</span>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input #email_polje="ngModel" [(ngModel)]="this.noviServiser!.email" class="form-control" id="email" name="email"
+           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" required
+           type="email"/>
+  </div>
+  
+  <div *ngIf="
+      (email_polje.invalid && (email_polje.touched || email_polje.dirty)) ||
+      this.jelPopunjeno
+    " class="greska-div">
+    <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
+  </div>
+
+
+  <div class="form-group">
+    <label for="LozinkaServiser">Lozinka:</label>
+    <input #lozinka_polje="ngModel" [(ngModel)]="this.noviServiser!.lozinka" class="form-control" id="LozinkaServiser"
+           name="lozinka"
+           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required
+           type="password"/>
+  </div>
+
+  <div *ngIf="
+      (lozinka_polje.invalid && (lozinka_polje.touched || lozinka_polje.dirty)) ||
+      this.jelPopunjeno
+    " class="greska-div">
+    <span *ngIf="lozinka_polje.errors?.['required']">Polje je obavezno</span>
+    <span *ngIf="lozinka_polje.errors?.['pattern']">Lozinka mora biti 8 karaktera</span>
+  </div>
+
+
+  <div class="form-group">
+    <label for="GradServiser">Grad</label>
+    <select [(ngModel)]="this.noviServiser!.gradID" class="select-grad" id="GradServiser" name="GradServiser">
+      <option *ngFor="let x of this.gradPodaci" [value]="x.id">
+        {{ x.naziv }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="serviser">Serviser:</label>
+    <input [(ngModel)]="this.noviServiser!.isServiser" class="checkbox" id="serviser" name="serviser" type="checkbox"/>
+  </div>
+
+  <div>
+
+    <label for="input-pic2">Nova slika</label>
+    <input (change)="onFileSelected($event);" accept="image/*" id="input-pic2" type='file'/>
+
+    <img class="oldPic" height="200" src="{{ConfigFile.adresa_servera}}/Serviser/GetImg?username=0" width="200"/>
+    <img class="newPic" src="{{ this.novaSlika }}"/>
+
+  </div>
+
+  <div class="div-button">
+    <button (click)="closeEdit()" class="btn-zatvori" type="submit">
+      Zatvori
+    </button>
+    <button (click)="dodajServiser(addForm)" class="btn-save" type="submit">
+      Dodaj
+    </button>
+  </div>
+
+</form>
+
+
+<!-- form edit for Serviser  -->
 <form #editForm='ngForm' *ngIf="showServiserEdit" class="serviserForm">
   <h1>{{ formTitle }}</h1>
   <div class="form-group">
@@ -59,15 +177,10 @@
            required type="text"/>
   </div>
 
-  <!-- div for validation and to print erros , it shows only on dirty , touched ,
-    or when the user press submit button when fileds are invalid
-    and it also use pattern to enter only characters without numbers
-    same thing for prezime,username,email..etc
--->
 
   <div *ngIf="
       (ime_polje.invalid && (ime_polje.touched || ime_polje.dirty)) ||
-      this.JelPopunjeno
+      this.jelPopunjeno
     " class="greska-div">
     <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="ime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
@@ -83,7 +196,7 @@
 
   <div *ngIf="
       (prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty)) ||
-      this.JelPopunjeno
+      this.jelPopunjeno
     " class="greska-div">
     <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
@@ -100,7 +213,7 @@
   <div *ngIf="
       (username_polje.invalid &&
         (username_polje.touched || username_polje.dirty)) ||
-      this.JelPopunjeno
+      this.jelPopunjeno
     " class="greska-div">
     <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
@@ -117,7 +230,7 @@
 
   <div *ngIf="
       (email_polje.invalid && (email_polje.touched || email_polje.dirty)) ||
-      this.JelPopunjeno
+      this.jelPopunjeno
     " class="greska-div">
     <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
     <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
@@ -133,7 +246,7 @@
 
   <div *ngIf="
       (lozinka_polje.invalid && (lozinka_polje.touched || lozinka_polje.dirty)) ||
-      this.JelPopunjeno
+      this.jelPopunjeno
     " class="greska-div">
     <span *ngIf="lozinka_polje.errors?.['pattern']">Lozinka mora biti 8 karaktera</span>
   </div>
@@ -154,7 +267,6 @@
            type="checkbox"/>
   </div>
 
-  <!-- div to show 2 pictuers the old form-element-wrapper db and the new one uploaded -->
 
   <div>
 
@@ -165,11 +277,10 @@
          src="{{ConfigFile.adresa_servera}}/Serviser/GetImg?username={{this.odabraniServiser?.username?.toLocaleLowerCase()}}"
          width="200"/>
 
-    <img class="newPic" src="{{ this.novaSlikaSerivser }}"/>
+    <img class="newPic" src="{{ this.novaSlika }}"/>
 
   </div>
 
-  <!-- submit changes when everything is fine and valid -->
 
   <div class="div-button">
     <button (click)="closeEdit()" class="btn-zatvori" type="submit">
@@ -183,132 +294,3 @@
 </form>
 
 
-<!-- form to add new serviser and it show only if bool is true the user press the button edit -->
-<form #addForm='ngForm' *ngIf="showServiserForm" class="serviserForm">
-  <h1>{{ formTitle }}</h1>
-  <div class="form-group">
-    <label for="ime">Ime:</label>
-    <input #ime_polje="ngModel" [(ngModel)]="this.noviServiser!.ime" class="form-control" id="ime" minlength="3"
-           name="ime" pattern='[A-Za-z\sčćžđ]+'
-           required type="text"/>
-  </div>
-
-  <!-- div for validation and to print erros , it shows only on dirty , touched ,
-    or when the user press submit button when fileds are invalid
-    and it also use pattern to enter only characters without numbers
-    same thing for prezime,username,email..etc
--->
-
-  <div *ngIf="
-      (ime_polje.invalid && (ime_polje.touched || ime_polje.dirty)) ||
-      this.JelPopunjeno
-    " class="greska-div">
-    <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="ime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
-  </div>
-
-  <div class="form-group">
-    <label for="prezime">Prezime:</label>
-    <input #prezime_polje="ngModel" [(ngModel)]="this.noviServiser!.prezime" class="form-control" id="prezime"
-           name="prezime" pattern='[A-Za-z\sčćžđ]+'
-           required type="text"/>
-  </div>
-
-  <div *ngIf="
-      (prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty)) ||
-      this.JelPopunjeno
-    " class="greska-div">
-    <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
-  </div>
-
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input #username_polje="ngModel" [(ngModel)]="this.noviServiser!.username" class="form-control" id="username"
-           minlength="5" name="username" pattern="[A-Za-z\s]+"
-           required type="text"/>
-  </div>
-
-  <div *ngIf="
-      (username_polje.invalid &&
-        (username_polje.touched || username_polje.dirty)) ||
-      this.JelPopunjeno
-    " class="greska-div">
-    <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="username_polje.errors?.['minlength']">Minimum 5 karaktera</span>
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input #email_polje="ngModel" [(ngModel)]="this.noviServiser!.email" class="form-control" id="email" name="email"
-           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" required
-           type="email"/>
-  </div>
-
-
-  <div class="form-group">
-    <label for="LozinkaServiser">Lozinka:</label>
-    <input #lozinka_polje="ngModel" [(ngModel)]="this.noviServiser!.lozinka" class="form-control" id="LozinkaServiser"
-           name="lozinka"
-           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required
-           type="password"/>
-  </div>
-
-  <div *ngIf="
-      (lozinka_polje.invalid && (lozinka_polje.touched || lozinka_polje.dirty)) ||
-      this.JelPopunjeno
-    " class="greska-div">
-    <span *ngIf="lozinka_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="lozinka_polje.errors?.['pattern']">Lozinka mora biti 8 karaktera</span>
-  </div>
-
-
-  <div *ngIf="
-      (email_polje.invalid && (email_polje.touched || email_polje.dirty)) ||
-      this.JelPopunjeno
-    " class="greska-div">
-    <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
-  </div>
-
-  <div class="form-group">
-    <label for="GradServiser">Grad</label>
-    <select [(ngModel)]="this.noviServiser!.gradID" class="select-grad" id="GradServiser" name="GradServiser">
-      <option *ngFor="let x of this.gradPodaci" [value]="x.id">
-        {{ x.naziv }}
-      </option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label for="serviser">Serviser:</label>
-    <input [(ngModel)]="this.noviServiser!.isServiser" class="checkbox" id="serviser" name="serviser" type="checkbox"/>
-  </div>
-
-  <!-- div to show 2 pictuers the old form-element-wrapper db and the new one uploaded -->
-
-  <div>
-
-    <label for="input-pic2">Nova slika</label>
-    <input (change)="onFileSelected($event);" accept="image/*" id="input-pic2" type='file'/>
-
-    <img class="oldPic" height="200" src="{{ConfigFile.adresa_servera}}/Serviser/GetImg?username=0" width="200"/>
-    <img class="newPic" src="{{ this.novaSlikaSerivser }}"/>
-
-  </div>
-
-  <!-- submit changes when everything is fine and valid -->
-
-  <div class="div-button">
-    <button (click)="closeEdit()" class="btn-zatvori" type="submit">
-      Zatvori
-    </button>
-    <button (click)="dodajServiser(addForm)" class="btn-save" type="submit">
-      Snimi
-    </button>
-  </div>
-
-</form>

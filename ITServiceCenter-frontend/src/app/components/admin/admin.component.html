@@ -1,9 +1,9 @@
-<form #editForm="ngForm" *ngIf="this.adminPodaciFetch && this.showAdminForm">
+<form #editForm="ngForm" *ngIf="this.adminPodaci && this.showForm">
   <h1>{{ formTitle }}</h1>
 
   <!--ime component-->
   <app-form-element-wrapper [className]="'form-group'" [imePolje]="ime" [labelFor]="'ime'" [label]="'Ime'">
-    <input #ime="ngModel" [(ngModel)]="this.adminPodaciFetch!.ime"
+    <input #ime="ngModel" [(ngModel)]="this.adminPodaci!.ime"
            class="form-control"
            id="ime"
            minlength="3"
@@ -15,7 +15,7 @@
 
   <app-form-element-wrapper [className]="'form-group'" [imePolje]="prezime" [labelFor]="'prezime'" [label]="'Prezime'">
     <input #prezime="ngModel"
-           [(ngModel)]="this.adminPodaciFetch!.prezime"
+           [(ngModel)]="this.adminPodaci!.prezime"
            class="form-control"
            id="prezime"
            minlength="3"
@@ -29,7 +29,7 @@
   <app-form-element-wrapper [className]="'form-group'" [imePolje]="username" [labelFor]="'username'"
                             [label]="'Username'">
     <input #username="ngModel"
-           [(ngModel)]="this.adminPodaciFetch!.username"
+           [(ngModel)]="this.adminPodaci!.username"
            class="form-control"
            id="username"
            minlength="3"
@@ -42,7 +42,7 @@
   <app-form-element-wrapper [className]="'form-group'" [imePolje]="email" [labelFor]="'email'"
                             [label]="'Email'">
     <input #email="ngModel"
-           [(ngModel)]="this.adminPodaciFetch!.email"
+           [(ngModel)]="this.adminPodaci!.email"
            class="form-control"
            id="email"
            minlength="3"
@@ -55,19 +55,19 @@
   <div class="form-group">
     <label for="Admin">Admin:</label>
 
-    <input [(ngModel)]="this.adminPodaciFetch!.isAdmin" class="checkbox" id="Admin" name="isAdmin" type="checkbox"/>
+    <input [(ngModel)]="this.adminPodaci!.isAdmin" class="checkbox" id="Admin" name="isAdmin" type="checkbox"/>
 
   </div>
 
   <div class="form-group">
     <label for="adminServiser">Serviser:</label>
-    <input [(ngModel)]="this.adminPodaciFetch!.isServiser" class="checkbox" id="adminServiser" name="adminServiser"
+    <input [(ngModel)]="this.adminPodaci!.isServiser" class="checkbox" id="adminServiser" name="adminServiser"
            type="checkbox"/>
   </div>
 
   <div class="form-group">
     <label for="adminProdavac">Prodavac:</label>
-    <input [(ngModel)]="this.adminPodaciFetch!.isProdavac" class="checkbox" id="adminProdavac" name="adminProdavac"
+    <input [(ngModel)]="this.adminPodaci!.isProdavac" class="checkbox" id="adminProdavac" name="adminProdavac"
            type="checkbox"/>
   </div>
 
@@ -79,8 +79,8 @@
     <input (change)="onFileSelected($event);" accept="image/*" id="input-pic" type='file'/>
 
     <img class="oldPic"
-         src="{{ConfigFile.adresa_servera}}/Admin/GetImg?username={{this.adminPodaciFetch!.username}}"/>
-    <img class="newPic" src="{{ this.novaSlikaAdmin }}"/>
+         src="{{ConfigFile.adresa_servera}}/Admin/GetImg?username={{this.adminPodaci!.username}}"/>
+    <img class="newPic" src="{{ this.novaSlika }}"/>
 
   </div>
 
@@ -88,7 +88,7 @@
   <!-- submit changes when everything is fine and valid -->
 
   <div class="div-button">
-    <button (click)="closeEdit()" class="btn-zatvori" type="submit">
+    <button (click)="close()" class="btn-zatvori" type="submit">
       Zatvori
     </button>
     <button (click)="snimi(editForm)" class="btn-save" type="submit">

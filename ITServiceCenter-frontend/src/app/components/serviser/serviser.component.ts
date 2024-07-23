@@ -9,7 +9,7 @@ import {ServiserSnimiEndpoint, ServiserSnimiRequest,} from "../../endpoints/serv
 import {ServiserBrisiEndpoint} from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
 import {GradGetAllEndpoint, GradGetAllResponseGrad,} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
 import {ConfigFile} from "../../configFile";
-import {ServiserDodajRequest} from "../../endpoints/serviser-endpoints/serviser-dodaj-endpoint";
+import {ServiserDodajEndpoint, ServiserDodajRequest} from "../../endpoints/serviser-endpoints/serviser-dodaj-endpoint";
 
 
 @Component({
@@ -21,9 +21,7 @@ import {ServiserDodajRequest} from "../../endpoints/serviser-endpoints/serviser-
 })
 export class ServiserComponent implements OnInit {
   currentPage: number = 1;
-  JelPopunjeno: boolean = false;
-  novaSlikaSerivser: any = null;
-  opcionalnaLozinka: string = "";
+  jelPopunjeno: boolean = false;
   serviserPodaci: ServiserGetAllResponse | null = null;
   gradPodaci: GradGetAllResponseGrad[] | null = null;
   showServiserTable: boolean = true;
@@ -31,8 +29,10 @@ export class ServiserComponent implements OnInit {
   showServiserForm: boolean = false;
   searchServiser: string = "";
   odabraniServiser: ServiserSnimiRequest | null = null;
-  noviServiser: ServiserSnimiRequest | null = null;
+  noviServiser: ServiserDodajRequest | null = null;
+  opcionalnaLozinka: string = "";
   formTitle: string = "";
+  novaSlika: any = null;
   protected readonly ConfigFile = ConfigFile;
 
   constructor(
@@ -40,13 +40,12 @@ export class ServiserComponent implements OnInit {
     private serviserSnimiEndpoint: ServiserSnimiEndpoint,
     private serviserBrisiEndpoint: ServiserBrisiEndpoint,
     private gradGetAllEndpoint: GradGetAllEndpoint,
-    private serviserDodajRequest: ServiserDodajRequest
+    private serviserDodajEndpoint: ServiserDodajEndpoint,
   ) {
   }
 
   ngOnInit(): void {
-    this.fetchServiser();
-    this.fetchGrad();
+    this.fetchData();
   }
 
   fetchServiser() {
@@ -76,7 +75,7 @@ export class ServiserComponent implements OnInit {
       this.odabraniServiser!.lozinka = this.opcionalnaLozinka;
     }
     if (editForm.form.valid) {
-      this.odabraniServiser!.slikaKorisnikaBase64 = this.novaSlikaSerivser;
+      this.odabraniServiser!.slikaKorisnikaBase64 = this.novaSlika;
       this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
         next: (x: any) => {
           this.showServiserEdit = false;
@@ -90,7 +89,7 @@ export class ServiserComponent implements OnInit {
         },
       });
     }
-    this.JelPopunjeno = true;
+    this.jelPopunjeno = true;
   }
 
   brisiServiser(id: number) {
@@ -155,21 +154,17 @@ export class ServiserComponent implements OnInit {
 
   dodajServiser(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
-      this.noviServiser!.slikaKorisnikaBase64 = this.novaSlikaSerivser;
+      this.noviServiser!.slikaKorisnikaBase64 = this.novaSlika;
       this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
         next: (x: any) => {
-          this.showServiserEdit = false;
-          this.fetchServiser();
-          this.showServiserTable = true;
-          this.showServiserForm = false;
-          window.location.reload();
+          this.reloadDodaj();
         },
         error: (x) => {
-          alert("greska snimiServiser -> " + x.message);
+          alert("Greska serviser dodaj : " + x.message);
         },
       });
     }
-    this.JelPopunjeno = true;
+    this.jelPopunjeno = true;
   }
 
   //preview for the uploaded img
@@ -178,7 +173,7 @@ export class ServiserComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (event: any) => {
-        this.novaSlikaSerivser = event.target.result;
+        this.novaSlika = event.target.result;
       };
     }
   }
@@ -216,5 +211,18 @@ export class ServiserComponent implements OnInit {
     if (this.serviserPodaci != null) return this.serviserPodaci?.totalPages;
 
     return 1;
+  }
+
+  private reloadDodaj() {
+    this.showServiserEdit = false;
+    this.fetchServiser();
+    this.showServiserTable = true;
+    this.showServiserForm = false;
+    window.location.reload();
+  }
+
+  private fetchData() {
+    this.fetchServiser();
+    this.fetchGrad();
   }
 }

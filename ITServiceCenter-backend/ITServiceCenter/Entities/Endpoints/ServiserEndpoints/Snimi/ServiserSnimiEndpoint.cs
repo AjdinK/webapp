@@ -1,87 +1,77 @@
 using itservicecenter.Data;
+using ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi
+public class ServiserSnimiEndpoint : MyBaseEndpoint<ServiserSnimiRequest, int>
 {
-    public class ServiserSnimiEndpoint : MyBaseEndpoint<ServiserSnimiRequest, int>
+    private readonly ApplicationDbContext _ApplicationDbContext;
+
+    public ServiserSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
     {
-        private readonly ApplicationDbContext _applicationDbContext;
+        _ApplicationDbContext = ApplicationDbContext;
+    }
 
-        public ServiserSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
+
+    [HttpPost("Serviser/Snimi")]
+    [Authorize(Roles = "Admin")]
+    public override async Task<int> Obradi(
+        [FromBody] ServiserSnimiRequest request,
+        CancellationToken cancellationToken
+    )
+    {
+        var serviser = new Serviser();
+
+        if (request.Id > 0) serviser = _ApplicationDbContext.Serviser.FirstOrDefault(a => a.ID == request.Id);
+
+        if (serviser is null) throw new UserException("Greska, ne postoji serviser ID");
+
+        serviser.SpolID = 1;
+        serviser.Email = request.Email;
+        serviser.GradID = request.GradID;
+        serviser.Ime = request.Ime;
+        serviser.Prezime = request.Prezime;
+        serviser.Username = request.Username;
+        serviser.IsServiser = request.IsServiser;
+
+        if (request.Lozinka != null)
         {
-            _applicationDbContext = ApplicationDbContext;
+            serviser.LozinkaSalt = PasswordGenerator.GenerateSalt();
+            serviser.LozinkaHash = PasswordGenerator.GenerateHash(serviser.LozinkaSalt, request.Lozinka);
         }
 
-        [HttpPost("Serviser/Snimi")]
-        [Authorize(Roles = "Admin")]
-        public override async Task<int> Obradi(
-            [FromBody] ServiserSnimiRequest request,
-            CancellationToken cancellationToken
-        )
+        if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
         {
-            Serviser? Serviser;
-            if (request.ID == 0)
-            {
-                Serviser = new Serviser();
-                _applicationDbContext.Add(Serviser);
+            var SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
 
-                Serviser.Username = request.Username;
-                Serviser.Email = request.Email;
-            }
-            else
-            {
-                Serviser = _applicationDbContext.Serviser.FirstOrDefault(s => s.ID == request.ID);
-            }
+            if (SlikaBajtovi == null) throw new UserException("pogresan base64 format");
 
-            Serviser!.Ime = request.Ime;
-            Serviser.Prezime = request.Prezime;
-            Serviser.Ime = request.Ime;
-            Serviser.Email = request.Email;
-            Serviser.Username = request.Username;
-            Serviser.IsServiser = request.IsServiser;
-            Serviser.GradID = request.GradID;
-            Serviser.SpolID = request.SpolID;
+            var SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+            if (SlikaBajtoviVelika == null) throw new UserException("pogresan format slike");
 
-            if (request.Lozinka != null)
-            {
-                Serviser.LozinkaSalt = PasswordGenerator.GenerateSalt();
-                Serviser.LozinkaHash = PasswordGenerator.GenerateHash(Serviser.LozinkaSalt, request.Lozinka);
-            }
+            // byte[]? SlikaBajtoviMala = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
+            // if (SlikaBajtoviMala == null)
+            //     throw new Exception("pogresan format slike");
 
-            if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
-            {
-                var SlikaBajtovi = request.SlikaKorisnikaBase64?.ParsirajBase64();
+            var folderPath = "wwwroot/slike-admin";
+            if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
-                if (SlikaBajtovi == null)
-                {
-                    throw new Exception("pogresan base64 format");
-                }
+            // Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
 
-                var SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
-                if (SlikaBajtoviVelika == null)
-                {
-                    throw new Exception("pogresan format slike");
-                }
+            serviser.SlikaKorisnikaVelika = $"{folderPath}/{serviser.Username}-velika.jpg";
+            await System.IO.File.WriteAllBytesAsync(
+                serviser.SlikaKorisnikaVelika,
+                SlikaBajtoviVelika,
+                cancellationToken
+            );
 
-                var folderPath = "wwwroot/slike-serviser";
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-
-                Serviser.SlikaKorisnikaVelika = $"{folderPath}/{Serviser.Username.ToLower()}-velika.jpg";
-                await System.IO.File.WriteAllBytesAsync(
-                    Serviser.SlikaKorisnikaVelika,
-                    SlikaBajtoviVelika,
-                    cancellationToken
-                );
-            }
-
-            await _applicationDbContext.SaveChangesAsync(cancellationToken);
-            return Serviser.ID;
+            // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviMala,
+            //     cancellationToken);
         }
+
+        await _ApplicationDbContext.SaveChangesAsync(cancellationToken);
+        return serviser.ID;
     }
 }

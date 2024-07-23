@@ -174,11 +174,13 @@ select option {
 
 .greska-div {
   width: 70%;
-  margin-left: 13.5%;
+  margin-left: 16%;
   color: indianred;
+  font-size: small;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
+
 
 .div-button {
   display: flex;
