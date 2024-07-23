@@ -6,6 +6,7 @@ import {Page404Component} from "./components/page-404/page404.component";
 import {Page401Component} from "./components/page-401/page-401.component";
 import {authGuard} from "./services/auth.guard";
 import {guestGuard} from "./services/guest.guard";
+import {DashboardRadnikComponent} from "./components/dashboard-radnik/dashboard-radnik.component";
 
 export const routes: Routes = [
   {
@@ -29,6 +30,10 @@ export const routes: Routes = [
     path: 'dashboard-admin',
     component: DashboardAdminComponent,
     canActivate: [authGuard]
+  },
+  {
+    path: 'dashboard-radnik',
+    component: DashboardRadnikComponent,
   },
   {
     path: 'assets/ava',

@@ -46,6 +46,7 @@ export class ServiserComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+    this.resetPassword();
   }
 
   fetchServiser() {
@@ -70,10 +71,6 @@ export class ServiserComponent implements OnInit {
   }
 
   snimiServiser(editForm: NgForm) {
-
-    if (this.opcionalnaLozinka != null) {
-      this.odabraniServiser!.lozinka = this.opcionalnaLozinka;
-    }
     if (editForm.form.valid) {
       this.odabraniServiser!.slikaKorisnikaBase64 = this.novaSlika;
       this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
@@ -112,7 +109,6 @@ export class ServiserComponent implements OnInit {
     this.showServiserTable = false;
   }
 
-  //fetch grad data form-element-wrapper db
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
@@ -124,7 +120,6 @@ export class ServiserComponent implements OnInit {
     });
   }
 
-  //close the edit form and show the data table refreshed when press on zatvori button
   closeEdit() {
     this.showServiserEdit = false;
     this.fetchServiser();
@@ -155,7 +150,7 @@ export class ServiserComponent implements OnInit {
   dodajServiser(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
       this.noviServiser!.slikaKorisnikaBase64 = this.novaSlika;
-      this.serviserSnimiEndpoint.obradi(this.noviServiser!).subscribe({
+      this.serviserDodajEndpoint.obradi(this.noviServiser!).subscribe({
         next: (x: any) => {
           this.reloadDodaj();
         },
@@ -224,5 +219,9 @@ export class ServiserComponent implements OnInit {
   private fetchData() {
     this.fetchServiser();
     this.fetchGrad();
+  }
+
+  private resetPassword() {
+    this.opcionalnaLozinka = '';
   }
 }

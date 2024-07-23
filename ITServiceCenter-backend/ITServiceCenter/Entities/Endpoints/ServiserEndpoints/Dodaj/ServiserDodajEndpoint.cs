@@ -1,5 +1,4 @@
 using itservicecenter.Data;
-using itservicecenter.Entities.Endpoints.AdminEndpoints.Dodaj;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Authorization;
@@ -7,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace itservicecenter.Entities.Endpoints.ServiserEndpoints.Dodaj;
 
-public class ServiserDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
+public class ServiserDodajEndpoint : MyBaseEndpoint<ServiserDodajRequest, int>
 {
     private readonly ApplicationDbContext _ApplicationDbContext;
 
@@ -18,11 +17,11 @@ public class ServiserDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
 
     [HttpPost("Serviser/Dodaj")]
     [Authorize(Roles = "Admin")]
-    public override async Task<int> Obradi([FromBody] AdminDodajRequest request, CancellationToken cancellationToken)
+    public override async Task<int> Obradi([FromBody] ServiserDodajRequest request, CancellationToken cancellationToken)
     {
         Serviser? serviser;
 
-        if (request.Id == 0)
+        if (request.ID == 0)
         {
             serviser = new Serviser();
             _ApplicationDbContext.Add(serviser);
@@ -34,13 +33,11 @@ public class ServiserDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
 
         serviser.SpolID = 1;
         serviser.Email = request.Email;
-        serviser.GradID = request.GradId;
+        serviser.GradID = request.GradID;
         serviser.Ime = request.Ime;
         serviser.Prezime = request.Prezime;
         serviser.Username = request.Username;
-        serviser.IsProdavac = true;
-        serviser.IsServiser = true;
-        serviser.IsAdmin = true;
+        serviser.IsServiser = request.IsServiser;
 
         if (request.Lozinka != null)
         {
@@ -61,10 +58,10 @@ public class ServiserDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
             // if (SlikaBajtoviMala == null)
             //     throw new Exception("pogresan format slike");
 
-            var folderPath = "wwwroot/slike-admin";
+            var folderPath = "wwwroot/slike-serviser";
             if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
-            // Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
+            // serviser.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
 
             serviser.SlikaKorisnikaVelika = $"{folderPath}/{serviser.Username}-velika.jpg";
             await System.IO.File.WriteAllBytesAsync(
@@ -73,7 +70,7 @@ public class ServiserDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
                 cancellationToken
             );
 
-            // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviMala,
+            // await System.IO.File.WriteAllBytesAsync(serviser.SlikaKorisnikaMala, SlikaBajtoviMala,
             //     cancellationToken);
         }
 

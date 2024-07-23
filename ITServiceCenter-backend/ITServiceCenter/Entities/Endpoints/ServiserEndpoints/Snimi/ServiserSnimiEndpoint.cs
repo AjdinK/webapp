@@ -55,10 +55,10 @@ public class ServiserSnimiEndpoint : MyBaseEndpoint<ServiserSnimiRequest, int>
             // if (SlikaBajtoviMala == null)
             //     throw new Exception("pogresan format slike");
 
-            var folderPath = "wwwroot/slike-admin";
+            var folderPath = "wwwroot/slike-serviser";
             if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
-            // Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
+            // serviser.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
 
             serviser.SlikaKorisnikaVelika = $"{folderPath}/{serviser.Username}-velika.jpg";
             await System.IO.File.WriteAllBytesAsync(
@@ -67,7 +67,7 @@ public class ServiserSnimiEndpoint : MyBaseEndpoint<ServiserSnimiRequest, int>
                 cancellationToken
             );
 
-            // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviMala,
+            // await System.IO.File.WriteAllBytesAsync(serviser.SlikaKorisnikaMala, SlikaBajtoviMala,
             //     cancellationToken);
         }
 

@@ -18,7 +18,6 @@ export const guestGuard: CanActivateFn = (route, state) => {
     } else {
       router.navigateByUrl('/dashboard-radnik');
     }
-    return false;
   }
   return true;
 };

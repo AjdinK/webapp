@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using itservicecenter.Helper;
 
 namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi;
 
@@ -23,8 +22,8 @@ public class ServiserSnimiRequest
     public bool IsServiser { get; set; }
     public int GradID { get; set; }
     public int SpolID { get; set; }
-
-    [ValidatorLozinka] public string? Lozinka { get; set; }
+    
+    public string? Lozinka { get; set; }
 
     public string? SlikaKorisnikaBase64 { get; set; }
 }
