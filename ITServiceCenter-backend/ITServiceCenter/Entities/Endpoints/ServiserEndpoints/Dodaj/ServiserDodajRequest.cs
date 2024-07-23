@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using itservicecenter.Helper;
 
-namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi;
+namespace itservicecenter.Entities.Endpoints.ServiserEndpoints.Dodaj;
 
-public class ServiserSnimiRequest
+public class ServiserDodajRequest
 {
     public int ID { get; set; }
 
@@ -26,7 +26,7 @@ public class ServiserSnimiRequest
 
     [Required(ErrorMessage = "Obavezno polje")]
     [ValidatorLozinka]
-    public string? Lozinka { get; set; }
+    public string Lozinka { get; set; }
 
     public string? SlikaKorisnikaBase64 { get; set; }
 }

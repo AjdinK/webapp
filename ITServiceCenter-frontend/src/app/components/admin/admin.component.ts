@@ -8,6 +8,7 @@ import {ConfigFile} from "../../configFile";
 import {HttpClient} from "@angular/common/http";
 import {FormElementWrapperComponent} from "../reusable/form-element-wrapper/form-element-wrapper.component";
 
+
 @Component({
   selector: "app-admin",
   standalone: true,
@@ -19,7 +20,7 @@ export class AdminComponent implements OnInit {
   novaSlikaAdmin: any;
   showAdminForm: boolean = true;
   adminPodaciFetch: AdminGetByIdResponse | null = null;
-  adminPodaciEdit: AdminSnimiRequest | null = null;
+  adminSnimiRequest: AdminSnimiRequest | null = null;
   gradPodaci: GradGetAllResponseGrad[] | null = null;
   formTitle: string = "Edit Admin";
   JelPopunjeno: boolean = false;
@@ -37,6 +38,22 @@ export class AdminComponent implements OnInit {
       prezime: new FormControl('', [Validators.pattern('[A-Za-z\\sčćžđ]+'), Validators.required, Validators.minLength(3)]),
       username: new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern('[A-Za-z\\sčćžđ]+')]),
     });
+  }
+
+  dto(adminPodaciFetch: AdminGetByIdResponse) {
+    this.adminSnimiRequest = {
+      id: adminPodaciFetch!.id,
+      ime: adminPodaciFetch!.ime,
+      prezime: adminPodaciFetch!.prezime,
+      username: adminPodaciFetch!.username,
+      email: adminPodaciFetch!.email,
+      lozinka: adminPodaciFetch!.lozinka,
+      isAdmin: adminPodaciFetch!.isAdmin,
+      isServiser: adminPodaciFetch!.isServiser,
+      isProdavac: adminPodaciFetch!.isProdavac,
+      gradId: adminPodaciFetch!.gradId,
+      slikaKorisnikaBase64: this.novaSlikaAdmin
+    }
   }
 
   //fetch Admin data form-element-wrapper db
@@ -73,15 +90,16 @@ export class AdminComponent implements OnInit {
   //save admin data form-element-wrapper the form and check the form if is it valid? or not
   snimi(editForm: NgForm) {
     if (editForm.form.valid) {
-      this.adminPodaciFetch!.slikaKorisnikaBase64 = this.novaSlikaAdmin;
-      this.adminSnimiEndpoint.obradi(this.adminPodaciFetch!).subscribe({
+      // this.adminPodaciFetch!.slikaKorisnikaBase64 = this.novaSlikaAdmin;
+      this.dto(this.adminPodaciFetch!);
+      this.adminSnimiEndpoint.obradi(this.adminSnimiRequest!).subscribe({
         next: (x) => {
           this.showAdminForm = false;
           this.fetchAdmin();
           window.location.reload();
         },
         error: (x) => {
-          alert("Greska snimi admin " + x.message);
+          alert("Greska, snimi admin : " + x.message);
         },
       });
     }

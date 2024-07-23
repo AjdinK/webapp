@@ -1,33 +1,35 @@
-﻿using itservicecenter.Data;
+using itservicecenter.Data;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Snimi;
+namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Dodaj;
 
-public class AdminSnimiEndpoint : MyBaseEndpoint<AdminSnimiRequest, int>
+public class AdminDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
 {
     private readonly ApplicationDbContext _ApplicationDbContext;
 
-    public AdminSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
+    public AdminDodajEndpoint(ApplicationDbContext ApplicationDbContext)
     {
         _ApplicationDbContext = ApplicationDbContext;
     }
 
-
-    [HttpPost("Admin/Snimi")]
+    [HttpPost("Admin/Dodaj")]
     [Authorize(Roles = "Admin")]
-    public override async Task<int> Obradi(
-        [FromBody] AdminSnimiRequest request,
-        CancellationToken cancellationToken
-    )
+    public override async Task<int> Obradi([FromBody] AdminDodajRequest request, CancellationToken cancellationToken)
     {
-        var admin = new Admin();
+        Admin? admin;
 
-        if (request.Id > 0) admin = _ApplicationDbContext.Admin.FirstOrDefault(a => a.ID == request.Id);
-
-        if (admin is null) throw new UserException("Greska, ne postoji admin ID");
+        if (request.Id == 0)
+        {
+            admin = new Admin();
+            _ApplicationDbContext.Add(admin);
+        }
+        else
+        {
+            throw new NotImplementedException("admin ID mora biti nula kada se dodaje novi admin");
+        }
 
         admin.SpolID = 1;
         admin.Email = request.Email;
@@ -35,9 +37,9 @@ public class AdminSnimiEndpoint : MyBaseEndpoint<AdminSnimiRequest, int>
         admin.Ime = request.Ime;
         admin.Prezime = request.Prezime;
         admin.Username = request.Username;
-        admin.IsProdavac = request.IsProdavac;
-        admin.IsServiser = request.IsServiser;
-        admin.IsAdmin = request.IsAdmin;
+        admin.IsProdavac = true;
+        admin.IsServiser = true;
+        admin.IsAdmin = true;
 
         if (request.Lozinka != null)
         {

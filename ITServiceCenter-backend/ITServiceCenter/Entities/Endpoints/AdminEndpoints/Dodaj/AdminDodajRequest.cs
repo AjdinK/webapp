@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using itservicecenter.Helper;
 
-namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Snimi;
+namespace itservicecenter.Entities.Endpoints.AdminEndpoints.Dodaj;
 
-public class ServiserSnimiRequest
+public class AdminDodajRequest
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
     [Required(ErrorMessage = "Obavezno polje")]
     public string Ime { get; set; }
@@ -20,13 +20,12 @@ public class ServiserSnimiRequest
     [EmailAddress(ErrorMessage = "Unesite validan email")]
     public string Email { get; set; }
 
-    public bool IsServiser { get; set; }
-    public int GradID { get; set; }
-    public int SpolID { get; set; }
+    [Required(ErrorMessage = "Obavezno polje")]
+    public int GradId { get; set; }
 
     [Required(ErrorMessage = "Obavezno polje")]
     [ValidatorLozinka]
-    public string? Lozinka { get; set; }
+    public string Lozinka { get; set; }
 
     public string? SlikaKorisnikaBase64 { get; set; }
 }

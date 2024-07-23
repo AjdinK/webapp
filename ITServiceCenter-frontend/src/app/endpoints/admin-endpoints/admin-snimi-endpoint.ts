@@ -29,3 +29,4 @@ export interface AdminSnimiRequest {
   gradId: number;
   slikaKorisnikaBase64: string | undefined;
 }
+

@@ -9,6 +9,7 @@ import {ServiserSnimiEndpoint, ServiserSnimiRequest,} from "../../endpoints/serv
 import {ServiserBrisiEndpoint} from "../../endpoints/serviser-endpoints/serviser-brisi-endpoint";
 import {GradGetAllEndpoint, GradGetAllResponseGrad,} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
 import {ConfigFile} from "../../configFile";
+import {ServiserDodajRequest} from "../../endpoints/serviser-endpoints/serviser-dodaj-endpoint";
 
 
 @Component({
@@ -38,7 +39,8 @@ export class ServiserComponent implements OnInit {
     private serviserGetAllEndpoint: ServiserGetAllEndpoint,
     private serviserSnimiEndpoint: ServiserSnimiEndpoint,
     private serviserBrisiEndpoint: ServiserBrisiEndpoint,
-    private gradGetAllEndpoint: GradGetAllEndpoint
+    private gradGetAllEndpoint: GradGetAllEndpoint,
+    private serviserDodajRequest: ServiserDodajRequest
   ) {
   }
 
@@ -47,19 +49,17 @@ export class ServiserComponent implements OnInit {
     this.fetchGrad();
   }
 
-  //fetch serviser data form-element-wrapper db
   fetchServiser() {
     this.serviserGetAllEndpoint.obradi(this.currentPage!).subscribe({
       next: (x) => {
         this.serviserPodaci = x;
       },
       error: (x) => {
-        alert("greska -> " + x.error);
+        alert("Greska fetchServiser : " + x.message);
       },
     });
   }
 
-  //search for serviser using ime , prezime or username
   filtrirajServiser() {
     if (this.serviserPodaci == null) return [];
     return this.serviserPodaci.listaServiser.filter(
@@ -70,7 +70,6 @@ export class ServiserComponent implements OnInit {
     );
   }
 
-  //save serviser data form-element-wrapper the form and check the form if is it valid? or not
   snimiServiser(editForm: NgForm) {
 
     if (this.opcionalnaLozinka != null) {
@@ -94,7 +93,6 @@ export class ServiserComponent implements OnInit {
     this.JelPopunjeno = true;
   }
 
-  //soft delete the user form-element-wrapper the data
   brisiServiser(id: number) {
     if (confirm("Da li zelite izbrisati Serviser"))
       this.serviserBrisiEndpoint.obradi(id).subscribe({
@@ -103,12 +101,11 @@ export class ServiserComponent implements OnInit {
           this.showServiserTable = true;
         },
         error: (x) => {
-          alert("greska brisiServiser -> " + x.error);
+          alert("greska grisiServiser -> " + x.message);
         },
       });
   }
 
-  //show the edit form and hide the data table when press on edit button
   editServiser(x: any) {
     this.formTitle = "Edit Serviser";
     this.showServiserEdit = true;
@@ -123,7 +120,7 @@ export class ServiserComponent implements OnInit {
         this.gradPodaci = x.gradovi;
       },
       error: (x) => {
-        alert("greska fetchGrad -> " + x.error);
+        alert("greska fetchGrad -> " + x.message);
       },
     });
   }
@@ -156,7 +153,6 @@ export class ServiserComponent implements OnInit {
     };
   }
 
-  //save serviser data form-element-wrapper the form and check the data if is it valid? or not
   dodajServiser(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
       this.noviServiser!.slikaKorisnikaBase64 = this.novaSlikaSerivser;
@@ -169,7 +165,7 @@ export class ServiserComponent implements OnInit {
           window.location.reload();
         },
         error: (x) => {
-          alert("greska snimiServiser -> " + x.error);
+          alert("greska snimiServiser -> " + x.message);
         },
       });
     }
