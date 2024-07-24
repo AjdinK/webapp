@@ -1,15 +1,17 @@
-import { Observable } from "rxjs";
-import { MyBaseEndpoint } from "../my-base-endpoint";
-import { HttpClient } from "@angular/common/http";
-import { ConfigFile } from "../../configFile";
-import { Injectable } from "@angular/core";
+import {Observable} from "rxjs";
+import {MyBaseEndpoint} from "../my-base-endpoint";
+import {HttpClient} from "@angular/common/http";
+import {ConfigFile} from "../../configFile";
+import {Injectable} from "@angular/core";
 
-@Injectable({ providedIn: "root" })
+@Injectable({providedIn: "root"})
 export class ServiserSnimiEndpoint
   implements MyBaseEndpoint<ServiserSnimiRequest, void> {
-  constructor(private httpKlijent: HttpClient) {}
+  constructor(private httpKlijent: HttpClient) {
+  }
+
   obradi(request: ServiserSnimiRequest): Observable<void> {
-    let url = ConfigFile.adresa_servera + "/Serviser/Snimi";
+    let url = ConfigFile.adresa_servera + "/serviser/snimi";
     return this.httpKlijent.post<void>(url, request);
   }
 }
@@ -24,5 +26,5 @@ export interface ServiserSnimiRequest {
   gradID: number;
   spolID: number;
   slikaKorisnikaBase64: string | undefined;
-  lozinka:string;
+  lozinka: string;
 }

@@ -1,42 +1,40 @@
 ﻿using itservicecenter.Data;
+using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
-using RouteAttribute = Microsoft.AspNetCore.Components.RouteAttribute;
 
-namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Snimi
+namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Snimi;
+
+public class FAQSnimiEndpoint : MyBaseEndpoint<FAQSnimiRequest, int>
 {
-    public class FAQSnimiEndpoint : MyBaseEndpoint<FAQSnimiRequest, int>
+    private readonly ApplicationDbContext _applicationDbContext;
+
+    public FAQSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
     {
-        private readonly ApplicationDbContext _applicationDbContext;
+        _applicationDbContext = ApplicationDbContext;
+    }
 
-        public FAQSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
+    [HttpPost("faq/snimi")]
+    public override async Task<int> Obradi(
+        [FromBody] FAQSnimiRequest request,
+        CancellationToken cancellationToken
+    )
+    {
+        FAQ? fAQ;
+
+        if (request.ID == 0)
         {
-            _applicationDbContext = ApplicationDbContext;
+            fAQ = new FAQ();
+            _applicationDbContext.Add(fAQ);
+        }
+        else
+        {
+            fAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);
         }
 
-        [HttpPost("FAQ/Snimi")]
-        public override async Task<int> Obradi(
-            [FromBody] FAQSnimiRequest request,
-            CancellationToken cancellationToken
-        )
-        {
-            Models.FAQ? fAQ;
-
-            if (request.ID == 0)
-            {
-                fAQ = new Models.FAQ();
-                _applicationDbContext.Add(fAQ);
-            }
-            else
-            {
-                fAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);
-            }
-
-            fAQ.Pitanje = request.Pitanje;
-            fAQ.Odgovor = request.Odgovor;
-            await _applicationDbContext.SaveChangesAsync();
-            return fAQ.ID;
-        }
+        fAQ.Pitanje = request.Pitanje;
+        fAQ.Odgovor = request.Odgovor;
+        await _applicationDbContext.SaveChangesAsync();
+        return fAQ.ID;
     }
 }

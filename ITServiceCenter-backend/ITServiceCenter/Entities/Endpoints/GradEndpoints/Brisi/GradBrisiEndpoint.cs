@@ -14,7 +14,7 @@ public class GradBrisiEndpoint : MyBaseEndpoint<GradBrisiRequest, int>
         _applicationDbContext = ApplicationDbContext;
     }
 
-    [HttpDelete("Grad/brisi")]
+    [HttpDelete("grad/brisi")]
     [Authorize(Roles = "Admin")]
     public override async Task<int> Obradi(
         [FromQuery] GradBrisiRequest request, CancellationToken cancellationToken)

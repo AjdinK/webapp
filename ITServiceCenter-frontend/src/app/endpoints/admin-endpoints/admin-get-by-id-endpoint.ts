@@ -11,10 +11,11 @@ export class AdminGetByIdEndpoint
   }
 
   obradi(request: number): Observable<AdminGetByIdResponse> {
-    let url = ConfigFile.adresa_servera + '/Admin/GetById?Id=' + request;
+    let url = ConfigFile.adresa_servera + '/admin/getbyid?Id=' + request;
     return this.httpKlijent.get<AdminGetByIdResponse>(url);
   }
 }
+
 
 export interface AdminGetByIdResponse {
   id: number;

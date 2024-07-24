@@ -11,7 +11,7 @@ export class ServiserDodajEndpoint
   }
 
   obradi(request: ServiserDodajRequest): Observable<number> {
-    let url = ConfigFile.adresa_servera + "/Serviser/Dodaj";
+    let url = ConfigFile.adresa_servera + "/serviser/dodaj";
     return this.httpKlijent.post<number>(url, request);
   }
 }

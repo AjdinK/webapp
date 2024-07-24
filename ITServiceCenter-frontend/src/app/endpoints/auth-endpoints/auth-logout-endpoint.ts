@@ -11,7 +11,7 @@ export class AuthLogoutEndpoint implements MyBaseEndpoint<AuthLogoutRequest, any
   }
 
   obradi(request: AuthLogoutRequest): Observable<any> {
-    let url = ConfigFile.adresa_servera + "/AuthLogoutEndpoint";
+    let url = ConfigFile.adresa_servera + "/auth/logout";
     return this.httpKlijent.post(url, request, {
       headers: {
         'Content-Type': 'application/json',

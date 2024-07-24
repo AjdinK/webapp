@@ -15,7 +15,7 @@ public class ServiserSnimiEndpoint : MyBaseEndpoint<ServiserSnimiRequest, int>
     }
 
 
-    [HttpPost("Serviser/Snimi")]
+    [HttpPost("serviser/snimi")]
     [Authorize(Roles = "Admin")]
     public override async Task<int> Obradi(
         [FromBody] ServiserSnimiRequest request,

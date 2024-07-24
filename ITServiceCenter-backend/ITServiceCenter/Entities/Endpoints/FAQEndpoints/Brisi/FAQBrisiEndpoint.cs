@@ -3,33 +3,32 @@ using itservicecenter.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi
+namespace itservicecenter.Entities.Endpoints.FAQEndpoints.Brisi;
+
+public class FAQBrisiEndpoint : MyBaseEndpoint<FAQBrisiRequest, int>
 {
-    public class FAQBrisiEndpoint : MyBaseEndpoint<FAQBrisiRequest, int>
+    private readonly ApplicationDbContext _applicationDbContext;
+
+    public FAQBrisiEndpoint(ApplicationDbContext ApplicationDbContext)
     {
-        private readonly ApplicationDbContext _applicationDbContext;
+        _applicationDbContext = ApplicationDbContext;
+    }
 
-        public FAQBrisiEndpoint(ApplicationDbContext ApplicationDbContext)
+    [HttpDelete("faq/brisi")]
+    [Authorize(Roles = "Admin")]
+    public override async Task<int> Obradi(
+        [FromQuery] FAQBrisiRequest request,
+        CancellationToken cancellationToken
+    )
+    {
+        var FAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);
+        if (FAQ != null)
         {
-            _applicationDbContext = ApplicationDbContext;
+            _applicationDbContext.FAQ.Remove(FAQ);
+            await _applicationDbContext.SaveChangesAsync();
+            return request.ID;
         }
 
-        [HttpDelete("FAQ/brisi")]
-        [Authorize(Roles = "Admin")]
-        public override async Task<int> Obradi(
-            [FromQuery] FAQBrisiRequest request,
-            CancellationToken cancellationToken
-        )
-        {
-            var FAQ = _applicationDbContext.FAQ.FirstOrDefault(f => f.ID == request.ID);
-            if (FAQ != null)
-            {
-                _applicationDbContext.FAQ.Remove(FAQ);
-                await _applicationDbContext.SaveChangesAsync();
-                return request.ID;
-            }
-
-            throw new UserException("Error -> Pogresen ID");
-        }
+        throw new UserException("Error -> Pogresen ID");
     }
 }

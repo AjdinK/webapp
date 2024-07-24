@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 namespace itservicecenter.Entities.Endpoints.AuthEndpoints;
 
 [ApiController]
-[Route("[controller]")]
 public class AuthLoginEndpoint : ControllerBase
 {
     private readonly ApplicationDbContext _context;
@@ -20,7 +19,7 @@ public class AuthLoginEndpoint : ControllerBase
         _jwtKey = configuration["Jwt:Key"];
     }
 
-    [HttpPost]
+    [HttpPost("auth/login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] AuthLoginRequest request)
     {

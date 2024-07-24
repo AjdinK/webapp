@@ -11,7 +11,7 @@ export class AuthLoginEndpoint implements MyBaseEndpoint<AuthLoginRequest, any> 
   }
 
   obradi(request: AuthLoginRequest): Observable<any> {
-    let url = ConfigFile.adresa_servera + '/AuthLoginEndpoint';
+    let url = ConfigFile.adresa_servera + '/auth/login';
     return this.httpKlijent.post<any>(url, request);
   }
 

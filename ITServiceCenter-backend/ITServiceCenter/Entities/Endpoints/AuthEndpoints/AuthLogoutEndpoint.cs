@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace itservicecenter.Entities.Endpoints.AuthEndpoints;
 
-[Route("[controller]")]
 public class AuthLogoutEndpoint : MyBaseEndpoint<AuthLogoutRequest, NoResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;
@@ -16,7 +15,7 @@ public class AuthLogoutEndpoint : MyBaseEndpoint<AuthLogoutRequest, NoResponse>
         _authService = authService;
     }
 
-    [HttpPost]
+    [HttpPost("auth/logout")]
     public override async Task<NoResponse> Obradi([FromBody] AuthLogoutRequest request,
         CancellationToken cancellationToken)
     {

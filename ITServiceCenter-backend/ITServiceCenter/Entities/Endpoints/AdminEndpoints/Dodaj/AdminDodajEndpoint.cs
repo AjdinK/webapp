@@ -15,7 +15,7 @@ public class AdminDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
         _ApplicationDbContext = ApplicationDbContext;
     }
 
-    [HttpPost("Admin/Dodaj")]
+    [HttpPost("admin/dodaj")]
     [Authorize(Roles = "Admin")]
     public override async Task<int> Obradi([FromBody] AdminDodajRequest request, CancellationToken cancellationToken)
     {

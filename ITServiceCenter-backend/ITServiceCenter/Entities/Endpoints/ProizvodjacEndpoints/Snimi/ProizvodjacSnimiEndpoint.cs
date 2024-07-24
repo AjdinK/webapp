@@ -1,40 +1,40 @@
 ﻿using itservicecenter.Data;
+using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
 using Microsoft.AspNetCore.Mvc;
 
-namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Snimi
+namespace itservicecenter.Entities.Endpoints.ProizvodjacEndpoints.Snimi;
+
+public class ProizvodjacSnimiEndpoint : MyBaseEndpoint<ProizvodjacSnimiRequest, int>
 {
-    public class ProizvodjacSnimiEndpoint : MyBaseEndpoint<ProizvodjacSnimiRequest, int>
+    private readonly ApplicationDbContext _applicationDbContext;
+
+    public ProizvodjacSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
     {
-        private readonly ApplicationDbContext _applicationDbContext;
+        _applicationDbContext = ApplicationDbContext;
+    }
 
-        public ProizvodjacSnimiEndpoint(ApplicationDbContext ApplicationDbContext)
+    [HttpPost("proizvodjac/snimi")]
+    public override async Task<int> Obradi(
+        [FromBody] ProizvodjacSnimiRequest request,
+        CancellationToken cancellationToken
+    )
+    {
+        Proizvodjac? Proizvodjac;
+        if (request.ID == 0)
         {
-            _applicationDbContext = ApplicationDbContext;
+            Proizvodjac = new Proizvodjac();
+            _applicationDbContext.Add(Proizvodjac);
+        }
+        else
+        {
+            Proizvodjac = _applicationDbContext.Proizvodjac.FirstOrDefault(p =>
+                p.ID == request.ID
+            );
         }
 
-        [HttpPost("Proizvodjac/Snimi")]
-        public override async Task<int> Obradi(
-            [FromBody] ProizvodjacSnimiRequest request,
-            CancellationToken cancellationToken
-        )
-        {
-            Models.Proizvodjac? Proizvodjac;
-            if (request.ID == 0)
-            {
-                Proizvodjac = new Models.Proizvodjac();
-                _applicationDbContext.Add(Proizvodjac);
-            }
-            else
-            {
-                Proizvodjac = _applicationDbContext.Proizvodjac.FirstOrDefault(p =>
-                    p.ID == request.ID
-                );
-            }
-
-            Proizvodjac.Naziv = request.Naziv;
-            await _applicationDbContext.SaveChangesAsync();
-            return Proizvodjac.ID;
-        }
+        Proizvodjac.Naziv = request.Naziv;
+        await _applicationDbContext.SaveChangesAsync();
+        return Proizvodjac.ID;
     }
 }

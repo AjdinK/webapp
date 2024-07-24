@@ -3,34 +3,33 @@ using itservicecenter.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Brisi
+namespace ITServiceCenter.Entities.Endpoints.ServiserEndpoints.Brisi;
+
+public class ServiserBrisiEndpoint : MyBaseEndpoint<ServiserBrisiRequest, int>
 {
-    public class ServiserBrisiEndpoint : MyBaseEndpoint<ServiserBrisiRequest, int>
+    private readonly ApplicationDbContext _applicationDbContext;
+
+    public ServiserBrisiEndpoint(ApplicationDbContext ApplicationDbContext)
     {
-        private readonly ApplicationDbContext _applicationDbContext;
+        _applicationDbContext = ApplicationDbContext;
+    }
 
-        public ServiserBrisiEndpoint(ApplicationDbContext ApplicationDbContext)
+    [HttpDelete("serviser/brisi")]
+    [Authorize(Roles = "Admin")]
+    public override async Task<int> Obradi(
+        [FromQuery] ServiserBrisiRequest request,
+        CancellationToken cancellationToken
+    )
+    {
+        var Serviser = _applicationDbContext.Serviser.FirstOrDefault(s => s.ID == request.ID);
+
+        if (Serviser != null)
         {
-            _applicationDbContext = ApplicationDbContext;
+            Serviser.JelObrisan = true;
+            await _applicationDbContext.SaveChangesAsync(cancellationToken);
+            return request.ID;
         }
 
-        [HttpDelete("Serviser/Brisi")]
-        [Authorize(Roles = "Admin")]
-        public override async Task<int> Obradi(
-            [FromQuery] ServiserBrisiRequest request,
-            CancellationToken cancellationToken
-        )
-        {
-            var Serviser = _applicationDbContext.Serviser.FirstOrDefault(s => s.ID == request.ID);
-
-            if (Serviser != null)
-            {
-                Serviser.JelObrisan = true;
-                await _applicationDbContext.SaveChangesAsync(cancellationToken);
-                return request.ID;
-            }
-
-            throw new UserException("Pogresen ID");
-        }
+        throw new UserException("Pogresen ID");
     }
 }

@@ -1,23 +1,26 @@
-import { Observable } from "rxjs";
-import { MyBaseEndpoint } from "../my-base-endpoint";
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { ConfigFile } from "../../configFile";
+import {Observable} from "rxjs";
+import {MyBaseEndpoint} from "../my-base-endpoint";
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {ConfigFile} from "../../configFile";
 
-@Injectable({ providedIn: "root" })
+@Injectable({providedIn: "root"})
 export class ProdavacGetAllEndpoint
   implements MyBaseEndpoint<number, ProdavacGetAllResponse> {
-  constructor(private httpKlijent: HttpClient) {}
+  constructor(private httpKlijent: HttpClient) {
+  }
+
   obradi(pageNumber: number): Observable<ProdavacGetAllResponse> {
     let url =
       ConfigFile.adresa_servera +
-      "/Prodavac/GetAll?PageNumber=" +
+      "/prodavac/getall?PageNumber=" +
       pageNumber +
       "&PageSize=" +
       6;
     return this.httpKlijent.get<ProdavacGetAllResponse>(url);
   }
 }
+
 
 export interface ProdavacGetAllResponse {
   listaProdavac: ProdavacGetAllResponseProdavac[];

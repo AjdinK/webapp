@@ -11,7 +11,7 @@ export class AdminSnimiEndpoint
   }
 
   obradi(request: AdminSnimiRequest): Observable<number> {
-    let url = ConfigFile.adresa_servera + '/Admin/Snimi';
+    let url = ConfigFile.adresa_servera + '/admin/snimi';
     return this.httpKlijent.post<number>(url, request);
   }
 }

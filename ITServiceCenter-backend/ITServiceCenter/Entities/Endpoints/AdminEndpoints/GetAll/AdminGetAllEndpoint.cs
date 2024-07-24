@@ -4,43 +4,42 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll
+namespace ITServiceCenter.Entities.Endpoints.AdminEndpoints.GetAll;
+
+public class AdminGetAllEndpoint : MyBaseEndpoint<NoRequest, AdminGetAllResponse>
 {
-    public class AdminGetAllEndpoint : MyBaseEndpoint<NoRequest, AdminGetAllResponse>
+    private readonly ApplicationDbContext _ApplicationDbContext;
+
+    public AdminGetAllEndpoint(ApplicationDbContext ApplicationDbContext)
     {
-        private readonly ApplicationDbContext _ApplicationDbContext;
+        _ApplicationDbContext = ApplicationDbContext;
+    }
 
-        public AdminGetAllEndpoint(ApplicationDbContext ApplicationDbContext)
-        {
-            _ApplicationDbContext = ApplicationDbContext;
-        }
+    [Authorize(Roles = "Admin")]
+    [HttpGet("admin/getall")]
+    public override async Task<AdminGetAllResponse> Obradi(
+        [FromQuery] NoRequest request,
+        CancellationToken cancellationToken
+    )
+    {
+        var data = await _ApplicationDbContext
+            .Admin.OrderBy(a => a.ID)
+            .Select(a => new AdminGetAllResponseAdmin
+            {
+                ID = a.ID,
+                Ime = a.Ime,
+                Prezime = a.Prezime,
+                Username = a.Username,
+                IsAdmin = a.IsAdmin,
+                IsProdavac = a.IsProdavac,
+                IsServiser = a.IsServiser,
+                GradID = a.GradID,
+                SpolID = a.SpolID,
+                Email = a.Email,
+                SlikaKorisnikaBase64 = a.SlikaKorisnikaVelika
+            })
+            .ToListAsync(cancellationToken);
 
-        [Authorize(Roles = "Admin")]
-        [HttpGet("Admin/GetAll")]
-        public override async Task<AdminGetAllResponse> Obradi(
-            [FromQuery] NoRequest request,
-            CancellationToken cancellationToken
-        )
-        {
-            var data = await _ApplicationDbContext
-                .Admin.OrderBy(a => a.ID)
-                .Select(a => new AdminGetAllResponseAdmin
-                {
-                    ID = a.ID,
-                    Ime = a.Ime,
-                    Prezime = a.Prezime,
-                    Username = a.Username,
-                    IsAdmin = a.IsAdmin,
-                    IsProdavac = a.IsProdavac,
-                    IsServiser = a.IsServiser,
-                    GradID = a.GradID,
-                    SpolID = a.SpolID,
-                    Email = a.Email,
-                    SlikaKorisnikaBase64 = a.SlikaKorisnikaVelika
-                })
-                .ToListAsync(cancellationToken);
-
-            return new AdminGetAllResponse { ListaAdmin = data };
-        }
+        return new AdminGetAllResponse { ListaAdmin = data };
     }
 }
