@@ -1,7 +1,8 @@
-import { afterNextRender, Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { CommonModule, NgOptimizedImage } from "@angular/common";
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {StorageService} from "../../../services/storage.service";
 
 @Component({
   selector: "app-header",
@@ -11,23 +12,25 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
   styleUrl: "./header.component.css",
 })
 export class HeaderComponent implements OnInit {
+  lang: string = "";
+  openMenu: boolean = false;
+  checklogin: boolean = !!this.storageService.isAuthenticated();
+
   constructor(
     private router: Router,
-    private translateService: TranslateService
-  ) {}
-
-  lang: string = "";
-  ngOnInit(): void {
-    if (typeof window !== "undefined" && window.localStorage) {
-      this.lang = localStorage.getItem("lang") || "en";
-      this.translateService.use(this.lang);
-    }
+    private translateService: TranslateService,
+    private storageService: StorageService,
+  ) {
   }
-  openMenu: boolean = false;
+
+  ngOnInit(): void {
+    this.checkLang();
+  }
 
   logirajSe() {
     this.router.navigate(["/login"]);
   }
+
   toggleMenu() {
     this.openMenu = !this.openMenu;
   }
@@ -37,5 +40,27 @@ export class HeaderComponent implements OnInit {
     this.lang = odabraniJezik;
     localStorage.setItem("lang", odabraniJezik);
     this.translateService.use(odabraniJezik);
+  }
+
+  // logout() {
+  //   JSON.stringify(this.logoutRequest);
+  //   this.authLogoutEndpoint.obradi(this.logoutRequest!).subscribe({
+  //       next: (x: any) => {
+  //         this.storageService.removeToken();
+  //         this.storageService.removeRole();
+  //         this.router.navigate(['']);
+  //       },
+  //       error: (x: any) => {
+  //         alert("greska logout -> " + x.message);
+  //       }
+  //     }
+  //   )
+  // }
+
+  private checkLang() {
+    if (typeof window !== "undefined" && window.localStorage) {
+      this.lang = localStorage.getItem("lang") || "en";
+      this.translateService.use(this.lang);
+    }
   }
 }

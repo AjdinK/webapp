@@ -3,11 +3,11 @@ import {Injectable} from "@angular/core";
 @Injectable({
   providedIn: 'root',
 })
-export class MyAuthService {
+export class StorageService {
+
   setToken(token: string) {
     localStorage.setItem('token', token);
   }
-
 
   getValue(key: string) {
 
@@ -20,6 +20,10 @@ export class MyAuthService {
 
   removeToken() {
     localStorage.removeItem('token');
+  }
+
+  removeRole() {
+    localStorage.removeItem('role');
   }
 
   clearData() {

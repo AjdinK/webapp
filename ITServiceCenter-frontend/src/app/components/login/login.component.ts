@@ -6,6 +6,7 @@ import {HeaderComponent} from "../homepage/header/header.component";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {AuthLoginRequest} from "../../endpoints/auth-endpoints/auth-login-request";
 import {AuthLoginEndpoint} from "../../endpoints/auth-endpoints/auth-login-endpoint";
+import {StorageService} from "../../services/storage.service";
 
 @Component({
   selector: "app-login",
@@ -27,10 +28,12 @@ export class LoginComponent implements OnInit {
   JelLogiran: boolean = false;
   authRequest: AuthLoginRequest;
 
+
   constructor(
     private router: Router,
     private translateService: TranslateService,
-    private authLoginEndpoint: AuthLoginEndpoint
+    private authLoginEndpoint: AuthLoginEndpoint,
+    private storageService: StorageService
   ) {
     this.loginForm = new FormGroup({
       username: new FormControl("", [Validators.required]),
@@ -40,10 +43,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (typeof window !== "undefined" && window.localStorage) {
-      this.lang = localStorage.getItem("lang") || "en";
-      this.translateService.use(this.lang);
-    }
+    this.checkLang();
   }
 
   logirajSe(login: NgForm) {
@@ -67,4 +67,12 @@ export class LoginComponent implements OnInit {
       });
     }
   }
+
+  private checkLang() {
+    if (typeof window !== "undefined" && window.localStorage) {
+      this.lang = localStorage.getItem("lang") || "en";
+      this.translateService.use(this.lang);
+    }
+  }
+
 }

@@ -74,6 +74,7 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
 builder.Services.AddTransient<MyAuthService>();
 builder.Services.AddHttpContextAccessor();
 

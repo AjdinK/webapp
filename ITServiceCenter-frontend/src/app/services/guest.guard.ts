@@ -1,10 +1,10 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
-import {MyAuthService} from "./my-auth-service";
+import {StorageService} from "./storage.service";
 
 export const guestGuard: CanActivateFn = (route, state) => {
 
-  const localStorage = inject(MyAuthService);
+  const localStorage = inject(StorageService);
   const router = inject(Router);
 
   const token = localStorage.getValue('token');

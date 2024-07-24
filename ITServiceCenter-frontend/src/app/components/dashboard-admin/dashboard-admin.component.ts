@@ -5,6 +5,9 @@ import {FormsModule} from '@angular/forms';
 import {ServiserComponent} from '../serviser/serviser.component';
 import {ProdavacComponent} from '../prodavac/prodavac.component';
 import {AdminComponent} from '../admin/admin.component';
+import {AuthLogoutEndpoint} from "../../endpoints/auth-endpoints/auth-logout-endpoint";
+import {StorageService} from "../../services/storage.service";
+import {AuthLogoutRequest} from "../../endpoints/auth-endpoints/auth-logout-request";
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -24,15 +27,34 @@ export class DashboardAdminComponent implements OnInit {
   showServiser: boolean = false;
   showProdavac: boolean = false;
   showAdmin: boolean = false;
+  logoutRequest: AuthLogoutRequest;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authLogoutEndpoint: AuthLogoutEndpoint,
+    private storageService: StorageService,
+  ) {
+    this.logoutRequest = {
+      token: this.storageService.getValue('token'),
+    };
   }
 
   ngOnInit(): void {
   }
 
   logout() {
-    this.router.navigate(['']);
+    JSON.stringify(this.logoutRequest);
+    this.authLogoutEndpoint.obradi(this.logoutRequest!).subscribe({
+        next: (x: any) => {
+          this.storageService.removeToken();
+          this.storageService.removeRole();
+          this.router.navigate(['']);
+        },
+        error: (x: any) => {
+          alert("greska logout -> " + x.message);
+        }
+      }
+    )
   }
 
   fetchNalog() {

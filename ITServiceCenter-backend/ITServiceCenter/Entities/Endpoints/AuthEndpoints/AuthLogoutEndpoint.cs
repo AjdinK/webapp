@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace itservicecenter.Entities.Endpoints.AuthEndpoints;
 
 [Route("[controller]")]
-public class AuthLogoutEndpoint : MyBaseEndpoint<NoRequest, NoResponse>
+public class AuthLogoutEndpoint : MyBaseEndpoint<AuthLogoutRequest, NoResponse>
 {
     private readonly ApplicationDbContext _applicationDbContext;
     private readonly MyAuthService _authService;
@@ -17,12 +17,14 @@ public class AuthLogoutEndpoint : MyBaseEndpoint<NoRequest, NoResponse>
     }
 
     [HttpPost]
-    public override async Task<NoResponse> Obradi([FromBody] NoRequest request, CancellationToken cancellationToken)
+    public override async Task<NoResponse> Obradi([FromBody] AuthLogoutRequest request,
+        CancellationToken cancellationToken)
     {
-        var autentifikacijaToken = _authService.GetAuthInfo().autentifikacijaToken;
+        var autentifikacijaToken = _applicationDbContext.AutenfitikacijaToken
+            .FirstOrDefault(x => x.Vrijednost == request.Token);
 
         if (autentifikacijaToken == null)
-            return new NoResponse();
+            throw new NotImplementedException("Nije pronadjen token");
 
         _applicationDbContext.Remove(autentifikacijaToken);
         await _applicationDbContext.SaveChangesAsync(cancellationToken);
