@@ -20,5 +20,3 @@ export class AuthLogoutEndpoint implements MyBaseEndpoint<AuthLogoutRequest, any
     });
   }
 }
-
-

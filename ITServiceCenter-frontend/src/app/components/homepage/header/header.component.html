@@ -11,8 +11,11 @@
       <li><a href="#FAQ">{{ 'FAQ'|translate }}</a></li>
       <li><a href="#ContactUS">{{ 'Contact'|translate }}</a></li>
     </ul>
-    <button (click)="logirajSe()" class="btn">{{ 'Login'|translate }}</button>
-    <!--    <button (click)="logout()" *ngIf="checklogin != false" class="btn">{{ 'Log Out'|translate }}</button>-->
+    <button (click)="logirajSe()" *ngIf="!jeliLogiran" class="btn">{{ 'Log In'|translate }}</button>
+    <button (click)="logirajSe()" *ngIf="jeliLogiran" class="btn">{{ 'Dashboard'|translate }}</button>
+    <button (click)="logout()" *ngIf="jeliLogiran" class="btn">{{ 'Log Out'|translate }}</button>
+
+
     <select (change)="promjeniLang($event)" id="" name="">
       <option [selected]='lang=== "en"' value="en">EN</option>
       <option [selected]='lang=== "bs"' value="bs">BA</option>

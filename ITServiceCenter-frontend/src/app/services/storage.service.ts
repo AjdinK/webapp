@@ -30,12 +30,9 @@ export class StorageService {
     localStorage.clear();
   }
 
-  getToken(): string | null {
-    return this.getValue('token');
-  }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    return this.getValue('token') !== null;
   }
 
 }

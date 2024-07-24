@@ -1,58 +1,56 @@
-<main style="background-image: url('assets/icons/background.jpg')">
+<main>
   <!--  header bar -->
   <header>
     <nav class="navbar">
-      <h1>/Admin managment</h1>
+      <h1>/Admin Dashboard</h1>
       <div class="avatar-button">
-        <img ngSrc="assets/icons/avatar.svg" height="50" width="50" alt="avatar" (click)="admin()" />
+        <img (click)="admin()" alt="avatar" height="50" ngSrc="assets/icons/avatar.svg" width="50"/>
         <button (click)="logout()">Logout</button>
       </div>
     </nav>
   </header>
 
 
-
   <!--  left menu bar (setting tab) -->
   <div class="div-adminInfo">
     <ul class="menu-links">
       <li (click)="serviser()">
-        <img ngSrc="assets/icons/serviseri.svg" alt="serviseri" height="24" width="24" />Serviser
+        <img alt="serviseri" height="24" ngSrc="assets/icons/serviseri.svg" width="24"/>Serviser
       </li>
       <li (click)="prodavac()">
-        <img ngSrc="assets/icons/prodavac.svg" alt="prodavac" height="24" width="24" />Prodavac
+        <img alt="prodavac" height="24" ngSrc="assets/icons/prodavac.svg" width="24"/>Prodavac
       </li>
       <li (click)="fetchNalog()">
-        <img ngSrc="assets/icons/nalog.svg" alt="nalog" height="24" width="24" />Nalog
+        <img alt="nalog" height="24" ngSrc="assets/icons/nalog.svg" width="24"/>Nalog
       </li>
       <li (click)="admin()">
-        <img ngSrc="assets/icons/profile.svg" alt="profile" height="24" width="24" />Profil
+        <img alt="profile" height="24" ngSrc="assets/icons/profile.svg" width="24"/>Profil
       </li>
       <li (click)="idiHomepage()">
-        <img ngSrc="assets/icons/homepage.svg" alt="homepage" height="24" width="24" />Homepage
+        <img alt="homepage" height="24" ngSrc="assets/icons/homepage.svg" width="24"/>Homepage
       </li>
       <li (click)="logout()">
-        <img ngSrc="assets/icons/logout.svg" alt="logout" height="24" width="24" />Logout
+        <img alt="logout" height="24" ngSrc="assets/icons/logout.svg" width="24"/>Logout
       </li>
     </ul>
   </div>
-
 
 
   <!--  right div for tables and forms data it will show serviser , prodavac and admin component -->
   <div class="div-adminEdit">
 
     <!-- show Serviser component (add , edit , delete) only on true -->
-    <div class="div-serviser" *ngIf="showServiser">
+    <div *ngIf="showServiser" class="div-serviser">
       <app-serviser></app-serviser>
     </div>
 
     <!-- show prodavac component (add , edit , delete) only on true -->
-    <div class="div-prodavac" *ngIf="showProdavac">
+    <div *ngIf="showProdavac" class="div-prodavac">
       <app-prodavac></app-prodavac>
     </div>
 
     <!-- show admin component (add , edit , delete) only on true -->
-    <div class="div-admin" *ngIf="showAdmin">
+    <div *ngIf="showAdmin" class="div-admin">
       <app-admin></app-admin>
     </div>
 

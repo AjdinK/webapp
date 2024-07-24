@@ -55,9 +55,17 @@ export class LoginComponent implements OnInit {
       this.authLoginEndpoint.obradi(this.authRequest!).subscribe({
         next: (x) => {
           if (x.token) {
-            this.router.navigate(["dashboard-admin"]);
+
             localStorage.setItem("token", x.token);
             localStorage.setItem('role', JSON.stringify(x.role));
+
+            var role = JSON.parse(this.storageService.getValue('role'));
+
+            if (role.isAdmin == true) {
+              this.router.navigate(["/dashboard-admin"]);
+            } else {
+              this.router.navigate(["/dashboard-radnik"]);
+            }
           }
         },
         error: (x) => {

@@ -13,8 +13,8 @@
   background-color: #364049;
   height: fit-content;
   margin: 0 auto;
-  box-shadow: 3px -2px 13px 0 rgba(0, 0, 0, 0.75);
   overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .div-table input {
@@ -88,8 +88,7 @@ tbody tr:nth-child(even) {
 }
 
 form {
-  box-shadow: 3px -2px 13px 0 rgba(0, 0, 0, 0.75);
-
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   display: flex;
   flex-direction: column;
   margin: 30px auto;

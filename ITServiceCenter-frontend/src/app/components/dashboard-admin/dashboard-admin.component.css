@@ -10,10 +10,8 @@
 
 main {
   height: 100vh;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   display: flex;
+  background: #dfdfdf;
 }
 
 header {
@@ -24,7 +22,6 @@ header {
   height: 100px;
   padding: 20px;
   background-color: #000408;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
   z-index: 99;
 }
 
