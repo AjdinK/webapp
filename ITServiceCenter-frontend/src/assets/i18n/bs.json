@@ -28,5 +28,9 @@
   "Submit": "Pošalji",
   "Password": "Lozinka",
   "Minimum 8 characters, At least one uppercase letter, At least one lowercase letter, At least one number": "Najmanje 8 znakova, Barem jedno veliko slovo, Barem jedno malo slovo, Barem jedna broj",
-  "Username": "Korisnicko ime"
+  "Username": "Korisnicko ime",
+  "Logout": "Odjavi se",
+  "Log In": "Logiraj se",
+  "Log Out": "Odjavi se",
+  "Dashboard": "Dashboard"
 }

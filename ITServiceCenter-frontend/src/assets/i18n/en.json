@@ -28,5 +28,9 @@
   "Submit": "Submit",
   "Password": "Password",
   "Minimum 8 characters, At least one uppercase letter, At least one lowercase letter, At least one number": "Minimum 8 characters, At least one uppercase letter, At least one lowercase letter, At least one number",
-  "Username": "Username"
+  "Username": "Username",
+  "Logout": "Logout",
+  "Log In": "Log In",
+  "Log Out": "Log Out",
+  "Dashboard": "Dashboard"
 }

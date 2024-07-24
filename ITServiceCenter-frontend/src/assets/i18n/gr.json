@@ -28,5 +28,8 @@
   "Submit": "Senden",
   "Password": "Passwort",
   "Minimum 8 characters, At least one uppercase letter, At least one lowercase letter, At least one number": "Mindestens 8 Zeichen, Mindestens ein Großbuchstabe, Mindestens ein Kleinbuchstabe, Mindestens eine Ziffer",
-  "Username": "Benutzername"
+  "Username": "Benutzername",
+  "Logout": "Abmelden",
+  "Log In": "Anmelden",
+  "Log Out": "Abmelden"
 }
