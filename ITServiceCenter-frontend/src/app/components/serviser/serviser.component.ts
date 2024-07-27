@@ -75,11 +75,7 @@ export class ServiserComponent implements OnInit {
       this.odabraniServiser!.slikaKorisnikaBase64 = this.novaSlika;
       this.serviserSnimiEndpoint.obradi(this.odabraniServiser!).subscribe({
         next: (x: any) => {
-          this.showServiserEdit = false;
-          this.showServiserForm = false;
-          this.fetchServiser();
-          this.showServiserTable = true;
-          window.location.reload();
+          this.realodSnimi();
         },
         error: (x) => {
           alert("greska snimiServiser -> " + x.error);
@@ -115,12 +111,12 @@ export class ServiserComponent implements OnInit {
         this.gradPodaci = x.gradovi;
       },
       error: (x) => {
-        alert("greska fetchGrad -> " + x.message);
+        alert("Greska fetchGrad: " + x.message);
       },
     });
   }
 
-  closeEdit() {
+  closeEditWindow() {
     this.showServiserEdit = false;
     this.fetchServiser();
     this.showServiserTable = true;
@@ -223,5 +219,13 @@ export class ServiserComponent implements OnInit {
 
   private resetPassword() {
     this.opcionalnaLozinka = '';
+  }
+
+  private realodSnimi() {
+    this.showServiserEdit = false;
+    this.showServiserForm = false;
+    this.fetchServiser();
+    this.showServiserTable = true;
+    window.location.reload();
   }
 }

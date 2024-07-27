@@ -38,12 +38,8 @@ public class ServiserDodajEndpoint : MyBaseEndpoint<ServiserDodajRequest, int>
         serviser.Prezime = request.Prezime;
         serviser.Username = request.Username;
         serviser.IsServiser = request.IsServiser;
-
-        if (request.Lozinka != null)
-        {
-            serviser.LozinkaSalt = PasswordGenerator.GenerateSalt();
-            serviser.LozinkaHash = PasswordGenerator.GenerateHash(serviser.LozinkaSalt, request.Lozinka);
-        }
+        serviser.LozinkaSalt = PasswordGenerator.GenerateSalt();
+        serviser.LozinkaHash = PasswordGenerator.GenerateHash(serviser.LozinkaSalt, request.Lozinka);
 
         if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
         {

@@ -40,12 +40,8 @@ public class AdminDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
         admin.IsProdavac = true;
         admin.IsServiser = true;
         admin.IsAdmin = true;
-
-        if (request.Lozinka != null)
-        {
-            admin.LozinkaSalt = PasswordGenerator.GenerateSalt();
-            admin.LozinkaHash = PasswordGenerator.GenerateHash(admin.LozinkaSalt, request.Lozinka);
-        }
+        admin.LozinkaSalt = PasswordGenerator.GenerateSalt();
+        admin.LozinkaHash = PasswordGenerator.GenerateHash(admin.LozinkaSalt, request.Lozinka);
 
         if (!string.IsNullOrEmpty(request.SlikaKorisnikaBase64))
         {
