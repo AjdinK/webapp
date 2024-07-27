@@ -10,7 +10,7 @@
 
 .div-table {
   max-width: 1300px;
-  background-color: #364049;
+  background-color: #1d2428;
   height: fit-content;
   margin: 0 auto;
   overflow: hidden;
@@ -32,6 +32,7 @@
 table {
   border-collapse: collapse;
   width: 100%;
+  background-color: #1d2428;
 }
 
 th,

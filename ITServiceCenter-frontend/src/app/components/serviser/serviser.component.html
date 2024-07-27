@@ -177,6 +177,7 @@
 </form>
 
 
+<!--editForm-->
 <form #editForm='ngForm' *ngIf="showServiserEdit" class="serviserForm">
   <h1>{{ formTitle }}</h1>
 
@@ -209,7 +210,7 @@
     [label]="'Prezime'">
 
     <input #prezime="ngModel"
-           [(ngModel)]="this.odabraniServiser!.ime"
+           [(ngModel)]="this.odabraniServiser!.prezime"
            class="form-control"
            id="prezimeEdit"
            minlength="3"
@@ -221,55 +222,61 @@
   </app-form-element-wrapper>
 
 
-  <div class="form-group">
-    <label for="usernameServiser">Username:</label>
-    <input #username_polje="ngModel" [(ngModel)]="this.odabraniServiser!.username" class="form-control"
-           id="usernameServiser" minlength="5" name="username"
-           pattern="[A-Za-z\s]+" required type="text"/>
-  </div>
+  <app-form-element-wrapper
 
-  <div *ngIf="
-      (username_polje.invalid &&
-        (username_polje.touched || username_polje.dirty)) ||
-      this.jelPopunjeno
-    " class="greska-div">
-    <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="username_polje.errors?.['minlength']">Minimum 5 karaktera</span>
-  </div>
+    [className]="'form-group'"
+    [imePolje]="username"
+    [labelFor]="'username'"
+    [label]="'Username'">
 
-  <div class="form-group">
-    <label for="emailServiser">Email:</label>
-    <input #email_polje="ngModel" [(ngModel)]="this.odabraniServiser!.email" class="form-control" id="emailServiser"
-           name="email"
-           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" required
-           type="email"/>
-  </div>
+    <input #username="ngModel"
+           [(ngModel)]="this.odabraniServiser!.username"
+           class="form-control"
+           id="usernameEdit"
+           minlength="3"
+           name="usernameEdit"
+           pattern='[A-Za-z\sčćžđ]+'
+           required
+           type="text"/>
 
-  <div *ngIf="
-      (email_polje.invalid && (email_polje.touched || email_polje.dirty)) ||
-      this.jelPopunjeno
-    " class="greska-div">
-    <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
-  </div>
+  </app-form-element-wrapper>
+
+  <app-form-element-wrapper
+
+    [className]="'form-group'"
+    [imePolje]="email"
+    [labelFor]="'email'"
+    [label]="'Email'">
+
+    <input #email="ngModel"
+           [(ngModel)]="this.odabraniServiser!.email"
+           class="form-control"
+           id="emailEdit"
+           minlength="5"
+           name="emailEdit"
+           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
+           required type="email"/>
+
+  </app-form-element-wrapper>
 
 
-  <div class="form-group">
-    <label for="LozinkaServiser">Nova lozinka:</label>
-    <input #lozinka_polje="ngModel" [(ngModel)]="this.odabraniServiser!.lozinka" class="form-control"
-           id="LozinkaServiser2"
-           name="lozinka" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]).{8,}"
+  <app-form-element-wrapper
+
+    [className]="'form-group'"
+    [imePolje]="lozinka"
+    [labelFor]="'lozinka'"
+    [label]="'Lozinka'">
+
+    <input #lozinka="ngModel"
+           [(ngModel)]="this.odabraniServiser!.lozinka"
+           class="form-control"
+           id="lozikaEdit"
+           name="lozikaEdit"
+           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+           required
            type="password"/>
-  </div>
 
-  <div *ngIf="
-      (lozinka_polje.invalid && (lozinka_polje.touched || lozinka_polje.dirty)) ||
-      this.jelPopunjeno
-    " class="greska-div">
-    <span *ngIf="lozinka_polje.errors?.['pattern']">Lozinka mora biti 8 karaktera</span>
-  </div>
-
+  </app-form-element-wrapper>
 
   <div class="form-group">
     <label for="Grad">Grad</label>
