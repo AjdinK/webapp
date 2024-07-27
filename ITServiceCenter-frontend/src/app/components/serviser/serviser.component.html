@@ -187,7 +187,7 @@
     [className]="'form-group'"
     [imePolje]="ime"
     [labelFor]="'imeEdit'"
-    [label]="'Imeasdasd'">
+    [label]="'Ime'">
 
     <input #ime="ngModel"
            [(ngModel)]="this.odabraniServiser!.ime"
@@ -265,15 +265,14 @@
     [className]="'form-group'"
     [imePolje]="lozinka"
     [labelFor]="'lozinka'"
-    [label]="'Lozinka'">
+    [label]="'Nova Lozinka'">
 
     <input #lozinka="ngModel"
-           [(ngModel)]="this.odabraniServiser!.lozinka"
+           [(ngModel)]="this.opcionalnaLozinka"
            class="form-control"
            id="lozikaEdit"
            name="lozikaEdit"
            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-           required
            type="password"/>
 
   </app-form-element-wrapper>

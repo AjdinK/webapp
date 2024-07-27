@@ -11,7 +11,7 @@
 main {
   height: 100vh;
   display: flex;
-  background-image: linear-gradient(109.6deg, rgb(144, 177, 202) 11.2%, rgb(51, 66, 70) 91.1%);
+  background-image: linear-gradient(109.6deg, rgb(149, 161, 171) 11.2%, rgb(51, 66, 70) 91.1%);
 }
 
 header {

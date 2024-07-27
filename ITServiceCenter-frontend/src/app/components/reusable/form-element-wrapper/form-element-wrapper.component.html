@@ -12,6 +12,11 @@
     <span *ngIf="imePolje.errors?.['pattern']">{{ Poruke.email }}</span>
   </div>
 
+  <div *ngIf="label ==='Lozinka' || label === 'Nova Lozinka'">
+    <span *ngIf="imePolje.errors?.['required']">{{ Poruke.required }}</span>
+    <span *ngIf="imePolje.errors?.['pattern']">{{ Poruke.password }}</span>
+  </div>
+
   <div *ngIf="label ==='Ime' || label ==='Username'|| label ==='Prezime'">
     <span *ngIf="imePolje.errors?.['pattern']">{{ Poruke.pattern }}</span>
     <span *ngIf="imePolje.errors?.['required']">{{ Poruke.required }}</span>
