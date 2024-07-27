@@ -9,6 +9,7 @@ import {GradGetAllEndpoint, GradGetAllResponseGrad,} from "../../endpoints/grad-
 import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {ProdavacBrisiEndpoint} from "../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint";
 import {ConfigFile} from "../../configFile";
+import {ProdavacDodajEndpoint, ProdavacDodajRequest} from "../../endpoints/prodavac-endpoints/prodavac-dodaj-endpoint";
 
 @Component({
   selector: "app-prodavac",
@@ -29,7 +30,7 @@ export class ProdavacComponent implements OnInit {
   showProdavacForm: boolean = false;
   searchProdavac: string = "";
   odabraniProdavac: ProdavacSnimiRequest | null = null;
-  noviProdavac: ProdavacSnimiRequest | null = null;
+  noviProdavac: ProdavacDodajRequest | null = null;
   formTitle: string = "";
   protected readonly ConfigFile = ConfigFile;
 
@@ -37,7 +38,8 @@ export class ProdavacComponent implements OnInit {
     private prodavacGetAllEndpoint: ProdavacGetAllEndpoint,
     private prodavacSnimiEndpoint: ProdavacSnimiEndpoint,
     private prodavacBrisiEndpoint: ProdavacBrisiEndpoint,
-    private gradGetAllEndpoint: GradGetAllEndpoint
+    private gradGetAllEndpoint: GradGetAllEndpoint,
+    private prodavacDodajEndpoint: ProdavacDodajEndpoint,
   ) {
   }
 
@@ -160,14 +162,9 @@ export class ProdavacComponent implements OnInit {
   dodajProdavac(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
       this.noviProdavac!.slikaKorisnikaBase64 = this.novaSlikaProdavac;
-
-      this.prodavacSnimiEndpoint.obradi(this.noviProdavac!).subscribe({
+      this.prodavacDodajEndpoint.obradi(this.noviProdavac!).subscribe({
         next: (x: any) => {
-          this.showProdavacEdit = false;
-          this.fetchProdavac();
-          this.showProdavacTable = true;
-          this.showProdavacForm = false;
-          window.location.reload();
+          this.reloadDodaj();
         },
         error: (x) => {
           alert("greska snimiProdavac -> " + x.error);
@@ -175,6 +172,12 @@ export class ProdavacComponent implements OnInit {
       });
     }
     this.JelPopunjeno = true;
+  }
+
+  reloadDodaj() {
+    this.showProdavacForm = false;
+    this.fetchProdavac();
+    window.location.reload();
   }
 
   //preview for the uploaded img
@@ -219,7 +222,6 @@ export class ProdavacComponent implements OnInit {
 
   private totalPages() {
     if (this.prodavacPodaci != null) return this.prodavacPodaci?.totalPages;
-
     return 1;
   }
 }
