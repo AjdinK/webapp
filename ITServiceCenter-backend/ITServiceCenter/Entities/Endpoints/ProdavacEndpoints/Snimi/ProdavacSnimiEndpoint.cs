@@ -22,30 +22,24 @@ public class ProdavacSnimiEndpoint : MyBaseEndpoint<ProdavacSnimiRequest, int>
         CancellationToken cancellationToken
     )
     {
-        Prodavac? Prodavac;
-        if (request.ID == 0)
-        {
-            Prodavac = new Prodavac();
-            _ApplicationDbContext.Add(Prodavac);
+        var prodavac = new Prodavac();
 
-            Prodavac.Email = request.Email;
-            Prodavac.Username = request.Username;
-        }
-        else
-        {
-            Prodavac = _ApplicationDbContext.Prodavac.FirstOrDefault(p => p.ID == request.ID);
-        }
+        if (request.ID > 0) prodavac = _ApplicationDbContext.Prodavac.FirstOrDefault(a => a.ID == request.ID);
 
-        Prodavac!.Ime = request.Ime;
-        Prodavac.Prezime = request.Prezime;
-        Prodavac.IsProdavac = request.IsProdavac;
-        Prodavac.GradID = request.GradID;
-        Prodavac.SpolID = request.SpolID;
+        if (prodavac is null) throw new UserException("Greska, ne postoji serviser ID");
+
+        prodavac.Ime = request.Ime;
+        prodavac.Prezime = request.Prezime;
+        prodavac.IsProdavac = request.IsProdavac;
+        prodavac.GradID = request.GradID;
+        prodavac.SpolID = request.SpolID;
+        prodavac.Email = request.Email;
+        prodavac.Username = request.Username;
 
         if (request.Lozinka != null)
         {
-            Prodavac.LozinkaSalt = PasswordGenerator.GenerateSalt();
-            Prodavac.LozinkaHash = PasswordGenerator.GenerateHash(Prodavac.LozinkaSalt, request.Lozinka);
+            prodavac.LozinkaSalt = PasswordGenerator.GenerateSalt();
+            prodavac.LozinkaHash = PasswordGenerator.GenerateHash(prodavac.LozinkaSalt, request.Lozinka);
         }
 
 
@@ -61,15 +55,15 @@ public class ProdavacSnimiEndpoint : MyBaseEndpoint<ProdavacSnimiRequest, int>
             var folderPath = "wwwroot/slike-prodavac";
             if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
-            Prodavac.SlikaKorisnikaVelika = $"{folderPath}/{Prodavac.Username.ToLower()}-velika.jpg";
+            prodavac.SlikaKorisnikaVelika = $"{folderPath}/{prodavac.Username.ToLower()}-velika.jpg";
             await System.IO.File.WriteAllBytesAsync(
-                Prodavac.SlikaKorisnikaVelika,
+                prodavac.SlikaKorisnikaVelika,
                 SlikaBajtoviVelika,
                 cancellationToken
             );
         }
 
         await _ApplicationDbContext.SaveChangesAsync(cancellationToken);
-        return Prodavac.ID;
+        return prodavac.ID;
     }
 }

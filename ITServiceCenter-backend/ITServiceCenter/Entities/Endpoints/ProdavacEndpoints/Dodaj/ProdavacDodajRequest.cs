@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using itservicecenter.Helper;
 
-namespace itservicecenter.Entities.Endpoints.ServiserEndpoints.Dodaj;
+namespace itservicecenter.Entities.Endpoints.ProdavacEndpoints.Dodaj;
 
 public class ProdavacDodajRequest
 {

@@ -2,6 +2,7 @@ using itservicecenter.Data;
 using itservicecenter.Entities.Endpoints.ServiserEndpoints.Dodaj;
 using itservicecenter.Entities.Models;
 using itservicecenter.Helper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace itservicecenter.Entities.Endpoints.ProdavacEndpoints.Dodaj;
@@ -16,6 +17,7 @@ public class ProdavacDodajEndpoint : MyBaseEndpoint<ProdavacDodajRequest, int>
     }
 
     [HttpPost("prodavac/dodaj")]
+    [Authorize(Roles = "Admin")]
     public override async Task<int> Obradi(ProdavacDodajRequest request, CancellationToken cancellationToken)
     {
         Prodavac? prodavac;
@@ -27,7 +29,7 @@ public class ProdavacDodajEndpoint : MyBaseEndpoint<ProdavacDodajRequest, int>
         }
         else
         {
-            throw new NotImplementedException("prodavac ID mora biti nula kada se dodaje novi u bazi");
+            throw new Exception("prodavac ID mora biti nula kada se dodaje novi u bazi");
         }
 
         prodavac.Ime = request.Ime;
@@ -35,6 +37,8 @@ public class ProdavacDodajEndpoint : MyBaseEndpoint<ProdavacDodajRequest, int>
         prodavac.IsProdavac = request.IsProdavac;
         prodavac.GradID = request.GradID;
         prodavac.SpolID = request.SpolID;
+        prodavac.Username = request.Username;
+        prodavac.Email = request.Email;
         prodavac.LozinkaSalt = PasswordGenerator.GenerateSalt();
         prodavac.LozinkaHash = PasswordGenerator.GenerateHash(prodavac.LozinkaSalt, request.Lozinka);
 

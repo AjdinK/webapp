@@ -14,7 +14,6 @@ public class ServiserSnimiEndpoint : MyBaseEndpoint<ServiserSnimiRequest, int>
         _ApplicationDbContext = ApplicationDbContext;
     }
 
-
     [HttpPost("serviser/snimi")]
     [Authorize(Roles = "Admin")]
     public override async Task<int> Obradi(
