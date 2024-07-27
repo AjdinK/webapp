@@ -1,7 +1,6 @@
 <form #editForm="ngForm" *ngIf="this.adminPodaci && this.showForm">
   <h1>{{ formTitle }}</h1>
 
-  <!--ime component-->
   <app-form-element-wrapper [className]="'form-group'" [imePolje]="ime" [labelFor]="'ime'" [label]="'Ime'">
     <input #ime="ngModel" [(ngModel)]="this.adminPodaci!.ime"
            class="form-control"
@@ -9,7 +8,8 @@
            minlength="3"
            name="ime"
            pattern='[A-Za-z\sčćžđ]+'
-           required type="text"/>
+           required
+           type="text"/>
   </app-form-element-wrapper>
 
 
@@ -20,11 +20,10 @@
            id="prezime"
            minlength="3"
            name="prezime" pattern='[A-Za-z\sčćžđ]+'
-           required type="text"/>
+           required
+           type="text"/>
   </app-form-element-wrapper>
 
-
-  <!--username-->
 
   <app-form-element-wrapper [className]="'form-group'" [imePolje]="username" [labelFor]="'username'"
                             [label]="'Username'">
@@ -33,11 +32,12 @@
            class="form-control"
            id="username"
            minlength="3"
-           name="username" pattern='[A-Za-z\sčćžđ]+'
-           required type="text"/>
+           name="username"
+           pattern='[A-Za-z\sčćžđ]+'
+           required
+           type="text"/>
   </app-form-element-wrapper>
 
-  <!--email-->
 
   <app-form-element-wrapper [className]="'form-group'" [imePolje]="email" [labelFor]="'email'"
                             [label]="'Email'">
@@ -48,15 +48,14 @@
            minlength="3"
            name="email"
            pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
-           required type="email"/>
+           required
+           type="email"/>
   </app-form-element-wrapper>
 
 
   <div class="form-group">
     <label for="Admin">Admin:</label>
-
     <input [(ngModel)]="this.adminPodaci!.isAdmin" class="checkbox" id="Admin" name="isAdmin" type="checkbox"/>
-
   </div>
 
   <div class="form-group">
@@ -71,21 +70,15 @@
            type="checkbox"/>
   </div>
 
-  <!-- div to show 2 pictuers the old form-element-wrapper db and the new one uploaded -->
-
   <div>
-
     <label for="input-pic">Nova slika</label>
     <input (change)="onFileSelected($event);" accept="image/*" id="input-pic" type='file'/>
 
     <img class="oldPic"
          src="{{ConfigFile.adresa_servera}}/Admin/GetImg?username={{this.adminPodaci!.username}}"/>
     <img class="newPic" src="{{ this.novaSlika }}"/>
-
   </div>
 
-
-  <!-- submit changes when everything is fine and valid -->
 
   <div class="div-button">
     <button (click)="close()" class="btn-zatvori" type="submit">
@@ -95,5 +88,4 @@
       Snimi
     </button>
   </div>
-
 </form>

@@ -1,3 +1,5 @@
+/home/loww/dev/rs1-seminarski/webapp/ITServiceCenter-backend
+/home/loww/dev/rs1-seminarski/webapp/ITServiceCenter-frontend
 <div *ngIf="this.showProdavacTable" class="div-table">
   <input [(ngModel)]="this.searchProdavac" placeholder="Pretrazi prodavac....." type="text"/>
   <button (click)="dodajNovi()" class="dodaj">+ Dodaj Prodavac</button>
@@ -47,7 +49,6 @@
   </div>
 </div>
 
-<!-- form edit for prodavac and it show only if bool is true the user press the button edit form-element-wrapper the table -->
 <form #editForm='ngForm' *ngIf="showProdavacEdit" class="prodavacForm">
   <h1>{{ formTitle }}</h1>
   <div class="form-group">

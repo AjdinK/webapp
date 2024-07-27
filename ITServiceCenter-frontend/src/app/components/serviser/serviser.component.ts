@@ -10,12 +10,13 @@ import {ServiserBrisiEndpoint} from "../../endpoints/serviser-endpoints/serviser
 import {GradGetAllEndpoint, GradGetAllResponseGrad,} from "../../endpoints/grad-endpoints/grad-get-all-endpoint";
 import {ConfigFile} from "../../configFile";
 import {ServiserDodajEndpoint, ServiserDodajRequest} from "../../endpoints/serviser-endpoints/serviser-dodaj-endpoint";
+import {FormElementWrapperComponent} from "../reusable/form-element-wrapper/form-element-wrapper.component";
 
 
 @Component({
   selector: "app-serviser",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, NgOptimizedImage],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, NgOptimizedImage, FormElementWrapperComponent],
   templateUrl: "./serviser.component.html",
   styleUrls: ["./serviser.component.css", "../../../assets/styles/table_form.css"],
 })

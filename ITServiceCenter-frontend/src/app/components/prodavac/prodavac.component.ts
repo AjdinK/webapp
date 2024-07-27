@@ -48,7 +48,6 @@ export class ProdavacComponent implements OnInit {
     this.fetchGrad();
   }
 
-  //fetch Prodavac data form-element-wrapper db
   fetchProdavac() {
     this.prodavacGetAllEndpoint.obradi(this.currentPage!).subscribe({
       next: (x) => {
@@ -60,7 +59,6 @@ export class ProdavacComponent implements OnInit {
     });
   }
 
-  //search for Prodavac using ime , prezime or username
   filtrirajProdavac() {
     if (this.prodavacPodaci == null) return [];
     return this.prodavacPodaci.listaProdavac.filter(
@@ -71,7 +69,6 @@ export class ProdavacComponent implements OnInit {
     );
   }
 
-  //save Prodavac data form-element-wrapper the form and check the form if is it valid? or not
   snimiProdavac(editForm: NgForm) {
 
     if (this.opcionalnaLozinka != null) {
@@ -96,7 +93,6 @@ export class ProdavacComponent implements OnInit {
     this.JelPopunjeno = true;
   }
 
-  //soft delete the user form-element-wrapper the data
   brisiProdavac(id: number) {
     if (confirm("Da li zelite izbrisati Prodavac"))
       this.prodavacBrisiEndpoint.obradi(id).subscribe({
@@ -110,7 +106,6 @@ export class ProdavacComponent implements OnInit {
       });
   }
 
-  //show the edit form and hide the data table when press on edit button
   editProdavac(x: any) {
     this.formTitle = "Edit Prodavac";
     this.showProdavacEdit = true;
@@ -118,7 +113,6 @@ export class ProdavacComponent implements OnInit {
     this.showProdavacTable = false;
   }
 
-  //fetch grad data form-element-wrapper db
   fetchGrad() {
     this.gradGetAllEndpoint.obradi().subscribe({
       next: (x) => {
@@ -130,7 +124,6 @@ export class ProdavacComponent implements OnInit {
     });
   }
 
-  //close the edit form and show the data table refreshed when press on zatvori button
   closeEdit() {
     this.showProdavacEdit = false;
     this.fetchProdavac();
@@ -138,7 +131,6 @@ export class ProdavacComponent implements OnInit {
     this.showProdavacForm = false;
   }
 
-  //adding new Prodavac and show the form
   dodajNovi() {
     this.formTitle = "Dodaj Prodavac";
     this.showProdavacForm = true;
@@ -158,7 +150,6 @@ export class ProdavacComponent implements OnInit {
     };
   }
 
-  //save Prodavac data form-element-wrapper the form and check the data if is it valid? or not
   dodajProdavac(dodajForm: NgForm) {
     if (dodajForm.form.valid) {
       this.noviProdavac!.slikaKorisnikaBase64 = this.novaSlikaProdavac;
@@ -180,7 +171,6 @@ export class ProdavacComponent implements OnInit {
     window.location.reload();
   }
 
-  //preview for the uploaded img
   onFileSelected(e: any) {
     if (e.target.files) {
       var reader = new FileReader();
