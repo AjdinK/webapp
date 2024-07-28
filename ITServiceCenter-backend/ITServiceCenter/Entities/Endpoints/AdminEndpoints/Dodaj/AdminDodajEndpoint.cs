@@ -28,7 +28,7 @@ public class AdminDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
         }
         else
         {
-            throw new NotImplementedException("admin ID mora biti nula kada se dodaje novi admin");
+            throw new Exception("admin ID mora biti nula kada se dodaje novi admin");
         }
 
         admin.SpolID = 1;
@@ -52,24 +52,13 @@ public class AdminDodajEndpoint : MyBaseEndpoint<AdminDodajRequest, int>
             var SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
             if (SlikaBajtoviVelika == null) throw new UserException("pogresan format slike");
 
-            // byte[]? SlikaBajtoviMala = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
-            // if (SlikaBajtoviMala == null)
-            //     throw new Exception("pogresan format slike");
-
             var folderPath = "wwwroot/slike-admin";
             if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
-            // Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
-
             admin.SlikaKorisnikaVelika = $"{folderPath}/{admin.Username}-velika.jpg";
-            await System.IO.File.WriteAllBytesAsync(
-                admin.SlikaKorisnikaVelika,
-                SlikaBajtoviVelika,
+            await System.IO.File.WriteAllBytesAsync(admin.SlikaKorisnikaVelika, SlikaBajtoviVelika,
                 cancellationToken
             );
-
-            // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviMala,
-            //     cancellationToken);
         }
 
         await _ApplicationDbContext.SaveChangesAsync(cancellationToken);

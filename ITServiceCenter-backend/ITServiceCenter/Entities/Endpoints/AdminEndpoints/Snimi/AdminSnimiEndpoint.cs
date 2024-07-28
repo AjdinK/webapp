@@ -54,14 +54,8 @@ public class AdminSnimiEndpoint : MyBaseEndpoint<AdminSnimiRequest, int>
             var SlikaBajtoviVelika = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
             if (SlikaBajtoviVelika == null) throw new UserException("pogresan format slike");
 
-            // byte[]? SlikaBajtoviMala = ImageHelper.ResizeSlike(SlikaBajtovi, 200, 80);
-            // if (SlikaBajtoviMala == null)
-            //     throw new Exception("pogresan format slike");
-
             var folderPath = "wwwroot/slike-admin";
             if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
-
-            // Admin.SlikaKorisnikaMala = $"{folderPath}/{Guid.NewGuid().ToString()}.jpg";
 
             admin.SlikaKorisnikaVelika = $"{folderPath}/{admin.Username}-velika.jpg";
             await System.IO.File.WriteAllBytesAsync(
@@ -69,9 +63,6 @@ public class AdminSnimiEndpoint : MyBaseEndpoint<AdminSnimiRequest, int>
                 SlikaBajtoviVelika,
                 cancellationToken
             );
-
-            // await System.IO.File.WriteAllBytesAsync(Admin.SlikaKorisnikaMala, SlikaBajtoviMala,
-            //     cancellationToken);
         }
 
         await _ApplicationDbContext.SaveChangesAsync(cancellationToken);
