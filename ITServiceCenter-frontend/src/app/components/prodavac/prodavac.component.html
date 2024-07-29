@@ -178,14 +178,23 @@
 
   </app-form-element-wrapper>
 
-  <div class="form-group">
-    <label for="adminProdavac">Prodavac:</label>
-    <input [(ngModel)]="this.noviProdavac!.isProdavac" class="checkbox" id="adminProdavac" name="adminProdavac"
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [labelFor]="'isProdavac'"
+    [label]="'Prodavac'">
+
+    <input [(ngModel)]="this.noviProdavac!.isProdavac"
+           class="checkbox"
+           id="isProdavac"
+           name="isProdavac"
            type="checkbox"/>
-  </div>
+
+  </app-form-element-wrapper>
+
 
   <div>
-
     <label for="slika-input">Nova slika</label>
     <input (change)="onFileSelected($event);" accept="image/*" id="input-pic" type='file'/>
 
@@ -208,102 +217,137 @@
 <!--edit form-->
 <form #editForm='ngForm' *ngIf="showProdavacEdit" class="prodavacForm">
   <h1>{{ formTitle }}</h1>
-  <div class="form-group">
-    <label for="imeProdavac">Ime:</label>
-    <input #ime_polje="ngModel" [(ngModel)]="this.odabraniProdavac!.ime" class="form-control" id="imeProdavac"
-           minlength="3" name="ime" pattern='[A-Za-z\sčćžđ]+'
-           required type="text"/>
-  </div>
+
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [imePolje]="ime"
+    [labelFor]="'imeEdit'"
+    [label]="'Ime'">
+
+    <input #ime="ngModel"
+           [(ngModel)]="this.odabraniProdavac!.ime"
+           class="form-control"
+           id="imeEdit"
+           minlength="3"
+           name="imeEdit"
+           pattern='[A-Za-z\sčćžđ]+'
+           required
+           type="text"/>
+
+  </app-form-element-wrapper>
 
 
-  <div *ngIf="
-      (ime_polje.invalid && (ime_polje.touched || ime_polje.dirty)) ||
-      this.jelPopunjeno
-    " class="greska-div">
-    <span *ngIf="ime_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="ime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="ime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
-  </div>
+  <app-form-element-wrapper
 
-  <div class="form-group">
-    <label for="prezimeProdavac">Prezime:</label>
-    <input #prezime_polje="ngModel" [(ngModel)]="this.odabraniProdavac!.prezime" class="form-control"
-           id="prezimeProdavac" name="prezime" pattern='[A-Za-z\sčćžđ]+'
-           required type="text"/>
-  </div>
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [imePolje]="prezime"
+    [labelFor]="'prezime'"
+    [label]="'Prezime'">
 
-  <div *ngIf="
-      (prezime_polje.invalid && (prezime_polje.touched || prezime_polje.dirty)) ||
-      this.jelPopunjeno
-    " class="greska-div">
-    <span *ngIf="prezime_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="prezime_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="prezime_polje.errors?.['minlength']">Minimum 3 karaktera</span>
-  </div>
+    <input #prezime="ngModel"
+           [(ngModel)]="this.odabraniProdavac!.prezime"
+           class="form-control"
+           id="prezimeEdit"
+           minlength="3"
+           name="prezimeEdit"
+           pattern='[A-Za-z\sčćžđ]+'
+           required
+           type="text"/>
 
-  <div class="form-group">
-    <label for="usernameProdavac">Username:</label>
-    <input #username_polje="ngModel" [(ngModel)]="this.odabraniProdavac!.username" class="form-control"
-           id="usernameProdavac" minlength="5" name="username"
-           pattern="[A-Za-z\s]+" required type="text"/>
-  </div>
-
-  <div *ngIf="
-      (username_polje.invalid &&
-        (username_polje.touched || username_polje.dirty)) ||
-      this.jelPopunjeno
-    " class="greska-div">
-    <span *ngIf="username_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="username_polje.errors?.['pattern']">Polje mora biti karakteri</span>
-    <span *ngIf="username_polje.errors?.['minlength']">Minimum 5 karaktera</span>
-  </div>
-
-  <div class="form-group">
-    <label for="emailProdavac">Email:</label>
-    <input #email_polje="ngModel" [(ngModel)]="this.odabraniProdavac!.email" class="form-control" id="emailProdavac"
-           name="email"
-           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$" required
-           type="email"/>
-  </div>
-
-  <div *ngIf="
-      (email_polje.invalid && (email_polje.touched || email_polje.dirty)) ||
-      this.jelPopunjeno
-    " class="greska-div">
-    <span *ngIf="email_polje.errors?.['required']">Polje je obavezno</span>
-    <span *ngIf="email_polje.errors?.['pattern']">Email adresa nije validna</span>
-  </div>
+  </app-form-element-wrapper>
 
 
-  <div class="form-group">
-    <label for="LozinkaProdavac">Lozinka:</label>
-    <input #lozinka_polje="ngModel" [(ngModel)]="this.opcionalnaLozinka" class="form-control" id="LozinkaProdavac"
-           name="lozinka" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [imePolje]="username"
+    [labelFor]="'username'"
+    [label]="'Username'">
+
+    <input #username="ngModel"
+           [(ngModel)]="this.odabraniProdavac!.username"
+           class="form-control"
+           id="usernameEdit"
+           minlength="3"
+           name="usernameEdit"
+           pattern='[A-Za-z\sčćžđ]+'
+           required
+           type="text"/>
+
+  </app-form-element-wrapper>
+
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [imePolje]="email"
+    [labelFor]="'email'"
+    [label]="'Email'">
+
+    <input #email="ngModel"
+           [(ngModel)]="this.odabraniProdavac!.email"
+           class="form-control"
+           id="emailEdit"
+           minlength="5"
+           name="emailEdit"
+           pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z\-]+\.)+[a-zA-Z]{2,}$"
+           required type="email"/>
+
+  </app-form-element-wrapper>
+
+
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [imePolje]="lozinka"
+    [labelFor]="'lozinka'"
+    [label]="'Nova Lozinka'">
+
+    <input #lozinka="ngModel"
+           [(ngModel)]="this.opcionalnaLozinka"
+           class="form-control"
+           id="lozikaEdit"
+           name="lozikaEdit"
+           pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
            type="password"/>
-  </div>
 
-  <div *ngIf="
-      (lozinka_polje.invalid && (lozinka_polje.touched || lozinka_polje.dirty)) ||
-      this.jelPopunjeno
-    " class="greska-div">
-    <span *ngIf="lozinka_polje.errors?.['pattern']">Lozinka mora biti 8 karaktera</span>
-  </div>
+  </app-form-element-wrapper>
 
 
-  <div class="form-group">
-    <label for="GradProdavac">Grad</label>
-    <select [(ngModel)]="this.odabraniProdavac!.gradID" class="select-grad" id="GradProdavac" name="Grad">
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [labelFor]="'grad'"
+    [label]="'Grad'">
+
+    <select [(ngModel)]="this.odabraniProdavac!.gradID" class="select-grad" id="Grad" name="Grad">
       <option *ngFor="let x of this.gradPodaci" [value]="x.id">
         {{ x.naziv }}
       </option>
     </select>
-  </div>
 
-  <div class="form-group">
-    <label for="isProdavac">Prodavac:</label>
-    <input [(ngModel)]="this.odabraniProdavac!.isProdavac" class="checkbox" id="isProdavac" name="isProdavac"
+  </app-form-element-wrapper>
+
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [labelFor]="'isProdavac'"
+    [label]="'Prodavac'">
+
+    <input [(ngModel)]="this.odabraniProdavac!.isProdavac"
+           class="checkbox"
+           id="isProdavacEdit"
+           name="isProdavac"
            type="checkbox"/>
-  </div>
+
+  </app-form-element-wrapper>
 
 
   <div>

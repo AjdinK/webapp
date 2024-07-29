@@ -46,6 +46,7 @@
   </div>
 </div>
 
+<!--addForm-->
 <form #addForm='ngForm' *ngIf="showServiserForm" class="serviserForm">
   <h1>{{ formTitle }}</h1>
 
@@ -171,10 +172,21 @@
 
   </app-form-element-wrapper>
 
-  <div class="form-group">
-    <label for="serviser">Serviser:</label>
-    <input [(ngModel)]="this.noviServiser!.isServiser" class="checkbox" id="serviser" name="serviser" type="checkbox"/>
-  </div>
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [labelFor]="'isServiser'"
+    [label]="'Serviser'">
+
+    <input [(ngModel)]="this.noviServiser!.isServiser"
+           class="checkbox"
+           id="iServiser"
+           name="isServiser"
+           type="checkbox"/>
+
+  </app-form-element-wrapper>
+
 
   <div>
     <label for="input-pic2">Nova slika</label>
@@ -301,7 +313,7 @@
 
 
   <app-form-element-wrapper
-    
+
     [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [labelFor]="'grad'"
@@ -315,11 +327,20 @@
 
   </app-form-element-wrapper>
 
-  <div class="form-group">
-    <label for="isServiser">Serviser:</label>
-    <input [(ngModel)]="this.odabraniServiser!.isServiser" class="checkbox" id="isServiser" name="isServiser"
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [labelFor]="'isServiser'"
+    [label]="'Serviser'">
+
+    <input [(ngModel)]="this.odabraniServiser!.isServiser"
+           class="checkbox"
+           id="iServiserEdit"
+           name="isServiser"
            type="checkbox"/>
-  </div>
+
+  </app-form-element-wrapper>
 
 
   <div>
