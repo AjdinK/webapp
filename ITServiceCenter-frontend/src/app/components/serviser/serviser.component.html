@@ -51,10 +51,12 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="ime"
     [labelFor]="'ime'"
-    [label]="'Ime'">
+    [label]="'Ime'"
+  >
 
     <input #ime="ngModel"
            [(ngModel)]="this.noviServiser!.ime"
@@ -71,6 +73,7 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="prezime"
     [labelFor]="'prezime'"
@@ -89,6 +92,7 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="username"
     [labelFor]="'username'"
@@ -109,10 +113,12 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="email"
     [labelFor]="'email'"
-    [label]="'Email'">
+    [label]="'Email'"
+  >
 
     <input #email="ngModel"
            [(ngModel)]="this.noviServiser!.email"
@@ -128,6 +134,7 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="lozinka"
     [labelFor]="'lozinka'"
@@ -145,14 +152,24 @@
   </app-form-element-wrapper>
 
 
-  <div class="form-group">
-    <label for="GradServiser">Grad</label>
-    <select [(ngModel)]="this.noviServiser!.gradID" class="select-grad" id="GradServiser" name="GradServiser">
+  <app-form-element-wrapper
+
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [labelFor]="'grad'"
+    [label]="'Grad'">
+
+    <select [(ngModel)]="this.noviServiser!.gradID"
+            class="select-grad"
+            id="Grad2"
+            name="Grad">
+
       <option *ngFor="let x of this.gradPodaci" [value]="x.id">
         {{ x.naziv }}
       </option>
     </select>
-  </div>
+
+  </app-form-element-wrapper>
 
   <div class="form-group">
     <label for="serviser">Serviser:</label>
@@ -184,6 +201,7 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="ime"
     [labelFor]="'imeEdit'"
@@ -204,6 +222,7 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="prezime"
     [labelFor]="'prezime'"
@@ -224,6 +243,7 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="username"
     [labelFor]="'username'"
@@ -243,6 +263,7 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="email"
     [labelFor]="'email'"
@@ -262,6 +283,7 @@
 
   <app-form-element-wrapper
 
+    [JelPopunjeno]="jelPopunjeno"
     [className]="'form-group'"
     [imePolje]="lozinka"
     [labelFor]="'lozinka'"
@@ -277,14 +299,21 @@
 
   </app-form-element-wrapper>
 
-  <div class="form-group">
-    <label for="Grad">Grad</label>
+
+  <app-form-element-wrapper
+    
+    [JelPopunjeno]="jelPopunjeno"
+    [className]="'form-group'"
+    [labelFor]="'grad'"
+    [label]="'Grad'">
+
     <select [(ngModel)]="this.odabraniServiser!.gradID" class="select-grad" id="Grad" name="Grad">
       <option *ngFor="let x of this.gradPodaci" [value]="x.id">
         {{ x.naziv }}
       </option>
     </select>
-  </div>
+
+  </app-form-element-wrapper>
 
   <div class="form-group">
     <label for="isServiser">Serviser:</label>

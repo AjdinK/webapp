@@ -10,17 +10,18 @@ import {FormsModule, NgForm, ReactiveFormsModule} from "@angular/forms";
 import {ProdavacBrisiEndpoint} from "../../endpoints/prodavac-endpoints/prodavac-brisi-endpoint";
 import {ConfigFile} from "../../configFile";
 import {ProdavacDodajEndpoint, ProdavacDodajRequest} from "../../endpoints/prodavac-endpoints/prodavac-dodaj-endpoint";
+import {FormElementWrapperComponent} from "../reusable/form-element-wrapper/form-element-wrapper.component";
 
 @Component({
   selector: "app-prodavac",
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, FormElementWrapperComponent],
   templateUrl: "./prodavac.component.html",
   styleUrls: ["./prodavac.component.css", "../../../assets/styles/table_form.css"],
 })
 export class ProdavacComponent implements OnInit {
   currentPage: number = 1;
-  JelPopunjeno: boolean = false;
+  jelPopunjeno: boolean = false;
   novaSlikaProdavac: any = null;
   opcionalnaLozinka: string = "";
   prodavacPodaci: ProdavacGetAllResponse | null = null;
@@ -90,7 +91,7 @@ export class ProdavacComponent implements OnInit {
         },
       });
     }
-    this.JelPopunjeno = true;
+    this.jelPopunjeno = true;
   }
 
   brisiProdavac(id: number) {
@@ -158,11 +159,11 @@ export class ProdavacComponent implements OnInit {
           this.reloadDodaj();
         },
         error: (x) => {
-          alert("greska snimiProdavac -> " + x.error);
+          alert("greska snimiProdavac: " + x.message);
         },
       });
     }
-    this.JelPopunjeno = true;
+    this.jelPopunjeno = true;
   }
 
   reloadDodaj() {

@@ -20,7 +20,7 @@ export class FormElementWrapperComponent {
   @Input() labelFor: string = "";
   @Input() label: string = "";
   @Input() className: string = "";
-  @Input() imePolje: any = null;
+  @Input() imePolje: any = "";
   @Input() validation: any = null;
   @Input() JelPopunjeno: boolean = false;
   protected readonly Poruke = Poruke;
