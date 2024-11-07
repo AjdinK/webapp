@@ -58,6 +58,7 @@ export class DashboardAdminComponent implements OnInit {
   }
 
   fetchNalog() {
+    this.router.navigate(['/admin-nalog-page'])
   }
 
   idiHomepage() {

@@ -1,0 +1,77 @@
+
+.admin-page {
+  width: 90%;
+  max-width: 1000px;
+  margin:10rem;
+}
+
+.admin-page h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #7cbffa;
+}
+
+/* Technician table styling */
+.technician-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1c1c1e;
+  border: 1px solid #333;
+  color: #ffffff;
+}
+
+.technician-table th, .technician-table td {
+  padding: 1rem;
+  text-align: left;
+  border: 1px solid #333;
+}
+
+.technician-table th {
+  background-color: #2a2a2c;
+  font-weight: bold;
+  color: #7cbffa;
+}
+
+.technician-table td ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.technician-table td ul li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #444;
+}
+
+.technician-table td ul li:last-child {
+  border-bottom: none;
+}
+
+.technician-table tr:nth-child(even) {
+  background-color: #262626;
+}
+
+.technician-table tr:hover {
+  background-color: #333;
+}
+
+.search-container {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search-bar {
+  width: 300px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #4CAF50;
+  background-color: #333;
+  color: #fff;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #4CAF50;
+}

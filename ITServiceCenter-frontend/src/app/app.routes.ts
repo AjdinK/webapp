@@ -8,6 +8,7 @@ import {authGuard} from "./services/auth.guard";
 import {guestGuard} from "./services/guest.guard";
 import {DashboardRadnikComponent} from "./components/dashboard-radnik/dashboard-radnik.component";
 import {SearchPageComponent} from "./components/search-page/search-page.component";
+import {AdminNalogPageComponent} from "./components/admin-nalog-page/admin-nalog-page.component";
 
 export const routes: Routes = [
   {
@@ -39,6 +40,10 @@ export const routes: Routes = [
   {
     path: 'search-page',
     component: SearchPageComponent,
+  },
+  {
+    path: 'admin-nalog-page',
+    component: AdminNalogPageComponent,
   },
   {
     path: 'assets/ava',
