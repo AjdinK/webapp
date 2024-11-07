@@ -7,6 +7,7 @@ import {Page401Component} from "./components/page-401/page-401.component";
 import {authGuard} from "./services/auth.guard";
 import {guestGuard} from "./services/guest.guard";
 import {DashboardRadnikComponent} from "./components/dashboard-radnik/dashboard-radnik.component";
+import {SearchPageComponent} from "./components/search-page/search-page.component";
 
 export const routes: Routes = [
   {
@@ -34,6 +35,10 @@ export const routes: Routes = [
   {
     path: 'dashboard-radnik',
     component: DashboardRadnikComponent,
+  },
+  {
+    path: 'search-page',
+    component: SearchPageComponent,
   },
   {
     path: 'assets/ava',
