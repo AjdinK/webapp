@@ -17,7 +17,7 @@ export class SearchPageComponent {
   }
 
   goBack () {
-    this.router.navigate(['']);
+    this.router.navigate(['/serviser-nalog-page']);
   }
 
 }

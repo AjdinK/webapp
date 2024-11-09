@@ -1,0 +1,143 @@
+.btn-edit {
+  padding: 0.5rem 1rem;
+  background-color: #1e88e5;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-edit:hover {
+  background-color: #176cb7;
+}
+
+.btn-save {
+  padding: 0.5rem 1rem;
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background-color: #1e88e5;
+}
+
+.repair-table select {
+  padding: 0.25rem;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  background-color: #333;
+  color: white;
+  border: none;
+  outline: none;
+}
+
+.repair-table select:focus {
+  border: 1px solid #4CAF50;
+}
+
+.admin-page {
+  width: 90%;
+  max-width: 1000px;
+  margin: 10rem auto;
+}
+
+.admin-page h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #7cbffa;
+}
+
+/* Search Bar Styling */
+.search-container {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search-bar {
+  width: 300px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 0;
+  border: 1px solid #7cbffa;
+  background-color: #333;
+  color: #fff;
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #7cbffa;
+}
+
+.repair-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: #1c1c1e;
+  color: #ffffff;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.repair-table th, .repair-table td {
+  padding: 0.75rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.repair-table th {
+  background-color: #2a2a2c;
+  font-weight: bold;
+  color: #7cbffa;
+}
+
+.repair-table td {
+  background-color: #262626;
+  border-top: 1px solid #333;
+}
+
+.repair-table tr:hover {
+  background-color: #333;
+}
+
+.status-completed {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+.status-in-progress {
+  color: #FFC107;
+  font-weight: bold;
+}
+
+.repair-table .status-completed {
+  background-color: #333;
+  opacity: 0.6;
+}
+
+.add-device-btn-container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-add-device {
+  padding: 0.75rem 1.5rem;
+  background-color: #1e88e5;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-add-device:hover {
+  background-color: #1667ae;
+}

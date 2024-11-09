@@ -9,6 +9,8 @@ import {guestGuard} from "./services/guest.guard";
 import {DashboardRadnikComponent} from "./components/dashboard-radnik/dashboard-radnik.component";
 import {SearchPageComponent} from "./components/search-page/search-page.component";
 import {AdminNalogPageComponent} from "./components/admin-nalog-page/admin-nalog-page.component";
+import {ServiserNalogPageComponent} from "./components/serviser-nalog-page/serviser-nalog-page.component";
+import {ServiserAddNalogComponent} from "./components/serviser-add-nalog/serviser-add-nalog.component";
 
 export const routes: Routes = [
   {
@@ -34,8 +36,8 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'dashboard-radnik',
-    component: DashboardRadnikComponent,
+    path: 'serviser-nalog-page',
+    component: ServiserNalogPageComponent,
   },
   {
     path: 'search-page',
@@ -44,6 +46,14 @@ export const routes: Routes = [
   {
     path: 'admin-nalog-page',
     component: AdminNalogPageComponent,
+  },
+  {
+    path: 'serviser-nalog-page',
+    component: ServiserNalogPageComponent,
+  },
+  {
+    path: 'serviser-add-nalog',
+    component: ServiserAddNalogComponent,
   },
   {
     path: 'assets/ava',

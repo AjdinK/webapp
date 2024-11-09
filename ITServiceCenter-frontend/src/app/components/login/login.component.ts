@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
             if (role.isAdmin == true) {
               this.router.navigate(["/dashboard-admin"]);
             } else {
-              this.router.navigate(["/dashboard-radnik"]);
+              this.router.navigate(["/serviser-nalog-page"]);
             }
           }
         },
