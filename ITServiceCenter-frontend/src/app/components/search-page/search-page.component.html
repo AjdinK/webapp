@@ -1,37 +1,35 @@
-
 <app-header></app-header>
 <div class="device-info-card">
-  <h2>Device Information</h2>
+    <h2>Informacije o uređaju</h2>
 
-  <div class="device-details">
-    <div class="image-container">
-      <img src="/assets/img/device.png" alt="Device Image" class="device-image" />
+    <div class="device-details">
+        <div class="image-container">
+            <img src="/assets/img/device.png" alt="Slika uređaja" class="device-image" />
+        </div>
+        <div class="device-info">
+            <p><span>Model:</span> Samsung Galaxy S21</p>
+            <p><span>Brend:</span> Samsung</p>
+            <p><span>Godina:</span> 2021</p>
+            <p><span>Datum predaje:</span> 2024-11-05</p>
+        </div>
     </div>
-    <div class="device-info">
-      <p><span>Model:</span> Samsung Galaxy S21</p>
-      <p><span>Brand:</span> Samsung</p>
-      <p><span>Year:</span> 2021</p>
-      <p><span>Submission Date:</span> 2024-11-05</p>
+
+    <h3>Informacije o servisu</h3>
+    <div class="technician-info">
+        <p><span>ID tehničara:</span> T123</p>
+        <p><span>Trenutni status:</span> Završeno</p>
+        <h4>Koraci popravke:</h4>
+        <ul class="repair-steps">
+            <li><strong>Uređaj primljen:</strong> Uređaj je primljen 2024-11-05.</li>
+            <li><strong>Zamjena baterije:</strong> Zamjena baterije započeta 2024-11-06.</li>
+            <li><strong>Zamjena baterije završena:</strong> Zamjena uspješno završena.</li>
+            <li><strong>Obavijest poslana:</strong> Korisnik obaviješten da je uređaj spreman za preuzimanje.</li>
+        </ul>
+        <p><span>Komentar tehničara:</span> Zamjena baterije završena, svi testovi prošli.</p>
     </div>
-  </div>
 
-  <h3>Service Information</h3>
-  <div class="technician-info">
-    <p><span>Technician ID:</span> T123</p>
-    <p><span>Current Status:</span> Finished</p>
-    <h4>Repair Steps:</h4>
-    <ul class="repair-steps">
-      <li><strong>Device Received:</strong> Device was received on 2024-11-05.</li>
-      <li><strong>Battery Replacement:</strong> Battery replacement started on 2024-11-06.</li>
-      <li><strong>Battery Replacement Completed:</strong> Replacement finished successfully.</li>
-      <li><strong>Notification Sent:</strong> User notified that the device is ready for pickup.</li>
-    </ul>
-    <p><span>Technician Comment:</span> Battery replacement completed, all tests passed.</p>
-  </div>
-
-  <div class="button-container">
-    <button class="btn-back" (click)="goBack()">Go Back</button>
-    <button class="btn-pay" onclick="payOnline()">Pay Online</button>
-  </div>
+    <div class="button-container">
+        <button class="btn-back" (click)="goBack()">Nazad</button>
+        <button class="btn-pay" (click)="payOnline()">Plati online</button>
+    </div>
 </div>
-

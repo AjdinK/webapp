@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="payment-page">
+    <div class="payment-card">
+        <h2>Informacije o računu</h2>
+        <div class="payment-details">
+            <p><span>Broj računa:</span> #123456</p>
+            <p><span>Model uređaja:</span> Samsung Galaxy S21</p>
+            <p><span>Usluga:</span> Zamjena baterije</p>
+            <p><span>Datum završetka:</span> 2024-11-06</p>
+            <p><span>Ukupan iznos:</span> <strong>150.00 KM</strong></p>
+        </div>
+
+        <div *ngIf="!paymentSuccess" class="payment-actions">
+            <button class="btn-cancel" (click)="goToHomePage()">Nazad na početnu stranicu</button>
+            <button class="btn-confirm" (click)="confirmPayment()">Plati sada</button>
+        </div>
+
+        <div *ngIf="paymentSuccess" class="success-message">
+            <h3>Plaćanje uspješno!</h3>
+            <p>Vaša uplata za uslugu zamjene baterije je uspješno zabilježena. Hvala na povjerenju!</p>
+            <button class="btn-home" (click)="goToHomePage()">Nazad na početnu stranicu</button>
+        </div>
+    </div>
+</div>

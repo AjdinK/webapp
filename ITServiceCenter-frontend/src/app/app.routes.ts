@@ -11,6 +11,7 @@ import {SearchPageComponent} from "./components/search-page/search-page.componen
 import {AdminNalogPageComponent} from "./components/admin-nalog-page/admin-nalog-page.component";
 import {ServiserNalogPageComponent} from "./components/serviser-nalog-page/serviser-nalog-page.component";
 import {ServiserAddNalogComponent} from "./components/serviser-add-nalog/serviser-add-nalog.component";
+import {PaymentPageComponent} from "./components/payment-page/payment-page.component";
 
 export const routes: Routes = [
   {
@@ -54,6 +55,10 @@ export const routes: Routes = [
   {
     path: 'serviser-add-nalog',
     component: ServiserAddNalogComponent,
+  },
+  {
+    path: 'payment-page',
+    component: PaymentPageComponent,
   },
   {
     path: 'assets/ava',

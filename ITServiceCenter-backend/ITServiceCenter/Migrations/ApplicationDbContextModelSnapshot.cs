@@ -548,7 +548,7 @@ namespace itservicecenter.Migrations
                         {
                             ID = 1,
                             CijenaServisa = 210f,
-                            DatumPreuzimanja = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(3556),
+                            DatumPreuzimanja = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(2500),
                             Garancija = "30 Dana",
                             Napomena = "",
                             SifraRacuna = "sifraracuna1"
@@ -617,28 +617,28 @@ namespace itservicecenter.Migrations
                         {
                             ServiserID = 2,
                             ServisniDioID = 1,
-                            Datum = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4121),
+                            Datum = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(2840),
                             Kolicina = 3
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 2,
-                            Datum = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4129),
+                            Datum = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(2850),
                             Kolicina = 3
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 3,
-                            Datum = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4132),
+                            Datum = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(2850),
                             Kolicina = 2
                         },
                         new
                         {
                             ServiserID = 2,
                             ServisniDioID = 4,
-                            Datum = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4134),
+                            Datum = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(2850),
                             Kolicina = 1
                         });
                 });
@@ -808,8 +808,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 1,
-                            DatumPredaje = new DateTime(2024, 11, 6, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4884),
-                            DatumZaprimanja = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4879),
+                            DatumPredaje = new DateTime(2024, 12, 15, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3110),
+                            DatumZaprimanja = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3110),
                             Napomena = "Ocistiti prednju kameru",
                             Problem = "Zamjena LCDa",
                             SifraNaloga = "sifraservisa1"
@@ -817,8 +817,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 2,
-                            DatumPredaje = new DateTime(2024, 11, 6, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4895),
-                            DatumZaprimanja = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4894),
+                            DatumPredaje = new DateTime(2024, 12, 15, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3120),
+                            DatumZaprimanja = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3120),
                             Napomena = "",
                             Problem = "zakljucan google acc",
                             SifraNaloga = "sifraservisa2"
@@ -826,8 +826,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 3,
-                            DatumPredaje = new DateTime(2024, 11, 6, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4899),
-                            DatumZaprimanja = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4897),
+                            DatumPredaje = new DateTime(2024, 12, 15, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3120),
+                            DatumZaprimanja = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3120),
                             Napomena = "bitini podatci",
                             Problem = "Spor",
                             SifraNaloga = "sifraservisa3"
@@ -835,8 +835,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 4,
-                            DatumPredaje = new DateTime(2024, 11, 6, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4903),
-                            DatumZaprimanja = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4902),
+                            DatumPredaje = new DateTime(2024, 12, 15, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3120),
+                            DatumZaprimanja = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3120),
                             Napomena = "",
                             Problem = "Nema slike",
                             SifraNaloga = "sifraservisa4"
@@ -844,8 +844,8 @@ namespace itservicecenter.Migrations
                         new
                         {
                             ID = 5,
-                            DatumPredaje = new DateTime(2024, 11, 6, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4907),
-                            DatumZaprimanja = new DateTime(2024, 11, 4, 10, 40, 12, 585, DateTimeKind.Local).AddTicks(4905),
+                            DatumPredaje = new DateTime(2024, 12, 15, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3130),
+                            DatumZaprimanja = new DateTime(2024, 12, 13, 14, 44, 25, 263, DateTimeKind.Local).AddTicks(3130),
                             Napomena = "",
                             Problem = "Ne radi brzo punjenje!",
                             SifraNaloga = "sifraservisa5"
@@ -996,8 +996,8 @@ namespace itservicecenter.Migrations
                             IsProdavac = false,
                             IsServiser = false,
                             JelObrisan = false,
-                            LozinkaHash = "0ntawirgL+1r21A07f2Llzukwvw=",
-                            LozinkaSalt = "tD5kSpamM1f+SupMFpHVbg==",
+                            LozinkaHash = "w+Viu7jRGnp5nmpLMPzcqGhNZbs=",
+                            LozinkaSalt = "ALmh/8bd4W+PL4jTm8qcpA==",
                             Prezime = "Kuduzović",
                             Username = "ajdin",
                             GradID = 22,
@@ -1032,8 +1032,8 @@ namespace itservicecenter.Migrations
                             IsProdavac = true,
                             IsServiser = false,
                             JelObrisan = false,
-                            LozinkaHash = "6/9R427FIfdTo0518hnkydv2fYo=",
-                            LozinkaSalt = "S88ssq8iot4BvUANfG5hSg==",
+                            LozinkaHash = "WBYf0JeNDalL0A65Wp6io6XASbk=",
+                            LozinkaSalt = "s1lt3Vg5kLxP8Yc5QiV41g==",
                             Prezime = "Burić",
                             Username = "alina",
                             GradID = 4,
@@ -1049,8 +1049,8 @@ namespace itservicecenter.Migrations
                             IsProdavac = true,
                             IsServiser = false,
                             JelObrisan = false,
-                            LozinkaHash = "YhCXud8SmqAWW3FPuS56AxdBBDg=",
-                            LozinkaSalt = "cqpX9nT7ifvWIAlcZJqtDw==",
+                            LozinkaHash = "mwMH/dMq26C5vqiBpUzn7V2AsCk=",
+                            LozinkaSalt = "z9ff2mL1pxyHc++0YC2iFw==",
                             Prezime = "Keskin",
                             Username = "vedad",
                             GradID = 4,
@@ -1085,8 +1085,8 @@ namespace itservicecenter.Migrations
                             IsProdavac = false,
                             IsServiser = true,
                             JelObrisan = false,
-                            LozinkaHash = "/HGnZe4dofzhQiLdKwosfxHMzvk=",
-                            LozinkaSalt = "06IdVgqvtwW3nWViaKPIvw==",
+                            LozinkaHash = "Gg8Ad9gCymoSMqFAHz96iF5l4kc=",
+                            LozinkaSalt = "gtaKjKIa+NoTB9cRZuiGcA==",
                             Prezime = "Burić",
                             Username = "jasir",
                             GradID = 1,
@@ -1102,8 +1102,8 @@ namespace itservicecenter.Migrations
                             IsProdavac = false,
                             IsServiser = true,
                             JelObrisan = false,
-                            LozinkaHash = "gQfILJwSHsqmerY0JUk5cMEbDUg=",
-                            LozinkaSalt = "rSBdWNayGzU3locAY9RliQ==",
+                            LozinkaHash = "DDd6fKDkIbv/gTuWBfcsbzg7MeM=",
+                            LozinkaSalt = "Yy+LUJNqI2vlXk/uk28Fzg==",
                             Prezime = "Mešić",
                             Username = "adis",
                             GradID = 1,

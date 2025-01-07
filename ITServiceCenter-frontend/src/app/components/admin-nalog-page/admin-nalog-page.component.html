@@ -1,76 +1,73 @@
 <app-header></app-header>
 
-
 <div class="admin-page">
 
-  <!-- Search Bar -->
-  <div class="search-container">
-    <input type="text" id="searchBar" class="search-bar" placeholder="Search.....">
-  </div>
-
-  <table class="technician-table">
-    <thead>
-    <tr>
-      <th>Technician ID</th>
-      <th>Technician Name</th>
-      <th>Device ID</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Date Finished</th>
-      <th>Price</th>
-      <th>Parts Used</th>
-      <th>Current Work</th>
-      <th>Priority</th>
-      <th>Client Contact</th>
-      <th>Time Spent</th>
-      <th>Last Update</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Dummy data row 1 -->
-    <tr>
-      <td>T123</td>
-      <td>Jasir</td>
-      <td>1</td>
-      <td>Battery replacement</td>
-      <td><span class="status-completed">Completed</span></td>
-      <td>2024-11-04</td>
-      <td>$80</td>
-      <td>Battery</td>
-      <td>
-        <ul>
-          <li><strong>Dev ID 7:</strong> Monitor <br>
-            <span>Status: <span class="status-in-progress">In Progress</span></span>
-          </li>
-        </ul>
-      </td>
-      <td>High</td>
-      <td>email</td>
-      <td>5 hours</td>
-      <td>2024-11-04</td>
-    </tr>
-    <!-- Dummy data row 2 -->
-    <tr>
-      <td>T124</td>
-      <td>Ajdin</td>
-      <td>2</td>
-      <td>Keyboard repair</td>
-      <td><span class="status-completed">Completed</span></td>
-      <td>2024-11-05</td>
-      <td>$50</td>
-      <td>Keyboard</td>
-      <td>
-        <ul>
-          <li><strong>Dev ID 8:</strong> Hard drive <br>
-            <span>Status: <span class="status-in-progress">In Progress</span></span>
-          </li>
-        </ul>
-      </td>
-      <td>Medium</td>
-      <td>Phone</td>
-      <td>3 hours</td>
-      <td>2024-11-05</td>
-    </tr>
-    </tbody>
-  </table>
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-bar" placeholder="Pretraži...">
+        <button class="btn-back" (click)="goToDashboard()">Nazad na Dashboard</button>
+    </div>
+    
+    <table class="technician-table">
+        <thead>
+        <tr>
+            <th>ID tehničara</th>
+            <th>Ime tehničara</th>
+            <th>ID uređaja</th>
+            <th>Opis</th>
+            <th>Status</th>
+            <th>Datum završetka</th>
+            <th>Cijena</th>
+            <th>Korišteni dijelovi</th>
+            <th>Trenutni rad</th>
+            <th>Prioritet</th>
+            <th>Kontakt klijenta</th>
+            <th>Vrijeme utrošeno</th>
+            <th>Posljednje ažuriranje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>T123</td>
+            <td>Jasir</td>
+            <td>1</td>
+            <td>Zamjena baterije</td>
+            <td><span class="status-completed">Završeno</span></td>
+            <td>2024-11-04</td>
+            <td>80 KM</td>
+            <td>Baterija</td>
+            <td>
+                <ul>
+                    <li><strong>ID uređaja 7:</strong> Monitor <br>
+                        <span>Status: <span class="status-in-progress">U toku</span></span>
+                    </li>
+                </ul>
+            </td>
+            <td>Visok</td>
+            <td>Email</td>
+            <td>5 sati</td>
+            <td>2024-11-04</td>
+        </tr>
+        <tr>
+            <td>T124</td>
+            <td>Ajdin</td>
+            <td>2</td>
+            <td>Popravka tastature</td>
+            <td><span class="status-completed">Završeno</span></td>
+            <td>2024-11-05</td>
+            <td>50 KM</td>
+            <td>Tastatura</td>
+            <td>
+                <ul>
+                    <li><strong>ID uređaja 8:</strong> Hard disk <br>
+                        <span>Status: <span class="status-in-progress">U toku</span></span>
+                    </li>
+                </ul>
+            </td>
+            <td>Srednji</td>
+            <td>Telefon</td>
+            <td>3 sata</td>
+            <td>2024-11-05</td>
+        </tr>
+        </tbody>
+    </table>
 </div>

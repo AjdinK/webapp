@@ -62,6 +62,7 @@
 }
 
 .search-bar {
+  margin-right: 1rem;
   width: 300px;
   padding: 0.75rem;
   font-size: 1rem;
@@ -74,4 +75,20 @@
 .search-bar:focus {
   outline: none;
   border-color: #4CAF50;
+}
+
+
+.btn-back {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5d707d;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: #6C7F8D;
 }

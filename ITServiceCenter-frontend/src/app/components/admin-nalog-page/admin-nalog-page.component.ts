@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HeaderComponent} from "../homepage/header/header.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-nalog-page',
@@ -11,5 +12,9 @@ import {HeaderComponent} from "../homepage/header/header.component";
   styleUrl: './admin-nalog-page.component.css'
 })
 export class AdminNalogPageComponent {
-
+  constructor(private router: Router) {
+  }
+  goToDashboard (){
+    this.router.navigate(['/dashboard-admin']);
+  }
 }

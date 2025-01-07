@@ -17,7 +17,10 @@ export class SearchPageComponent {
   }
 
   goBack () {
-    this.router.navigate(['/serviser-nalog-page']);
+    this.router.navigate(['/']);
   }
 
+  payOnline() {
+    this.router.navigate(['/payment-page']);
+  }
 }
