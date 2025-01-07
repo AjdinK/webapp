@@ -1,79 +1,70 @@
 <app-header></app-header>
 <div class="admin-page">
 
-  <h2>Devices List</h2>
+    <h2>Lista uređaja</h2>
 
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-bar" placeholder="Pretraži...">
+    </div>
 
-  <div class="search-container">
-    <input type="text" id="searchBar" class="search-bar" placeholder="Search.....">
-  </div>
+    <table class="repair-table">
+        <thead>
+        <tr>
+            <th>ID uređaja</th>
+            <th>ID tehničara</th>
+            <th>Opis</th>
+            <th>Status</th>
+            <th>Datum završetka</th>
+            <th>Cijena</th>
+            <th>Korišteni dijelovi</th>
+            <th>Akcija</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>T123</td>
+            <td>Zamjena baterije</td>
+            <td><span class="status-completed">Završeno</span></td>
+            <td>2024-11-04</td>
+            <td>80 KM</td>
+            <td>Baterija</td>
+            <td><button class="btn-edit">Sakrij</button></td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>T123</td>
+            <td>Popravka ekrana</td>
+            <td><span class="status-in-progress">U toku</span></td>
+            <td>2024-11-06</td>
+            <td>120 KM</td>
+            <td>Ekran, Staklo</td>
+            <td><button class="btn-edit">Završeno</button></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>T124</td>
+            <td>Zamjena hard diska</td>
+            <td><span class="status-completed">Završeno</span></td>
+            <td>2024-11-03</td>
+            <td>150 KM</td>
+            <td>Hard disk</td>
+            <td><button class="btn-edit">Sakrij</button></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>T124</td>
+            <td>Popravka tastature</td>
+            <td><span class="status-completed">Završeno</span></td>
+            <td>2024-11-02</td>
+            <td>50 KM</td>
+            <td>Tastatura</td>
+            <td><button class="btn-edit">Sakrij</button></td>
+        </tr>
+        </tbody>
+    </table>
 
-  <table class="repair-table">
-    <thead>
-    <tr>
-      <th>Device ID</th>
-      <th>Technician ID</th>
-      <th>Description</th>
-      <th>Status</th>
-      <th>Date Finished</th>
-      <th>Price</th>
-      <th>Parts Used</th>
-      <th>Action</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Dummy Data Rows -->
-    <tr>
-      <td>1</td>
-      <td>T123</td>
-      <td>Battery replacement</td>
-      <td><span class="status-completed">Completed</span></td>
-      <td>2024-11-04</td>
-      <td>$80</td>
-      <td>Battery</td>
-      <td><button class="btn-edit">Edit</button></td>
-      <td><button class="btn-edit">Hide</button></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>T123</td>
-      <td>Screen repair</td>
-      <td><span class="status-in-progress">In Progress</span></td>
-      <td>2024-11-06</td>
-      <td>$120</td>
-      <td>Screen, Glass</td>
-      <td><button class="btn-edit">Edit</button></td>
-      <td><button class="btn-edit">Hide</button></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>T124</td>
-      <td>Hard drive replacement</td>
-      <td><span class="status-completed">Completed</span></td>
-      <td>2024-11-03</td>
-      <td>$150</td>
-      <td>Hard Drive</td>
-      <td><button class="btn-edit">Edit</button></td>
-      <td><button class="btn-edit">Hide</button></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>T124</td>
-      <td>Keyboard repair</td>
-      <td><span class="status-completed">Completed</span></td>
-      <td>2024-11-02</td>
-      <td>$50</td>
-      <td>Keyboard</td>
-      <td><button class="btn-edit">Edit</button></td>
-      <td><button class="btn-edit">Hide</button></td>
-
-    </tr>
-    </tbody>
-  </table>
-
-  <div class="add-device-btn-container">
-    <button (click)="goToAddDevice()" class="btn-add-device">Add New Device</button>
-  </div>
+    <div class="add-device-btn-container">
+        <button (click)="goToAddDevice()" class="btn-add-device">Dodaj novi uređaj</button>
+    </div>
 </div>
-

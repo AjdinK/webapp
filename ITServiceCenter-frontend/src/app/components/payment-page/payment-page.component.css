@@ -73,3 +73,106 @@
     border-radius: 5px;
     color: #155724;
 }
+
+/* Novi stilovi za payment form */
+.payment-form {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #28a745;
+}
+
+.card-input-wrapper {
+    position: relative;
+}
+
+.card-type {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Stilovi za prikaz greške */
+.input-error {
+    border-color: #dc3545;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Stilovi za uspješnu transakciju */
+.success-message h3 {
+    color: #155724;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.success-message p {
+    color: #155724;
+    margin-bottom: 20px;
+}
+
+/* Disabled button stil */
+.btn-confirm:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Responsivni dizajn */
+@media (max-width: 576px) {
+    .payment-card {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .btn-confirm, .btn-cancel, .btn-home {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .payment-actions {
+        flex-direction: column;
+    }
+}
